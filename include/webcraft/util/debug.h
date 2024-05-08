@@ -1,45 +1,94 @@
+#pragma once
 #include "webcraft/webcraft.h"
 
 namespace WebCraft {
 	namespace Util {
 		// Debugging utilities
 
-		// Log levels
+		/// <summary>
+		/// Represents the log level for logging.
+		/// </summary>
 		enum LogLevel {
+			/// <summary>
+			/// Logs info messages
+			/// </summary>
 			INFO,
+			/// <summary>
+			/// Logs warning messages
+			/// </summary>
 			WARNING,
+			/// <summary>
+			/// Logs error messages
+			/// </summary>
 			ERROR
 		};
 
-		// Log handler
+		/// <summary>
+		/// Log handler interface for handling log messages.
+		/// </summary>
 		class LogHandler {
 		public:
-			// Log message
-			virtual void log(std::string message, LogLevel level) = 0;
+			/// <summary>
+			/// Logs a message with the specified log level.
+			/// </summary>
+			/// <param name="message">Message to be logged</param>
+			/// <param name="level">Log level</param>
+			virtual void log(const std::string& message, LogLevel level) = 0;
 		};
 
-		// Default log handler
+		/// <summary>
+		/// Default log handler which just prints the log message to the console.
+		/// </summary>
 		class DefaultLogHandler : public LogHandler {
 		public:
-			// Log message
-			void log(std::string message, LogLevel level) override;
+			/// <summary>
+			/// Logs a message with the specified log level to the console.
+			/// </summary>
+			/// <param name="message">Message to be logged</param>
+			/// <param name="level">Log level</param>
+			void log(const std::string& message, LogLevel level) override;
 		};
 
-		// Debugging class
+		/// <summary>
+		/// Debugging utility class for logging, exception handling and assertion.
+		/// </summary>
 		class Debug {
 		public:
-			// Logging
-			static void log(std::string message, LogLevel level = INFO);
+			/// <summary>
+			/// Logs a message with the specified log level.
+			/// </summary>
+			/// <param name="message">Message to be logged</param>
+			/// <param name="level">Level to be logged at</param>
+			static void log(const std::string& message, LogLevel level = INFO);
 
-			// Exception handling
-			static void throwException(std::string message);
-			static void throwException(std::string message, std::exception e);
-			static void throwException(std::exception e);
+			/// <summary>
+			/// Throws an exception with the specified message.
+			/// </summary>
+			/// <param name="message">message to be thrown</param>
+			static void throwException(const std::string& message);
+			/// <summary>
+			/// Throws an exception with the specified message and exception.
+			/// </summary>
+			/// <param name="message">message to be thrown</param>
+			/// <param name="e">exception to be thrown</param>
+			static void throwException(const std::string& message, const std::exception& e);
+			/// <summary>
+			/// Throws an exception with the specified exception.
+			/// </summary>
+			/// <param name="e">exception to be thrown</param>
+			static void throwException(const std::exception& e);
 
-			// Assertion
-			static void assert(bool condition, std::string message);
+			/// <summary>
+			/// Assertion
+			/// </summary>
+			/// <param name="condition">condition to assert</param>
+			/// <param name="message">error message if false</param>
+			static void assert(bool condition, const std::string& message);
 			
-			// Log handler
+			/// <summary>
+			/// Adds a log handler
+			/// </summary>
+			/// <param name="handler">handler to be added</param>
 			static void addLogHandler(LogHandler* handler);
 		};
 	}
