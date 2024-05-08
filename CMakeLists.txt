@@ -14,7 +14,7 @@ project(WebCraft)
 set(LIBRARY_HEADER_DIR include/)
 
 # Add source files to library
-add_executable(WebCraft "src/webcraft/web_math.cpp" "test/webcraft/test_web_math.cpp" "src/webcraft/util/debug.cpp")
+add_executable(WebCraft "src/webcraft/web_math.cpp" "test/webcraft/test_main.cpp" "src/webcraft/util/debug.cpp" "test/webcraft/test_web_math.h")
 
 # Tell compiler where to find headers
 target_include_directories(WebCraft PRIVATE ${LIBRARY_HEADER_DIR})

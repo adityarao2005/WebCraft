@@ -83,7 +83,7 @@ namespace WebCraft {
 			/// </summary>
 			/// <param name="condition">condition to assert</param>
 			/// <param name="message">error message if false</param>
-			static void assert(bool condition, const std::string& message);
+			static void assert(bool condition, const std::string& message = "Condition not met");
 			
 			/// <summary>
 			/// Adds a log handler
