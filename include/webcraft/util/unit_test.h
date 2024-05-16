@@ -2,6 +2,7 @@
 #include <functional>
 #include <future>
 #include <string>
+#include "debug.h"
 
 namespace WebCraft {
 	namespace Util {
@@ -24,14 +25,14 @@ namespace WebCraft {
 			/// Called when a test fails.
 			/// </summary>
 			virtual void onTestFailed(const std::string& name, std::exception e) {
-				std::cout << "Test failed: " << name << std::endl;
+				Debug::log("Test failed: " + name, ERROR);
 			}
 
 			/// <summary>
 			/// Called when a test passes.
 			/// </summary>
 			virtual void onTestPassed(const std::string& name) {
-				std::cout << "Test passed: " << name << std::endl;
+				Debug::log("Test passed: " + name);
 			}
 
 			/// <summary>

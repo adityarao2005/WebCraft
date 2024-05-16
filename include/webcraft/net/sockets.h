@@ -26,27 +26,155 @@
 
 #endif
 
+using Debug = WebCraft::Util::Debug;
 
 namespace WebCraft {
 	namespace Networking {
 		namespace Sockets {
 			// Typedefs
-#ifdef _WIN32
-// Windows
-			typedef SOCKET SOCKET_HANDLE;
-#else
+#ifndef _WIN32
 // Linux
-			typedef int SOCKET_HANDLE;
+			typedef int SOCKET;
+#define INVALID_SOCKET -1
+#define SOCKET_ERROR -1
+#define closesocket close
+#define SD_SEND SHUT_WR
 #endif
 
-			// Declarations
-			class SocketBase;
-			class Socket;
-			class ServerSocket;
 
 			// Functions
 			int SocketInit();
 			int SocketCleanup();
+
+			// Classes
+			class Socket {
+			private:
+				SOCKET handle;
+			public:
+				Socket() {
+					// Create a SOCKET for connecting to server
+					if ((handle = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)) == INVALID_SOCKET) {
+						Debug::throwException("socket failed with error");
+					}
+				}
+
+				Socket(SOCKET handle) : handle(handle) {}
+
+				void connect(std::string host, int port) {
+					struct addrinfo* result = NULL,
+						hints;
+
+					memset(&hints, 0, sizeof(hints));
+					hints.ai_family = AF_INET;
+					hints.ai_socktype = SOCK_STREAM;
+					hints.ai_protocol = IPPROTO_TCP;
+
+					// Resolve the server address and 
+					{
+						// Resolve the server address and port
+						int iResult;
+						if ((iResult = getaddrinfo(host.data(), std::to_string(port).data(), &hints, &result)) != 0) {
+							Debug::throwException("getaddrinfo failed with error: " + std::to_string(iResult));
+						}
+					}
+
+					// Connect to server.
+					if (::connect(handle, result->ai_addr, (int)result->ai_addrlen) == SOCKET_ERROR) {
+						Debug::throwException("Unable to connect to server!");
+					}
+					// no longer need address info for server
+					freeaddrinfo(result);
+
+					// if connection failed
+					if (handle == INVALID_SOCKET) {
+						Debug::throwException("Unable to connect to server!");
+					}
+				}
+
+				int send(const char* data, int length) {
+					int iResult;
+					// Send an initial buffer
+					if ((iResult = ::send(handle, data, length, 0)) == SOCKET_ERROR) {
+						Debug::throwException("send failed with error");
+					}
+					return iResult;
+				}
+
+				int receive(char* buffer, int length) {
+					int iResult;
+					// Receive into buffer with buffer length
+					if ((iResult = ::recv(handle, buffer, length, 0)) == SOCKET_ERROR) {
+						Debug::throwException("recv failed with error");
+					}
+					return iResult;
+				}
+
+				void shutdown() {
+					// shutdown the connection since no more data will be sent
+					if (::shutdown(handle, SD_SEND) == SOCKET_ERROR) {
+						Debug::throwException("shutdown failed with error");
+					}
+				}
+
+				~Socket() {
+					closesocket(handle);
+				}
+
+			};
+
+			class ServerSocket {
+			private:
+				SOCKET handle;
+			public:
+				ServerSocket() {
+					// Create a SOCKET for the server to listen for client connections.
+					if ((handle = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)) == INVALID_SOCKET) {
+						Debug::throwException("socket failed with error");
+					}
+				}
+
+				ServerSocket(SOCKET handle) : handle(handle) {}
+
+				void bind(int port) {
+					struct addrinfo* result = NULL;
+					struct addrinfo hints;
+
+					memset(&hints, 0, sizeof(hints));
+					hints.ai_family = AF_INET;
+					hints.ai_socktype = SOCK_STREAM;
+					hints.ai_protocol = IPPROTO_TCP;
+					hints.ai_flags = AI_PASSIVE;
+
+					int iResult;
+					// Resolve the server address and port
+					if ((iResult = getaddrinfo(NULL, std::to_string(port).data(), &hints, &result)) != 0) {
+						Debug::throwException("getaddrinfo failed with error: " + iResult);
+					}
+
+					// Setup the TCP listening socket
+					if (::bind(handle, result->ai_addr, (int)result->ai_addrlen) == SOCKET_ERROR) {
+						Debug::throwException("bind failed with error");
+					}
+
+					freeaddrinfo(result);
+				}
+
+				void listen() {
+					if (::listen(handle, SOMAXCONN) == SOCKET_ERROR) {
+						Debug::throwException("listen failed with error");
+					}
+				}
+
+				Socket accept() {
+					SOCKET clientSocket;
+					// Accept a client socket
+					if ((clientSocket = ::accept(handle, NULL, NULL)) == INVALID_SOCKET) {
+						Debug::throwException("accept failed with error");
+					}
+					return Socket(clientSocket);
+				}
+			};
+
 
 		}
 	}
