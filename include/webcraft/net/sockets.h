@@ -46,19 +46,28 @@ namespace WebCraft {
 			int SocketInit();
 			int SocketCleanup();
 
-			// Classes
-			class Socket {
-			private:
+			class SocketBase {
+			protected:
 				SOCKET handle;
 			public:
-				Socket() {
+				SocketBase() {
 					// Create a SOCKET for connecting to server
 					if ((handle = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)) == INVALID_SOCKET) {
 						Debug::throwException("socket failed with error");
 					}
 				}
+				
+				SocketBase(SOCKET handle) : handle(handle) {}
+				~SocketBase() {
+					closesocket(handle);
+				}
+			};
 
-				Socket(SOCKET handle) : handle(handle) {}
+			class Socket : public SocketBase {
+			public:
+				Socket() : SocketBase() {}
+
+				Socket(SOCKET handle) : SocketBase(handle) {}
 
 				void connect(std::string host, int port) {
 					struct addrinfo* result = NULL,
@@ -116,24 +125,17 @@ namespace WebCraft {
 					}
 				}
 
-				~Socket() {
-					closesocket(handle);
-				}
+				~Socket() {}
 
 			};
 
-			class ServerSocket {
-			private:
-				SOCKET handle;
+			class ServerSocket : public SocketBase {
 			public:
-				ServerSocket() {
-					// Create a SOCKET for the server to listen for client connections.
-					if ((handle = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)) == INVALID_SOCKET) {
-						Debug::throwException("socket failed with error");
-					}
-				}
+				ServerSocket() : SocketBase() {}
 
-				ServerSocket(SOCKET handle) : handle(handle) {}
+				ServerSocket(SOCKET handle) : SocketBase(handle) {}
+
+				~ServerSocket() {}
 
 				void bind(int port) {
 					struct addrinfo* result = NULL;
@@ -174,6 +176,7 @@ namespace WebCraft {
 					return Socket(clientSocket);
 				}
 			};
+
 
 
 		}
