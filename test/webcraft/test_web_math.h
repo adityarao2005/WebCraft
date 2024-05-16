@@ -4,34 +4,52 @@
 #include "webcraft/util/debug.h"
 #include "webcraft/util/unit_test.h"
 
-using namespace WebCraft::Util;
 
-BEGIN_TEST_CLASS(web_math)
+class web_math_test : public WebCraft::Util::UnitTest {
+public:
+	void test_add() {
+		WebCraft::Util::Debug::assert(WebCraft::add(4, 2) == 6);
+	}
 
-	BEGIN_TEST_METHOD(add)
-		Debug::assert(WebCraft::add(4, 2) == 6);
-	END_TEST_METHOD
-
-
-	BEGIN_TEST_METHOD(subtract)
-		Debug::assert(WebCraft::subtract(4, 2) == 2);
-	END_TEST_METHOD
+	void test_subtract() {
+		WebCraft::Util::Debug::assert(WebCraft::subtract(4, 2) == 2);
+	}
 
 
-	BEGIN_TEST_METHOD(multiply)
-		Debug::assert(WebCraft::multiply(4, 2) == 8);
-	END_TEST_METHOD
+	void test_multiply() {
+		WebCraft::Util::Debug::assert(WebCraft::multiply(4, 2) == 8);
+	}
 
+	void test_divide() {
+		WebCraft::Util::Debug::assert(WebCraft::divide(4, 2) == 2);
+	}
 
-	BEGIN_TEST_METHOD(divide)
-		Debug::assert(WebCraft::divide(4, 2) == 3);
-	END_TEST_METHOD
+	void Run() override {
+		// Run test using std::bind
+		RunTest(std::bind(&web_math_test::test_add, this), "test_add");
+		RunTest(std::bind(&web_math_test::test_subtract, this), "test_subtract");
+		RunTest(std::bind(&web_math_test::test_multiply, this), "test_multiply");
+		RunTest(std::bind(&web_math_test::test_divide, this), "test_divide");
 
-	BEGIN_UNIT_TEST
-		ADD_TEST_METHOD(add)
-		ADD_TEST_METHOD(subtract)
-		ADD_TEST_METHOD(multiply)
-		ADD_TEST_METHOD(divide)
-	END_UNIT_TEST
+		// Run test using macros
+		RUN_TEST(web_math_test, test_add);
+		RUN_TEST(web_math_test, test_subtract);
+		RUN_TEST(web_math_test, test_multiply);
+		RUN_TEST(web_math_test, test_divide);
 
-END_TEST_CLASS
+		// Run test using std::bind
+		RunTestAsync(std::bind(&web_math_test::test_add, this), "test_add");
+		RunTestAsync(std::bind(&web_math_test::test_subtract, this), "test_subtract");
+		RunTestAsync(std::bind(&web_math_test::test_multiply, this), "test_multiply");
+		RunTestAsync(std::bind(&web_math_test::test_divide, this), "test_divide");
+
+		// Run test using macros
+		RUN_TEST_ASYNC(web_math_test, test_add);
+		RUN_TEST_ASYNC(web_math_test, test_subtract);
+		RUN_TEST_ASYNC(web_math_test, test_multiply);
+		RUN_TEST_ASYNC(web_math_test, test_divide);
+	}
+
+	TO_STRING(web_math_test);
+
+};

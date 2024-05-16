@@ -1,4 +1,7 @@
 #pragma once
+#include <functional>
+#include <future>
+#include <string>
 
 namespace WebCraft {
 	namespace Util {
@@ -8,45 +11,79 @@ namespace WebCraft {
 		/// </summary>
 		class UnitTest {
 		public:
+			virtual std::string to_string() = 0;
 			/// <summary>
 			/// Runs the unit test.
 			/// </summary>
-			virtual void Run() = 0;
+			virtual void Run() {};
+
+			UnitTest() {}
+			~UnitTest() {}
+
+			/// <summary>
+			/// Called when a test fails.
+			/// </summary>
+			virtual void onTestFailed(const std::string& name, std::exception e) {
+				std::cout << "Test failed: " << name << std::endl;
+			}
+
+			/// <summary>
+			/// Called when a test passes.
+			/// </summary>
+			virtual void onTestPassed(const std::string& name) {
+				std::cout << "Test passed: " << name << std::endl;
+			}
+
+			/// <summary>
+			/// Runs a test asynchronously.
+			///	</summary>
+			std::future<void> RunTestAsync(std::function<void()> method, const std::string& name) {
+				return std::async(std::launch::async, &UnitTest::RunTest, this, method, name);
+			}
+
+			/// <summary>
+			/// Runs a test.
+			/// </summary>
+			void RunTest(std::function<void()> method, const std::string& name) {
+				bool __testPassed = true;
+				std::exception ex;
+				try { method(); }
+				catch (const std::exception& e) {
+					__testPassed = false;
+					ex = e;
+				}
+				if (__testPassed) {
+					onTestPassed(name);
+				}
+				else {
+					onTestFailed(name, ex);
+				}
+			}
+
 		};
 
-		// Begins a unit test class.
-		#define BEGIN_TEST_CLASS(name) class name##__test : public WebCraft::Util::UnitTest { public:
-		// Ends a unit test class.
-		#define END_TEST_CLASS };
+		template<class T>
+		static void RunUnitTest() {
+			T test;
+			std::cout << "Unit Test Running: " << test.to_string() << std::endl;
+			test.Run();
+			std::cout << "Unit Test Finished: " << test.to_string() << std::endl;
+		}
 
-		// Begins a test method.
-		#define BEGIN_TEST_METHOD(name) void name() {
-		// Ends a test method.
-		#define END_TEST_METHOD }
+		template<class T>
+		static void RunUnitTestAsync() {
+			std::future<void> future = std::async(std::launch::async, []() {
+				RunUnitTest<T>();
+			});
+		}
 
-		// Begins the testing
-		#define BEGIN_UNIT_TEST void Run() override { bool __testPassed = true;
-		// Ends the testing
-		#define END_UNIT_TEST }
+#define TO_STRING(x) std::string to_string() { return #x; }
 
-		// Runs the unit test.
-		#define RUN_UNIT_TEST(name) name##__test test; std::cout << "Unit Test Running: " << #name << std::endl; test.Run(); std::cout << "Unit Test Finished: " << #name << std::endl;
+		// Runs a unit test method.
+#define RUN_TEST(class_name, method_name) RunTest(std::bind(& class_name :: method_name , this), #method_name);
 
-		// Adds a test method to the unit test.
-		// Use Debug::assert & Debug::log for testing.
-		#define ADD_TEST_METHOD(name) \
-			try { name(); } \
-			catch (const std::exception& e) { \
-				__testPassed = false; \
-			} \
-				if (__testPassed) { \
-					std::cout << "Test passed: " << #name << std::endl; \
-				} else { \
-					std::cout << "Test failed: " << #name << std::endl; \
-				} \
-				__testPassed = true;
-			
-
+		// Runs a unit test method asynchronously.
+#define RUN_TEST_ASYNC(class_name, method_name) std::future<void> method_name##_future = RunTestAsync(std::bind(& class_name :: method_name , this), #method_name);
 
 	}
 }

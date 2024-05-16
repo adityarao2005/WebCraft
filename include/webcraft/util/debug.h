@@ -12,15 +12,19 @@ namespace WebCraft {
 			/// <summary>
 			/// Logs info messages
 			/// </summary>
-			INFO,
+			INFO = 0,
 			/// <summary>
 			/// Logs warning messages
 			/// </summary>
-			WARNING,
+			WARNING = 1,
 			/// <summary>
 			/// Logs error messages
 			/// </summary>
-			ERROR
+			ERROR = 2,
+			/// <summary>
+			/// Logs fatal messages
+			/// </summary>
+			FATAL = 3,
 		};
 
 		/// <summary>

@@ -1,6 +1,8 @@
 #include "test_web_math.h"
+#include "test_sockets.h"
 
 int main() {
-	RUN_UNIT_TEST(web_math)
+	WebCraft::Util::RunUnitTest<sockets_test>();
+	//RUN_UNIT_TEST(sockets)
 	return 0;
 }
