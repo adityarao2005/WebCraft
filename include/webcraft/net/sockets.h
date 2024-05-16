@@ -56,7 +56,27 @@ namespace WebCraft {
 						Debug::throwException("socket failed with error");
 					}
 				}
-				
+
+				void create_address(const char* host, int port, addrinfo** result, bool server) {
+					addrinfo hints;
+
+					memset(&hints, 0, sizeof(hints));
+					hints.ai_family = AF_INET;
+					hints.ai_socktype = SOCK_STREAM;
+					hints.ai_protocol = IPPROTO_TCP;
+					if (server) {
+						hints.ai_flags = AI_PASSIVE;
+					}
+
+
+					// Resolve the server address and port
+					int iResult;
+					if ((iResult = getaddrinfo(host, std::to_string(port).data(), &hints, result)) != 0) {
+						Debug::throwException("getaddrinfo failed with error: " + std::to_string(iResult));
+					}
+
+				}
+
 				SocketBase(SOCKET handle) : handle(handle) {}
 				~SocketBase() {
 					closesocket(handle);
@@ -70,22 +90,8 @@ namespace WebCraft {
 				Socket(SOCKET handle) : SocketBase(handle) {}
 
 				void connect(std::string host, int port) {
-					struct addrinfo* result = NULL,
-						hints;
-
-					memset(&hints, 0, sizeof(hints));
-					hints.ai_family = AF_INET;
-					hints.ai_socktype = SOCK_STREAM;
-					hints.ai_protocol = IPPROTO_TCP;
-
-					// Resolve the server address and 
-					{
-						// Resolve the server address and port
-						int iResult;
-						if ((iResult = getaddrinfo(host.data(), std::to_string(port).data(), &hints, &result)) != 0) {
-							Debug::throwException("getaddrinfo failed with error: " + std::to_string(iResult));
-						}
-					}
+					addrinfo* result = nullptr;
+					create_address(host.data(), port, &result, false);
 
 					// Connect to server.
 					if (::connect(handle, result->ai_addr, (int)result->ai_addrlen) == SOCKET_ERROR) {
@@ -138,21 +144,8 @@ namespace WebCraft {
 				~ServerSocket() {}
 
 				void bind(int port) {
-					struct addrinfo* result = NULL;
-					struct addrinfo hints;
-
-					memset(&hints, 0, sizeof(hints));
-					hints.ai_family = AF_INET;
-					hints.ai_socktype = SOCK_STREAM;
-					hints.ai_protocol = IPPROTO_TCP;
-					hints.ai_flags = AI_PASSIVE;
-
-					int iResult;
-					// Resolve the server address and port
-					if ((iResult = getaddrinfo(NULL, std::to_string(port).data(), &hints, &result)) != 0) {
-						Debug::throwException("getaddrinfo failed with error: " + iResult);
-					}
-
+					addrinfo* result = nullptr;
+					create_address(nullptr, port, &result, true);
 					// Setup the TCP listening socket
 					if (::bind(handle, result->ai_addr, (int)result->ai_addrlen) == SOCKET_ERROR) {
 						Debug::throwException("bind failed with error");
