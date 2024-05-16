@@ -104,9 +104,6 @@ public:
 
 				// Echo the buffer back to the sender
 				iSendResult = peer.send(recvbuf, iResult);
-				if (iSendResult == SOCKET_ERROR) {
-					Debug::throwException("send failed with error");
-				}
 				Debug::log("Bytes sent: " + iSendResult);
 			}
 
