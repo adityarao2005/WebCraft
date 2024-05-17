@@ -3,6 +3,7 @@
 
 using namespace WebCraft::Networking::Sockets;
 
+// For linux compatibility
 #ifndef _WIN32
 #define INVALID_SOCKET -1
 #define SOCKET_ERROR -1
@@ -10,28 +11,31 @@ using namespace WebCraft::Networking::Sockets;
 #define SD_SEND SHUT_WR
 #endif
 
-
-// Initialize the socket library
-int WebCraft::Networking::Sockets::SocketInit() {
-	// If we're on Windows, we need to initialize the Winsock library
+// For windows compatibility
 #ifdef _WIN32
-	WSADATA wsa_data;
-	return WSAStartup(MAKEWORD(1, 1), &wsa_data);
-#else
-	// On non-Windows platforms, we don't need to do anything
-	return 0;
-#endif
-}
+// RAII for handling WSAStartup and WSACleanup
+class SocketEssentials {
+public:
+	// Initialize Winsock
+	SocketEssentials() {
+		WSADATA wsa_data;
+		int result = WSAStartup(MAKEWORD(1, 1), &wsa_data);
+		if (result != 0) {
+			Debug::throwException("WSAStartup failed with error: " + std::to_string(result));
+		}
+	}
 
-int WebCraft::Networking::Sockets::SocketCleanup() {
-	// If we're on Windows, we need to clean up the Winsock library
-#ifdef _WIN32
-	return WSACleanup();
-#else
-	// On non-Windows platforms, we don't need to do anything
-	return 0;
+	// Cleanup winsock
+	~SocketEssentials() {
+		WSACleanup();
+	}
+};
+
+// Initialize the essentials
+SocketEssentials essentials;
 #endif
-}
+
+// SocketBase methods
 
 SocketBase::SocketBase() {
 	// Create a SOCKET for connecting to server
@@ -45,12 +49,14 @@ SocketBase::~SocketBase() {
 }
 
 void SocketBase::create_address(const char* host, int port, addrinfo** result, bool server) {
-	addrinfo hints;
+	// Setup the hints address info structure
+	addrinfo hints = {0};
 
-	memset(&hints, 0, sizeof(hints));
+	// Set the address family, socket type, and protocol
 	hints.ai_family = AF_INET;
 	hints.ai_socktype = SOCK_STREAM;
 	hints.ai_protocol = IPPROTO_TCP;
+	// If server, set the AI_PASSIVE flag
 	if (server) {
 		hints.ai_flags = AI_PASSIVE;
 	}
@@ -63,6 +69,8 @@ void SocketBase::create_address(const char* host, int port, addrinfo** result, b
 	}
 
 }
+
+// Socket methods
 
 void Socket::connect(std::string host, int port) {
 	addrinfo* result = nullptr;
@@ -120,15 +128,20 @@ void ServerSocket::bind(int port) {
 }
 
 void ServerSocket::listen() {
+	// Listen on the socket
 	if (::listen(handle, SOMAXCONN) == SOCKET_ERROR) {
 		Debug::throwException("listen failed with error");
 	}
 }
 
 Socket ServerSocket::accept() {
-	SOCKET client_socket = ::accept(handle, NULL, NULL);
+	// Accept a client socket
+	SOCKET client_socket = ::accept(handle, nullptr, nullptr);
+	
+	// if accept failed
 	if (client_socket == INVALID_SOCKET) {
 		Debug::throwException("accept failed with error");
 	}
+	// return the client socket
 	return Socket(client_socket);
 }

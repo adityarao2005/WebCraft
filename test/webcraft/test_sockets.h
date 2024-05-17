@@ -16,46 +16,39 @@ using namespace WebCraft::Util;
 
 class sockets_test : public WebCraft::Util::UnitTest {
 public:
-
+	// To string method
 	TO_STRING(sockets_test);
 
-	sockets_test() {
-		// initializing the socket library
-		WebCraft::Networking::Sockets::SocketInit();
-		Debug::log("Socket library initialized");
-	}
-
-	~sockets_test() {
-		// cleaning up the socket library
-		WebCraft::Networking::Sockets::SocketCleanup();
-		Debug::log("Socket library cleaned up");
-	}
-
+	/// <summary>
+	/// When test fails, this method is called
+	/// </summary>
+	/// <param name="message"></param>
+	/// <param name="e"></param>
 	void onTestFailed(const std::string& message, std::exception e) override {
 		UnitTest::onTestFailed(message, e);
 		Debug::log("Reason: " + std::string(e.what()));
 	}
 
-	void onTestPassed(const std::string& name) override {
-		Debug::log("Test passed: " + name + " ---------------------------------------");
-	}
-
-
+	/// <summary>
+	/// Client socket test communication with server
+	/// This method is asynchronously called
+	/// </summary>
 	void test_client() {
+		// Sleep for 1 second
 		std::this_thread::sleep_for(std::chrono::seconds(1));
+		// Check if async is working based on thread id
 		std::stringstream ss;
 		ss << "This thread: " << std::this_thread::get_id();
 		Debug::log(ss.str());
 
 		// creating socket 
 		WebCraft::Networking::Sockets::Socket socket;
-		const char* sendbuf = "this is a test";
-		char recvbuf[DEFAULT_BUFLEN];
-		int recvbuflen = DEFAULT_BUFLEN;
 
+		// Connect to server.
 		socket.connect("localhost", DEFAULT_PORT);
 
 		// Send an initial buffer
+		const char* sendbuf = "this is a test";
 		int send_len = socket.send(sendbuf, (int)strlen(sendbuf));
 		// log the bytes sent
 		Debug::log("Bytes Sent: " + std::to_string(send_len));
@@ -63,8 +56,10 @@ public:
 		// Shut down write
 		socket.shutdown();
 
-		// Receive until the peer closes the connection
 		int iResult;
+		char recvbuf[DEFAULT_BUFLEN];
+		int recvbuflen = DEFAULT_BUFLEN;
+		// Receive until the peer closes the connection
 		do {
 			iResult = socket.receive(recvbuf, recvbuflen);
 			if (iResult == 0)
@@ -76,23 +71,27 @@ public:
 	}
 
 	void test_server() {
+		// Check if async is working based on thread id
 		std::stringstream ss;
 		ss << "This thread: " << std::this_thread::get_id();
 		Debug::log(ss.str());
 
+		
 
-		int iSendResult;
-		char recvbuf[DEFAULT_BUFLEN];
-		int recvbuflen = DEFAULT_BUFLEN;
-
+		// Create a server socket
 		WebCraft::Networking::Sockets::ServerSocket server;
+		// Bind the server to the default port
 		server.bind(DEFAULT_PORT);
+		// Listen for incoming connections
 		server.listen();
 
+		// Accept a client socket
 		WebCraft::Networking::Sockets::Socket peer = server.accept();
 
-		// Receive until the peer shuts down the connection
 		int iResult;
+		char recvbuf[DEFAULT_BUFLEN];
+		int recvbuflen = DEFAULT_BUFLEN;
+		// Receive until the peer shuts down the connection
 		do {
 
 			iResult = peer.receive(recvbuf, recvbuflen);
@@ -103,15 +102,19 @@ public:
 				Debug::log("Bytes received: " + std::to_string(iResult));
 
 				// Echo the buffer back to the sender
-				iSendResult = peer.send(recvbuf, iResult);
+				int iSendResult = peer.send(recvbuf, iResult);
 				Debug::log("Bytes sent: " + iSendResult);
 			}
 
 		} while (iResult > 0);
 
+		// shutdown the connection since we're done
 		peer.shutdown();
 	}
 
+	/// <summary>
+	/// Run the test
+	/// </summary>
 	void Run() {
 		RUN_TEST_ASYNC(sockets_test, test_server);
 		RUN_TEST_ASYNC(sockets_test, test_client);
