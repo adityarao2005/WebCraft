@@ -36,7 +36,7 @@ static_block({
 
 	// Debug logging
 	// Debug::log method
-		void Debug::log(const std::string& message, LogLevel level) {
+	void Debug::log(const std::string& message, LogLevel level) {
 		for (LogHandler* handler : handlers) {
 			handler->log(message, level);
 		}

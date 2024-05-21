@@ -63,7 +63,7 @@ namespace WebCraft {
 			/// </summary>
 			/// <param name="message">Message to be logged</param>
 			/// <param name="level">Level to be logged at</param>
-			static void log(const std::string& message, LogLevel level = INFO);
+			static void log(const std::string& message, LogLevel level = LogLevel::INFO);
 
 			/// <summary>
 			/// Throws an exception with the specified message.

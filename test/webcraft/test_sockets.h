@@ -24,9 +24,9 @@ public:
 	/// </summary>
 	/// <param name="message"></param>
 	/// <param name="e"></param>
-	void onTestFailed(const std::string& message, std::exception e) override {
+	void onTestFailed(const std::string& message, const std::exception& e) override {
 		UnitTest::onTestFailed(message, e);
-		Debug::log("Reason: " + std::string(e.what()));
+		Debug::log("Reason: " + std::string(e.what()), WebCraft::Util::LogLevel::ERROR);
 	}
 
 	/// <summary>

@@ -24,8 +24,8 @@ namespace WebCraft {
 			/// <summary>
 			/// Called when a test fails.
 			/// </summary>
-			virtual void onTestFailed(const std::string& name, std::exception e) {
-				Debug::log("Test failed: " + name, ERROR);
+			virtual void onTestFailed(const std::string& name, const std::exception& e) {
+				Debug::log("Test failed: " + name, LogLevel::ERROR);
 			}
 
 			/// <summary>
@@ -34,6 +34,8 @@ namespace WebCraft {
 			virtual void onTestPassed(const std::string& name) {
 				Debug::log("Test passed: " + name);
 			}
+
+			virtual void beforeTest(const std::string& name) {}
 
 			/// <summary>
 			/// Runs a test asynchronously.
@@ -47,17 +49,14 @@ namespace WebCraft {
 			/// </summary>
 			void RunTest(std::function<void()> method, const std::string& name) {
 				bool __testPassed = true;
-				std::exception ex;
+				beforeTest(name);
 				try { method(); }
 				catch (const std::exception& e) {
 					__testPassed = false;
-					ex = e;
+					onTestFailed(name, e);
 				}
 				if (__testPassed) {
 					onTestPassed(name);
-				}
-				else {
-					onTestFailed(name, ex);
 				}
 			}
 
