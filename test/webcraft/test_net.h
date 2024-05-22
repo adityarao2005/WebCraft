@@ -22,6 +22,7 @@ public:
 
 	// Constructor
 	net_test() {
+		// Set connection handler
 		server.setConnectionHandler([this](WebCraft::Networking::Endpoint::Connection& conn) {
 			handler(conn);
 			});
@@ -38,27 +39,39 @@ public:
 	}
 
 	std::map<std::string, std::string> readHeaders(std::istream& stream) {
+		// Create a map to store the headers
 		std::map<std::string, std::string> headers;
+		// Read the headers
 		std::string line;
+		// Read until the end of the headers
 		while (std::getline(stream, line) && line != "\r") {
+			// Split the line into key and value
 			std::istringstream is_line(line);
 			std::string key;
+			// Get the key
 			if (std::getline(is_line, key, ':')) {
+				// Get the value
 				std::string value;
+				// Get the value
 				if (std::getline(is_line, value)) {
 					headers[key] = value;
 				}
 			}
 		}
+		// Return the headers
 		return headers;
 	}
 
 	void handler(WebCraft::Networking::Endpoint::Connection& connection) {
-
+		// Get request and response objects
 		WebCraft::Networking::Endpoint::Request& request = connection.request;
 		WebCraft::Networking::Endpoint::Response& response = connection.response;
 
 		// Read the request
+		std::string path;
+		std::getline(*request.input, path);
+		Debug::log("Request: " + path);
+		// Read the headers
 		std::map<std::string, std::string> headers = readHeaders(*request.input);
 		for (auto const& x : headers) {
 			Debug::log(x.first + ": " + x.second);
@@ -71,18 +84,22 @@ public:
 		*response.output << "Connection: close\r\n";
 		*response.output << "\r\n";
 		*response.output << "Hello World";
+		// Flush to output stream
 		response.output->flush();
 
 	}
 
-
+	
 	void test_server_shutdown() {
+		// Get commands from the console
 		std::string line;
 		while (std::getline(std::cin, line)) {
+			// If the command is shutdown, break
 			if (line == "shutdown") {
 				break;
 			}
 		}
+		// Shutdown the server
 		server.shutdown();
 	}
 

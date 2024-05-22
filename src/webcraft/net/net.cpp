@@ -2,16 +2,23 @@
 #include <list>
 namespace WebCraft {
 	namespace Networking {
+		// Empty handler
 		Endpoint::ConnectionHandler Endpoint::DEFAULT_HANDLER = [](Connection& connection) {};
 
+		// Socket stream buffer
+		// Basically allows read and write through iostreams to a socket
 		class SocketStreambuf : public std::streambuf {
 		private:
+			// Shared pointer of the socket
 			std::shared_ptr<WebCraft::Networking::Sockets::Socket> socket;
+			// buffer size
 			static const int bufferSize = 256;
+			// input and output buffers
 			char inputBuffer[bufferSize];
 			char outputBuffer[bufferSize];
 
 		public:
+			// Constructor
 			SocketStreambuf(std::shared_ptr<WebCraft::Networking::Sockets::Socket> socket) : socket(socket) {
 				setp(outputBuffer, outputBuffer + bufferSize - 1); // -1 to leave space for overflow '\n'
 				setg(inputBuffer, inputBuffer, inputBuffer);
@@ -20,92 +27,118 @@ namespace WebCraft {
 		protected:
 			// Called when output buffer is full (or in response to a call to 'pubsync()')
 			int_type overflow(int_type ch) override {
+				// If the character is not EOF, add it to the buffer
 				if (ch != traits_type::eof()) {
 					*pptr() = ch;
 					pbump(1);
 				}
 
+				// Flush the buffer
+				// If the character was EOF, return EOF
 				if (flushBuffer() == EOF) {
 					return traits_type::eof();
 				}
 
+				// Return the character
 				return ch;
 			}
 
 			// Called when input buffer is empty
 			int_type underflow() override {
+				// If there is data in the buffer, return the next character
 				if (gptr() < egptr()) {
 					return traits_type::to_int_type(*gptr());
 				}
 
+				// Read data from the socket
 				int numRead = socket->receive(inputBuffer, bufferSize);
+				// If no data was read, return EOF
 				if (numRead <= 0) {
 					return traits_type::eof();
 				}
 
+				// Set the input buffer pointers
 				setg(inputBuffer, inputBuffer, inputBuffer + numRead);
 
+				// Return the first character
 				return traits_type::to_int_type(*gptr());
 			}
 
+			// Called when the buffer is flushed
 			int flushBuffer() {
+				// Get the length of the buffer
 				int len = int(pptr() - pbase());
+				// If the length is 0, return 0
 				if (socket->send(pbase(), len) != len) {
 					return EOF;
 				}
+				// If the length is not 0, send the data
 				pbump(-len);
 				return len;
 			}
 
 			int sync() override {
+				// Flush the buffer
 				if (flushBuffer() == EOF) {
 					return -1;
 				}
+				// Return 0
 				return 0;
 			}
 		};
 
-
+		// Server Constructor
 		Server::Server() {
+			// Default executor - Fixed thread pool executor with recommended threads
 			executor = WebCraft::Util::Async::Executors::newFixedThreadPoolExecutor(std::thread::hardware_concurrency());
+			// Default handler - Empty handler
 			handler = Endpoint::DEFAULT_HANDLER;
 		}
 
 		Server::~Server() {
+			// Shutdown the executor
 			shutdown();
 		}
 
 		void Server::setExecutor(std::unique_ptr<WebCraft::Util::Async::Executor> executor) {
+			// Set the executor
 			this->executor = std::move(executor);
 		}
 
 		void Server::setConnectionHandler(Endpoint::ConnectionHandler handler) {
+			// Set the handler
 			this->handler = std::move(handler);
 		}
 
 		bool Server::isRunning() {
+			// Check if the executor is running
 			if (executor == nullptr)
 				return false;
+			// Return the executor's running status
 			return executor->isRunning();
 		}
 
 		void Server::shutdown() {
+			// Shutdown the executor
 			executor->shutdown();
 		}
 
-
-
-
 		void Server::start(int port) {
+			// Bind the server socket
 			server.bind(port);
+			// Listen for connections
 			server.listen();
 
+			// While the server is running
 			while (isRunning()) {
+				// Accept a connection
 				std::shared_ptr<WebCraft::Networking::Sockets::Socket> client = server.accept();
+				// Execute the connection handler
 				std::future<void> future = executor->execute(std::bind(&Server::socket_handler, this, client));
 			}
 		}
 
+		// Connection handler
 		void Server::socket_handler(std::shared_ptr< WebCraft::Networking::Sockets::Socket> client) {
 			// Create connection
 			Endpoint::Connection connection;

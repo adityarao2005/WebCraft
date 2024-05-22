@@ -119,9 +119,7 @@ namespace WebCraft {
 				/// <summary>
 				/// Closes the socket
 				/// </summary>
-				~Socket() {
-					Debug::log("Destroyed");
-				}
+				~Socket() {	}
 
 			};
 

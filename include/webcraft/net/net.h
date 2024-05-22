@@ -62,6 +62,9 @@ namespace WebCraft {
 			/// Represents a handler for the server
 			/// </summary>
 			using ConnectionHandler = std::function<void(Connection&)>;
+			/// <summary>
+			/// Represents a handler for the client
+			/// </summary>
 			static ConnectionHandler DEFAULT_HANDLER;
 		};
 
