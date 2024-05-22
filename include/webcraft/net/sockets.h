@@ -2,7 +2,7 @@
 
 #include "webcraft/webcraft.h"
 #include "webcraft/util/debug.h"
-
+#include <memory>
 
 #ifdef _WIN32
 
@@ -54,7 +54,7 @@ namespace WebCraft {
 				/// <param name="port">port to bind or connect</param>
 				/// <param name="result">pointer to address to be created</param>
 				/// <param name="server">tells whether server or not</param>
-				void create_address(const char* host, int port, addrinfo** result, bool server);
+				void create_address(const char* host, int port, addrinfo** result, bool server) const;
 			public:
 				/// <summary>
 				/// Initializes the socket
@@ -86,19 +86,20 @@ namespace WebCraft {
 				/// </summary>
 				Socket(SOCKET handle) : SocketBase(handle) {}
 
+
 				/// <summary>
 				/// Connects to server at host:port
 				/// </summary>
 				/// <param name="host">Host of server</param>
 				/// <param name="port">Port of server</param>
-				void connect(std::string host, int port);
+				void connect(std::string host, int port) const;
 				/// <summary>
 				/// Sends a packet of data to the other end
 				/// </summary>
 				/// <param name="data">Data packet to be sent</param>
 				/// <param name="length">Length of the packet</param>
 				/// <returns>how many bytes were sent</returns>
-				int send(const char* data, int length);
+				int send(const char* data, int length) const;
 
 				/// <summary>
 				/// Receives a packet of data from the other end
@@ -106,17 +107,21 @@ namespace WebCraft {
 				/// <param name="buffer">Buffer to store data packet</param>
 				/// <param name="length">Length of available buffer space</param>
 				/// <returns>Length of data packet stored</returns>
-				int receive(char* buffer, int length);
+				int receive(char* buffer, int length) const;
 
 				/// <summary>
 				/// Shuts down the write access for socket
 				/// </summary>
-				void shutdown();
+				void shutdown() const;
+
+				inline SOCKET getHandle() const { return handle; }
 
 				/// <summary>
 				/// Closes the socket
 				/// </summary>
-				~Socket() {}
+				~Socket() {
+					Debug::log("Destroyed");
+				}
 
 			};
 
@@ -155,7 +160,7 @@ namespace WebCraft {
 				/// Accepts an incoming connection
 				/// </summary>
 				/// <returns>Socket peer representing our end of connection</returns>
-				Socket accept();
+				std::shared_ptr<Socket> accept();
 			};
 
 

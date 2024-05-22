@@ -51,6 +51,10 @@ namespace WebCraft {
 					if (worker.joinable())
 						worker.join();
 				}
+
+				bool isRunning() override {
+					return !stop;
+				}
 			protected:
 
 				/// <summary>
@@ -128,6 +132,10 @@ namespace WebCraft {
 					shutdown();
 				}
 
+				bool isRunning() override {
+					return !stop;
+				}
+
 				/// <summary>
 				/// Shutsdown the executor and waits for all tasks to finish
 				/// </summary>
@@ -138,8 +146,8 @@ namespace WebCraft {
 						if (stop) return;
 						stop = true;
 					}
-					// Notify the worker thread
-					condition.notify_one();
+					// Notify the worker threads
+					condition.notify_all();
 					// Wait for the worker thread to finish
 					for (auto& worker : workers) {
 						if (worker.joinable())
@@ -189,7 +197,12 @@ namespace WebCraft {
 							tasks.pop();
 						}
 						// Execute the task
-						task();
+						try {
+							task();
+						}
+						catch (const std::exception& e) {
+							Debug::log("Error in task: " + std::string(e.what()), LogLevel::ERROR);
+						}
 					}
 				}
 			};

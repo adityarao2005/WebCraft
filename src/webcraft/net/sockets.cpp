@@ -48,7 +48,7 @@ SocketBase::~SocketBase() {
 	closesocket(handle);
 }
 
-void SocketBase::create_address(const char* host, int port, addrinfo** result, bool server) {
+void SocketBase::create_address(const char* host, int port, addrinfo** result, bool server) const {
 	// Setup the hints address info structure
 	addrinfo hints = {0};
 
@@ -72,7 +72,7 @@ void SocketBase::create_address(const char* host, int port, addrinfo** result, b
 
 // Socket methods
 
-void Socket::connect(std::string host, int port) {
+void Socket::connect(std::string host, int port) const {
 	addrinfo* result = nullptr;
 	create_address(host.data(), port, &result, false);
 
@@ -89,7 +89,7 @@ void Socket::connect(std::string host, int port) {
 	}
 }
 
-int Socket::send(const char* data, int length) {
+int Socket::send(const char* data, int length) const {
 	int iResult;
 	// Send an initial buffer
 	if ((iResult = ::send(handle, data, length, 0)) == SOCKET_ERROR) {
@@ -98,16 +98,17 @@ int Socket::send(const char* data, int length) {
 	return iResult;
 }
 
-int Socket::receive(char* data, int length) {
+int Socket::receive(char* data, int length) const {
 	int iResult;
 	// Receive into buffer with buffer length
 	if ((iResult = ::recv(handle, data, length, 0)) == SOCKET_ERROR) {
+		Debug::log("recv failed with error: " + std::to_string(WSAGetLastError()));
 		Debug::throwException("recv failed with error");
 	}
 	return iResult;
 }
 
-void Socket::shutdown() {
+void Socket::shutdown() const {
 	// shutdown the connection since no more data will be sent
 	if (::shutdown(handle, SD_SEND) == SOCKET_ERROR) {
 		Debug::throwException("shutdown failed with error");
@@ -134,7 +135,7 @@ void ServerSocket::listen() {
 	}
 }
 
-Socket ServerSocket::accept() {
+std::shared_ptr<Socket> ServerSocket::accept() {
 	// Accept a client socket
 	SOCKET client_socket = ::accept(handle, nullptr, nullptr);
 	
@@ -143,5 +144,5 @@ Socket ServerSocket::accept() {
 		Debug::throwException("accept failed with error");
 	}
 	// return the client socket
-	return Socket(client_socket);
+	return std::make_unique<Socket>(client_socket);
 }

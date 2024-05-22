@@ -1,18 +1,18 @@
 #include "webcraft/net/net.h"
-
+#include <list>
 namespace WebCraft {
 	namespace Networking {
 		Endpoint::ConnectionHandler Endpoint::DEFAULT_HANDLER = [](Connection& connection) {};
 
 		class SocketStreambuf : public std::streambuf {
 		private:
-			WebCraft::Networking::Sockets::Socket& socket;
+			std::shared_ptr<WebCraft::Networking::Sockets::Socket> socket;
 			static const int bufferSize = 256;
 			char inputBuffer[bufferSize];
 			char outputBuffer[bufferSize];
 
 		public:
-			SocketStreambuf(WebCraft::Networking::Sockets::Socket& socket) : socket(socket) {
+			SocketStreambuf(std::shared_ptr<WebCraft::Networking::Sockets::Socket> socket) : socket(socket) {
 				setp(outputBuffer, outputBuffer + bufferSize - 1); // -1 to leave space for overflow '\n'
 				setg(inputBuffer, inputBuffer, inputBuffer);
 			}
@@ -38,7 +38,7 @@ namespace WebCraft {
 					return traits_type::to_int_type(*gptr());
 				}
 
-				int numRead = socket.receive(inputBuffer, bufferSize);
+				int numRead = socket->receive(inputBuffer, bufferSize);
 				if (numRead <= 0) {
 					return traits_type::eof();
 				}
@@ -50,7 +50,7 @@ namespace WebCraft {
 
 			int flushBuffer() {
 				int len = int(pptr() - pbase());
-				if (socket.send(pbase(), len) != len) {
+				if (socket->send(pbase(), len) != len) {
 					return EOF;
 				}
 				pbump(-len);
@@ -80,56 +80,60 @@ namespace WebCraft {
 		}
 
 		void Server::setConnectionHandler(Endpoint::ConnectionHandler handler) {
-			this->handler = handler;
+			this->handler = std::move(handler);
 		}
 
-		bool Server::isStopped() {
-			std::lock_guard<std::mutex> lock(stopMutex);
-			return stop;
+		bool Server::isRunning() {
+			if (executor == nullptr)
+				return false;
+			return executor->isRunning();
 		}
 
 		void Server::shutdown() {
-			std::lock_guard<std::mutex> lock(stopMutex);
 			executor->shutdown();
 		}
+
+
+
 
 		void Server::start(int port) {
 			server.bind(port);
 			server.listen();
 
-			executor->execute([this]() {
-				while (!isStopped()) {
-					WebCraft::Networking::Sockets::Socket client = server.accept();
-					executor->execute([this, client]() {
-						// Create connection
-						Endpoint::Connection connection;
-						// Declare request and response
-						Endpoint::Request request;
-						Endpoint::Response response;
-
-						// Create input and output streams
-						std::unique_ptr<std::istream> input;
-						std::unique_ptr<std::ostream> output;
-
-						// Create the input and output streams via streambuf
-						std::unique_ptr<SocketStreambuf> streambuf = std::make_unique<SocketStreambuf>(client);
-						input = std::make_unique<std::istream>(streambuf.get());
-						output = std::make_unique<std::ostream>(streambuf.get());
-
-						// Set input and output
-						request.input = std::move(input);
-						response.output = std::move(output);
-
-						// Set the connection
-						connection.request = std::move(request);
-						connection.response = std::move(response);
-
-						// Handle the connection
-						handler(connection);
-						});
-				}
-				});
+			while (isRunning()) {
+				std::shared_ptr<WebCraft::Networking::Sockets::Socket> client = server.accept();
+				std::future<void> future = executor->execute(std::bind(&Server::socket_handler, this, client));
+			}
 		}
+
+		void Server::socket_handler(std::shared_ptr< WebCraft::Networking::Sockets::Socket> client) {
+			// Create connection
+			Endpoint::Connection connection;
+			// Declare request and response
+			Endpoint::Request request;
+			Endpoint::Response response;
+
+			// Create input and output streams
+			std::unique_ptr<std::istream> input;
+			std::unique_ptr<std::ostream> output;
+
+			// Create the input and output streams via streambuf
+			std::unique_ptr<SocketStreambuf> streambuf = std::make_unique<SocketStreambuf>(client);
+			input = std::make_unique<std::istream>(streambuf.get());
+			output = std::make_unique<std::ostream>(streambuf.get());
+
+			// Set input and output
+			request.input = std::move(input);
+			response.output = std::move(output);
+
+			// Set the connection
+			connection.request = std::move(request);
+			connection.response = std::move(response);
+
+			// Handle the connection
+			handler(connection);
+		}
+
 
 		Client::Client() {}
 
@@ -151,6 +155,8 @@ namespace WebCraft {
 			//socket.connect(uri);
 			//socket.send(data.c_str(), data.length());
 			//return connection;
+			Connection connection;
+			return connection;
 		}
 	}
 }

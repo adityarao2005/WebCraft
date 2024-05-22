@@ -86,7 +86,7 @@ public:
 		server.listen();
 
 		// Accept a client socket
-		WebCraft::Networking::Sockets::Socket peer = server.accept();
+		std::shared_ptr<WebCraft::Networking::Sockets::Socket> peer = server.accept();
 
 		int iResult;
 		char recvbuf[DEFAULT_BUFLEN];
@@ -94,7 +94,7 @@ public:
 		// Receive until the peer shuts down the connection
 		do {
 
-			iResult = peer.receive(recvbuf, recvbuflen);
+			iResult = peer->receive(recvbuf, recvbuflen);
 
 			if (iResult == 0)
 				Debug::log("Connection closing...\n");
@@ -102,14 +102,14 @@ public:
 				Debug::log("Bytes received: " + std::to_string(iResult));
 
 				// Echo the buffer back to the sender
-				int iSendResult = peer.send(recvbuf, iResult);
+				int iSendResult = peer->send(recvbuf, iResult);
 				Debug::log("Bytes sent: " + iSendResult);
 			}
 
 		} while (iResult > 0);
 
 		// shutdown the connection since we're done
-		peer.shutdown();
+		peer->shutdown();
 	}
 
 	/// <summary>

@@ -86,10 +86,9 @@ namespace WebCraft {
 			Endpoint::ConnectionHandler handler;
 
 			/// <summary>
-			/// Indicates if the server is stopped
+			/// Tells what to do when the socket is connected
 			/// </summary>
-			bool stop = false;
-			std::mutex stopMutex;
+			void socket_handler(std::shared_ptr<WebCraft::Networking::Sockets::Socket> client);
 
 		public:
 			/// <summary>
@@ -124,7 +123,7 @@ namespace WebCraft {
 			/// <summary>
 			/// Indicates if the server is stopped
 			/// </summary>
-			bool isStopped();
+			bool isRunning();
 		};
 
 		/// <summary>

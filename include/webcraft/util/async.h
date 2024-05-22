@@ -50,6 +50,11 @@ namespace WebCraft {
 				/// Shuts executor down and waits for all tasks to finish.
 				/// </summary>
 				virtual void shutdown() {}
+
+				/// <summary>
+				/// Returns true if the executor is running.
+				/// </summary>
+				virtual bool isRunning() { return false; }
 			};
 
 			class Executors {
