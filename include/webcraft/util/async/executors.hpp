@@ -207,6 +207,18 @@ namespace WebCraft {
 				}
 			};
 
+
+			class AsyncExecutor : public WebCraft::Util::Async::Executor {
+
+				/// <summary>
+				/// Queues job to be executed
+				/// </summary>
+				/// <param name="task">task to be executed</param>
+				void queue(std::function<void()> task) override {
+					std::future<void> future = std::async(std::launch::async, task);
+					future.get();
+				}
+			};
 		}
 	}
 }

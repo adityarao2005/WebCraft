@@ -2,6 +2,7 @@
 #include "webcraft/webcraft.h"
 #include "webcraft/net/sockets.h"
 #include "webcraft/util/async.h"
+#include "webcraft/util/debug.h"
 
 namespace WebCraft {
 	namespace Networking {
@@ -56,6 +57,10 @@ namespace WebCraft {
 				/// Destructor for the connection
 				/// </summary>
 				Connection() {}
+
+				~Connection() {
+					Debug::log("Connection destroyed");
+				}
 			};
 
 			/// <summary>
@@ -66,12 +71,17 @@ namespace WebCraft {
 			/// Represents a handler for the client
 			/// </summary>
 			static ConnectionHandler DEFAULT_HANDLER;
+
+			/// <summary>
+			/// Tells what to do when the socket is connected
+			/// </summary>
+			void socket_handler(std::shared_ptr<WebCraft::Networking::Sockets::Socket> client, Endpoint::ConnectionHandler handler);
 		};
 
 		/// <summary>
 		/// Represents a server
 		/// </summary>
-		class Server {
+		class Server : public Endpoint {
 		private:
 			/// <summary>
 			/// Server socket
@@ -87,11 +97,6 @@ namespace WebCraft {
 			/// Connection handler
 			/// </summary>
 			Endpoint::ConnectionHandler handler;
-
-			/// <summary>
-			/// Tells what to do when the socket is connected
-			/// </summary>
-			void socket_handler(std::shared_ptr<WebCraft::Networking::Sockets::Socket> client);
 
 		public:
 			/// <summary>
@@ -156,7 +161,7 @@ namespace WebCraft {
 			/// <summary>
 			/// Connects to the specified URI
 			/// </summary>
-			Endpoint::Connection& send(const std::string& uri);
+			std::shared_ptr<Endpoint::Connection> send(const std::string& uri);
 		};
 
 

@@ -29,7 +29,7 @@ std::unique_ptr<Executor> Executors::newWorkStealingPoolExecutor(int nThreads) {
 
 // Represents an async executor
 std::unique_ptr<Executor> Executors::newAsyncExecutor() {
-	throw std::runtime_error("Not implemented");
+	return std::make_unique<AsyncExecutor>();
 }
 
 // Represents a coroutine executor

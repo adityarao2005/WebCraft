@@ -119,7 +119,7 @@ namespace WebCraft {
 				/// <summary>
 				/// Closes the socket
 				/// </summary>
-				~Socket() {	}
+				~Socket() { Debug::log("asdfasd;flkjasldkfj;dskfj"); }
 
 			};
 

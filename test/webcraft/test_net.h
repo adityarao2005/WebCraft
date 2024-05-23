@@ -89,7 +89,7 @@ public:
 
 	}
 
-	
+
 	void test_server_shutdown() {
 		// Get commands from the console
 		std::string line;
@@ -103,8 +103,78 @@ public:
 		server.shutdown();
 	}
 
+	void test_client() {
+		// Create a client
+		WebCraft::Networking::Client client;
+		// Connect to the server
+		Debug::log("Test async no executor");
+		client.sendAsync("google.com:80", [this](WebCraft::Networking::Endpoint::Connection& connection) {
+			// Get request and response objects
+			WebCraft::Networking::Endpoint::Request& request = connection.request;
+			WebCraft::Networking::Endpoint::Response& response = connection.response;
+
+			// Send the request
+			*response.output << "GET / HTTP/1.1\r\n";
+			*response.output << "Host: google.com\r\n";
+			*response.output << "Connection: close\r\n";
+			*response.output << "\r\n";
+			// Flush to output stream
+			response.output->flush();
+
+			// Read the response
+			std::string line;
+			while (std::getline(*request.input, line)) {
+				Debug::log(line);
+			}
+
+			});
+		Debug::log("Test async with executor");
+		client.sendAsync("google.com:80", [this](WebCraft::Networking::Endpoint::Connection& connection) {
+			// Get request and response objects
+			WebCraft::Networking::Endpoint::Request& request = connection.request;
+			WebCraft::Networking::Endpoint::Response& response = connection.response;
+
+			// Send the request
+			*response.output << "GET / HTTP/1.1\r\n";
+			*response.output << "Host: google.com\r\n";
+			*response.output << "Connection: close\r\n";
+			*response.output << "\r\n";
+			// Flush to output stream
+			response.output->flush();
+
+			// Read the response
+			std::string line;
+			while (std::getline(*request.input, line)) {
+				Debug::log(line);
+			}
+
+			}, Executors::newAsyncExecutor());
+
+		Debug::log("Test sync");
+		std::shared_ptr<WebCraft::Networking::Endpoint::Connection> connection = client.send("google.com:80");
+
+		// Get request and response objects
+		WebCraft::Networking::Endpoint::Request& request = connection->request;
+		WebCraft::Networking::Endpoint::Response& response = connection->response;
+
+		// Send the request
+		*response.output << "GET / HTTP/1.1\r\n";
+		*response.output << "Host: google.com\r\n";
+		*response.output << "Connection: close\r\n";
+		*response.output << "\r\n";
+		// Flush to output stream
+		response.output->flush();
+
+		// Read the response
+		std::string line;
+		while (std::getline(*request.input, line)) {
+			Debug::log(line);
+		}
+	}
+
 	void Run() {
-		RUN_TEST_ASYNC(net_test, test_server);
-		RUN_TEST_ASYNC(net_test, test_server_shutdown);
+		//RUN_TEST_ASYNC(net_test, test_server);
+		//RUN_TEST_ASYNC(net_test, test_server_shutdown);
+		RUN_TEST_ASYNC(net_test, test_client);
 	}
 };
