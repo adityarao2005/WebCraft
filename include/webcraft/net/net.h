@@ -9,9 +9,12 @@ namespace WebCraft {
 
 		// Forward declare the Endpoint class
 		class Endpoint;
-		// Declare the constructs for the Server and Client classes
+		// Server and client classes
 		class Server;
 		class Client;
+		// Declare the constructs for the TCP Server and Client classes
+		class TCPServer;
+		class TCPClient;
 
 		/// <summary>
 		/// Represents an endpoint for the server or client
@@ -78,10 +81,79 @@ namespace WebCraft {
 			void socket_handler(std::shared_ptr<WebCraft::Networking::Sockets::Socket> client, Endpoint::ConnectionHandler handler);
 		};
 
+		class Server : public Endpoint {
+		public:
+			/// <summary>
+			/// Constructor for the server
+			/// </summary>
+			Server() {}
+
+			/// <summary>
+			/// Destructor for the server
+			/// </summary>
+			~Server() {}
+
+			/// <summary>
+			/// Starts the server on the specified port
+			/// </summary>
+			virtual void start(int port) = 0;
+
+			/// <summary>
+			/// Shuts down the server
+			/// </summary>
+			virtual void shutdown() = 0;
+
+			/// <summary>
+			/// Sets the connection handler for the server
+			/// </summary>
+			virtual void setConnectionHandler(Endpoint::ConnectionHandler handler) = 0;
+
+			/// <summary>
+			/// Sets the executor for the server
+			/// </summary>
+			virtual void setExecutor(std::unique_ptr<WebCraft::Util::Async::Executor> executor) = 0;
+
+			/// <summary>
+			/// Indicates if the server is stopped
+			/// </summary>
+			virtual bool isRunning() = 0;
+		};
+
+		/// <summary>
+		/// Represents a client
+		/// </summary>
+		class Client : public Endpoint {
+		public:
+			/// <summary>
+			/// Constructor for the client
+			/// </summary>
+			Client() {}
+
+			/// <summary>
+			/// Destructor for the client
+			/// </summary>
+			~Client() {}
+
+			/// <summary>
+			/// Connects to the specified URI
+			/// </summary>
+			virtual void sendAsync(const std::string& uri, Endpoint::ConnectionHandler handler) = 0;
+
+			/// <summary>
+			/// Connects to the specified URI
+			/// </summary>
+			virtual void sendAsync(const std::string& uri, Endpoint::ConnectionHandler handler, std::shared_ptr<WebCraft::Util::Async::Executor> executor) = 0;
+
+			/// <summary>
+			/// Connects to the specified URI
+			/// </summary>
+			virtual std::shared_ptr<Endpoint::Connection> send(const std::string& uri) = 0;
+		};
+
 		/// <summary>
 		/// Represents a server
 		/// </summary>
-		class Server : public Endpoint {
+		class TCPServer : public Server {
 		private:
 			/// <summary>
 			/// Server socket
@@ -102,66 +174,66 @@ namespace WebCraft {
 			/// <summary>
 			/// Constructor for the server
 			/// </summary>
-			Server();
+			TCPServer();
 			/// <summary>
 			/// Destructor for the server
 			/// </summary>
-			~Server();
+			~TCPServer();
 
 			/// <summary>
 			/// Sets the executor for the server
 			/// </summary>
-			void setExecutor(std::unique_ptr<WebCraft::Util::Async::Executor> executor);
+			void setExecutor(std::unique_ptr<WebCraft::Util::Async::Executor> executor) override;
 
 			/// <summary>
 			/// Starts the server on the specified port
 			/// </summary>
-			void start(int port);
+			void start(int port) override;
 
 			/// <summary>
 			/// Shuts down the server
 			/// </summary>
-			void shutdown();
+			void shutdown() override;
 
 			/// <summary>
 			/// Sets the connection handler for the server
 			/// </summary>
-			void setConnectionHandler(Endpoint::ConnectionHandler handler);
+			void setConnectionHandler(Endpoint::ConnectionHandler handler) override;
 
 			/// <summary>
 			/// Indicates if the server is stopped
 			/// </summary>
-			bool isRunning();
+			bool isRunning() override;
 		};
 
 		/// <summary>
 		/// Represents a client
 		/// </summary>
-		class Client : public Endpoint {
+		class TCPClient : public Client {
 		public:
 			/// <summary>
 			/// Constructor for the client
 			/// </summary>
-			Client();
+			TCPClient();
 			/// <summary>
 			/// Destructor for the client
 			/// </summary>
-			~Client();
+			~TCPClient();
 
 			/// <summary>
 			/// Connects to the specified URI
 			/// </summary>
-			void sendAsync(const std::string& uri, Endpoint::ConnectionHandler handler);
+			void sendAsync(const std::string& uri, Endpoint::ConnectionHandler handler) override;
 
 			/// <summary>
 			/// Connects to the specified URI
 			/// </summary>
-			void sendAsync(const std::string& uri, Endpoint::ConnectionHandler handler, std::shared_ptr<WebCraft::Util::Async::Executor> executor);
+			void sendAsync(const std::string& uri, Endpoint::ConnectionHandler handler, std::shared_ptr<WebCraft::Util::Async::Executor> executor) override;
 
 			/// <summary>
 			/// Connects to the specified URI
 			/// </summary>
-			std::shared_ptr<Endpoint::Connection> send(const std::string& uri);
+			std::shared_ptr<Endpoint::Connection> send(const std::string& uri) override;
 		};
 
 

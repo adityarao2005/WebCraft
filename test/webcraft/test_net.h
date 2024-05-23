@@ -14,7 +14,7 @@ using namespace WebCraft::Util::Async;
 
 class net_test : public WebCraft::Util::UnitTest {
 private:
-	WebCraft::Networking::Server server;
+	WebCraft::Networking::TCPServer server;
 
 public:
 	// To string method
@@ -105,7 +105,7 @@ public:
 
 	void test_client() {
 		// Create a client
-		WebCraft::Networking::Client client;
+		WebCraft::Networking::TCPClient client;
 		// Connect to the server
 		Debug::log("Test async no executor");
 		client.sendAsync("google.com:80", [this](WebCraft::Networking::Endpoint::Connection& connection) {

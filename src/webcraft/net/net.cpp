@@ -88,29 +88,29 @@ namespace WebCraft {
 		};
 
 		// Server Constructor
-		Server::Server() {
+		TCPServer::TCPServer() {
 			// Default executor - Fixed thread pool executor with recommended threads
 			executor = WebCraft::Util::Async::Executors::newFixedThreadPoolExecutor(std::thread::hardware_concurrency());
 			// Default handler - Empty handler
 			handler = Endpoint::DEFAULT_HANDLER;
 		}
 
-		Server::~Server() {
+		TCPServer::~TCPServer() {
 			// Shutdown the executor
 			shutdown();
 		}
 
-		void Server::setExecutor(std::unique_ptr<WebCraft::Util::Async::Executor> executor) {
+		void TCPServer::setExecutor(std::unique_ptr<WebCraft::Util::Async::Executor> executor) {
 			// Set the executor
 			this->executor = std::move(executor);
 		}
 
-		void Server::setConnectionHandler(Endpoint::ConnectionHandler handler) {
+		void TCPServer::setConnectionHandler(Endpoint::ConnectionHandler handler) {
 			// Set the handler
 			this->handler = std::move(handler);
 		}
 
-		bool Server::isRunning() {
+		bool TCPServer::isRunning() {
 			// Check if the executor is running
 			if (executor == nullptr)
 				return false;
@@ -118,12 +118,12 @@ namespace WebCraft {
 			return executor->isRunning();
 		}
 
-		void Server::shutdown() {
+		void TCPServer::shutdown() {
 			// Shutdown the executor
 			executor->shutdown();
 		}
 
-		void Server::start(int port) {
+		void TCPServer::start(int port) {
 			// Bind the server socket
 			server.bind(port);
 			// Listen for connections
@@ -134,7 +134,7 @@ namespace WebCraft {
 				// Accept a connection
 				std::shared_ptr<WebCraft::Networking::Sockets::Socket> client = server.accept();
 				// Execute the connection handler
-				std::future<void> future = executor->execute(std::bind(&Server::socket_handler, this, client, this->handler));
+				std::future<void> future = executor->execute(std::bind(&TCPServer::socket_handler, this, client, this->handler));
 			}
 		}
 
@@ -168,18 +168,18 @@ namespace WebCraft {
 		}
 
 
-		Client::Client() {}
+		TCPClient::TCPClient() {}
 
-		Client::~Client() {}
+		TCPClient::~TCPClient() {}
 
-		void Client::sendAsync(const std::string& uri, Endpoint::ConnectionHandler handler) {
+		void TCPClient::sendAsync(const std::string& uri, Endpoint::ConnectionHandler handler) {
 			// Create a new single thread executor
 			std::shared_ptr<WebCraft::Util::Async::Executor> executor = WebCraft::Util::Async::Executors::newAsyncExecutor();
 			// Send the request asynchronously
 			sendAsync(uri, handler, executor);
 		}
 
-		void Client::sendAsync(const std::string& uri, Endpoint::ConnectionHandler handler, std::shared_ptr<WebCraft::Util::Async::Executor> executor) {
+		void TCPClient::sendAsync(const std::string& uri, Endpoint::ConnectionHandler handler, std::shared_ptr<WebCraft::Util::Async::Executor> executor) {
 			// Create a new client socket
 			std::shared_ptr<WebCraft::Networking::Sockets::Socket> client = std::make_shared<WebCraft::Networking::Sockets::Socket>();
 
@@ -190,7 +190,7 @@ namespace WebCraft {
 			client->connect(host, std::stoi(port));
 
 			// Execute the handler
-			std::future<void> future = executor->execute(std::bind(&Client::socket_handler, this, client, handler));
+			std::future<void> future = executor->execute(std::bind(&TCPClient::socket_handler, this, client, handler));
 		}
 
 		struct SocketConnection : public Endpoint::Connection {
@@ -227,7 +227,7 @@ namespace WebCraft {
 			}
 		};
 
-		std::shared_ptr<Endpoint::Connection> Client::send(const std::string& uri) {
+		std::shared_ptr<Endpoint::Connection> TCPClient::send(const std::string& uri) {
 			// Return the connection
 			return std::make_unique<SocketConnection>(uri);
 		}
