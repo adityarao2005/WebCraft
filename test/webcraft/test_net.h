@@ -2,7 +2,6 @@
 
 #include "webcraft/webcraft.h"
 #include "webcraft/net/net.h"
-
 #include <map>
 #include <sstream>
 #include "webcraft/util/debug.h"
@@ -77,13 +76,15 @@ public:
 			Debug::log(x.first + ": " + x.second);
 		}
 
+		std::string html = "Hello World";
 		// Write the response
 		*response.output << "HTTP/1.1 200 OK\r\n";
 		*response.output << "Content-Type: text/html\r\n";
-		*response.output << "Content-Length: 11\r\n";
+		*response.output << "Content-Length: " << html.length() << "\r\n";
 		*response.output << "Connection: close\r\n";
 		*response.output << "\r\n";
-		*response.output << "Hello World";
+		// Write the body
+		*response.output << html;
 		// Flush to output stream
 		response.output->flush();
 
@@ -173,8 +174,8 @@ public:
 	}
 
 	void Run() {
-		//RUN_TEST_ASYNC(net_test, test_server);
-		//RUN_TEST_ASYNC(net_test, test_server_shutdown);
-		RUN_TEST_ASYNC(net_test, test_client);
+		RUN_TEST_ASYNC(net_test, test_server);
+		RUN_TEST_ASYNC(net_test, test_server_shutdown);
+		//		RUN_TEST_ASYNC(net_test, test_client);
 	}
 };

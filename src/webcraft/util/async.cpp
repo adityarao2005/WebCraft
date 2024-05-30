@@ -41,3 +41,11 @@ std::unique_ptr<Executor> Executors::newCoroutineExecutor() {
 std::unique_ptr<Executor> Executors::newFiberExecutor() {
 	throw std::runtime_error("Not implemented");
 }
+
+// Represents a thread per task executor
+std::shared_ptr<std::unique_ptr<Executor>> Executors::defaultExecutor = std::make_shared<std::unique_ptr<Executor>>(newFixedThreadPoolExecutor(std::thread::hardware_concurrency()));
+
+// Returns the default executor
+std::shared_ptr<std::unique_ptr<Executor>> Executors::getDefaultExecutor() {
+	return defaultExecutor;
+}

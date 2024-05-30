@@ -58,6 +58,8 @@ namespace WebCraft {
 			};
 
 			class Executors {
+			private:
+				static std::shared_ptr<std::unique_ptr<Executor>> defaultExecutor;
 			public:
 				static std::unique_ptr<Executor> newSingleThreadExecutor();
 				static std::unique_ptr<Executor> newFixedThreadPoolExecutor(int nThreads);
@@ -66,6 +68,7 @@ namespace WebCraft {
 				static std::unique_ptr<Executor> newAsyncExecutor();
 				static std::unique_ptr<Executor> newCoroutineExecutor();
 				static std::unique_ptr<Executor> newFiberExecutor();
+				static std::shared_ptr<std::unique_ptr<Executor>> getDefaultExecutor();
 			};
 
 

@@ -8,7 +8,7 @@ endif()
 
 
 # https://cmake.org/cmake/help/latest/prop_tgt/CXX_STANDARD.html
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
@@ -23,7 +23,7 @@ project(WebCraft)
 set(LIBRARY_HEADER_DIR include/)
 
 # Add source files to library
-add_executable(WebCraft "src/webcraft/web_math.cpp" "test/webcraft/test_main.cpp" "src/webcraft/util/debug.cpp" "test/webcraft/test_web_math.h" "src/webcraft/net/sockets.cpp" "test/webcraft/test_sockets.h" "src/webcraft/net/net.cpp" "test/webcraft/test_executors.h" "src/webcraft/util/async.cpp" "test/webcraft/test_net.h")
+add_executable(WebCraft "src/webcraft/web_math.cpp" "test/webcraft/test_main.cpp" "src/webcraft/util/debug.cpp" "test/webcraft/test_web_math.h" "src/webcraft/net/sockets.cpp" "test/webcraft/test_sockets.h" "src/webcraft/net/net.cpp" "test/webcraft/test_executors.h" "src/webcraft/util/async.cpp" "test/webcraft/test_net.h" "include/webcraft/http/http.h" "include/webcraft/util/async/task.h")
 
 # Tell compiler where to find headers
 target_include_directories(WebCraft PRIVATE ${LIBRARY_HEADER_DIR})
