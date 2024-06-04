@@ -27,6 +27,7 @@ An Executor is an object that is responsible for executing tasks. It is used to 
 ## Pseudo-Code Implementation
 
 ```
+
 enum TaskStatus {
 	Pending,
 	Running,
@@ -36,105 +37,96 @@ enum TaskStatus {
 	Yielded
 };
 
-class Task<T> {
-	private:
-		# Constructor which takes in a lambda function
-		Task<T>(std::function<T()> func);
-
-	public:
-		# Static method to create a task
-		static Task<T> Create<Args...>(std::function<T(Args...)> func, Args... args);
-
-		# Method to run the task
-		void Run();
-
-		# Method to run the task asynchronously
-		void RunAsync();
-
-		# Overloaded operator to run the task
-		void operator()(); 
-
-		# Method to get the result of the task
-		# Awaits the task to complete if not completed
-		T GetResult();
-
-		# Method to get the status of the task
-		TaskStatus GetStatus();
-
-		# Method to get error if failed
-		std::unique_ptr<std::exception> GetError();
-
-		# Continuation method to run another task after this task completes
-		## enable only if T is not void
-		Task<V> Then<V>(std::function<V(T)> func);
-
-		# Default executor is the one returned by Executors::getDefaultExecutor()
-		# Gets the executor to run the task
-		std::shared_ptr<std::unique_ptr<Executor>> GetExecutor();
-
-		# Sets the executor to run the task
-		void SetExecutor(std::unique_ptr<Executor> executor);
-
-		static Task<void> Delay(int milliseconds);
-};
-
-class CancellableTask<T> : public Task<T> {
-	private:
-		# Constructor which takes in a lambda function
-		CancellableTask<T>(std::function<T(CancellationToken)> func);
-
-	public:
-
-		# Static method to create a task
-		static CancellableTask<T> Create<Args...>(std::function<T(CancellationToken, Args...)> func, Args... args);
-
-		# Method to cancel the task
-		void Cancel();
-
-		# Method to get the status of the task
-		TaskStatus GetStatus();
-};
-
-class YieldingTask<T> : public Task<T> {
-	private:
-		# Constructor which takes in a lambda function
-		YieldingTask<T>(std::function<T()> func);
-
-	public:
-		# Macros to yield and begin/end coroutine
-		# use black magic like duff's device to implement this
-		MACRO YIELD;
-		MACRO BEGIN_COROUTINE;
-		MACRO END_COROUTINE;
-
-		# Method to get the status of the task
-		TaskStatus GetStatus();
-
-		# Method to get the state of the task
-		# Used to resume the task from the last state
-		State GetState();
-};
-
 class Executor {
 public:
 	# Method to schedule a task for execution
-	virtual void Schedule(std::shared_ptr<Task<T>> task) = 0;
-	virtual void Shutdown() = 0;
-	virtual bool IsShutdown() = 0;
-};
+	virtual void Schedule(Executable* task);
+	# Method to shutdown the executor
+	virtual void Shutdown() {}
+	virtual bool HasShutdown() { return true; }
+}
+
+class Executable {
+public:
+	virtual void Run() = 0;
+
+	# Method to run the task synchronously
+	void operator()() {
+		Run();
+	}
+
+	# Method to run the task asynchronously
+	void RunAsync() {
+		GetExecutor().Schedule(this);
+	}
+
+	virtual Executor GetExecutor() = 0;
+	virtual void SetExecutor(std::unique_ptr<Executor> executor) = 0;
+}
 
 class Executors {
+private:
+	static std::unique_ptr<Executor> defaultExecutor;
 public:
 	static std::unique_ptr<Executor> newSingleThreadExecutor();
 	static std::unique_ptr<Executor> newFixedThreadPoolExecutor(int nThreads);
 	static std::unique_ptr<Executor> newCachedThreadPoolExecutor();
 	static std::unique_ptr<Executor> newWorkStealingPoolExecutor(int nThreads);
-	static std::unique_ptr<Executor> newAsyncExecutor();
+	static std::unique_ptr<Executor> newThreadPerTaskExecutor();
 	static std::unique_ptr<Executor> newCoroutineExecutor();
 	static std::unique_ptr<Executor> newFiberExecutor();
-	static std::shared_ptr<std::unique_ptr<Executor>> getDefaultExecutor();
+	static Executor* getDefaultExecutor();
+	static void setDefaultExecutor(std::unique_ptr<Executor> executor);
 }
 
-MACRO ASYNC(T) Task<T>
-MACRO AWAIT(T) t.GetResult()
+
+class TaskUtils {
+public:
+	static Task<T> Create<Func, Args...>(Func&& func, Args... args);
+	static Task<T> RunAsync<Func, Args...>(Func&& func, Args... args);
+	static Task<void> Delay(int milliseconds);
+};
+
+class TaskBase<T> : Executable {
+	std::function<T()> func;
+	std::unique_ptr<std::exception> error;
+	std::unique_ptr<Executor> executor;
+	TaskStatus status;
+	std::mutex mutex;
+protected:
+	TaskBase(std::function<T()> func);
+
+	// Method to set the status of the task
+	void SetStatus(TaskStatus status);
+
+	void SetError(const std::exception& e) {
+		std::lock_guard<std::mutex> lock(mutex);
+		error = std::make_unique<std::exception>(e);
+	}
+
+	std::function<T()> GetFunc() {
+		return func;
+	}
+
+public:
+
+	// Method to get the status of the task
+	TaskStatus GetStatus() {
+		std::lock_guard<std::mutex> lock(mutex);
+		return status;
+	}
+
+	// Method to get the executor to run the task
+	Executor GetExecutor();
+
+	// Method to set the executor to run the task
+	void SetExecutor(std::unique_ptr<Executor> executor);
+
+	// Method to get error if failed
+	std::exception GetError();
+}
+
+
+MACRO async(T) Task<T>
+MACRO await(T) t.GetResult()
 ```

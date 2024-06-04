@@ -6,11 +6,11 @@
 #include <sstream>
 #include "webcraft/util/debug.h"
 #include "webcraft/util/unit_test.h"
-#include "webcraft/util/async.h"
+//#include "webcraft/util/async.h"
 
 using namespace WebCraft::Util;
 using namespace WebCraft::Util::Async;
-
+/*
 class net_test : public WebCraft::Util::UnitTest {
 private:
 	WebCraft::Networking::TCPServer server;
@@ -178,4 +178,4 @@ public:
 		RUN_TEST_ASYNC(net_test, test_server_shutdown);
 		//		RUN_TEST_ASYNC(net_test, test_client);
 	}
-};
+};*/

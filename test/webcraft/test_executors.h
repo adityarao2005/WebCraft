@@ -8,7 +8,7 @@
 
 #include "webcraft/util/debug.h"
 #include "webcraft/util/unit_test.h"
-#include "webcraft/util/async.h"
+#include "webcraft/util/async/async.h"
 
 using namespace WebCraft::Util;
 using namespace WebCraft::Util::Async;
@@ -29,23 +29,19 @@ public:
 
 	void testExecutor(Executor* executor) {
 
-		std::vector<std::future<int>> futures;
+		std::vector<Task<int>> futures;
 
 		for (int i = 0; i < 10; i++) {
-			std::function<int()> func = [i]() {
-				//std::stringstream ss;
-				//ss << "Task " << i << " is running on thread " << std::this_thread::get_id() << std::endl;
-				//Debug::log(ss.str());
+			Task<int> task = TaskUtils::RunTaskAsync<int>([i]() -> int {
 				std::this_thread::sleep_for(std::chrono::seconds(10 - i));
 				return i;
-			};
-			std::future<int> value = executor->execute(func);
-			futures.push_back(std::move(value));
+			});
+			futures.push_back(task);
 		}
 
-		for (auto& future : futures) {
+		for (Task<int>& future : futures) {
 			try {
-				int value = future.get();
+				int value = AWAIT(future);
 				Debug::log("Numbers: " + std::to_string(value));
 			}
 			catch (const std::exception& e) {
