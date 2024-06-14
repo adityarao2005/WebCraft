@@ -1,12 +1,6 @@
-#include "test_web_math.h"
-#include "test_executors.h"
-#include "test_net.h"
-
+#include <iostream>
+#include "test_async.h"
 int main() {
-	std::cout << "Running tests..." << std::endl;
-//	WebCraft::Util::RunUnitTest<web_math_test>();
-//	WebCraft::Util::RunUnitTest<sockets_test>();
-//	WebCraft::Util::RunUnitTest<executors_test>();
-	WebCraft::Util::RunUnitTest<net_test>();
+	WebCraft::Util::RunUnitTest<async_test>();
 	return 0;
 }

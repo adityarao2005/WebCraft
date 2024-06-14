@@ -8,7 +8,6 @@
 
 #define WIN32_LEAN_AND_MEAN
 
-/* See http://stackoverflow.com/questions/12765743/getaddrinfo-on-win32 */
 #ifndef _WIN32_WINNT
 #define _WIN32_WINNT 0x0501  /* Windows XP. */
 #endif
@@ -27,6 +26,8 @@
 
 #endif
 
+// Refer to how microsoft builds a socket and server socket in MSDN
+// See this: https://learn.microsoft.com/en-us/windows/win32/winsock/finished-server-and-client-code
 using Debug = WebCraft::Util::Debug;
 
 namespace WebCraft {
