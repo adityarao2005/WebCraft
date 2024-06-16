@@ -78,11 +78,9 @@ namespace WebCraft {
 				virtual async(void) accept(std::unique_ptr<HttpConnection> connection) = 0;
 			};
 
-			template<typename T>
-			struct BodyHandler;
 
 			template<class T>
-			struct BodyHandler {
+			struct BodyPublisher {
 				using ByteChunk = std::pair<std::byte, size_t>;
 				using BodySubscriber = WebCraft::Util::Async::Generator<ByteChunk>;
 
@@ -93,19 +91,19 @@ namespace WebCraft {
 
 			};
 
-			class BodyHandlers {
+			class BodyPublishers {
 			public:
 				template<typename T>
 				using Generator = WebCraft::Util::Async::Generator<T>;
 
-				static std::unique_ptr<BodyHandler<std::string>> string();
-				static std::unique_ptr<BodyHandler<std::vector<std::byte>>> bytes();
-				static std::unique_ptr<BodyHandler<WebCraft::Util::IO::Async::ReadableStream>> stream();
-				static std::unique_ptr<BodyHandler<std::vector<std::string>>> lines();
-				static std::unique_ptr<BodyHandler<Generator<std::string>>> linesGenerator();
-				static std::unique_ptr<BodyHandler<std::vector<std::string>>> separatedBy(std::string value);
-				static std::unique_ptr<BodyHandler<Generator<std::string>>> separatedByGenerator(std::string value);
-				static std::unique_ptr<BodyHandler<void>> none();
+				static std::unique_ptr<BodyPublisher<std::string>> string();
+				static std::unique_ptr<BodyPublisher<std::vector<std::byte>>> bytes();
+				static std::unique_ptr<BodyPublisher<WebCraft::Util::IO::Async::ReadableStream>> stream();
+				static std::unique_ptr<BodyPublisher<std::vector<std::string>>> lines();
+				static std::unique_ptr<BodyPublisher<Generator<std::string>>> linesGenerator();
+				static std::unique_ptr<BodyPublisher<std::vector<std::string>>> separatedBy(std::string value);
+				static std::unique_ptr<BodyPublisher<Generator<std::string>>> separatedByGenerator(std::string value);
+				static std::unique_ptr<BodyPublisher<void>> none();
 			};
 
 
