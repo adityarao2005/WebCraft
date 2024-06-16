@@ -1,90 +1,115 @@
-#include "webcraft/net/net.h"
+#include <webcraft/net/net.h>
+#include <cstddef>
 
 namespace WebCraft {
-	namespace Http {
+	namespace Net {
+		namespace Http {
+			class HttpClientBase;
+			class HttpServerBase;
+			class HttpConnection;
 
-		// Forward declarations
-		class HttpServer;
-		class HttpClient;
+			class HttpClient;
+			class HttpServer;
 
-		// Http Request and Response classes
-		class HttpRequest;
-		class HttpResponse;
-		class HttpRequestBuilder;
-		class HttpResponseBuilder;
+			enum ConnectionMethod {
+				UDP, TCP
+			};
 
-		// Body subscriber and publisher classes
-		template<typename T>
-		class BodySubscriber;
-		template<typename T>
-		class BodyPublisher;
+			class HttpClientBase : public Net::Client {
+			private:
+				std::unique_ptr<Net::Client> client_impl;
+			public:
+				HttpClientBase(ConnectionMethod method = TCP);
+				~HttpClientBase();
 
-		// Http controller and router classes
-		class Controller;
-		class Router;
+				struct Request {
+					std::unique_ptr<WebCraft::Util::IO::Async::WritableStream> output;
+					std::unordered_map<std::string, std::string> headers;
+					std::string method;
+					std::string path;
+					std::string version;
+				};
 
-		// Http utils class
-		class HttpUtils;
+				struct Response {
+					std::unique_ptr<WebCraft::Util::IO::Async::ReadableStream> input;
+					std::unordered_map<std::string, std::string> headers;
+					int status;
+				};
 
-		// Http server and client classes
-		class HttpClient {
-			const HttpResponse send(const HttpRequest& request);
-			
-		};
+				struct HttpConnection {
+					std::unique_ptr<Request> request;
+					std::unique_ptr<Response> response;
+				};
 
-		// Http Implementation
-		// Http request class
-		class HttpRequest {
-		public:
-			HttpRequest();
-			~HttpRequest();
+				async(std::unique_ptr<Net::Connection>) connect(std::string address, int port) override;
+				virtual async(std::unique_ptr<HttpConnection>) sendRequest(std::string uri);
+			};
 
-			// Getters
-			std::string GetMethod() const;
-			std::string GetPath() const;
-			std::string GetVersion() const;
-			std::string GetHeader(const std::string& key) const;
-			std::unordered_map<std::string, std::string> GetHeaders() const;
-			// Gets the body as a body subscriber
+			class HttpServerBase : public Net::Server {
+			private:
+				std::unique_ptr<Net::Server> server_impl;
+			public:
+				HttpServerBase(ConnectionMethod method = TCP);
+				~HttpServerBase();
+
+				struct Request {
+					std::unique_ptr<WebCraft::Util::IO::Async::ReadableStream> input;
+					std::unordered_map<std::string, std::string> headers;
+					std::string method;
+					std::string path;
+					std::string version;
+				};
+
+				struct Response {
+					std::unique_ptr<WebCraft::Util::IO::Async::WritableStream> output;
+					std::unordered_map<std::string, std::string> headers;
+					int status;
+				};
+
+				struct HttpConnection {
+					std::unique_ptr<Request> request;
+					std::unique_ptr<Response> response;
+				};
+
+				async(void) bind(int port);
+				async(void) start();
+				async(void) stop();
+				async(void) onconnect(std::unique_ptr<Connection> connection) override;
+				virtual async(void) accept(std::unique_ptr<HttpConnection> connection) = 0;
+			};
+
 			template<typename T>
-			BodySubscriber<T> GetBody() const;
+			struct BodyHandler;
 
-			// Setters
-			void SetMethod(const std::string& method);
-			void SetPath(const std::string& path);
-			void SetVersion(const std::string& version);
-			void SetHeader(const std::string& key, const std::string& value);
-			void SetHeaders(const std::unordered_map<std::string, std::string>& headers);
-			// Sets the body as a body publisher
-			template<typename T>
-			void SetBody(const BodyPublisher<T>& body);
-		};
+			template<class T>
+			struct BodyHandler {
+				using ByteChunk = std::pair<std::byte, size_t>;
+				using BodySubscriber = WebCraft::Util::Async::Generator<ByteChunk>;
 
-		// Http response class
-		class HttpResponse {
-		public:
-			HttpResponse();
-			~HttpResponse();
+				virtual std::unique_ptr<T> getBody(BodySubscriber buffers) {
+					return nullptr;
+				}
 
-			// Getters
-			std::string GetVersion() const;
-			int GetStatusCode() const;
-			std::string GetReasonPhrase() const;
-			std::string GetHeader(const std::string& key) const;
-			std::unordered_map<std::string, std::string> GetHeaders() const;
-			// Gets the body as a body subscriber
-			template<typename T>
-			BodySubscriber<T> GetBody() const;
 
-			// Setters
-			void SetVersion(const std::string& version);
-			void SetStatusCode(int statusCode);
-			void SetReasonPhrase(const std::string& reasonPhrase);
-			void SetHeader(const std::string& key, const std::string& value);
-			void SetHeaders(const std::unordered_map<std::string, std::string>& headers);
-			// Sets the body as a body publisher
-			template<typename T>
-			void SetBody(const BodyPublisher<T>& body);
-		};
+			};
+
+			class BodyHandlers {
+			public:
+				template<typename T>
+				using Generator = WebCraft::Util::Async::Generator<T>;
+
+				static std::unique_ptr<BodyHandler<std::string>> string();
+				static std::unique_ptr<BodyHandler<std::vector<std::byte>>> bytes();
+				static std::unique_ptr<BodyHandler<WebCraft::Util::IO::Async::ReadableStream>> stream();
+				static std::unique_ptr<BodyHandler<std::vector<std::string>>> lines();
+				static std::unique_ptr<BodyHandler<Generator<std::string>>> linesGenerator();
+				static std::unique_ptr<BodyHandler<std::vector<std::string>>> separatedBy(std::string value);
+				static std::unique_ptr<BodyHandler<Generator<std::string>>> separatedByGenerator(std::string value);
+				static std::unique_ptr<BodyHandler<void>> none();
+			};
+
+
+		}
+
 	}
 }

@@ -31,7 +31,7 @@
 using Debug = WebCraft::Util::Debug;
 
 namespace WebCraft {
-	namespace Networking {
+	namespace Net {
 		namespace Sockets {
 
 #ifndef _WIN32

@@ -1,71 +1,104 @@
 #pragma once
-#include "webcraft/webcraft.h"
-#include "webcraft/util/async.h"
-#include "webcraft/util/debug.h"
+#include <webcraft/webcraft.h>
+#include <webcraft/util/async.h>
+#include <webcraft/util/debug.h>
+#include <webcraft/util/io.h>
+#include <sstream>
 
 namespace WebCraft {
-	namespace Networking {
+	namespace Net {
 
+		// Define the interfaces
+		struct Endpoint;
 		struct Server;
 		struct Client;
 
+		// Connection type
+		class Connection {
+		private:
+			// The stream
+			std::shared_ptr<WebCraft::Util::IO::Async::DuplexStream> stream;
+			std::string address;
+
+		public:
+			// Constructor
+			Connection() {}
+			// Constructor
+			Connection(WebCraft::Util::IO::Async::DuplexStream* stream) : stream(stream) {}
+
+			// Destructor
+			std::shared_ptr<WebCraft::Util::IO::Async::DuplexStream> getStream() {
+				return stream;
+			}
+
+			std::string getAddress() {
+				return address;
+			}
+		};
+
 		struct Server {
-			struct sync {
-				struct Request {
-					std::string read(size_t size);
-				};
-
-				struct Response {
-					void write(std::string data);
-				};
-			};
-
-			struct async {
-				struct Request {
-					async(std::string) read(size_t size);
-				};
-
-				struct Response {
-					async(void) write(std::string data);
-				};
-			};
-
-			virtual void onconnect(sync::Request req, sync::Response resp) = 0;
-			virtual async(void) onconnect(async::Request req, async::Response resp) = 0;
-
-
 			Server() = default;
 			~Server() = default;
 
-			virtual void bind(int port) = 0;
-			virtual void start() = 0;
-			virtual void stop() = 0;
+			virtual async(void) start(int port) = 0;
+			virtual async(void) stop() = 0;
+			virtual async(void) onconnect(std::unique_ptr<Connection> connection);
 		};
 
 		struct Client {
-			struct sync {
-				struct Request {
-					void write(std::string data);
-				};
+			Client() = default;
+			~Client() = default;
 
-				struct Response {
-					std::string read(size_t size);
-				};
-			};
-
-			struct async {
-				struct Request {
-					async(void) write(std::string data);
-				};
-
-				struct Response {
-					async(std::string) read(size_t size);
-				};
-			};
-
-			virtual void onconnect(sync::Request req, sync::Response resp) = 0;
-			virtual async(void) onconnect(async::Request req, async::Response resp) = 0;
+			virtual async(std::unique_ptr<Connection>) connect(std::string address, int port) = 0;
 		};
+
+		namespace Tcp {
+			class Server : public WebCraft::Net::Server {
+			private:
+			public:
+				// The server
+				Server() = default;
+				~Server() = default;
+
+				virtual async(void) start(int port);
+				virtual async(void) stop();
+				virtual async(void) onconnect(std::unique_ptr<Connection> connection) override;
+			};
+
+			class Client : public WebCraft::Net::Client {
+			private:
+			public:
+				// The client
+				Client() = default;
+				~Client() = default;
+
+				virtual async(std::unique_ptr<Connection>) connect(std::string address, int port) override;
+			};
+		}
+
+		namespace Udp {
+			class Server : public WebCraft::Net::Server {
+			private:
+			public:
+				// The server
+				Server() = default;
+				~Server() = default;
+
+				virtual async(void) start(int port);
+				virtual async(void) stop();
+				virtual async(void) onconnect(std::unique_ptr<Connection> connection);
+			};
+
+			class Client : public WebCraft::Net::Client {
+			private:
+			public:
+				// The client
+				Client() = default;
+				~Client() = default;
+
+				virtual async(std::unique_ptr<Connection>) connect(std::string address, int port);
+			};
+		}
 
 	}
 }

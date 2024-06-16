@@ -9,7 +9,7 @@
 namespace WebCraft {
 	namespace Util {
 		namespace IO {
-			namespace Streams::Sync {
+			namespace Sync {
 				// Base Stream class
 				class Stream {
 				public:
@@ -83,7 +83,7 @@ namespace WebCraft {
 
 			}
 
-			namespace Streams::Async {
+			namespace Async {
 
 				// Base Stream class
 				class Stream {
@@ -168,18 +168,18 @@ namespace WebCraft {
 					public:
 
 						// Open a file for reading
-						virtual unique<Streams::Sync::ReadableStream> openRead(const std::string& path) = 0;
+						virtual unique<Sync::ReadableStream> openRead(const std::string& path) = 0;
 						// Open a file for writing
-						virtual unique<Streams::Sync::WritableStream> openWrite(const std::string& path) = 0;
+						virtual unique<Sync::WritableStream> openWrite(const std::string& path) = 0;
 						// Open a file for reading and writing
-						virtual unique<Streams::Sync::DuplexStream> open(const std::string& path) = 0;
+						virtual unique<Sync::DuplexStream> open(const std::string& path) = 0;
 
 						// Open a file for reading asynchronously
-						virtual async(unique<Streams::Async::ReadableStream>) openReadAsync(const std::string& path) = 0;
+						virtual async(unique<Async::ReadableStream>) openReadAsync(const std::string& path) = 0;
 						// Open a file for writing asynchronously
-						virtual async(unique<Streams::Async::WritableStream>) openWriteAsync(const std::string& path) = 0;
+						virtual async(unique<Async::WritableStream>) openWriteAsync(const std::string& path) = 0;
 						// Open a file for reading and writing asynchronously
-						virtual async(unique<Streams::Async::DuplexStream>) openAsync(const std::string& path) = 0;
+						virtual async(unique<Async::DuplexStream>) openAsync(const std::string& path) = 0;
 					};
 				}
 
@@ -188,35 +188,34 @@ namespace WebCraft {
 					static unique<internal::FileProvider> provider;
 				public:
 
-					static unique<Streams::Sync::ReadableStream> openRead(const std::string& path) {
+					static unique<Sync::ReadableStream> openRead(const std::string& path) {
 						return provider->openRead(path);
 					}
 
-					static unique<Streams::Sync::WritableStream> openWrite(const std::string& path) {
+					static unique<Sync::WritableStream> openWrite(const std::string& path) {
 						return provider->openWrite(path);
 					}
 
-					static unique<Streams::Sync::DuplexStream> open(const std::string& path) {
+					static unique<Sync::DuplexStream> open(const std::string& path) {
 						return provider->open(path);
 					}
 
-					static async(unique<Streams::Async::ReadableStream>) openReadAsync(const std::string& path) {
+					static async(unique<Async::ReadableStream>) openReadAsync(const std::string& path) {
 						co_return co_await provider->openReadAsync(path);
 					}
 
-					static async(unique<Streams::Async::WritableStream>) openWriteAsync(const std::string& path) {
+					static async(unique<Async::WritableStream>) openWriteAsync(const std::string& path) {
 						co_return co_await provider->openWriteAsync(path);
 					}
 
-					static async(unique<Streams::Async::DuplexStream>) openAsync(const std::string& path) {
+					static async(unique<Async::DuplexStream>) openAsync(const std::string& path) {
 						co_return co_await provider->openAsync(path);
 					}
 				};
-
 			}
 
 			namespace Memory {
-				class MemorySyncStream : public Streams::Sync::DuplexStream {
+				class MemorySyncStream : public Sync::DuplexStream {
 				private:
 					std::string buffer;
 					size_t position;
@@ -242,7 +241,7 @@ namespace WebCraft {
 						this->buffer.append(buffer, offset, size);
 					}
 				};
-				class MemoryAsyncStream : public Streams::Async::DuplexStream {
+				class MemoryAsyncStream : public Async::DuplexStream {
 				private:
 					std::string buffer;
 					size_t position;

@@ -17,6 +17,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 project(WebCraft)
 
+
 # Configure for Windows and Linux
 # include(cmake/PlatformChecks.cmake)  # Add a PlatformChecks.cmake file (explained later)
 
@@ -30,6 +31,8 @@ target_include_directories(WebCraft PRIVATE ${LIBRARY_HEADER_DIR})
 
 # Set compile definitions for the library
 target_compile_definitions(WebCraft PUBLIC ${LIBRARY_DEFINITION})
+
+target_compile_features(WebCraft PRIVATE cxx_std_20)
 
 # Target specific compiler flags for Windows/Linux (using PlatformChecks.cmake)
 if(WIN32)
