@@ -17,7 +17,7 @@ C++ 20 has so many cool features which many developers don’t use because every
  - Create dependency injection related packages and files
    
 **Promote extensibility and ability to bundle with packages**
- - Create a new packaging system where packages developed by it will be created according to the makefile at the root of it or by a special “package.json” instruction
+ - Create a new packaging system where packages developed by it will be created according to the makefile at the root of it or by a special “project.json” instruction file
    
 **Promote cross-platform deployment with Docker and library abstractions**
  - Use abstractions more and internal specs with macro guards on platform
@@ -31,7 +31,7 @@ C++ 20 has so many cool features which many developers don’t use because every
 ### Project Structure using this framework
 #### File tree:
 ```
-Root/ (project root)
+root/ (project root)
  +-- src/
  |    +-- main.c
  |    +-- services.c
@@ -41,12 +41,12 @@ Root/ (project root)
  +-- headers/
  |    +-- services.h
  +-- build/ (build files)
- |    + generated/
- |    + binary/
- |    + objects/
- | lib (library files)
- | static (if static lib is requested)
- | dynamic (if DLL is requested)
+ |    +-- generated/
+ |    +-- binary/
+ |    +-- objects/
+ +-- lib/ (library files)
+ |    +-- static/ (if static lib is requested)
+ |    +-- dynamic/ (if DLL is requested)
  +-- project.json
 ```
 
