@@ -29,7 +29,7 @@ C++ 20 has so many cool features which many developers don’t use because every
 ## Design
 
 ### Project Structure using this framework
-File tree:
+#### File tree:
 Root (project root)
 src
 main.c
@@ -50,7 +50,7 @@ static (if static lib is requested)
 dynamic (if DLL is requested)
 project.json
 
-### Commands
+#### Commands
 
 **Installing packages**
 ```bash
