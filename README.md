@@ -46,7 +46,7 @@ root/ (project root)
  |    +-- (all other files)
  +-- headers/
  |    +-- services.h
- +-- resources/ (any other files which are useful should be here)
+ +-- resources/ (any other useful files should be here)
  +-- build/ (build files)
  |    +-- generated/
  |    +-- binary/
