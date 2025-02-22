@@ -28,6 +28,12 @@ C++ 20 has so many cool features which many developers don’t use because every
 
 ## Design
 
+### Requirements
+
+1. Project file tree definitions
+2. Package management capabilities (like npm or pip)
+3. Utility commands for project management (like what npm and pip have)
+
 ### Project Structure using this framework
 #### File tree:
 ```
@@ -40,20 +46,33 @@ root/ (project root)
  |    +-- (all other files)
  +-- headers/
  |    +-- services.h
+ +-- resources/ (any other files which are useful should be here)
  +-- build/ (build files)
  |    +-- generated/
  |    +-- binary/
  |    +-- objects/
  +-- lib/ (library files)
+ |    +-- include/
  |    +-- static/ (if static lib is requested)
  |    +-- dynamic/ (if DLL is requested)
  +-- project.json
 ```
 
-#### Commands
+### Package management capabilities
 
-**Installing packages**
-```bash
-webcraft
-``` 
+1. Need to be able to fetch source code from GitHub or any other online repository and build it
+2. Should also be able to fetch source code from zip and build it
+3. Should be able to grab header files and binaries from remote repositories
+4. Should be able to link system libraries and header files
+
+
+### Utility commands for project management
+
+1. Should be able to assist in fetching and installing packages
+2. Should be able to clean up dependencies and build files
+3. Should be able to build, link, and run the project in development and production mode
+
+
+
+
 
