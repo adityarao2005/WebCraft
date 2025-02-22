@@ -30,25 +30,25 @@ C++ 20 has so many cool features which many developers don’t use because every
 
 ### Project Structure using this framework
 #### File tree:
-Root (project root)
-src
-main.c
-services.c
-server
-(server files)
-client
-(client files)
-(all other files)
-headers
-services.h
-build (build files)
-generated
-binary
-objects
-lib (library files)
-static (if static lib is requested)
-dynamic (if DLL is requested)
-project.json
+```
+Root/ (project root)
+ +-- src/
+ |    +-- main.c
+ |    +-- services.c
+ |    +-- server/ (server files)
+ |    +-- client/ (client files)
+ |    +-- (all other files)
+ +-- headers/
+ |    +-- services.h
+ +-- build/ (build files)
+ |    + generated/
+ |    + binary/
+ |    + objects/
+ | lib (library files)
+ | static (if static lib is requested)
+ | dynamic (if DLL is requested)
+ +-- project.json
+```
 
 #### Commands
 
