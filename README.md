@@ -31,8 +31,8 @@ C++ 20 has so many cool features which many developers don’t use because every
 ### Requirements
 
 1. Project file tree definitions
-2. Package management capabilities (like npm or pip)
-3. Utility commands for project management (like what npm and pip have)
+2. Package management capabilities (like npm or pip or maven)
+3. Utility commands for project management (like what npm and pip and maven have)
 
 ### Project Structure using this framework
 #### File tree:
