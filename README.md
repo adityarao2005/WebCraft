@@ -35,7 +35,9 @@ C++ 20 has so many cool features which many developers don’t use because every
 3. Utility commands for project management (like what npm and pip and maven have)
 
 ### Project Structure using this framework
-#### File tree:
+#### File trees:
+
+**Client & Server Compound project**
 ```
 root/ (project root)
  +-- src/
@@ -58,6 +60,59 @@ root/ (project root)
  +-- project.json
 ```
 
+**API Server Compound project**
+```
+root/ (project root)
+ +-- src/
+ |    +-- main.c
+ |    +-- services.c
+ |    +-- server/ (server files)
+ |    +-- (all other files)
+ +-- headers/
+ |    +-- services.h
+ +-- resources/ (any other useful files should be here)
+ +-- build/ (build files)
+ |    +-- generated/
+ |    +-- binary/
+ |    +-- objects/
+ +-- lib/ (library files)
+ |    +-- include/
+ |    +-- static/ (if static lib is requested)
+ |    +-- dynamic/ (if DLL is requested)
+ +-- project.json
+```
+
+**API Client Compound project**
+```
+root/ (project root)
+ +-- src/
+ |    +-- main.c
+ |    +-- services.c
+ |    +-- server/ (server files)
+ |    +-- (all other files)
+ +-- headers/
+ |    +-- services.h
+ +-- resources/ (any other useful files should be here)
+ +-- build/ (build files)
+ |    +-- generated/
+ |    +-- binary/
+ |    +-- objects/
+ +-- lib/ (library files)
+ |    +-- include/
+ |    +-- static/ (if static lib is requested)
+ |    +-- dynamic/ (if DLL is requested)
+ +-- project.json
+```
+
+**Module Based Project**
+```
+root/ (project root)
+ +-- server/ (API server)
+ +-- client/ (API client)
+ +-- shared/ (shared resources, headers, and classes)
+ +-- project.json
+```
+
 ### Package management capabilities
 
 1. Need to be able to fetch source code from GitHub or any other online repository and build it
@@ -72,7 +127,8 @@ root/ (project root)
 2. Should be able to clean up dependencies and build files
 3. Should be able to build, link, and run the project in development and production mode
 
+### Solution
 
-
-
+1. Design a C++ package manager and orchestration tool (Project CPM) in C++
+2. Design a library which can be used to help create web apps and communication technologies (Project WebCraft) in C++
 
