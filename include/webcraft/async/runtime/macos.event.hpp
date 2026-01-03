@@ -32,7 +32,8 @@ namespace webcraft::async::detail::macos
     {
     private:
         std::atomic<bool> cancelled{false};
-        struct kevent event;
+        std::atomic<bool> started{false};
+        struct kevent event{};
         int queue;
 
     public:
@@ -53,9 +54,13 @@ namespace webcraft::async::detail::macos
             if (!cancelled.compare_exchange_strong(expected, true, std::memory_order_acq_rel))
                 return;
 
-            // remove yield event listener
-            EV_SET(&event, event.ident, event.filter, EV_DELETE, 0, 0, nullptr);
-            int result = kevent(queue, &event, 1, nullptr, 0, nullptr);
+            // Only try to delete the event if it was actually registered
+            if (started.load(std::memory_order_acquire))
+            {
+                // remove yield event listener
+                EV_SET(&event, event.ident, event.filter, EV_DELETE, 0, 0, nullptr);
+                int result = kevent(queue, &event, 1, nullptr, 0, nullptr);
+            }
         }
 
         void try_start() override
@@ -67,6 +72,7 @@ namespace webcraft::async::detail::macos
             void *data = (webcraft::async::detail::runtime_callback *)this;
 
             prep_event(&event, data);
+            started.store(true, std::memory_order_release);
         }
 
         virtual void prep_event(struct kevent *event, void *data) = 0;
