@@ -161,42 +161,37 @@ namespace webcraft::async::io
         template <non_void_v T>
         struct mpsc_channel_subscription
         {
+            std::mutex state_mutex;
             std::coroutine_handle<> continuation;
             std::queue<T> values;
-            std::atomic<bool> closed = false;
+            bool closed = false;
 
             task<std::optional<T>> get_next()
             {
-                if (closed)
-                {
-                    if (values.empty())
-                    {
-                        co_return std::nullopt;
-                    }
-                    else
-                    {
-                        auto value = values.front();
-                        values.pop();
-                        co_return std::move(value);
-                    }
-                }
-
                 struct awaitable
                 {
                     mpsc_channel_subscription<T> &sub;
 
                     bool await_ready() const noexcept
                     {
+                        std::scoped_lock lock(sub.state_mutex);
                         return !sub.values.empty() || sub.closed;
                     }
 
-                    void await_suspend(std::coroutine_handle<> h) noexcept
+                    bool await_suspend(std::coroutine_handle<> h) noexcept
                     {
+                        std::scoped_lock lock(sub.state_mutex);
+                        if (!sub.values.empty() || sub.closed)
+                        {
+                            return false;
+                        }
                         sub.continuation = h;
+                        return true;
                     }
 
                     std::optional<T> await_resume() noexcept
                     {
+                        std::scoped_lock lock(sub.state_mutex);
                         if (sub.closed && sub.values.empty())
                         {
                             return std::nullopt;
@@ -212,26 +207,37 @@ namespace webcraft::async::io
 
             task<bool> send(T val)
             {
-                if (closed)
+                std::coroutine_handle<> to_resume;
                 {
-                    co_return false;
+                    std::scoped_lock lock(state_mutex);
+                    if (closed)
+                    {
+                        co_return false;
+                    }
+
+                    values.push(std::move(val));
+                    to_resume = std::exchange(continuation, {});
                 }
 
-                values.push(val);
-                auto continuation = std::exchange(this->continuation, {});
-                if (continuation)
+                if (to_resume)
                 {
-                    continuation.resume();
+                    to_resume.resume();
                 }
                 co_return true;
             }
 
             void close()
             {
-                closed = true;
-                if (continuation)
+                std::coroutine_handle<> to_resume;
                 {
-                    continuation.resume();
+                    std::scoped_lock lock(state_mutex);
+                    closed = true;
+                    to_resume = std::exchange(continuation, {});
+                }
+
+                if (to_resume)
+                {
+                    to_resume.resume();
                 }
             }
         };
