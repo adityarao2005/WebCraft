@@ -15,7 +15,6 @@
 #include <mutex>
 #include <queue>
 #include <span>
-#include <atomic>
 
 namespace webcraft::async::io
 {
@@ -196,7 +195,7 @@ namespace webcraft::async::io
                         {
                             return std::nullopt;
                         }
-                        auto value = sub.values.front();
+                        auto value = std::move(sub.values.front());
                         sub.values.pop();
                         return std::move(value);
                     }
@@ -274,7 +273,7 @@ namespace webcraft::async::io
 
             task<bool> send(T val)
             {
-                return subscription->send(val);
+                return subscription->send(std::move(val));
             }
 
             task<void> close()
