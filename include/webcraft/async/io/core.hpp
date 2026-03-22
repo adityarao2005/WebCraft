@@ -5,7 +5,6 @@
 // Licenced under MIT license. See LICENSE.txt for details.
 ///////////////////////////////////////////////////////////////////////////////
 
-
 #include <utility>
 #include <concepts>
 #include <optional>
@@ -161,8 +160,10 @@ namespace webcraft::async::io
         template <non_void_v T>
         struct mpsc_channel_subscription
         {
+            std::mutex state_mutex;
             std::coroutine_handle<> continuation;
             std::queue<T> values;
+            bool closed = false;
 
             task<std::optional<T>> get_next()
             {
@@ -172,19 +173,31 @@ namespace webcraft::async::io
 
                     bool await_ready() const noexcept
                     {
-                        return !sub.values.empty();
+                        std::scoped_lock lock(sub.state_mutex);
+                        return !sub.values.empty() || sub.closed;
                     }
 
-                    void await_suspend(std::coroutine_handle<> h) noexcept
+                    bool await_suspend(std::coroutine_handle<> h) noexcept
                     {
+                        std::scoped_lock lock(sub.state_mutex);
+                        if (!sub.values.empty() || sub.closed)
+                        {
+                            return false;
+                        }
                         sub.continuation = h;
+                        return true;
                     }
 
-                    T await_resume() noexcept
+                    std::optional<T> await_resume() noexcept
                     {
-                        auto value = sub.values.front();
+                        std::scoped_lock lock(sub.state_mutex);
+                        if (sub.closed && sub.values.empty())
+                        {
+                            return std::nullopt;
+                        }
+                        auto value = std::move(sub.values.front());
                         sub.values.pop();
-                        return value;
+                        return std::move(value);
                     }
                 };
 
@@ -193,13 +206,38 @@ namespace webcraft::async::io
 
             task<bool> send(T val)
             {
-                values.push(val);
-                if (continuation)
+                std::coroutine_handle<> to_resume;
                 {
-                    continuation.resume();
+                    std::scoped_lock lock(state_mutex);
+                    if (closed)
+                    {
+                        co_return false;
+                    }
+
+                    values.push(std::move(val));
+                    to_resume = std::exchange(continuation, {});
                 }
-                continuation = std::exchange(continuation, {});
+
+                if (to_resume)
+                {
+                    to_resume.resume();
+                }
                 co_return true;
+            }
+
+            void close()
+            {
+                std::coroutine_handle<> to_resume;
+                {
+                    std::scoped_lock lock(state_mutex);
+                    closed = true;
+                    to_resume = std::exchange(continuation, {});
+                }
+
+                if (to_resume)
+                {
+                    to_resume.resume();
+                }
             }
         };
 
@@ -235,14 +273,22 @@ namespace webcraft::async::io
 
             task<bool> send(T val)
             {
-                return subscription->send(val);
+                return subscription->send(std::move(val));
+            }
+
+            task<void> close()
+            {
+                subscription->close();
+                co_return;
             }
         };
 
         static_assert(async_readable_stream<mpsc_channel_rstream<int>, int>, "mpsc_channel_rstream should be an async readable stream");
         static_assert(async_writable_stream<mpsc_channel_wstream<int>, int>, "mpsc_channel_wstream should be an async writable stream");
+        static_assert(async_closeable_stream<mpsc_channel_wstream<int>, int>, "mpsc_channel_wstream should be an async closeable stream");
         static_assert(async_readable_stream<mpsc_channel_rstream<std::string>, std::string>, "mpsc_channel_rstream should be an async readable stream");
         static_assert(async_writable_stream<mpsc_channel_wstream<std::string>, std::string>, "mpsc_channel_wstream should be an async writable stream");
+        static_assert(async_closeable_stream<mpsc_channel_wstream<std::string>, std::string>, "mpsc_channel_wstream should be an async closeable stream");
     }
 
     template <non_void_v T>
