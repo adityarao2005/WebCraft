@@ -3,7 +3,6 @@
 // Licenced under MIT license. See LICENSE.txt for details.
 ///////////////////////////////////////////////////////////////////////////////
 
-
 #define TEST_SUITE_NAME AsyncIOCoreTestSuite
 
 #include "test_suite.hpp"
@@ -13,6 +12,7 @@
 #include <vector>
 #include <queue>
 #include <span>
+#include <unordered_set>
 
 using namespace webcraft::async;
 using namespace webcraft::async::io;
@@ -256,4 +256,65 @@ TEST_CASE(GeneratorToReadableStream)
     };
 
     sync_wait(task_fn());
+}
+
+TEST_CASE(MpScChannel)
+{
+    auto [reader, writer] = make_mpsc_channel<std::string>();
+
+    auto producer_one = [writer]() mutable -> task<void>
+    {
+        auto check = co_await writer.send("producer-1:alpha");
+        EXPECT_TRUE(check) << "Producer one send should succeed";
+        check = co_await writer.send("producer-1:beta");
+        EXPECT_TRUE(check) << "Producer one send should succeed";
+    };
+
+    auto producer_two = [writer]() mutable -> task<void>
+    {
+        auto check = co_await writer.send("producer-2:gamma");
+        EXPECT_TRUE(check) << "Producer two send should succeed";
+        check = co_await writer.send("producer-2:delta");
+        EXPECT_TRUE(check) << "Producer two send should succeed";
+    };
+
+    auto producer_three = [writer]() mutable -> task<void>
+    {
+        auto check = co_await writer.send("producer-3:epsilon");
+        EXPECT_TRUE(check) << "Producer three send should succeed";
+        check = co_await writer.send("producer-3:zeta");
+        EXPECT_TRUE(check) << "Producer three send should succeed";
+    };
+
+    auto run_producers_and_close = [&]() -> task<void>
+    {
+        co_await when_all(producer_one(), producer_two(), producer_three());
+        co_await writer.close();
+    };
+
+    std::unordered_set<std::string> expected_messages = {
+        "producer-1:alpha",
+        "producer-1:beta",
+        "producer-2:gamma",
+        "producer-2:delta",
+        "producer-3:epsilon",
+        "producer-3:zeta"};
+
+    auto consumer_fn = [&]() -> task<void>
+    {
+        while (true)
+        {
+            auto checker = co_await reader.recv();
+            if (!checker.has_value())
+            {
+                break;
+            }
+            auto erased = expected_messages.erase(*checker);
+            EXPECT_EQ(erased, 1) << "Received unexpected or duplicate message";
+        }
+
+        EXPECT_TRUE(expected_messages.empty()) << "Consumer should receive every produced message before close";
+    };
+
+    sync_wait(when_all(run_producers_and_close(), consumer_fn()));
 }

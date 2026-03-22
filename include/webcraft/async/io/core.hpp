@@ -5,7 +5,6 @@
 // Licenced under MIT license. See LICENSE.txt for details.
 ///////////////////////////////////////////////////////////////////////////////
 
-
 #include <utility>
 #include <concepts>
 #include <optional>
@@ -16,6 +15,7 @@
 #include <mutex>
 #include <queue>
 #include <span>
+#include <atomic>
 
 namespace webcraft::async::io
 {
@@ -163,16 +163,31 @@ namespace webcraft::async::io
         {
             std::coroutine_handle<> continuation;
             std::queue<T> values;
+            std::atomic<bool> closed = false;
 
             task<std::optional<T>> get_next()
             {
+                if (closed)
+                {
+                    if (values.empty())
+                    {
+                        co_return std::nullopt;
+                    }
+                    else
+                    {
+                        auto value = values.front();
+                        values.pop();
+                        co_return std::move(value);
+                    }
+                }
+
                 struct awaitable
                 {
                     mpsc_channel_subscription<T> &sub;
 
                     bool await_ready() const noexcept
                     {
-                        return !sub.values.empty();
+                        return !sub.values.empty() || sub.closed;
                     }
 
                     void await_suspend(std::coroutine_handle<> h) noexcept
@@ -180,11 +195,15 @@ namespace webcraft::async::io
                         sub.continuation = h;
                     }
 
-                    T await_resume() noexcept
+                    std::optional<T> await_resume() noexcept
                     {
+                        if (sub.closed && sub.values.empty())
+                        {
+                            return std::nullopt;
+                        }
                         auto value = sub.values.front();
                         sub.values.pop();
-                        return value;
+                        return std::move(value);
                     }
                 };
 
@@ -193,13 +212,27 @@ namespace webcraft::async::io
 
             task<bool> send(T val)
             {
+                if (closed)
+                {
+                    co_return false;
+                }
+
                 values.push(val);
+                auto continuation = std::exchange(this->continuation, {});
                 if (continuation)
                 {
                     continuation.resume();
                 }
-                continuation = std::exchange(continuation, {});
                 co_return true;
+            }
+
+            void close()
+            {
+                closed = true;
+                if (continuation)
+                {
+                    continuation.resume();
+                }
             }
         };
 
@@ -237,12 +270,20 @@ namespace webcraft::async::io
             {
                 return subscription->send(val);
             }
+
+            task<void> close()
+            {
+                subscription->close();
+                co_return;
+            }
         };
 
         static_assert(async_readable_stream<mpsc_channel_rstream<int>, int>, "mpsc_channel_rstream should be an async readable stream");
         static_assert(async_writable_stream<mpsc_channel_wstream<int>, int>, "mpsc_channel_wstream should be an async writable stream");
+        static_assert(async_closeable_stream<mpsc_channel_wstream<int>, int>, "mpsc_channel_wstream should be an async closeable stream");
         static_assert(async_readable_stream<mpsc_channel_rstream<std::string>, std::string>, "mpsc_channel_rstream should be an async readable stream");
         static_assert(async_writable_stream<mpsc_channel_wstream<std::string>, std::string>, "mpsc_channel_wstream should be an async writable stream");
+        static_assert(async_closeable_stream<mpsc_channel_wstream<std::string>, std::string>, "mpsc_channel_wstream should be an async closeable stream");
     }
 
     template <non_void_v T>
