@@ -2,6 +2,11 @@
 \hypertarget{classwebcraft_1_1async_1_1io_1_1fs_1_1file}{}\label{classwebcraft_1_1async_1_1io_1_1fs_1_1file}\index{webcraft::async::io::fs::file@{webcraft::async::io::fs::file}}
 
 
+File handle facade that opens async read/write streams.  
+
+
+
+
 {\ttfamily \#include $<$fs.\+hpp$>$}
 
 \doxysubsubsection*{Public Member Functions}
@@ -12,14 +17,17 @@
 \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file_abbcefdedeb4a0c02e12be466641a0fa6}{\texorpdfstring{$\sim$}{\string~}file}} ()=default
 \item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream}{file\+\_\+rstream}} $>$ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file_aee749147f74f498be86b9272899a9daf}{open\+\_\+readable\+\_\+stream}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Opens the file for async reading. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream}{file\+\_\+wstream}} $>$ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file_a3a741aaf01a1f2d8c39ad7e310bcc80f}{open\+\_\+writable\+\_\+stream}} (bool append=false)
-\item 
+\begin{DoxyCompactList}\small\item\em Opens the file for async writing (append or truncate mode). \end{DoxyCompactList}\item 
 const std\+::filesystem\+::path \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file_a29db0eea8a5e74682c8c4648c2615a89}{get\+\_\+path}} () const
 \item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file_aece09d2e972003781f10166482ef007b}{operator const std\+::filesystem\+::path \&}} () const
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+File handle facade that opens async read/write streams. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{classwebcraft_1_1async_1_1io_1_1fs_1_1file_a2cad054bf2c585fbc3b2ec425387961c}\label{classwebcraft_1_1async_1_1io_1_1fs_1_1file_a2cad054bf2c585fbc3b2ec425387961c} 
@@ -49,11 +57,19 @@ const std\+::filesystem\+::path \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_
 \doxysubsubsection{\texorpdfstring{open\_readable\_stream()}{open\_readable\_stream()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream}{file\+\_\+rstream}} $>$ webcraft\+::async\+::io\+::fs\+::file\+::open\+\_\+readable\+\_\+stream (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Opens the file for async reading. 
+
 \Hypertarget{classwebcraft_1_1async_1_1io_1_1fs_1_1file_a3a741aaf01a1f2d8c39ad7e310bcc80f}\label{classwebcraft_1_1async_1_1io_1_1fs_1_1file_a3a741aaf01a1f2d8c39ad7e310bcc80f} 
 \index{webcraft::async::io::fs::file@{webcraft::async::io::fs::file}!open\_writable\_stream@{open\_writable\_stream}}
 \index{open\_writable\_stream@{open\_writable\_stream}!webcraft::async::io::fs::file@{webcraft::async::io::fs::file}}
 \doxysubsubsection{\texorpdfstring{open\_writable\_stream()}{open\_writable\_stream()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream}{file\+\_\+wstream}} $>$ webcraft\+::async\+::io\+::fs\+::file\+::open\+\_\+writable\+\_\+stream (\begin{DoxyParamCaption}\item[{bool}]{append = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Opens the file for async writing (append or truncate mode). 
 
 \Hypertarget{classwebcraft_1_1async_1_1io_1_1fs_1_1file_aece09d2e972003781f10166482ef007b}\label{classwebcraft_1_1async_1_1io_1_1fs_1_1file_aece09d2e972003781f10166482ef007b} 
 \index{webcraft::async::io::fs::file@{webcraft::async::io::fs::file}!operator const std::filesystem::path \&@{operator const std::filesystem::path \&}}

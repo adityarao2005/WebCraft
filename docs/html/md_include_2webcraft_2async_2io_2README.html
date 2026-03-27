@@ -111,7 +111,7 @@ Async readable streams</h2>
 <div class="line"><span class="keyword">concept </span>async_readable_stream = std::is_move_constructible_v&lt;Derived&gt; &amp;&amp; <span class="keyword">requires</span>(Derived &amp;stream) {</div>
 <div class="line">    { stream.recv() } -&gt; std::same_as&lt;webcraft::async::task&lt;std::optional&lt;R&gt;&gt;&gt;;</div>
 <div class="line">};</div>
-</div><!-- fragment --><p>Any type which models <code>async_readable_stream&lt;Derived, R&gt;</code> must have a function <code>recv()</code> which takes no arguments and returns a <code><a class="el" href="classwebcraft_1_1async_1_1task.html">webcraft::async::task</a>&lt;std::optional&lt;R&gt;&gt;</code>. Here <code>R</code> represents the type of value streamed to the client. The end of the stream is denoted when the result of the task is <code>std::nullopt</code>; subsequent calls to <code>recv()</code> will also result in <code>std::nullopt</code>.</p>
+</div><!-- fragment --><p>Any type which models <code>async_readable_stream&lt;Derived, R&gt;</code> must have a function <code>recv()</code> which takes no arguments and returns a <code><a class="el" href="classwebcraft_1_1async_1_1task.html" title="Awaitable coroutine result that yields a value of type T.">webcraft::async::task</a>&lt;std::optional&lt;R&gt;&gt;</code>. Here <code>R</code> represents the type of value streamed to the client. The end of the stream is denoted when the result of the task is <code>std::nullopt</code>; subsequent calls to <code>recv()</code> will also result in <code>std::nullopt</code>.</p>
 <p>There is also a buffered variant for streams which implement buffering internally:</p>
 <div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Derived, <span class="keyword">typename</span> R&gt;</div>
 <div class="line"><span class="keyword">concept </span>async_buffered_readable_stream = async_readable_stream&lt;Derived, R&gt; &amp;&amp; <span class="keyword">requires</span>(Derived &amp;stream, std::span&lt;R&gt; buffer) {</div>
@@ -125,7 +125,7 @@ Async writable streams</h2>
 <div class="line"><span class="keyword">concept </span>async_writable_stream = std::is_move_constructible_v&lt;Derived&gt; &amp;&amp; <span class="keyword">requires</span>(Derived &amp;stream, R value) {</div>
 <div class="line">    { stream.send(value) } -&gt; std::same_as&lt;webcraft::async::task&lt;bool&gt;&gt;;</div>
 <div class="line">};</div>
-</div><!-- fragment --><p>Any type which models <code>async_writable_stream&lt;Derived, R&gt;</code> must have a function <code>send(R)</code> which takes an rvalue reference for R (to be moved into the stream) and returns a <code><a class="el" href="classwebcraft_1_1async_1_1task.html">webcraft::async::task</a>&lt;bool&gt;</code> indicating whether the value was successfully written.</p>
+</div><!-- fragment --><p>Any type which models <code>async_writable_stream&lt;Derived, R&gt;</code> must have a function <code>send(R)</code> which takes an rvalue reference for R (to be moved into the stream) and returns a <code><a class="el" href="classwebcraft_1_1async_1_1task.html" title="Awaitable coroutine result that yields a value of type T.">webcraft::async::task</a>&lt;bool&gt;</code> indicating whether the value was successfully written.</p>
 <p>There is also a buffered variant which allows you to write multiple objects at once (better for batching):</p>
 <div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Derived, <span class="keyword">typename</span> R&gt;</div>
 <div class="line"><span class="keyword">concept </span>async_buffered_writable_stream = async_writable_stream&lt;Derived, R&gt; &amp;&amp; <span class="keyword">requires</span>(Derived &amp;stream, std::span&lt;R&gt; buffer) {</div>
@@ -146,8 +146,8 @@ Async stream helpers</h2>
 <div class="line"> </div>
 <div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> R&gt;</div>
 <div class="line">async_readable_stream&lt;R&gt; <span class="keyword">auto</span> to_readable_stream(<a class="code hl_class" href="classcppcoro_1_1async__generator.html">cppcoro::async_generator&lt;R&gt;</a> &amp;&amp;gen);</div>
-<div class="ttc" id="aclasscppcoro_1_1async__generator_html"><div class="ttname"><a href="classcppcoro_1_1async__generator.html">cppcoro::async_generator</a></div><div class="ttdef"><b>Definition</b> async_generator.hpp:342</div></div>
-<div class="ttc" id="aclasswebcraft_1_1async_1_1task_html"><div class="ttname"><a href="classwebcraft_1_1async_1_1task.html">webcraft::async::task</a></div><div class="ttdef"><b>Definition</b> task.hpp:102</div></div>
+<div class="ttc" id="aclasscppcoro_1_1async__generator_html"><div class="ttname"><a href="classcppcoro_1_1async__generator.html">cppcoro::async_generator</a></div><div class="ttdef"><b>Definition</b> async_generator.hpp:350</div></div>
+<div class="ttc" id="aclasswebcraft_1_1async_1_1task_html"><div class="ttname"><a href="classwebcraft_1_1async_1_1task.html">webcraft::async::task</a></div><div class="ttdoc">Awaitable coroutine result that yields a value of type T.</div><div class="ttdef"><b>Definition</b> task.hpp:124</div></div>
 </div><!-- fragment --><p>The batched <code>recv()</code> and <code>send()</code> functions call the buffered stream variants if a buffered stream is passed, otherwise they call the non-buffered variants repeatedly until the span is filled or until no more data can be read/written.</p>
 <p>The conversion to and from async generators are provided for readable streams since it enables powerful functional-style stream processing:</p>
 <div class="fragment"><div class="line"><span class="keyword">auto</span> fn = [](<span class="keywordtype">size_t</span> limit) -&gt; async_generator&lt;int&gt; {</div>
@@ -162,7 +162,7 @@ Async stream helpers</h2>
 <div class="line"><span class="keywordflow">while</span> (<span class="keyword">auto</span> opt = <span class="keyword">co_await</span> rstream.recv()) {</div>
 <div class="line">    handle(opt.value());</div>
 <div class="line">}</div>
-<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_html_a65fdb2f3bc3e4af76fe30526dcb1e4b1"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io.html#a65fdb2f3bc3e4af76fe30526dcb1e4b1">webcraft::async::io::to_readable_stream</a></div><div class="ttdeci">async_readable_stream&lt; R &gt; auto to_readable_stream(async_generator&lt; R &gt; &amp;&amp;gen)</div><div class="ttdef"><b>Definition</b> core.hpp:126</div></div>
+<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_html_a65fdb2f3bc3e4af76fe30526dcb1e4b1"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io.html#a65fdb2f3bc3e4af76fe30526dcb1e4b1">webcraft::async::io::to_readable_stream</a></div><div class="ttdeci">async_readable_stream&lt; R &gt; auto to_readable_stream(async_generator&lt; R &gt; &amp;&amp;gen)</div><div class="ttdoc">Wraps an async generator with the readable stream interface.</div><div class="ttdef"><b>Definition</b> core.hpp:145</div></div>
 </div><!-- fragment --><p>This will allow us to add a powerful set of adaptors onto async streams similar to the adaptors added with the ranges library onto iterables. From this, we can build powerful stream processing and pub/sub systems which can do a variety of processing without requiring manual stream processing.</p>
 <p><b>Note:</b> All examples in this document use the <code><a class="el" href="namespacewebcraft_1_1async_1_1io.html">webcraft::async::io</a></code> namespace. For brevity, some code examples may omit the full namespace qualification, but all types and functions are within this namespace.</p>
 <h2><a class="anchor" id="autotoc_md5"></a>
@@ -199,9 +199,9 @@ Async Readable Stream Adaptors</h1>
 <div class="line">            <span class="keywordflow">return</span> average_to_grade(st.average); </div>
 <div class="line">          })));</div>
 <div class="line">}</div>
-<div class="ttc" id="aconceptwebcraft_1_1async_1_1io_1_1async__readable__stream_html"><div class="ttname"><a href="conceptwebcraft_1_1async_1_1io_1_1async__readable__stream.html">webcraft::async::io::async_readable_stream</a></div><div class="ttdef"><b>Definition</b> core.hpp:26</div></div>
-<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_1_1adaptors_html"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html">webcraft::async::io::adaptors</a></div><div class="ttdef"><b>Definition</b> adaptors.hpp:19</div></div>
-<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_1_1adaptors_html_ac259db7916278ffc530b8c127be7a191"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#ac259db7916278ffc530b8c127be7a191">webcraft::async::io::adaptors::collect</a></div><div class="ttdeci">auto collect(Collector &amp;&amp;collector_func)</div><div class="ttdef"><b>Definition</b> adaptors.hpp:116</div></div>
+<div class="ttc" id="aconceptwebcraft_1_1async_1_1io_1_1async__readable__stream_html"><div class="ttname"><a href="conceptwebcraft_1_1async_1_1io_1_1async__readable__stream.html">webcraft::async::io::async_readable_stream</a></div><div class="ttdoc">Concept for streams exposing recv() that yields optional values.</div><div class="ttdef"><b>Definition</b> core.hpp:35</div></div>
+<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_1_1adaptors_html"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html">webcraft::async::io::adaptors</a></div><div class="ttdef"><b>Definition</b> adaptors.hpp:26</div></div>
+<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_1_1adaptors_html_ac259db7916278ffc530b8c127be7a191"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#ac259db7916278ffc530b8c127be7a191">webcraft::async::io::adaptors::collect</a></div><div class="ttdeci">auto collect(Collector &amp;&amp;collector_func)</div><div class="ttdoc">Builds a collector adaptor from a collector functor.</div><div class="ttdef"><b>Definition</b> adaptors.hpp:133</div></div>
 </div><!-- fragment --><p>This greatly reduces the amount of code and logic required. There are many other uses for async streams, especially when dealing with pub/sub systems.</p>
 <h2><a class="anchor" id="autotoc_md7"></a>
 Stream Adaptors Implementation</h2>
@@ -219,7 +219,7 @@ Stream Adaptors Implementation</h2>
 <div class="line">        <span class="keywordflow">return</span> std::invoke(std::move(adaptor), std::forward&lt;<span class="keyword">decltype</span>(stream)&gt;(stream));</div>
 <div class="line">    }</div>
 <div class="line">};</div>
-<div class="ttc" id="astructwebcraft_1_1async_1_1io_1_1adaptors_1_1async__readable__stream__adaptor_html"><div class="ttname"><a href="structwebcraft_1_1async_1_1io_1_1adaptors_1_1async__readable__stream__adaptor.html">webcraft::async::io::adaptors::async_readable_stream_adaptor</a></div><div class="ttdef"><b>Definition</b> adaptors.hpp:23</div></div>
+<div class="ttc" id="astructwebcraft_1_1async_1_1io_1_1adaptors_1_1async__readable__stream__adaptor_html"><div class="ttname"><a href="structwebcraft_1_1async_1_1io_1_1adaptors_1_1async__readable__stream__adaptor.html">webcraft::async::io::adaptors::async_readable_stream_adaptor</a></div><div class="ttdoc">Base helper for pipeable readable-stream adaptors.</div><div class="ttdef"><b>Definition</b> adaptors.hpp:33</div></div>
 </div><!-- fragment --><h3><a class="anchor" id="autotoc_md8"></a>
 Transform adaptor</h3>
 <p>Definition:</p>
@@ -235,7 +235,7 @@ Transform adaptor</h3>
 <div class="line">    });</div>
 <div class="line">});</div>
 <div class="line"><span class="comment">// Result: [&quot;1&quot;, &quot;2&quot;, &quot;2&quot;, &quot;4&quot;, &quot;3&quot;, &quot;6&quot;, &quot;4&quot;, &quot;8&quot;, &quot;5&quot;, &quot;10&quot;]</span></div>
-<div class="ttc" id="aasync__generator_8hpp_html_a4d7b3885bfafff1b24249b43416127d2"><div class="ttname"><a href="async__generator_8hpp.html#a4d7b3885bfafff1b24249b43416127d2">for_each_async</a></div><div class="ttdeci">#define for_each_async(value, gen, code)</div><div class="ttdef"><b>Definition</b> async_generator.hpp:424</div></div>
+<div class="ttc" id="aasync__generator_8hpp_html_a4d7b3885bfafff1b24249b43416127d2"><div class="ttname"><a href="async__generator_8hpp.html#a4d7b3885bfafff1b24249b43416127d2">for_each_async</a></div><div class="ttdeci">#define for_each_async(value, gen, code)</div><div class="ttdoc">Helper macro to iterate async generators inside coroutines.</div><div class="ttdef"><b>Definition</b> async_generator.hpp:436</div></div>
 </div><!-- fragment --><h3><a class="anchor" id="autotoc_md9"></a>
 Map adaptor</h3>
 <p>Definition:</p>
@@ -254,7 +254,7 @@ Pipe adaptor</h3>
 <div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
 <div class="line">    <span class="keyword">requires</span> std::is_copy_assignable_v&lt;T&gt;</div>
 <div class="line"><span class="keyword">auto</span> pipe(<a class="code hl_concept" href="conceptwebcraft_1_1async_1_1io_1_1async__writable__stream.html">webcraft::async::io::async_writable_stream&lt;T&gt;</a> <span class="keyword">auto</span> &amp;str) -&gt; <span class="comment">/* adaptor type */</span>;</div>
-<div class="ttc" id="aconceptwebcraft_1_1async_1_1io_1_1async__writable__stream_html"><div class="ttname"><a href="conceptwebcraft_1_1async_1_1io_1_1async__writable__stream.html">webcraft::async::io::async_writable_stream</a></div><div class="ttdef"><b>Definition</b> core.hpp:36</div></div>
+<div class="ttc" id="aconceptwebcraft_1_1async_1_1io_1_1async__writable__stream_html"><div class="ttname"><a href="conceptwebcraft_1_1async_1_1io_1_1async__writable__stream.html">webcraft::async::io::async_writable_stream</a></div><div class="ttdoc">Concept for streams exposing send(value) operations.</div><div class="ttdef"><b>Definition</b> core.hpp:47</div></div>
 </div><!-- fragment --><p>Create a new readable stream that forwards read values to the provided writable stream. Example:</p>
 <div class="fragment"><div class="line">mock_readable_stream&lt;int&gt; rstream({1,2,3,4,5});</div>
 <div class="line">mock_writable_stream&lt;int&gt; wstream;</div>
@@ -264,7 +264,7 @@ Pipe adaptor</h3>
 <div class="line"><span class="keywordflow">while</span> (<span class="keyword">auto</span> opt = <span class="keyword">co_await</span> new_stream.recv()) {</div>
 <div class="line">    assert(wstream.received_value(*opt));</div>
 <div class="line">}</div>
-<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_1_1adaptors_html_ade46e7a4ed2b78a5081564b197a8ea57"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#ade46e7a4ed2b78a5081564b197a8ea57">webcraft::async::io::adaptors::pipe</a></div><div class="ttdeci">auto pipe(async_writable_stream&lt; T &gt; auto &amp;str)</div><div class="ttdef"><b>Definition</b> adaptors.hpp:82</div></div>
+<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_1_1adaptors_html_ade46e7a4ed2b78a5081564b197a8ea57"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#ade46e7a4ed2b78a5081564b197a8ea57">webcraft::async::io::adaptors::pipe</a></div><div class="ttdeci">auto pipe(async_writable_stream&lt; T &gt; auto &amp;str)</div><div class="ttdoc">Forwards stream elements to a writable stream while passing values through.</div><div class="ttdef"><b>Definition</b> adaptors.hpp:95</div></div>
 </div><!-- fragment --><h3><a class="anchor" id="autotoc_md11"></a>
 Filter adaptor</h3>
 <p>Definition:</p>
@@ -371,7 +371,7 @@ Group By collector</h4>
 <div class="line"> </div>
 <div class="line">std::unordered_map&lt;std::string, std::vector&lt;std::string&gt;&gt; <a class="code hl_function" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#a467323c557b8245b25c7cc5c6cd28e22">map</a> = <span class="keyword">co_await</span> (stream | <a class="code hl_function" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#ac259db7916278ffc530b8c127be7a191">collect</a>(collectors::group_by(mapper)));</div>
 <div class="line"><span class="comment">//  returns a { {&quot;A&quot;, [&quot;AB&quot;,&quot;AC&quot;]}, {&quot;B&quot;, [&quot;BC&quot;,&quot;BD&quot;]}, {&quot;C&quot;, [&quot;CD&quot;]} }</span></div>
-<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_1_1adaptors_html_a467323c557b8245b25c7cc5c6cd28e22"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#a467323c557b8245b25c7cc5c6cd28e22">webcraft::async::io::adaptors::map</a></div><div class="ttdeci">auto map(Func &amp;&amp;fn)</div><div class="ttdef"><b>Definition</b> adaptors.hpp:71</div></div>
+<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_1_1adaptors_html_a467323c557b8245b25c7cc5c6cd28e22"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#a467323c557b8245b25c7cc5c6cd28e22">webcraft::async::io::adaptors::map</a></div><div class="ttdeci">auto map(Func &amp;&amp;fn)</div><div class="ttdoc">Element-wise mapping adaptor.</div><div class="ttdef"><b>Definition</b> adaptors.hpp:83</div></div>
 </div><!-- fragment --><h3><a class="anchor" id="autotoc_md21"></a>
 Forward To adaptor</h3>
 <p>Definition is shown below:</p>
@@ -416,7 +416,7 @@ Sum adaptor</h3>
 <div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
 <div class="line">    <span class="keyword">requires</span> closure_under_addition&lt;T&gt;</div>
 <div class="line"><span class="keyword">auto</span> <a class="code hl_function" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#a01eae8f829e97817419aed01f5ad37dc">sum</a>() -&gt; std::is_derived_from&lt;async_readable_stream_adaptor&gt;;</div>
-<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_1_1adaptors_html_a01eae8f829e97817419aed01f5ad37dc"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#a01eae8f829e97817419aed01f5ad37dc">webcraft::async::io::adaptors::sum</a></div><div class="ttdeci">auto sum()</div><div class="ttdef"><b>Definition</b> adaptors.hpp:379</div></div>
+<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_1_1adaptors_html_a01eae8f829e97817419aed01f5ad37dc"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#a01eae8f829e97817419aed01f5ad37dc">webcraft::async::io::adaptors::sum</a></div><div class="ttdeci">auto sum()</div><div class="ttdef"><b>Definition</b> adaptors.hpp:410</div></div>
 </div><!-- fragment --><p>Using this adaptor, you'd be able to find the sum of the values sent through the stream. An example is shown below:</p>
 <div class="fragment"><div class="line">mock_readable_stream&lt;int&gt; stream({1,2,3,4,5});</div>
 <div class="line"><span class="keywordtype">int</span> sum = <span class="keyword">co_await</span> (stream | sum());</div>
@@ -452,7 +452,7 @@ Any matches adaptor</h3>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">bool</span> check2 = <span class="keyword">co_await</span> (stream_2 | <a class="code hl_function" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#af103d36599b9cd7baf15f2c7e75e70b9">any_matches</a>([](<span class="keywordtype">int</span> value) { <span class="keywordflow">return</span> value % 2 == 0; }));</div>
 <div class="line">assert(!check2);</div>
-<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_1_1adaptors_html_af103d36599b9cd7baf15f2c7e75e70b9"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#af103d36599b9cd7baf15f2c7e75e70b9">webcraft::async::io::adaptors::any_matches</a></div><div class="ttdeci">auto any_matches(std::function&lt; bool(const T &amp;)&gt; &amp;&amp;predicate)</div><div class="ttdef"><b>Definition</b> adaptors.hpp:417</div></div>
+<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_1_1adaptors_html_af103d36599b9cd7baf15f2c7e75e70b9"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#af103d36599b9cd7baf15f2c7e75e70b9">webcraft::async::io::adaptors::any_matches</a></div><div class="ttdeci">auto any_matches(std::function&lt; bool(const T &amp;)&gt; &amp;&amp;predicate)</div><div class="ttdoc">Returns true if any value matches a predicate.</div><div class="ttdef"><b>Definition</b> adaptors.hpp:451</div></div>
 </div><!-- fragment --><h3><a class="anchor" id="autotoc_md28"></a>
 All matches adaptor</h3>
 <p>Definition is shown below:</p>
@@ -466,7 +466,7 @@ All matches adaptor</h3>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">bool</span> check2 = <span class="keyword">co_await</span> (stream_2 | <a class="code hl_function" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#a1566ca935350435b72631ee11d574ee7">all_matches</a>([](<span class="keywordtype">int</span> value) { <span class="keywordflow">return</span> value % 2 == 0; }));</div>
 <div class="line">assert(!check2);</div>
-<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_1_1adaptors_html_a1566ca935350435b72631ee11d574ee7"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#a1566ca935350435b72631ee11d574ee7">webcraft::async::io::adaptors::all_matches</a></div><div class="ttdeci">auto all_matches(std::function&lt; bool(const T &amp;)&gt; &amp;&amp;predicate)</div><div class="ttdef"><b>Definition</b> adaptors.hpp:432</div></div>
+<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_1_1adaptors_html_a1566ca935350435b72631ee11d574ee7"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#a1566ca935350435b72631ee11d574ee7">webcraft::async::io::adaptors::all_matches</a></div><div class="ttdeci">auto all_matches(std::function&lt; bool(const T &amp;)&gt; &amp;&amp;predicate)</div><div class="ttdoc">Returns true if all values match a predicate.</div><div class="ttdef"><b>Definition</b> adaptors.hpp:467</div></div>
 </div><!-- fragment --><h3><a class="anchor" id="autotoc_md29"></a>
 None matches adaptor</h3>
 <p>Definition is shown below:</p>
@@ -480,7 +480,7 @@ None matches adaptor</h3>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">bool</span> check2 = <span class="keyword">co_await</span> (stream_2 | <a class="code hl_function" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#af0226fefe32175663e7ab469a785566c">none_matches</a>([](<span class="keywordtype">int</span> value) { <span class="keywordflow">return</span> value % 2 == 0; }));</div>
 <div class="line">assert(check2);</div>
-<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_1_1adaptors_html_af0226fefe32175663e7ab469a785566c"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#af0226fefe32175663e7ab469a785566c">webcraft::async::io::adaptors::none_matches</a></div><div class="ttdeci">auto none_matches(std::function&lt; bool(const T &amp;)&gt; &amp;&amp;predicate)</div><div class="ttdef"><b>Definition</b> adaptors.hpp:447</div></div>
+<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_1_1adaptors_html_af0226fefe32175663e7ab469a785566c"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#af0226fefe32175663e7ab469a785566c">webcraft::async::io::adaptors::none_matches</a></div><div class="ttdeci">auto none_matches(std::function&lt; bool(const T &amp;)&gt; &amp;&amp;predicate)</div><div class="ttdoc">Returns true if no values match a predicate.</div><div class="ttdef"><b>Definition</b> adaptors.hpp:483</div></div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md30"></a>
 Some of the adaptors are planned to be implemented in this framework:</h2>
 <h3><a class="anchor" id="autotoc_md31"></a>
@@ -719,10 +719,10 @@ Planned implementation:</h1>
 <div class="line">{</div>
 <div class="line">    <span class="keywordflow">return</span> file(p);</div>
 <div class="line">}</div>
-<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_1_1fs_html_a8d8e45ed576cda72f736cd9e66952947"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io_1_1fs.html#a8d8e45ed576cda72f736cd9e66952947">webcraft::async::io::fs::make_file</a></div><div class="ttdeci">file make_file(std::filesystem::path p)</div><div class="ttdef"><b>Definition</b> fs.hpp:159</div></div>
-<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_html_aaaf5c2dda44d2ea9c9518aa85bf729c1"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io.html#aaaf5c2dda44d2ea9c9518aa85bf729c1">webcraft::async::io::recv</a></div><div class="ttdeci">auto recv(async_readable_stream&lt; R &gt; auto &amp;stream)</div><div class="ttdef"><b>Definition</b> core.hpp:51</div></div>
-<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_html_af2b81544adcc4ba129f31b5797a43670"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io.html#af2b81544adcc4ba129f31b5797a43670">webcraft::async::io::send</a></div><div class="ttdeci">task&lt; bool &gt; send(WStream &amp;stream, R &amp;&amp;value)</div><div class="ttdef"><b>Definition</b> core.hpp:81</div></div>
-<div class="ttc" id="anamespacewebcraft_1_1async_html_a367712ca561ac34d7d28f495a6462c09"><div class="ttname"><a href="namespacewebcraft_1_1async.html#a367712ca561ac34d7d28f495a6462c09">webcraft::async::sync_wait</a></div><div class="ttdeci">awaitable_resume_t&lt; T &gt; sync_wait(T &amp;&amp;awaitable)</div><div class="ttdef"><b>Definition</b> sync_wait.hpp:16</div></div>
+<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_1_1fs_html_a8d8e45ed576cda72f736cd9e66952947"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io_1_1fs.html#a8d8e45ed576cda72f736cd9e66952947">webcraft::async::io::fs::make_file</a></div><div class="ttdeci">file make_file(std::filesystem::path p)</div><div class="ttdoc">Creates a file facade from a path.</div><div class="ttdef"><b>Definition</b> fs.hpp:183</div></div>
+<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_html_aaaf5c2dda44d2ea9c9518aa85bf729c1"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io.html#aaaf5c2dda44d2ea9c9518aa85bf729c1">webcraft::async::io::recv</a></div><div class="ttdeci">auto recv(async_readable_stream&lt; R &gt; auto &amp;stream)</div><div class="ttdoc">Receives the next element from a readable stream.</div><div class="ttdef"><b>Definition</b> core.hpp:65</div></div>
+<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_html_af2b81544adcc4ba129f31b5797a43670"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io.html#af2b81544adcc4ba129f31b5797a43670">webcraft::async::io::send</a></div><div class="ttdeci">task&lt; bool &gt; send(WStream &amp;stream, R &amp;&amp;value)</div><div class="ttdoc">Sends one value to a writable stream.</div><div class="ttdef"><b>Definition</b> core.hpp:97</div></div>
+<div class="ttc" id="anamespacewebcraft_1_1async_html_a367712ca561ac34d7d28f495a6462c09"><div class="ttname"><a href="namespacewebcraft_1_1async.html#a367712ca561ac34d7d28f495a6462c09">webcraft::async::sync_wait</a></div><div class="ttdeci">awaitable_resume_t&lt; T &gt; sync_wait(T &amp;&amp;awaitable)</div><div class="ttdoc">Blocks the current thread until an awaitable completes.</div><div class="ttdef"><b>Definition</b> sync_wait.hpp:31</div></div>
 </div><!-- fragment --><p>This is the following specification for using the <b>Async TCP Socket and Listener I/O</b> API: </p><div class="fragment"><div class="line"><span class="keyword">struct </span>connection_info</div>
 <div class="line">{</div>
 <div class="line">    std::string host;</div>
@@ -1034,11 +1034,11 @@ Planned implementation:</h1>
 <div class="line">    <span class="keyword">auto</span> descriptor = <span class="keyword">co_await</span> detail::make_udp_socket_descriptor();</div>
 <div class="line">    <span class="keyword">co_return</span> udp_socket(std::move(descriptor));</div>
 <div class="line">}</div>
-<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_1_1socket_html_a319519897370c3a984eff4980a5f6e18"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io_1_1socket.html#a319519897370c3a984eff4980a5f6e18">webcraft::async::io::socket::make_udp_socket</a></div><div class="ttdeci">udp_socket make_udp_socket(std::optional&lt; ip_version &gt; version=std::nullopt)</div><div class="ttdef"><b>Definition</b> socket.hpp:365</div></div>
-<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_1_1socket_html_a482e358e1f53606e06109999484276b3"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io_1_1socket.html#a482e358e1f53606e06109999484276b3">webcraft::async::io::socket::make_tcp_socket</a></div><div class="ttdeci">tcp_socket make_tcp_socket()</div><div class="ttdef"><b>Definition</b> socket.hpp:355</div></div>
-<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_1_1socket_html_a861e0c806d177e378bae72a3cfb5f0e2"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io_1_1socket.html#a861e0c806d177e378bae72a3cfb5f0e2">webcraft::async::io::socket::make_tcp_listener</a></div><div class="ttdeci">tcp_listener make_tcp_listener()</div><div class="ttdef"><b>Definition</b> socket.hpp:360</div></div>
-<div class="ttc" id="anamespacewebcraft_1_1async_html_a32cc887e48f12d360656c6f023977a2d"><div class="ttname"><a href="namespacewebcraft_1_1async.html#a32cc887e48f12d360656c6f023977a2d">webcraft::async::shutdown</a></div><div class="ttdeci">task&lt; void &gt; shutdown()</div><div class="ttdef"><b>Definition</b> runtime.hpp:249</div></div>
-<div class="ttc" id="anamespacewebcraft_1_1async_html_aa32214c386ded164491af1d325b36e11"><div class="ttname"><a href="namespacewebcraft_1_1async.html#aa32214c386ded164491af1d325b36e11">webcraft::async::fire_and_forget</a></div><div class="ttdeci">fire_and_forget_task fire_and_forget(task&lt; void &gt; t)</div><div class="ttdef"><b>Definition</b> fire_and_forget_task.hpp:33</div></div>
+<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_1_1socket_html_a319519897370c3a984eff4980a5f6e18"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io_1_1socket.html#a319519897370c3a984eff4980a5f6e18">webcraft::async::io::socket::make_udp_socket</a></div><div class="ttdeci">udp_socket make_udp_socket(std::optional&lt; ip_version &gt; version=std::nullopt)</div><div class="ttdoc">Creates a UDP socket, optionally constrained to an IP version.</div><div class="ttdef"><b>Definition</b> socket.hpp:411</div></div>
+<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_1_1socket_html_a482e358e1f53606e06109999484276b3"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io_1_1socket.html#a482e358e1f53606e06109999484276b3">webcraft::async::io::socket::make_tcp_socket</a></div><div class="ttdeci">tcp_socket make_tcp_socket()</div><div class="ttdoc">Creates a TCP client socket.</div><div class="ttdef"><b>Definition</b> socket.hpp:399</div></div>
+<div class="ttc" id="anamespacewebcraft_1_1async_1_1io_1_1socket_html_a861e0c806d177e378bae72a3cfb5f0e2"><div class="ttname"><a href="namespacewebcraft_1_1async_1_1io_1_1socket.html#a861e0c806d177e378bae72a3cfb5f0e2">webcraft::async::io::socket::make_tcp_listener</a></div><div class="ttdeci">tcp_listener make_tcp_listener()</div><div class="ttdoc">Creates a TCP listener socket.</div><div class="ttdef"><b>Definition</b> socket.hpp:405</div></div>
+<div class="ttc" id="anamespacewebcraft_1_1async_html_a32cc887e48f12d360656c6f023977a2d"><div class="ttname"><a href="namespacewebcraft_1_1async.html#a32cc887e48f12d360656c6f023977a2d">webcraft::async::shutdown</a></div><div class="ttdeci">task&lt; void &gt; shutdown()</div><div class="ttdoc">Requests runtime shutdown and yields once to flush completion.</div><div class="ttdef"><b>Definition</b> runtime.hpp:271</div></div>
+<div class="ttc" id="anamespacewebcraft_1_1async_html_aa32214c386ded164491af1d325b36e11"><div class="ttname"><a href="namespacewebcraft_1_1async.html#aa32214c386ded164491af1d325b36e11">webcraft::async::fire_and_forget</a></div><div class="ttdeci">fire_and_forget_task fire_and_forget(task&lt; void &gt; t)</div><div class="ttdoc">Starts a task&lt;void&gt; in detached fire-and-forget mode.</div><div class="ttdef"><b>Definition</b> fire_and_forget_task.hpp:50</div></div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md40"></a>
 Implementation Details</h1>
 <p>The WebCraft framework implements platform-specific optimizations through:</p>

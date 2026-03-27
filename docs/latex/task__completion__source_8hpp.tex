@@ -1,5 +1,10 @@
 \doxysection{include/webcraft/async/task\+\_\+completion\+\_\+source.hpp File Reference}
 \hypertarget{task__completion__source_8hpp}{}\label{task__completion__source_8hpp}\index{include/webcraft/async/task\_completion\_source.hpp@{include/webcraft/async/task\_completion\_source.hpp}}
+
+
+External completion source for manually-\/resolved tasks.  
+
+
 {\ttfamily \#include $<$coroutine$>$}\newline
 {\ttfamily \#include $<$type\+\_\+traits$>$}\newline
 {\ttfamily \#include $<$utility$>$}\newline
@@ -24,13 +29,13 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base}{webcraft\+::async\+::task\+\_\+completion\+\_\+source\+\_\+base}}
-\item 
+\begin{DoxyCompactList}\small\item\em Shared state for manual task completion sources. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structwebcraft_1_1async_1_1task__completion__source__base_1_1awaitable}{webcraft\+::async\+::task\+\_\+completion\+\_\+source\+\_\+base\+::awaitable}}
-\item 
+\begin{DoxyCompactList}\small\item\em Internal awaiter used by {\ttfamily \doxylink{classwebcraft_1_1async_1_1task__completion__source_a2e407b053f2e1c130b2e47ed9ae40548}{task\+\_\+completion\+\_\+source\+::task()}}. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{webcraft\+::async\+::task\+\_\+completion\+\_\+source$<$ T $>$}}
-\item 
+\begin{DoxyCompactList}\small\item\em Manual completion source for {\ttfamily task\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}}. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_3_01void_01_4}{webcraft\+::async\+::task\+\_\+completion\+\_\+source$<$ void $>$}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Manual completion source specialization for {\ttfamily task\texorpdfstring{$<$}{<}void\texorpdfstring{$>$}{>}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -38,3 +43,9 @@ namespace \mbox{\hyperlink{namespacewebcraft}{webcraft}}
 \item 
 namespace \mbox{\hyperlink{namespacewebcraft_1_1async}{webcraft\+::async}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+External completion source for manually-\/resolved tasks. 
+
+Use {\ttfamily task\+\_\+completion\+\_\+source\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} when bridging callback-\/driven code into coroutines and you need to complete a {\ttfamily task\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} from outside the coroutine. 

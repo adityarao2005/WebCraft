@@ -1,5 +1,5 @@
 <map id="webcraft::async::event_signal" name="webcraft::async::event_signal">
-<area shape="rect" id="Node000001" title=" " alt="" coords="24,79,193,119"/>
-<area shape="rect" id="Node000002" href="$classwebcraft_1_1async_1_1immovable.html" title=" " alt="" coords="5,5,212,31"/>
+<area shape="rect" id="Node000001" title="Busy&#45;wait signal for synchronously waiting on async completion." alt="" coords="24,79,193,119"/>
+<area shape="rect" id="Node000002" href="$classwebcraft_1_1async_1_1immovable.html" title="Utility base class that disables copying and moving." alt="" coords="5,5,212,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,44,111,79,106,79,106,44"/>
 </map>

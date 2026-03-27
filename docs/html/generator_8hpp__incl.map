@@ -1,5 +1,5 @@
 <map id="include/webcraft/async/generator.hpp" name="include/webcraft/async/generator.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="373,5,544,45"/>
+<area shape="rect" id="Node000001" title="Synchronous coroutine generator abstraction." alt="" coords="373,5,544,45"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,93,88,119"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="374,45,103,96,102,90,373,39"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="113,93,205,119"/>

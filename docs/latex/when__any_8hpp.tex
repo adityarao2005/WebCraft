@@ -1,5 +1,10 @@
 \doxysection{include/webcraft/async/when\+\_\+any.hpp File Reference}
 \hypertarget{when__any_8hpp}{}\label{when__any_8hpp}\index{include/webcraft/async/when\_any.hpp@{include/webcraft/async/when\_any.hpp}}
+
+
+Await combinator that resolves when the first awaitable completes.  
+
+
 {\ttfamily \#include $<$coroutine$>$}\newline
 {\ttfamily \#include $<$webcraft/async/async\+\_\+event.\+hpp$>$}\newline
 {\ttfamily \#include $<$webcraft/async/when\+\_\+all.\+hpp$>$}\newline
@@ -30,6 +35,12 @@ namespace \mbox{\hyperlink{namespacewebcraft_1_1async}{webcraft\+::async}}
 \item 
 {\footnotesize template$<$std\+::ranges\+::input\+\_\+range Range, typename T  = std\+::ranges\+::range\+\_\+value\+\_\+t$<$\+Range$>$, typename Result  = awaitable\+\_\+resume\+\_\+t$<$\+T$>$$>$ \newline
 requires awaitable\+\_\+t$<$T$>$}\\\mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ Result $>$ \mbox{\hyperlink{namespacewebcraft_1_1async_a2c5d38e8801b57b1ab7200366a8e22dc}{webcraft\+::async\+::when\+\_\+any}} (Range \&\&tasks)
-\item 
+\begin{DoxyCompactList}\small\item\em Awaits a range and returns when the first awaitable completes. \end{DoxyCompactList}\item 
 {\footnotesize template$<$awaitable\+\_\+t... Tasks$>$ }\\\mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ std\+::variant$<$ \mbox{\hyperlink{namespacewebcraft_1_1async_a8174852e651e90c6f296a823928af715}{normalized\+\_\+result\+\_\+t}}$<$ Tasks $>$... $>$ $>$ \mbox{\hyperlink{namespacewebcraft_1_1async_a9ca722dc3d2eed95e56f4d1d0b352673}{webcraft\+::async\+::when\+\_\+any}} (Tasks \&\&...tasks)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Variadic overload that races awaitables and returns the first result as a variant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Await combinator that resolves when the first awaitable completes. 
+
+{\ttfamily when\+\_\+any()} is useful for race-\/style coordination such as timeout vs work, or selecting the first producer to finish. 

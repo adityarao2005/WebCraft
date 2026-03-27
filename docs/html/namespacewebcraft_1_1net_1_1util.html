@@ -101,6 +101,7 @@ $(document).ready(function(){initNavTree('namespacewebcraft_1_1net_1_1util.html'
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1net_1_1util_1_1get__addr__info__error.html">get_addr_info_error</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exception thrown for address-resolution failures.  <a href="classwebcraft_1_1net_1_1util_1_1get__addr__info__error.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
@@ -111,8 +112,10 @@ Typedefs</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a775955cd186c9fa74a1e9831a7e0969c" id="r_a775955cd186c9fa74a1e9831a7e0969c"><td class="memItemLeft" align="right" valign="top">std::pair&lt; std::string, uint16_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1net_1_1util.html#a775955cd186c9fa74a1e9831a7e0969c">addr_to_host_port</a> (const struct sockaddr_storage &amp;addr)</td></tr>
+<tr class="memdesc:a775955cd186c9fa74a1e9831a7e0969c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a socket address into numeric host and port.  <br /></td></tr>
 <tr class="separator:a775955cd186c9fa74a1e9831a7e0969c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96e3abcd87cfe0a3fc6a68e47cd3ca75" id="r_a96e3abcd87cfe0a3fc6a68e47cd3ca75"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1net_1_1util.html#a96e3abcd87cfe0a3fc6a68e47cd3ca75">host_port_to_addr</a> (const <a class="el" href="structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info.html">webcraft::async::io::socket::connection_info</a> &amp;info, <a class="el" href="namespacewebcraft_1_1net_1_1util.html#ab2b6e4887c083400ff40f68f06545dcf">on_address_resolved</a> callback)</td></tr>
+<tr class="memdesc:a96e3abcd87cfe0a3fc6a68e47cd3ca75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resolves host/port and invokes a callback for each resolved address.  <br /></td></tr>
 <tr class="separator:a96e3abcd87cfe0a3fc6a68e47cd3ca75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
@@ -155,6 +158,8 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Converts a socket address into numeric host and port. </p>
+
 </div>
 </div>
 <a id="a96e3abcd87cfe0a3fc6a68e47cd3ca75" name="a96e3abcd87cfe0a3fc6a68e47cd3ca75"></a>
@@ -190,6 +195,9 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Resolves host/port and invokes a callback for each resolved address. </p>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if callback accepted one resolved address, otherwise <code>false</code>. </dd></dl>
 
 </div>
 </div>

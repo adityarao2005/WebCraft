@@ -1,5 +1,10 @@
 \doxysection{include/webcraft/async/fire\+\_\+and\+\_\+forget\+\_\+task.hpp File Reference}
 \hypertarget{fire__and__forget__task_8hpp}{}\label{fire__and__forget__task_8hpp}\index{include/webcraft/async/fire\_and\_forget\_task.hpp@{include/webcraft/async/fire\_and\_forget\_task.hpp}}
+
+
+Coroutine return type for detached, non-\/owning asynchronous work.  
+
+
 {\ttfamily \#include $<$coroutine$>$}\newline
 Include dependency graph for fire\+\_\+and\+\_\+forget\+\_\+task.\+hpp\+:\nopagebreak
 \begin{figure}[H]
@@ -19,9 +24,9 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1fire__and__forget__task}{webcraft\+::async\+::fire\+\_\+and\+\_\+forget\+\_\+task}}
-\item 
+\begin{DoxyCompactList}\small\item\em Coroutine return type for detached tasks that are not awaited. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1fire__and__forget__task_1_1promise__type}{webcraft\+::async\+::fire\+\_\+and\+\_\+forget\+\_\+task\+::promise\+\_\+type}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Promise type for {\ttfamily \doxylink{classwebcraft_1_1async_1_1fire__and__forget__task}{fire\+\_\+and\+\_\+forget\+\_\+task}} coroutines. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -33,4 +38,10 @@ namespace \mbox{\hyperlink{namespacewebcraft_1_1async}{webcraft\+::async}}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1fire__and__forget__task}{fire\+\_\+and\+\_\+forget\+\_\+task}} \mbox{\hyperlink{namespacewebcraft_1_1async_aa32214c386ded164491af1d325b36e11}{webcraft\+::async\+::fire\+\_\+and\+\_\+forget}} (\mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ void $>$ t)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Starts a {\ttfamily task\texorpdfstring{$<$}{<}void\texorpdfstring{$>$}{>}} in detached fire-\/and-\/forget mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Coroutine return type for detached, non-\/owning asynchronous work. 
+
+Use {\ttfamily fire\+\_\+and\+\_\+forget()} to run a {\ttfamily task\texorpdfstring{$<$}{<}void\texorpdfstring{$>$}{>}} without awaiting its result, typically for orchestration paths where completion is observed elsewhere. 

@@ -98,6 +98,9 @@ $(document).ready(function(){initNavTree('classwebcraft_1_1async_1_1thread__pool
 </div><!--header-->
 <div class="contents">
 
+<p>Dynamic thread pool for executing callable work items.  
+ <a href="classwebcraft_1_1async_1_1thread__pool.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="thread__pool_8hpp_source.html">thread_pool.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -110,6 +113,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aae466a2741b3efa9f5f17f7f19a1ba55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1872beb7bf2cef37b4424654c1ac68fd" id="r_a1872beb7bf2cef37b4424654c1ac68fd"><td class="memTemplParams" colspan="2">template&lt;typename F , typename... Args&gt; </td></tr>
 <tr class="memitem:a1872beb7bf2cef37b4424654c1ac68fd"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1thread__pool.html#a1872beb7bf2cef37b4424654c1ac68fd">submit</a> (F &amp;&amp;f, Args &amp;&amp;...args) -&gt; std::future&lt; typename std::invoke_result_t&lt; F, Args... &gt; &gt;</td></tr>
+<tr class="memdesc:a1872beb7bf2cef37b4424654c1ac68fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueues callable work and returns a future for its result.  <br /></td></tr>
 <tr class="separator:a1872beb7bf2cef37b4424654c1ac68fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f16d178a02a392feb5767055a714491" id="r_a8f16d178a02a392feb5767055a714491"><td class="memItemLeft" align="right" valign="top">const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1thread__pool.html#a8f16d178a02a392feb5767055a714491">get_min_threads</a> () const</td></tr>
 <tr class="separator:a8f16d178a02a392feb5767055a714491"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -127,7 +131,9 @@ Friends</h2></td></tr>
 <tr class="memitem:ad4d9f050b6c5fe9a92513b113052b2a3" id="r_ad4d9f050b6c5fe9a92513b113052b2a3"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1thread__pool.html#ad4d9f050b6c5fe9a92513b113052b2a3">thread_pool_worker</a></td></tr>
 <tr class="separator:ad4d9f050b6c5fe9a92513b113052b2a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Dynamic thread pool for executing callable work items. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aea82fd2172489074165235730e332570" name="aea82fd2172489074165235730e332570"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aea82fd2172489074165235730e332570">&#9670;&#160;</a></span>thread_pool()</h2>
 
@@ -357,6 +363,8 @@ template&lt;typename F , typename... Args&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Enqueues callable work and returns a future for its result. </p>
 
 </div>
 </div>

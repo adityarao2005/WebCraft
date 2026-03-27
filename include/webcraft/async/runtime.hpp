@@ -5,6 +5,14 @@
 // Licenced under MIT license. See LICENSE.txt for details.
 ///////////////////////////////////////////////////////////////////////////////
 
+/**
+ * @file async/runtime.hpp
+ * @brief Event runtime and scheduling entry points.
+ *
+ * Include this header to initialize, run, and stop the async runtime and to
+ * schedule callbacks on runtime-backed timing/event facilities.
+ */
+
 #include <functional>
 #include <chrono>
 #include <stop_token>
@@ -181,8 +189,12 @@ namespace webcraft::async
 #endif
     };
 
-    /// @brief  Acts as a context for the async runtime, managing the lifecycle of async operations.
-    /// This class is designed to be used as a singleton within the async runtime but won't be created like a singleton, more like a guard.
+    /**
+     * @brief RAII guard that initializes and shuts down the async runtime.
+     *
+     * Construct an instance before using runtime-backed operations and keep it
+     * alive while asynchronous runtime operations are active.
+     */
     class runtime_context final
     {
     public:
@@ -201,21 +213,22 @@ namespace webcraft::async
         runtime_context &operator=(runtime_context &&) = delete;
     };
 
-    /// @brief Gets the stop token for the current async runtime.
-    /// @return the stop token associated with the async runtime.
+    /**
+     * @brief Returns the stop token associated with the active runtime.
+     */
     std::stop_token get_stop_token();
 
-    /// @brief Yields control back to the async runtime, allowing other tasks to run.
-    /// @return A task that completes when the yield operation is done.
+    /**
+     * @brief Cooperatively yields execution back to the runtime scheduler.
+     */
     inline task<void> yield()
     {
         co_await detail::as_awaitable(detail::post_yield_event());
     }
 
-    /// @brief Sleeps for a specified duration, allowing other tasks to run during the sleep.
-    /// @param duration The duration to sleep.
-    /// @param token The stop token to check for cancellation requests.
-    /// @return A task that completes when the sleep operation is done.
+    /**
+     * @brief Suspends for a duration unless cancellation is requested.
+     */
     template <typename Rep, typename Period>
     inline task<void> sleep_for(std::chrono::duration<Rep, Period> duration, std::stop_token token = get_stop_token())
     {
@@ -225,6 +238,9 @@ namespace webcraft::async
         co_await detail::as_awaitable(detail::post_sleep_event(duration, token));
     }
 
+    /**
+     * @brief Runs a callback once after a delay.
+     */
     template <typename Rep, typename Period>
     inline fire_and_forget_task set_timeout(std::function<void()> func, std::chrono::duration<Rep, Period> duration, std::stop_token token = get_stop_token())
     {
@@ -234,6 +250,9 @@ namespace webcraft::async
         func();
     }
 
+    /**
+     * @brief Repeatedly runs a callback at fixed delay intervals until stopped.
+     */
     template <typename Rep, typename Period>
     inline fire_and_forget_task set_interval(std::function<void()> func, std::chrono::duration<Rep, Period> duration, std::stop_token token = get_stop_token())
     {
@@ -246,6 +265,9 @@ namespace webcraft::async
         }
     }
 
+    /**
+     * @brief Requests runtime shutdown and yields once to flush completion.
+     */
     inline task<void> shutdown()
     {
         detail::shutdown_runtime();

@@ -1,5 +1,5 @@
 <map id="include/webcraft/async/async_event.hpp" name="include/webcraft/async/async_event.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="9,5,180,45"/>
+<area shape="rect" id="Node000001" title="Awaitable event that resumes multiple suspended coroutines." alt="" coords="9,5,180,45"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,93,88,119"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,47,63,83,59,80,81,44"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="113,93,175,119"/>

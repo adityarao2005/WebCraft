@@ -5,6 +5,15 @@
 // Licenced under MIT license. See LICENSE.txt for details.
 ///////////////////////////////////////////////////////////////////////////////
 
+/**
+ * @file async/task.hpp
+ * @brief Core coroutine task type used across WebCraft async APIs.
+ *
+ * `webcraft::async::task<T>` represents an awaitable operation that produces
+ * a value of type `T` (or `void`). Most high-level async APIs in this project
+ * return this type.
+ */
+
 #include <concepts>
 #include <exception>
 #include <coroutine>
@@ -21,6 +30,9 @@ namespace webcraft::async
     template <typename T>
     class task;
 
+    /**
+     * @brief Promise type backing `task<T>` coroutines.
+     */
     template <typename T>
     class task_promise
     {
@@ -29,10 +41,12 @@ namespace webcraft::async
         std::exception_ptr exception;
         std::coroutine_handle<> continuation;
 
+        /** @brief Builds the `task<T>` object for this coroutine. */
         task<T> get_return_object();
 
         std::suspend_never initial_suspend() noexcept { return {}; }
 
+        /** @brief Final awaiter that resumes the continuation coroutine. */
         struct final_awaiter
         {
             bool await_ready() noexcept { return false; }
@@ -66,6 +80,9 @@ namespace webcraft::async
         }
     };
 
+    /**
+     * @brief Promise specialization for `task<void>` coroutines.
+     */
     template <>
     class task_promise<void>
     {
@@ -73,10 +90,12 @@ namespace webcraft::async
         std::exception_ptr exception;
         std::coroutine_handle<> continuation;
 
+        /** @brief Builds the `task<void>` object for this coroutine. */
         task<void> get_return_object();
 
         std::suspend_never initial_suspend() noexcept { return {}; }
 
+        /** @brief Final awaiter that resumes the continuation coroutine. */
         struct final_awaiter
         {
             bool await_ready() noexcept { return false; }
@@ -97,6 +116,9 @@ namespace webcraft::async
         }
     };
 
+    /**
+     * @brief Awaitable coroutine result that yields a value of type `T`.
+     */
     template <typename T = void>
     class task
     {
@@ -149,6 +171,9 @@ namespace webcraft::async
         handle_type coro;
     };
 
+    /**
+     * @brief Awaitable coroutine result specialization for `void`.
+     */
     template <>
     class task<void>
     {
@@ -212,6 +237,9 @@ namespace webcraft::async
         return task<void>{std::coroutine_handle<task_promise>::from_promise(*this)};
     }
 
+    /**
+     * @brief Base class for pipe-style task adaptors.
+     */
     template <typename Derived>
     struct task_adaptor_closure
     {
@@ -329,12 +357,18 @@ namespace webcraft::async
         };
     }
 
+    /**
+     * @brief Creates a continuation adaptor to transform successful task results.
+     */
     template <typename Func>
     auto then(Func &&func)
     {
         return detail::then_adaptor_closure<std::decay_t<Func>>{std::forward<Func>(func)};
     }
 
+    /**
+     * @brief Creates an error-recovery adaptor for failed awaitables.
+     */
     template <typename Func>
     auto upon_error(Func &&handler)
     {

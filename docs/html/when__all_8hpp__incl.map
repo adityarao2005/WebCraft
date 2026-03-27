@@ -1,5 +1,5 @@
 <map id="include/webcraft/async/when_all.hpp" name="include/webcraft/async/when_all.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="345,5,515,45"/>
+<area shape="rect" id="Node000001" title="Await combinator that waits for all awaitables in a range." alt="" coords="345,5,515,45"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,93,68,119"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="345,45,88,96,82,97,81,92,87,91,344,40"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="285,240,359,265"/>
@@ -12,11 +12,11 @@
 <area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="516,25,608,30,718,40,837,60,953,91,1027,116,1055,134,1084,165,1099,195,1105,226,1100,227,1094,197,1080,168,1052,138,1025,121,952,96,836,65,718,46,607,35,515,30"/>
 <area shape="rect" id="Node000007" title=" " alt="" coords="235,167,295,192"/>
 <area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="448,44,468,80,471,101,464,121,405,142,309,169,307,164,404,137,460,117,466,100,463,82,444,47"/>
-<area shape="rect" id="Node000008" href="$task_8hpp.html" title=" " alt="" coords="525,93,705,119"/>
+<area shape="rect" id="Node000008" href="$task_8hpp.html" title="Core coroutine task type used across WebCraft async APIs." alt="" coords="525,93,705,119"/>
 <area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="475,43,577,85,575,90,473,48"/>
-<area shape="rect" id="Node000018" href="$concepts_8hpp.html" title=" " alt="" coords="773,93,941,119"/>
+<area shape="rect" id="Node000018" href="$concepts_8hpp.html" title="Small shared concepts used by WebCraft templates." alt="" coords="773,93,941,119"/>
 <area shape="poly" id="edge23_Node000001_Node000018" title=" " alt="" coords="516,40,782,88,781,93,515,45"/>
-<area shape="rect" id="Node000019" href="$ranges_8hpp.html" title=" " alt="" coords="295,93,450,119"/>
+<area shape="rect" id="Node000019" href="$ranges_8hpp.html" title="Range adaptor helpers for collecting range pipelines." alt="" coords="295,93,450,119"/>
 <area shape="poly" id="edge25_Node000001_Node000019" title=" " alt="" coords="418,47,391,84,387,80,414,44"/>
 <area shape="rect" id="Node000020" title=" " alt="" coords="1145,93,1213,119"/>
 <area shape="poly" id="edge27_Node000001_Node000020" title=" " alt="" coords="516,29,788,50,957,68,1126,91,1132,92,1131,97,1126,96,957,73,788,56,515,34"/>
@@ -28,9 +28,9 @@
 <area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="618,119,616,153,611,153,612,119"/>
 <area shape="rect" id="Node000011" title=" " alt="" coords="522,240,605,265"/>
 <area shape="poly" id="edge10_Node000008_Node000011" title=" " alt="" coords="633,117,650,131,666,150,675,171,671,193,647,219,617,237,615,232,644,215,666,191,670,172,662,153,646,135,630,121"/>
-<area shape="rect" id="Node000012" href="$awaitable_8hpp.html" title=" " alt="" coords="430,167,545,192"/>
+<area shape="rect" id="Node000012" href="$awaitable_8hpp.html" title="Awaitable concepts and type traits." alt="" coords="430,167,545,192"/>
 <area shape="poly" id="edge11_Node000008_Node000012" title=" " alt="" coords="596,121,522,162,519,157,593,116"/>
-<area shape="rect" id="Node000013" href="$event__signal_8hpp.html" title=" " alt="" coords="937,167,1070,192"/>
+<area shape="rect" id="Node000013" href="$event__signal_8hpp.html" title="Lightweight thread&#45;based signaling primitive for sync waiting." alt="" coords="937,167,1070,192"/>
 <area shape="poly" id="edge15_Node000008_Node000013" title=" " alt="" coords="678,116,928,162,927,167,677,121"/>
 <area shape="rect" id="Node000016" title=" " alt="" coords="782,167,862,192"/>
 <area shape="poly" id="edge19_Node000008_Node000016" title=" " alt="" coords="649,116,776,160,775,165,648,121"/>

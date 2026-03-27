@@ -4,100 +4,103 @@
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <sstream>}}
-\DoxyCodeLine{00004\ }
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#if\ defined(\_\_linux\_\_)}}
-\DoxyCodeLine{00006\ }
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <netdb.h>}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <arpa/inet.h>}}
-\DoxyCodeLine{00010\ }
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#elif\ defined(\_WIN32)}}
-\DoxyCodeLine{00012\ }
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ WIN32\_LEAN\_AND\_MEAN}}
-\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ NOMINMAX}}
-\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <WinSock2.h>}}
-\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <WS2tcpip.h>}}
-\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <MSWSock.h>}}
-\DoxyCodeLine{00018\ }
-\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#elif\ defined(\_\_APPLE\_\_)}}
-\DoxyCodeLine{00020\ }
-\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
-\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <netdb.h>}}
-\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <arpa/inet.h>}}
-\DoxyCodeLine{00024\ }
-\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{00026\ }
-\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{task_8hpp}{webcraft/async/task.hpp}}>}}
-\DoxyCodeLine{00028\ }
-\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <string.h>}}
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacewebcraft_1_1net_1_1util}{webcraft::net::util}}}
-\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#if\ defined(\_\_linux\_\_)}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <netdb.h>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <arpa/inet.h>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#elif\ defined(\_WIN32)}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ WIN32\_LEAN\_AND\_MEAN}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ NOMINMAX}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <WinSock2.h>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <WS2tcpip.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <MSWSock.h>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#elif\ defined(\_\_APPLE\_\_)}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ <netdb.h>}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <arpa/inet.h>}}
 \DoxyCodeLine{00033\ }
-\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1net_1_1util_1_1get__addr__info__error}{get\_addr\_info\_error}}\ :\ \textcolor{keyword}{public}\ std::exception}
-\DoxyCodeLine{00035\ \ \ \ \ \{}
-\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classwebcraft_1_1net_1_1util_1_1get__addr__info__error_a6a83900975267fc84997db2134ceea15}{get\_addr\_info\_error}}(\textcolor{keywordtype}{int}\ ret)\ :\ ret\_(ret)\ \{\}}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{classwebcraft_1_1net_1_1util_1_1get__addr__info__error_ad1cb74c3520d8622427abe89da48ca75}{what}}()\ const\ noexcept\textcolor{keyword}{\ override}}
-\DoxyCodeLine{00039\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ std::stringstream\ ss;}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ ss\ <<\ \textcolor{stringliteral}{"{}getaddrinfo\ failed:\ "{}}\ <<\ \textcolor{stringliteral}{"{}\ (Error\ Code:\ "{}}\ <<\ ret\_\ <<\ \textcolor{stringliteral}{"{})"{}};}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ss.str().c\_str();}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00044\ }
-\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ret\_;}
-\DoxyCodeLine{00047\ \ \ \ \ \};}
-\DoxyCodeLine{00048\ }
-\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{inline}\ std::pair<std::string,\ uint16\_t>\ \mbox{\hyperlink{namespacewebcraft_1_1net_1_1util_a775955cd186c9fa74a1e9831a7e0969c}{addr\_to\_host\_port}}(}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct}\ sockaddr\_storage\ \&addr)}
-\DoxyCodeLine{00051\ \ \ \ \ \{}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ host[NI\_MAXHOST];}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ service[NI\_MAXSERV];}
-\DoxyCodeLine{00054\ }
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (getnameinfo((\textcolor{keyword}{struct}\ sockaddr\ *)\&addr,\ \textcolor{keyword}{sizeof}(addr),}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ host,\ \textcolor{keyword}{sizeof}(host),}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ service,\ \textcolor{keyword}{sizeof}(service),}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NI\_NUMERICHOST\ |\ NI\_NUMERICSERV)\ !=\ 0)}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\textcolor{stringliteral}{"{}"{}},\ 0\};\ \textcolor{comment}{//\ Failed}}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{std::string(host),\ \textcolor{keyword}{static\_cast<}uint16\_t\textcolor{keyword}{>}(std::stoi(service))\};}
-\DoxyCodeLine{00064\ \ \ \ \ \}}
-\DoxyCodeLine{00065\ }
-\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacewebcraft_1_1net_1_1util_ab2b6e4887c083400ff40f68f06545dcf}{on\_address\_resolved}}\ =\ std::function<bool(sockaddr\ *addr,\ socklen\_t\ addrlen)>;}
-\DoxyCodeLine{00067\ }
-\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacewebcraft_1_1net_1_1util_a96e3abcd87cfe0a3fc6a68e47cd3ca75}{host\_port\_to\_addr}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{webcraft::async::io::socket::connection\_info}}\ \&info,\ \mbox{\hyperlink{namespacewebcraft_1_1net_1_1util_ab2b6e4887c083400ff40f68f06545dcf}{on\_address\_resolved}}\ callback)}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{task_8hpp}{webcraft/async/task.hpp}}>}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacewebcraft_1_1net_1_1util}{webcraft::net::util}}}
+\DoxyCodeLine{00041\ \{}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1net_1_1util_1_1get__addr__info__error}{get\_addr\_info\_error}}\ :\ \textcolor{keyword}{public}\ std::exception}
+\DoxyCodeLine{00047\ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classwebcraft_1_1net_1_1util_1_1get__addr__info__error_a6a83900975267fc84997db2134ceea15}{get\_addr\_info\_error}}(\textcolor{keywordtype}{int}\ ret)}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ std::stringstream\ ss;}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ ss\ <<\ \textcolor{stringliteral}{"{}getaddrinfo\ failed:\ "{}}\ <<\ \textcolor{stringliteral}{"{}\ (Error\ Code:\ "{}}\ <<\ ret\ <<\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ message\_\ =\ ss.str();}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{classwebcraft_1_1net_1_1util_1_1get__addr__info__error_ad1cb74c3520d8622427abe89da48ca75}{what}}()\ const\ noexcept\textcolor{keyword}{\ override}}
+\DoxyCodeLine{00056\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ message\_.c\_str();}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ std::string\ message\_;}
+\DoxyCodeLine{00062\ \ \ \ \ \};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{inline}\ std::pair<std::string,\ uint16\_t>\ \mbox{\hyperlink{namespacewebcraft_1_1net_1_1util_a775955cd186c9fa74a1e9831a7e0969c}{addr\_to\_host\_port}}(}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct}\ sockaddr\_storage\ \&addr)}
 \DoxyCodeLine{00069\ \ \ \ \ \{}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }addrinfo\ hints\{\};}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ hints.ai\_family\ =\ AF\_UNSPEC;\ \ \ \ \ \textcolor{comment}{//\ Allow\ IPv4\ or\ IPv6}}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ hints.ai\_socktype\ =\ SOCK\_STREAM;\ \textcolor{comment}{//\ TCP}}
-\DoxyCodeLine{00073\ }
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }addrinfo\ *res;}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ret\ =\ getaddrinfo(info.\mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info_a3761630afedf97c39b392a25e23fcc80}{host}}.c\_str(),\ std::to\_string(info.\mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info_aa0a0f08e5597c2b158b904d6ff907cca}{port}}).c\_str(),\ \&hints,\ \&res);}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ 0)}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ host[NI\_MAXHOST];}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ service[NI\_MAXSERV];}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (getnameinfo((\textcolor{keyword}{struct}\ sockaddr\ *)\&addr,\ \textcolor{keyword}{sizeof}(addr),}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ host,\ \textcolor{keyword}{sizeof}(host),}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ service,\ \textcolor{keyword}{sizeof}(service),}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NI\_NUMERICHOST\ |\ NI\_NUMERICSERV)\ !=\ 0)}
 \DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\textcolor{stringliteral}{"{}"{}},\ 0\};\ \textcolor{comment}{//\ Failed}}
 \DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00080\ }
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Call\ the\ callback\ with\ the\ resolved\ address}}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ check\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{std::string(host),\ \textcolor{keyword}{static\_cast<}uint16\_t\textcolor{keyword}{>}(std::stoi(service))\};}
+\DoxyCodeLine{00082\ \ \ \ \ \}}
 \DoxyCodeLine{00083\ }
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ *rp\ =\ res;\ rp;\ rp\ =\ rp-\/>ai\_next)}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ check\ =\ callback(rp-\/>ai\_addr,\ (socklen\_t)rp-\/>ai\_addrlen);}
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (check)}
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00092\ }
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ freeaddrinfo(res);}
-\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ check;}
-\DoxyCodeLine{00095\ \ \ \ \ \}}
-\DoxyCodeLine{00096\ }
-\DoxyCodeLine{00097\ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacewebcraft_1_1net_1_1util_ab2b6e4887c083400ff40f68f06545dcf}{on\_address\_resolved}}\ =\ std::function<bool(sockaddr\ *addr,\ socklen\_t\ addrlen)>;}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacewebcraft_1_1net_1_1util_a96e3abcd87cfe0a3fc6a68e47cd3ca75}{host\_port\_to\_addr}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{webcraft::async::io::socket::connection\_info}}\ \&info,\ \mbox{\hyperlink{namespacewebcraft_1_1net_1_1util_ab2b6e4887c083400ff40f68f06545dcf}{on\_address\_resolved}}\ callback)}
+\DoxyCodeLine{00091\ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }addrinfo\ hints\{\};}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ hints.ai\_family\ =\ AF\_UNSPEC;\ \ \ \ \ \textcolor{comment}{//\ Allow\ IPv4\ or\ IPv6}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ hints.ai\_socktype\ =\ SOCK\_STREAM;\ \textcolor{comment}{//\ TCP}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }addrinfo\ *res;}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ret\ =\ getaddrinfo(info.\mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info_a3761630afedf97c39b392a25e23fcc80}{host}}.c\_str(),\ std::to\_string(info.\mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info_aa0a0f08e5597c2b158b904d6ff907cca}{port}}).c\_str(),\ \&hints,\ \&res);}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ 0)}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Call\ the\ callback\ with\ the\ resolved\ address}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ check\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ *rp\ =\ res;\ rp;\ rp\ =\ rp-\/>ai\_next)}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ check\ =\ callback(rp-\/>ai\_addr,\ (socklen\_t)rp-\/>ai\_addrlen);}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (check)}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ freeaddrinfo(res);}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ check;}
+\DoxyCodeLine{00117\ \ \ \ \ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \}}
 
 \end{DoxyCode}

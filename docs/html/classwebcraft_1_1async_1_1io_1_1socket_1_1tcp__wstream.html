@@ -97,6 +97,9 @@ $(document).ready(function(){initNavTree('classwebcraft_1_1async_1_1io_1_1socket
 </div><!--header-->
 <div class="contents">
 
+<p>Write-only stream view over a connected TCP socket.  
+ <a href="classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="socket_8hpp_source.html">socket.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -114,13 +117,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8d38dd95d1ec9723bb489e27a4962a03" id="r_a8d38dd95d1ec9723bb489e27a4962a03"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream.html">tcp_wstream</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream.html#a8d38dd95d1ec9723bb489e27a4962a03">operator=</a> (<a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream.html">tcp_wstream</a> &amp;&amp;other)</td></tr>
 <tr class="separator:a8d38dd95d1ec9723bb489e27a4962a03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4557adf266c25d34196f6322b7b98f75" id="r_a4557adf266c25d34196f6322b7b98f75"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream.html#a4557adf266c25d34196f6322b7b98f75">send</a> (std::span&lt; const char &gt; buffer)</td></tr>
+<tr class="memdesc:a4557adf266c25d34196f6322b7b98f75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes bytes from <code>buffer</code>.  <br /></td></tr>
 <tr class="separator:a4557adf266c25d34196f6322b7b98f75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa14c46fb23d62d367b5203d62b8ba900" id="r_aa14c46fb23d62d367b5203d62b8ba900"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream.html#aa14c46fb23d62d367b5203d62b8ba900">send</a> (char b)</td></tr>
+<tr class="memdesc:aa14c46fb23d62d367b5203d62b8ba900"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a single byte.  <br /></td></tr>
 <tr class="separator:aa14c46fb23d62d367b5203d62b8ba900"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a969f3cc6c744feb7072b40d90807786f" id="r_a969f3cc6c744feb7072b40d90807786f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; void &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream.html#a969f3cc6c744feb7072b40d90807786f">close</a> ()</td></tr>
+<tr class="memdesc:a969f3cc6c744feb7072b40d90807786f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shuts down the write side of the socket.  <br /></td></tr>
 <tr class="separator:a969f3cc6c744feb7072b40d90807786f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Write-only stream view over a connected TCP socket. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a247bea3321e3c666a9eea2612de5211d" name="a247bea3321e3c666a9eea2612de5211d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a247bea3321e3c666a9eea2612de5211d">&#9670;&#160;</a></span>tcp_wstream() <span class="overload">[1/3]</span></h2>
 
@@ -248,6 +256,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Shuts down the write side of the socket. </p>
+
 </div>
 </div>
 <a id="a8d38dd95d1ec9723bb489e27a4962a03" name="a8d38dd95d1ec9723bb489e27a4962a03"></a>
@@ -326,6 +336,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Writes a single byte. </p>
+
 </div>
 </div>
 <a id="a4557adf266c25d34196f6322b7b98f75" name="a4557adf266c25d34196f6322b7b98f75"></a>
@@ -351,6 +363,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Writes bytes from <code>buffer</code>. </p>
 
 </div>
 </div>

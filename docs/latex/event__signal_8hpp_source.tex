@@ -7,82 +7,81 @@
 \DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (c)\ Aditya\ Rao}}
 \DoxyCodeLine{00005\ \textcolor{comment}{//\ Licenced\ under\ MIT\ license.\ See\ LICENSE.txt\ for\ details.}}
 \DoxyCodeLine{00007\ }
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <atomic>}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <chrono>}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <thread>}}
-\DoxyCodeLine{00012\ }
-\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacewebcraft_1_1async}{webcraft::async}}}
-\DoxyCodeLine{00014\ \{}
-\DoxyCodeLine{00015\ }
-\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1immovable}{immovable}}}
-\DoxyCodeLine{00017\ \ \ \ \ \{}
-\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1immovable_afa3778a7c0dcd44972da924b01594349}{immovable}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1immovable_aa27e42f2638b66ab277ba8451c6e6840}{immovable}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1immovable}{immovable}}\ \&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1immovable}{immovable}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1immovable_a6e7021164eeaa1af0c09a250d8b19d2e}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1immovable}{immovable}}\ \&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1immovable_aeb639d321b1d9cccdef2b30f18d984fa}{immovable}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1immovable}{immovable}}\ \&\&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1immovable}{immovable}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1immovable_a5eca96af1b27ac31e201561df7c6a193}{operator=}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1immovable}{immovable}}\ \&\&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00024\ }
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1immovable_a5b6701013be9de7b5d23045e23c667ea}{\string~immovable}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00026\ \ \ \ \ \};}
-\DoxyCodeLine{00027\ }
-\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal}{event\_signal}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1immovable}{immovable}}}
-\DoxyCodeLine{00029\ \ \ \ \ \{}
-\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ std::atomic<bool>\ flag;}
-\DoxyCodeLine{00032\ }
-\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_a77677008fd577495eac78a8f046a5835}{event\_signal}}()\ :\ flag(false)\ \{\}}
-\DoxyCodeLine{00035\ }
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_a0f8cd8af66f2e588c242463029550f1e}{set}}()\ noexcept}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ flag.store(\textcolor{keyword}{true},\ std::memory\_order\_release);}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00040\ }
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_a7a70b19b356714cda6da9b661f2d9f5c}{reset}}()\ noexcept}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ flag.store(\textcolor{keyword}{false},\ std::memory\_order\_release);}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacewebcraft_1_1async}{webcraft::async}}}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1immovable}{immovable}}}
+\DoxyCodeLine{00027\ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1immovable_afa3778a7c0dcd44972da924b01594349}{immovable}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1immovable_aa27e42f2638b66ab277ba8451c6e6840}{immovable}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1immovable}{immovable}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1immovable}{immovable}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1immovable_a6e7021164eeaa1af0c09a250d8b19d2e}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1immovable}{immovable}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1immovable_aeb639d321b1d9cccdef2b30f18d984fa}{immovable}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1immovable}{immovable}}\ \&\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1immovable}{immovable}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1immovable_a5eca96af1b27ac31e201561df7c6a193}{operator=}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1immovable}{immovable}}\ \&\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1immovable_a5b6701013be9de7b5d23045e23c667ea}{\string~immovable}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00036\ \ \ \ \ \};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal}{event\_signal}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1immovable}{immovable}}}
+\DoxyCodeLine{00042\ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ std::atomic<bool>\ flag;}
 \DoxyCodeLine{00045\ }
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_ad4a52a05dde472e3062e60c92348d5fa}{is\_set}}()\ const\ noexcept}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ flag.load(std::memory\_order\_acquire);}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00050\ }
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_a30ed3534d605cf8881830fa3454a6d9c}{wait\_for}}(std::chrono::milliseconds\ timeout)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00052\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ start\ =\ std::chrono::steady\_clock::now();}
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!\mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_ad4a52a05dde472e3062e60c92348d5fa}{is\_set}}())}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (std::chrono::steady\_clock::now()\ -\/\ start\ >=\ timeout)}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ Timeout}}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::this\_thread::yield();\ \textcolor{comment}{//\ Yield\ to\ avoid\ busy\ waiting}}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \textcolor{comment}{//\ Signal\ was\ set}}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00064\ }
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_a84765130566101afcf0666378ce3c02c}{wait}}()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00066\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!\mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_ad4a52a05dde472e3062e60c92348d5fa}{is\_set}}())}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::this\_thread::yield();\ \textcolor{comment}{//\ Yield\ to\ avoid\ busy\ waiting}}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \textcolor{comment}{//\ Signal\ was\ set}}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00073\ }
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_a552efc44edcfac5ed89227105b64a742}{operator()}}()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00075\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_ad4a52a05dde472e3062e60c92348d5fa}{is\_set}}();}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00078\ }
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{operator}\ bool()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00080\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_ad4a52a05dde472e3062e60c92348d5fa}{is\_set}}();}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00083\ \ \ \ \ \};}
-\DoxyCodeLine{00084\ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_a77677008fd577495eac78a8f046a5835}{event\_signal}}()\ :\ flag(false)\ \{\}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_a0f8cd8af66f2e588c242463029550f1e}{set}}()\ noexcept}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ flag.store(\textcolor{keyword}{true},\ std::memory\_order\_release);}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_a7a70b19b356714cda6da9b661f2d9f5c}{reset}}()\ noexcept}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ flag.store(\textcolor{keyword}{false},\ std::memory\_order\_release);}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_ad4a52a05dde472e3062e60c92348d5fa}{is\_set}}()\ const\ noexcept}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ flag.load(std::memory\_order\_acquire);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_a30ed3534d605cf8881830fa3454a6d9c}{wait\_for}}(std::chrono::milliseconds\ timeout)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00073\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ start\ =\ std::chrono::steady\_clock::now();}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!\mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_ad4a52a05dde472e3062e60c92348d5fa}{is\_set}}())}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (std::chrono::steady\_clock::now()\ -\/\ start\ >=\ timeout)}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ Timeout}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::this\_thread::yield();\ \textcolor{comment}{//\ Yield\ to\ avoid\ busy\ waiting}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \textcolor{comment}{//\ Signal\ was\ set}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_a84765130566101afcf0666378ce3c02c}{wait}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00091\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!\mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_ad4a52a05dde472e3062e60c92348d5fa}{is\_set}}())}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::this\_thread::yield();\ \textcolor{comment}{//\ Yield\ to\ avoid\ busy\ waiting}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \textcolor{comment}{//\ Signal\ was\ set}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_a552efc44edcfac5ed89227105b64a742}{operator()}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00101\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_ad4a52a05dde472e3062e60c92348d5fa}{is\_set}}();}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{operator}\ bool()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00107\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_ad4a52a05dde472e3062e60c92348d5fa}{is\_set}}();}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ \ \ \ \ \};}
+\DoxyCodeLine{00111\ \}}
 
 \end{DoxyCode}

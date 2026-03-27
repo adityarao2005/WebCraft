@@ -1,5 +1,10 @@
 \doxysection{include/webcraft/async/async\+\_\+event.hpp File Reference}
 \hypertarget{async__event_8hpp}{}\label{async__event_8hpp}\index{include/webcraft/async/async\_event.hpp@{include/webcraft/async/async\_event.hpp}}
+
+
+Awaitable event that resumes multiple suspended coroutines.  
+
+
 {\ttfamily \#include $<$coroutine$>$}\newline
 {\ttfamily \#include $<$vector$>$}\newline
 Include dependency graph for async\+\_\+event.\+hpp\+:\nopagebreak
@@ -20,7 +25,7 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structwebcraft_1_1async_1_1async__event}{webcraft\+::async\+::async\+\_\+event}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em One-\/shot awaitable event for coroutine coordination. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -28,3 +33,9 @@ namespace \mbox{\hyperlink{namespacewebcraft}{webcraft}}
 \item 
 namespace \mbox{\hyperlink{namespacewebcraft_1_1async}{webcraft\+::async}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Awaitable event that resumes multiple suspended coroutines. 
+
+Use {\ttfamily \doxylink{structwebcraft_1_1async_1_1async__event}{webcraft\+::async\+::async\+\_\+event}} as a one-\/shot async synchronization point. Coroutines can {\ttfamily co\+\_\+await} the event and are resumed when {\ttfamily set()} is called. 

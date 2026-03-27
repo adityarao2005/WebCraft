@@ -97,6 +97,9 @@ $(document).ready(function(){initNavTree('awaitable_8hpp.html',''); initResizabl
   <div class="headertitle"><div class="title">awaitable.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Awaitable concepts and type traits.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;coroutine&gt;</code><br />
 <code>#include &lt;optional&gt;</code><br />
 <code>#include &lt;concepts&gt;</code><br />
@@ -105,7 +108,7 @@ Include dependency graph for awaitable.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="awaitable_8hpp__incl.png" border="0" usemap="#ainclude_2webcraft_2async_2awaitable_8hpp" alt=""/></div>
 <map name="ainclude_2webcraft_2async_2awaitable_8hpp" id="ainclude_2webcraft_2async_2awaitable_8hpp">
-<area shape="rect" title=" " alt="" coords="64,5,235,45"/>
+<area shape="rect" title="Awaitable concepts and type traits." alt="" coords="64,5,235,45"/>
 <area shape="rect" title=" " alt="" coords="5,93,88,119"/>
 <area shape="poly" title=" " alt="" coords="126,48,74,87,71,83,123,43"/>
 <area shape="rect" title=" " alt="" coords="112,93,187,119"/>
@@ -119,35 +122,35 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="awaitable_8hpp__dep__incl.png" border="0" usemap="#ainclude_2webcraft_2async_2awaitable_8hppdep" alt=""/></div>
 <map name="ainclude_2webcraft_2async_2awaitable_8hppdep" id="ainclude_2webcraft_2async_2awaitable_8hppdep">
-<area shape="rect" title=" " alt="" coords="313,5,484,45"/>
-<area shape="rect" href="async_8hpp.html" title=" " alt="" coords="707,533,877,573"/>
+<area shape="rect" title="Awaitable concepts and type traits." alt="" coords="313,5,484,45"/>
+<area shape="rect" href="async_8hpp.html" title="Umbrella include for the public asynchronous programming API." alt="" coords="707,533,877,573"/>
 <area shape="poly" title=" " alt="" coords="300,32,205,44,156,55,110,72,69,94,37,122,16,157,10,177,8,200,8,379,10,400,15,417,34,443,64,463,102,483,151,501,218,515,383,534,559,545,707,549,707,554,559,550,382,540,217,520,150,506,100,488,61,468,30,447,10,419,5,401,3,379,3,200,5,177,11,155,33,119,66,89,108,67,155,50,204,39,299,26"/>
-<area shape="rect" href="task_8hpp.html" title=" " alt="" coords="768,93,939,133"/>
+<area shape="rect" href="task_8hpp.html" title="Core coroutine task type used across WebCraft async APIs." alt="" coords="768,93,939,133"/>
 <area shape="poly" title=" " alt="" coords="498,43,768,93,767,99,497,48"/>
 <area shape="poly" title=" " alt="" coords="754,118,555,127,439,138,325,153,221,175,136,205,104,222,79,242,64,264,59,288,59,378,64,401,78,422,101,441,131,458,211,486,309,508,416,525,523,536,707,547,706,552,523,541,415,530,308,514,210,492,129,463,98,445,74,426,59,403,53,379,53,288,59,262,75,238,101,218,134,200,220,170,324,148,439,132,555,122,754,113"/>
-<area shape="rect" href="async__generator_8hpp.html" title=" " alt="" coords="389,181,560,221"/>
+<area shape="rect" href="async__generator_8hpp.html" title="Async pull&#45;based generator for coroutine streams." alt="" coords="389,181,560,221"/>
 <area shape="poly" title=" " alt="" coords="758,139,558,184,557,179,756,134"/>
-<area shape="rect" href="core_8hpp.html" title=" " alt="" coords="389,269,560,309"/>
+<area shape="rect" href="core_8hpp.html" title="Core async stream concepts and adapters." alt="" coords="389,269,560,309"/>
 <area shape="poly" title=" " alt="" coords="801,141,517,272,515,267,799,137"/>
-<area shape="rect" href="runtime_8hpp.html" title=" " alt="" coords="829,269,1000,309"/>
+<area shape="rect" href="runtime_8hpp.html" title="Event runtime and scheduling entry points." alt="" coords="829,269,1000,309"/>
 <area shape="poly" title=" " alt="" coords="861,147,881,220,905,268,900,270,876,222,856,148"/>
-<area shape="rect" href="sync__wait_8hpp.html" title=" " alt="" coords="891,181,1061,221"/>
+<area shape="rect" href="sync__wait_8hpp.html" title="Blocking bridge from awaitables to synchronous callers." alt="" coords="891,181,1061,221"/>
 <area shape="poly" title=" " alt="" coords="893,139,950,179,947,183,890,143"/>
-<area shape="rect" href="task__completion__source_8hpp.html" title=" " alt="" coords="1225,269,1437,309"/>
+<area shape="rect" href="task__completion__source_8hpp.html" title="External completion source for manually&#45;resolved tasks." alt="" coords="1225,269,1437,309"/>
 <area shape="poly" title=" " alt="" coords="935,135,1074,179,1192,225,1290,267,1288,272,1190,230,1072,184,934,140"/>
-<area shape="rect" href="when__all_8hpp.html" title=" " alt="" coords="1388,357,1559,397"/>
+<area shape="rect" href="when__all_8hpp.html" title="Await combinator that waits for all awaitables in a range." alt="" coords="1388,357,1559,397"/>
 <area shape="poly" title=" " alt="" coords="952,125,1084,146,1232,177,1302,197,1364,218,1415,241,1450,267,1464,289,1472,313,1477,357,1472,357,1467,314,1459,291,1446,271,1412,246,1362,223,1300,202,1231,183,1083,152,952,130"/>
-<area shape="rect" href="util_8hpp.html" title=" " alt="" coords="1511,181,1665,221"/>
+<area shape="rect" href="util_8hpp.html" title="Cross&#45;platform networking helper utilities." alt="" coords="1511,181,1665,221"/>
 <area shape="poly" title=" " alt="" coords="952,120,1198,142,1492,179,1511,182,1510,187,1492,184,1198,148,952,125"/>
 <area shape="poly" title=" " alt="" coords="376,221,276,246,227,263,182,283,148,306,126,333,121,347,120,362,124,378,134,396,149,412,170,428,227,455,300,479,383,499,557,527,706,543,706,548,556,532,382,504,299,484,225,460,167,432,146,416,130,399,119,380,115,363,115,346,121,330,144,302,180,278,225,258,275,241,375,216"/>
 <area shape="poly" title=" " alt="" coords="477,235,477,269,472,269,472,235"/>
-<area shape="rect" href="adaptors_8hpp.html" title=" " alt="" coords="144,357,315,397"/>
+<area shape="rect" href="adaptors_8hpp.html" title="Composable stream transformation adaptors for async I/O pipelines." alt="" coords="144,357,315,397"/>
 <area shape="poly" title=" " alt="" coords="409,316,284,360,282,355,407,311"/>
-<area shape="rect" href="io_8hpp.html" title=" " alt="" coords="389,445,560,485"/>
+<area shape="rect" href="io_8hpp.html" title="Umbrella include for WebCraft async I/O components." alt="" coords="389,445,560,485"/>
 <area shape="poly" title=" " alt="" coords="420,319,397,336,380,359,374,377,380,396,402,423,431,443,428,447,398,427,375,399,368,377,375,356,393,332,416,314"/>
-<area shape="rect" href="fs_8hpp.html" title=" " alt="" coords="389,357,560,397"/>
+<area shape="rect" href="fs_8hpp.html" title="Asynchronous filesystem stream abstractions." alt="" coords="389,357,560,397"/>
 <area shape="poly" title=" " alt="" coords="477,323,477,357,472,357,472,323"/>
-<area shape="rect" href="socket_8hpp.html" title=" " alt="" coords="584,357,755,397"/>
+<area shape="rect" href="socket_8hpp.html" title="Asynchronous TCP/UDP socket stream abstractions." alt="" coords="584,357,755,397"/>
 <area shape="poly" title=" " alt="" coords="531,312,628,355,626,360,529,317"/>
 <area shape="poly" title=" " alt="" coords="297,399,422,443,420,448,295,404"/>
 <area shape="poly" title=" " alt="" coords="558,486,723,531,722,536,557,492"/>
@@ -156,13 +159,13 @@ This graph shows which files directly or indirectly include this file:</div>
 <area shape="poly" title=" " alt="" coords="862,319,838,336,820,359,800,404,792,453,790,498,792,533,787,533,785,498,787,452,795,403,815,356,835,333,859,314"/>
 <area shape="rect" href="event_8hpp.html" title=" " alt="" coords="829,357,1000,397"/>
 <area shape="poly" title=" " alt="" coords="917,323,917,357,912,357,912,323"/>
-<area shape="rect" href="webcraft_8hpp.html" title=" " alt="" coords="1025,365,1242,390"/>
+<area shape="rect" href="webcraft_8hpp.html" title="Top&#45;level include for WebCraft runtime bootstrap utilities." alt="" coords="1025,365,1242,390"/>
 <area shape="poly" title=" " alt="" coords="976,312,1105,362,1103,367,974,317"/>
 <area shape="poly" title=" " alt="" coords="1035,224,1097,252,1163,286,1221,322,1242,339,1256,356,1263,378,1256,399,1219,440,1175,473,1126,499,1075,519,1022,534,970,544,878,554,877,549,970,539,1021,529,1073,514,1124,494,1172,469,1215,436,1251,396,1258,378,1251,359,1238,343,1218,326,1161,291,1095,257,1033,229"/>
 <area shape="poly" title=" " alt="" coords="957,234,930,271,926,268,952,231"/>
 <area shape="poly" title=" " alt="" coords="1339,323,1341,361,1338,405,1326,449,1315,470,1300,487,1270,507,1227,522,1174,534,1115,542,989,552,877,555,877,550,989,547,1114,537,1173,529,1226,517,1268,502,1297,483,1311,467,1321,447,1333,404,1336,361,1333,323"/>
 <area shape="poly" title=" " alt="" coords="1446,409,1395,455,1351,488,1312,501,1260,512,1133,530,997,543,878,551,878,545,996,537,1133,525,1259,507,1310,496,1348,483,1392,451,1443,405"/>
-<area shape="rect" href="when__any_8hpp.html" title=" " alt="" coords="1419,445,1589,485"/>
+<area shape="rect" href="when__any_8hpp.html" title="Await combinator that resolves when the first awaitable completes." alt="" coords="1419,445,1589,485"/>
 <area shape="poly" title=" " alt="" coords="1487,410,1500,444,1495,446,1482,411"/>
 <area shape="poly" title=" " alt="" coords="1405,487,1400,488,1114,524,878,547,878,542,1113,518,1400,483,1405,482"/>
 </map>
@@ -180,23 +183,32 @@ Namespaces</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="concepts" name="concepts"></a>
 Concepts</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptwebcraft_1_1async_1_1has__member__operator__co__await__v.html">webcraft::async::has_member_operator_co_await_v</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detects member <code>operator co_await</code>. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptwebcraft_1_1async_1_1is__awaitable__suspend__type.html">webcraft::async::is_awaitable_suspend_type</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Valid return types for <code>await_suspend</code>. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptwebcraft_1_1async_1_1has__awaitable__elements.html">webcraft::async::has_awaitable_elements</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detects awaiter protocol members (<code>await_ready/suspend/resume</code>). <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptwebcraft_1_1async_1_1has__non__member__operator__co__await__v.html">webcraft::async::has_non_member_operator_co_await_v</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detects non-member <code>operator co_await</code>. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptwebcraft_1_1async_1_1awaitable__t.html">webcraft::async::awaitable_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primary concept indicating a type is awaitable. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:a756c2303d30320ba433f8aa21010bd01" id="r_a756c2303d30320ba433f8aa21010bd01"><td class="memTemplParams" colspan="2">template&lt;awaitable_t T&gt; </td></tr>
 <tr class="memitem:a756c2303d30320ba433f8aa21010bd01"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#a756c2303d30320ba433f8aa21010bd01">webcraft::async::awaitable_resume_t</a> = decltype(detail::get_awaiter(std::declval&lt; T &gt;()).await_resume())</td></tr>
+<tr class="memdesc:a756c2303d30320ba433f8aa21010bd01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resolved result type produced by awaiting <code>T</code>.  <br /></td></tr>
 <tr class="separator:a756c2303d30320ba433f8aa21010bd01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Awaitable concepts and type traits. </p>
+<p>Include this header when you need compile-time checks for awaitable types or the resolved resume type (<code>awaitable_resume_t</code>) in generic coroutine code. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

@@ -1,5 +1,5 @@
 <map id="include/webcraft/ranges.hpp" name="include/webcraft/ranges.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,211,31"/>
+<area shape="rect" id="Node000001" title="Range adaptor helpers for collecting range pipelines." alt="" coords="5,5,211,31"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="75,79,141,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,31,111,65,105,65,105,31"/>
 </map>

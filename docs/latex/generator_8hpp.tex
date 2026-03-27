@@ -1,5 +1,10 @@
 \doxysection{include/webcraft/async/generator.hpp File Reference}
 \hypertarget{generator_8hpp}{}\label{generator_8hpp}\index{include/webcraft/async/generator.hpp@{include/webcraft/async/generator.hpp}}
+
+
+Synchronous coroutine generator abstraction.  
+
+
 {\ttfamily \#include $<$coroutine$>$}\newline
 {\ttfamily \#include $<$type\+\_\+traits$>$}\newline
 {\ttfamily \#include $<$utility$>$}\newline
@@ -37,3 +42,9 @@ namespace \mbox{\hyperlink{namespacewebcraft}{webcraft}}
 \item 
 namespace \mbox{\hyperlink{namespacewebcraft_1_1ranges}{webcraft\+::ranges}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Synchronous coroutine generator abstraction. 
+
+Provides {\ttfamily webcraft\+::ranges\+::generator\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} (or a compatibility equivalent) for lazily yielding values in range-\/based pipelines. 

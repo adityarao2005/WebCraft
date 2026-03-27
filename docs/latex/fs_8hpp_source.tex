@@ -7,161 +7,161 @@
 \DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (c)\ Aditya\ Rao}}
 \DoxyCodeLine{00005\ \textcolor{comment}{//\ Licenced\ under\ MIT\ license.\ See\ LICENSE.txt\ for\ details.}}
 \DoxyCodeLine{00007\ }
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{core_8hpp}{core.hpp}}"{}}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <fstream>}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <filesystem>}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <atomic>}}
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{fire__and__forget__task_8hpp}{webcraft/async/fire\_and\_forget\_task.hpp}}>}}
-\DoxyCodeLine{00013\ }
-\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1fs}{webcraft::async::io::fs}}}
-\DoxyCodeLine{00015\ \{}
-\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{namespace\ }detail}
-\DoxyCodeLine{00017\ \ \ \ \ \{}
-\DoxyCodeLine{00018\ }
-\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }file\_descriptor}
-\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ std::ios\_base::openmode\ mode;}
-\DoxyCodeLine{00023\ }
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ file\_descriptor(std::ios\_base::openmode\ mode)\ :\ mode(mode)\ \{\}}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \string~file\_descriptor()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00027\ }
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ virtual\ because\ we\ want\ to\ allow\ platform\ specific\ implementation}}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<size\_t>}}\ read(std::span<char>\ buffer)\ =\ 0;\ \ \textcolor{comment}{//\ internally\ should\ check\ if\ openmode\ is\ for\ read}}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<size\_t>}}\ write(std::span<char>\ buffer)\ =\ 0;\ \textcolor{comment}{//\ internally\ should\ check\ if\ openmode\ is\ for\ write\ or\ append}}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\ close()\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ will\ spawn\ a\ fire\ and\ forget\ task\ (essentially\ use\ async\ apis\ but\ provide\ null\ callback)}}
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00033\ }
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<std::shared\_ptr<file\_descriptor>}}>\ make\_file\_descriptor(std::filesystem::path\ p,\ std::ios\_base::openmode\ mode);}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{core_8hpp}{core.hpp}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{fire__and__forget__task_8hpp}{webcraft/async/fire\_and\_forget\_task.hpp}}>}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1fs}{webcraft::async::io::fs}}}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{namespace\ }detail}
+\DoxyCodeLine{00025\ \ \ \ \ \{}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }file\_descriptor}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ std::ios\_base::openmode\ mode;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ file\_descriptor(std::ios\_base::openmode\ mode)\ :\ mode(mode)\ \{\}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \string~file\_descriptor()\ =\ \textcolor{keywordflow}{default};}
 \DoxyCodeLine{00035\ }
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }file\_stream}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ std::shared\_ptr<file\_descriptor>\ fd;}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ std::atomic<bool>\ closed\{\textcolor{keyword}{false}\};}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ virtual\ because\ we\ want\ to\ allow\ platform\ specific\ implementation}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<size\_t>}}\ read(std::span<char>\ buffer)\ =\ 0;\ \ \textcolor{comment}{//\ internally\ should\ check\ if\ openmode\ is\ for\ read}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<size\_t>}}\ write(std::span<char>\ buffer)\ =\ 0;\ \textcolor{comment}{//\ internally\ should\ check\ if\ openmode\ is\ for\ write\ or\ append}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\ close()\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ will\ spawn\ a\ fire\ and\ forget\ task\ (essentially\ use\ async\ apis\ but\ provide\ null\ callback)}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \};}
 \DoxyCodeLine{00041\ }
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ file\_stream(std::shared\_ptr<file\_descriptor>\ fd)\ :\ fd(std::move(fd))\ \{\}}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ file\_stream(file\_stream\ \&\&other)\ noexcept\ :\ fd(std::exchange(other.fd,\ \textcolor{keyword}{nullptr})),\ closed(other.closed.exchange(\textcolor{keyword}{true}))\ \{\}}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ file\_stream\ \&operator=(file\_stream\ \&\&other)\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{this}\ !=\ \&other)}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fd\ =\ std::exchange(other.fd,\ \textcolor{keyword}{nullptr});}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closed\ =\ other.closed.exchange(\textcolor{keyword}{true});}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \string~file\_stream()\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fd)}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacewebcraft_1_1async_aa32214c386ded164491af1d325b36e11}{fire\_and\_forget}}(close());}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00059\ }
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\ close()\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ expected\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (closed.compare\_exchange\_strong(expected,\ \textcolor{keyword}{true},\ std::memory\_order\_acq\_rel))}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ fd-\/>close();}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00069\ \ \ \ \ \}}
-\DoxyCodeLine{00070\ }
-\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream}{file\_rstream}}\ :\ \textcolor{keyword}{public}\ detail::file\_stream}
-\DoxyCodeLine{00072\ \ \ \ \ \{}
-\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream_af316878c8f54e26620b81c31a5589996}{file\_rstream}}(std::shared\_ptr<detail::file\_descriptor>\ fd)\ :\ detail::file\_stream(std::move(fd))\ \{\}}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream_ad9c540ce4cbadda7b57f53084b6e0a4c}{\string~file\_rstream}}()\ noexcept\ =\ default;}
-\DoxyCodeLine{00076\ }
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream}{file\_rstream}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream}{file\_rstream}}\ \&\&rstream)\ noexcept\ =\ default;}
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream}{file\_rstream}}\ \&operator=(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream}{file\_rstream}}\ \&\&)\ noexcept\ =\ default;}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream}{file\_rstream}}(const\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream}{file\_rstream}}\ \&)\ =\ delete;}
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream}{file\_rstream}}\ \&operator=(const\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream}{file\_rstream}}\ \&)\ =\ delete;}
-\DoxyCodeLine{00081\ }
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}<\textcolor{keywordtype}{size\_t}>\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream_afb263a148b621484b1bc3388a6a43cdd}{recv}}(std::span<\textcolor{keywordtype}{char}>\ buffer)}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ fd-\/>read(buffer);}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00086\ }
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<std::optional<char>}}>\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream_afb263a148b621484b1bc3388a6a43cdd}{recv}}()}
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ std::array<char,\ 1>\ buf;}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{co\_await}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream_afb263a148b621484b1bc3388a6a43cdd}{recv}}(buf))}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ buf[0];}
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ std::nullopt;}
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00096\ \ \ \ \ \};}
-\DoxyCodeLine{00097\ }
-\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__readable__stream}{async\_readable\_stream<file\_rstream,\ char>}});}
-\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__buffered__readable__stream}{async\_buffered\_readable\_stream<file\_rstream,\ char>}});}
-\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__closeable__stream}{async\_closeable\_stream<file\_rstream,\ char>}});}
-\DoxyCodeLine{00101\ }
-\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream}{file\_wstream}}\ :\ \textcolor{keyword}{public}\ detail::file\_stream}
-\DoxyCodeLine{00103\ \ \ \ \ \{}
-\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream_a11dd6b7f5ec1584228dc6d69e6fee53d}{file\_wstream}}(std::shared\_ptr<detail::file\_descriptor>\ fd)\ :\ detail::file\_stream(std::move(fd))\ \{\}}
-\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream_a9a006fb3722735ab9871c365439593cd}{\string~file\_wstream}}()\ noexcept\ =\ default;}
-\DoxyCodeLine{00107\ }
-\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream}{file\_wstream}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream}{file\_wstream}}\ \&\&)\ noexcept\ =\ default;}
-\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream}{file\_wstream}}\ \&operator=(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream}{file\_wstream}}\ \&\&)\ noexcept\ =\ default;}
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream}{file\_wstream}}(const\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream}{file\_wstream}}\ \&)\ =\ delete;}
-\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream}{file\_wstream}}\ \&operator=(const\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream}{file\_wstream}}\ \&)\ =\ delete;}
-\DoxyCodeLine{00112\ }
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}<\textcolor{keywordtype}{size\_t}>\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream_a6ddae28821be92050d80133b28860e4a}{send}}(std::span<\textcolor{keywordtype}{char}>\ buffer)}
-\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ fd-\/>write(buffer);}
-\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00117\ }
-\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<bool>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream_a9388248b0b00b31de79967f28c49827a}{send}}(\textcolor{keywordtype}{char}\ b)}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ std::array<char,\ 1>\ buf;}
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ buf[0]\ =\ b;}
-\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{co\_await}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream_a6ddae28821be92050d80133b28860e4a}{send}}(buf))}
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00128\ \ \ \ \ \};}
-\DoxyCodeLine{00129\ }
-\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__writable__stream}{async\_writable\_stream<file\_wstream,\ char>}});}
-\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__buffered__writable__stream}{async\_buffered\_writable\_stream<file\_wstream,\ char>}});}
-\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__closeable__stream}{async\_closeable\_stream<file\_wstream,\ char>}});}
-\DoxyCodeLine{00133\ }
-\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file}{file}}}
-\DoxyCodeLine{00135\ \ \ \ \ \{}
-\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ std::filesystem::path\ p;}
-\DoxyCodeLine{00138\ }
-\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file_a2cad054bf2c585fbc3b2ec425387961c}{file}}(std::filesystem::path\ p)\ :\ p(std::move(p))\ \{\}}
-\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file_abbcefdedeb4a0c02e12be466641a0fa6}{\string~file}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00142\ }
-\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<file\_rstream>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file_aee749147f74f498be86b9272899a9daf}{open\_readable\_stream}}()}
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ descriptor\ =\ \textcolor{keyword}{co\_await}\ detail::make\_file\_descriptor(p,\ std::ios\_base::in);}
-\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream}{file\_rstream}}(descriptor);}
-\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00148\ }
-\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<file\_wstream>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file_a3a741aaf01a1f2d8c39ad7e310bcc80f}{open\_writable\_stream}}(\textcolor{keywordtype}{bool}\ append\ =\ \textcolor{keyword}{false})}
-\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ descriptor\ =\ \textcolor{keyword}{co\_await}\ detail::make\_file\_descriptor(p,\ std::ios\_base::out\ |\ (append\ ?\ std::ios\_base::app\ :\ std::ios\_base::trunc));}
-\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream}{file\_wstream}}(descriptor);}
-\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00154\ }
-\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::filesystem::path\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file_a29db0eea8a5e74682c8c4648c2615a89}{get\_path}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ p;\ \}}
-\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keyword}{operator}\ \textcolor{keyword}{const}\ std::filesystem::path\ \&()\ \textcolor{keyword}{const}\ \{\ \textcolor{keywordflow}{return}\ p;\ \}}
-\DoxyCodeLine{00157\ \ \ \ \ \};}
-\DoxyCodeLine{00158\ }
-\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file}{file}}\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1fs_a8d8e45ed576cda72f736cd9e66952947}{make\_file}}(std::filesystem::path\ p)}
-\DoxyCodeLine{00160\ \ \ \ \ \{}
-\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file}{file}}(p);}
-\DoxyCodeLine{00162\ \ \ \ \ \}}
-\DoxyCodeLine{00163\ \}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<std::shared\_ptr<file\_descriptor>}}>\ make\_file\_descriptor(std::filesystem::path\ p,\ std::ios\_base::openmode\ mode);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }file\_stream}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ std::shared\_ptr<file\_descriptor>\ fd;}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ std::atomic<bool>\ closed\{\textcolor{keyword}{false}\};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ file\_stream(std::shared\_ptr<file\_descriptor>\ fd)\ :\ fd(std::move(fd))\ \{\}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ file\_stream(file\_stream\ \&\&other)\ noexcept\ :\ fd(std::exchange(other.fd,\ \textcolor{keyword}{nullptr})),\ closed(other.closed.exchange(\textcolor{keyword}{true}))\ \{\}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ file\_stream\ \&operator=(file\_stream\ \&\&other)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{this}\ !=\ \&other)}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fd\ =\ std::exchange(other.fd,\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closed\ =\ other.closed.exchange(\textcolor{keyword}{true});}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \string~file\_stream()\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fd)}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacewebcraft_1_1async_aa32214c386ded164491af1d325b36e11}{fire\_and\_forget}}(close());}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\ close()\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ expected\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (closed.compare\_exchange\_strong(expected,\ \textcolor{keyword}{true},\ std::memory\_order\_acq\_rel))}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ fd-\/>close();}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream}{file\_rstream}}\ :\ \textcolor{keyword}{public}\ detail::file\_stream}
+\DoxyCodeLine{00083\ \ \ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream_af316878c8f54e26620b81c31a5589996}{file\_rstream}}(std::shared\_ptr<detail::file\_descriptor>\ fd)\ :\ detail::file\_stream(std::move(fd))\ \{\}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream_ad9c540ce4cbadda7b57f53084b6e0a4c}{\string~file\_rstream}}()\ noexcept\ =\ default;}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream}{file\_rstream}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream}{file\_rstream}}\ \&\&rstream)\ noexcept\ =\ default;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream}{file\_rstream}}\ \&operator=(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream}{file\_rstream}}\ \&\&)\ noexcept\ =\ default;}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream}{file\_rstream}}(const\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream}{file\_rstream}}\ \&)\ =\ delete;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream}{file\_rstream}}\ \&operator=(const\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream}{file\_rstream}}\ \&)\ =\ delete;}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}<\textcolor{keywordtype}{size\_t}>\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream_afb263a148b621484b1bc3388a6a43cdd}{recv}}(std::span<\textcolor{keywordtype}{char}>\ buffer)}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ fd-\/>read(buffer);}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<std::optional<char>}}>\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream_afb263a148b621484b1bc3388a6a43cdd}{recv}}()}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ std::array<char,\ 1>\ buf;}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{co\_await}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream_afb263a148b621484b1bc3388a6a43cdd}{recv}}(buf))}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ buf[0];}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ std::nullopt;}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__readable__stream}{async\_readable\_stream<file\_rstream,\ char>}});}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__buffered__readable__stream}{async\_buffered\_readable\_stream<file\_rstream,\ char>}});}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__closeable__stream}{async\_closeable\_stream<file\_rstream,\ char>}});}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream}{file\_wstream}}\ :\ \textcolor{keyword}{public}\ detail::file\_stream}
+\DoxyCodeLine{00119\ \ \ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream_a11dd6b7f5ec1584228dc6d69e6fee53d}{file\_wstream}}(std::shared\_ptr<detail::file\_descriptor>\ fd)\ :\ detail::file\_stream(std::move(fd))\ \{\}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream_a9a006fb3722735ab9871c365439593cd}{\string~file\_wstream}}()\ noexcept\ =\ default;}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream}{file\_wstream}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream}{file\_wstream}}\ \&\&)\ noexcept\ =\ default;}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream}{file\_wstream}}\ \&operator=(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream}{file\_wstream}}\ \&\&)\ noexcept\ =\ default;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream}{file\_wstream}}(const\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream}{file\_wstream}}\ \&)\ =\ delete;}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream}{file\_wstream}}\ \&operator=(const\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream}{file\_wstream}}\ \&)\ =\ delete;}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}<\textcolor{keywordtype}{size\_t}>\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream_a6ddae28821be92050d80133b28860e4a}{send}}(std::span<\textcolor{keywordtype}{char}>\ buffer)}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ fd-\/>write(buffer);}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<bool>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream_a9388248b0b00b31de79967f28c49827a}{send}}(\textcolor{keywordtype}{char}\ b)}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ std::array<char,\ 1>\ buf;}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ buf[0]\ =\ b;}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{co\_await}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream_a6ddae28821be92050d80133b28860e4a}{send}}(buf))}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00146\ \ \ \ \ \};}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__writable__stream}{async\_writable\_stream<file\_wstream,\ char>}});}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__buffered__writable__stream}{async\_buffered\_writable\_stream<file\_wstream,\ char>}});}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__closeable__stream}{async\_closeable\_stream<file\_wstream,\ char>}});}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file}{file}}}
+\DoxyCodeLine{00156\ \ \ \ \ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ std::filesystem::path\ p;}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file_a2cad054bf2c585fbc3b2ec425387961c}{file}}(std::filesystem::path\ p)\ :\ p(std::move(p))\ \{\}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file_abbcefdedeb4a0c02e12be466641a0fa6}{\string~file}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<file\_rstream>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file_aee749147f74f498be86b9272899a9daf}{open\_readable\_stream}}()}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ descriptor\ =\ \textcolor{keyword}{co\_await}\ detail::make\_file\_descriptor(p,\ std::ios\_base::in);}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream}{file\_rstream}}(descriptor);}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<file\_wstream>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file_a3a741aaf01a1f2d8c39ad7e310bcc80f}{open\_writable\_stream}}(\textcolor{keywordtype}{bool}\ append\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ descriptor\ =\ \textcolor{keyword}{co\_await}\ detail::make\_file\_descriptor(p,\ std::ios\_base::out\ |\ (append\ ?\ std::ios\_base::app\ :\ std::ios\_base::trunc));}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream}{file\_wstream}}(descriptor);}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::filesystem::path\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file_a29db0eea8a5e74682c8c4648c2615a89}{get\_path}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ p;\ \}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keyword}{operator}\ \textcolor{keyword}{const}\ std::filesystem::path\ \&()\ \textcolor{keyword}{const}\ \{\ \textcolor{keywordflow}{return}\ p;\ \}}
+\DoxyCodeLine{00180\ \ \ \ \ \};}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file}{file}}\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1fs_a8d8e45ed576cda72f736cd9e66952947}{make\_file}}(std::filesystem::path\ p)}
+\DoxyCodeLine{00184\ \ \ \ \ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file}{file}}(p);}
+\DoxyCodeLine{00186\ \ \ \ \ \}}
+\DoxyCodeLine{00187\ \}}
 
 \end{DoxyCode}

@@ -7,85 +7,84 @@
 \DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (c)\ Aditya\ Rao}}
 \DoxyCodeLine{00005\ \textcolor{comment}{//\ Licenced\ under\ MIT\ license.\ See\ LICENSE.txt\ for\ details.}}
 \DoxyCodeLine{00007\ }
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <coroutine>}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <optional>}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <concepts>}}
-\DoxyCodeLine{00012\ }
-\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacewebcraft_1_1async}{webcraft::async}}}
-\DoxyCodeLine{00014\ \{}
-\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptwebcraft_1_1async_1_1has__member__operator__co__await__v}{has\_member\_operator\_co\_await\_v}}\ =\ \textcolor{keyword}{requires}(T\ \&\&t)\ \{}
-\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \{\ t.operator\ \textcolor{keyword}{co\_await}()\ \};}
-\DoxyCodeLine{00018\ \ \ \ \ \};}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <coroutine>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <concepts>}}
 \DoxyCodeLine{00019\ }
-\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptwebcraft_1_1async_1_1is__awaitable__suspend__type}{is\_awaitable\_suspend\_type}}\ =\ std::same\_as<T,\ void>\ ||\ std::convertible\_to<T,\ bool>\ ||\ std::convertible\_to<T,\ std::coroutine\_handle<>>;}
-\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacewebcraft_1_1async}{webcraft::async}}}
+\DoxyCodeLine{00021\ \{}
 \DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptwebcraft_1_1async_1_1has__awaitable__elements}{has\_awaitable\_elements}}\ =\ \textcolor{keyword}{requires}(T\ \&\&a,\ std::coroutine\_handle<>\ h)\ \{}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \{\ a.await\_ready()\ \}\ -\/>\ std::convertible\_to<bool>;}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \{\ a.await\_suspend(h)\ \}\ -\/>\ \mbox{\hyperlink{conceptwebcraft_1_1async_1_1is__awaitable__suspend__type}{is\_awaitable\_suspend\_type}};}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \{\ a.await\_resume()\ \};}
-\DoxyCodeLine{00028\ \ \ \ \ \};}
-\DoxyCodeLine{00029\ }
-\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptwebcraft_1_1async_1_1has__non__member__operator__co__await__v}{has\_non\_member\_operator\_co\_await\_v}}\ =\ \textcolor{keyword}{requires}(T\ \&\&t)\ \{}
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \{\ \textcolor{keyword}{operator}\ \textcolor{keyword}{co\_await}(t)\ \};}
-\DoxyCodeLine{00033\ \ \ \ \ \};}
-\DoxyCodeLine{00034\ }
-\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptwebcraft_1_1async_1_1awaitable__t}{awaitable\_t}}\ =\ \mbox{\hyperlink{conceptwebcraft_1_1async_1_1has__member__operator__co__await__v}{has\_member\_operator\_co\_await\_v<T>}}\ ||\ \mbox{\hyperlink{conceptwebcraft_1_1async_1_1has__awaitable__elements}{has\_awaitable\_elements<T>}}\ ||\ \mbox{\hyperlink{conceptwebcraft_1_1async_1_1has__non__member__operator__co__await__v}{has\_non\_member\_operator\_co\_await\_v<T>}};}
-\DoxyCodeLine{00037\ }
-\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{namespace\ }detail}
-\DoxyCodeLine{00039\ \ \ \ \ \{}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}(!\mbox{\hyperlink{conceptwebcraft_1_1async_1_1awaitable__t}{awaitable\_t<T>}})}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct}\ basic\_awaiter}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ T\ \&t;}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptwebcraft_1_1async_1_1has__member__operator__co__await__v}{has\_member\_operator\_co\_await\_v}}\ =\ \textcolor{keyword}{requires}(T\ \&\&t)\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \{\ t.operator\ \textcolor{keyword}{co\_await}()\ \};}
+\DoxyCodeLine{00026\ \ \ \ \ \};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptwebcraft_1_1async_1_1is__awaitable__suspend__type}{is\_awaitable\_suspend\_type}}\ =\ std::same\_as<T,\ void>\ ||\ std::convertible\_to<T,\ bool>\ ||\ std::convertible\_to<T,\ std::coroutine\_handle<>>;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptwebcraft_1_1async_1_1has__awaitable__elements}{has\_awaitable\_elements}}\ =\ \textcolor{keyword}{requires}(T\ \&\&a,\ std::coroutine\_handle<>\ h)\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \{\ a.await\_ready()\ \}\ -\/>\ std::convertible\_to<bool>;}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \{\ a.await\_suspend(h)\ \}\ -\/>\ \mbox{\hyperlink{conceptwebcraft_1_1async_1_1is__awaitable__suspend__type}{is\_awaitable\_suspend\_type}};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \{\ a.await\_resume()\ \};}
+\DoxyCodeLine{00038\ \ \ \ \ \};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptwebcraft_1_1async_1_1has__non__member__operator__co__await__v}{has\_non\_member\_operator\_co\_await\_v}}\ =\ \textcolor{keyword}{requires}(T\ \&\&t)\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \{\ \textcolor{keyword}{operator}\ \textcolor{keyword}{co\_await}(t)\ \};}
+\DoxyCodeLine{00044\ \ \ \ \ \};}
 \DoxyCodeLine{00045\ }
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ basic\_awaiter(T\ \&t)\ noexcept\ :\ t(t)\ \{\}}
-\DoxyCodeLine{00047\ }
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ await\_ready()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00052\ }
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ await\_suspend(std::coroutine\_handle<>\ h)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00056\ }
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ T\ await\_resume()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00058\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ }\{}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::forward<T>(t);}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ get\_awaiter(T\ \&\&t)}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\mbox{\hyperlink{conceptwebcraft_1_1async_1_1has__member__operator__co__await__v}{has\_member\_operator\_co\_await\_v<T>}})}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ t.operator\ \textcolor{keyword}{co\_await}();}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\mbox{\hyperlink{conceptwebcraft_1_1async_1_1has__non__member__operator__co__await__v}{has\_non\_member\_operator\_co\_await\_v<T>}})}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{operator}\ \textcolor{keyword}{co\_await}(std::forward<T>(t));}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\mbox{\hyperlink{conceptwebcraft_1_1async_1_1has__awaitable__elements}{has\_awaitable\_elements<T>}})}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::move(t);}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptwebcraft_1_1async_1_1awaitable__t}{awaitable\_t}}\ =\ \mbox{\hyperlink{conceptwebcraft_1_1async_1_1has__member__operator__co__await__v}{has\_member\_operator\_co\_await\_v<T>}}\ ||\ \mbox{\hyperlink{conceptwebcraft_1_1async_1_1has__awaitable__elements}{has\_awaitable\_elements<T>}}\ ||\ \mbox{\hyperlink{conceptwebcraft_1_1async_1_1has__non__member__operator__co__await__v}{has\_non\_member\_operator\_co\_await\_v<T>}};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{namespace\ }detail}
+\DoxyCodeLine{00051\ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}(!\mbox{\hyperlink{conceptwebcraft_1_1async_1_1awaitable__t}{awaitable\_t<T>}})}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct}\ basic\_awaiter}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ T\ \&t;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ basic\_awaiter(T\ \&t)\ noexcept\ :\ t(t)\ \{\}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ await\_ready()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ await\_suspend(std::coroutine\_handle<>\ h)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ T\ await\_resume()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00070\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::forward<T>(t);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ get\_awaiter(T\ \&\&t)}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\mbox{\hyperlink{conceptwebcraft_1_1async_1_1has__member__operator__co__await__v}{has\_member\_operator\_co\_await\_v<T>}})}
 \DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ basic\_awaiter(t);}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ t.operator\ \textcolor{keyword}{co\_await}();}
 \DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00083\ \ \ \ \ \}}
-\DoxyCodeLine{00084\ }
-\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{template}\ <awaitable\_t\ T>}
-\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacewebcraft_1_1async_a756c2303d30320ba433f8aa21010bd01}{awaitable\_resume\_t}}\ =\ \textcolor{keyword}{decltype}(detail::get\_awaiter(std::declval<T>()).await\_resume());}
-\DoxyCodeLine{00087\ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\mbox{\hyperlink{conceptwebcraft_1_1async_1_1has__non__member__operator__co__await__v}{has\_non\_member\_operator\_co\_await\_v<T>}})}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{operator}\ \textcolor{keyword}{co\_await}(std::forward<T>(t));}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\mbox{\hyperlink{conceptwebcraft_1_1async_1_1has__awaitable__elements}{has\_awaitable\_elements<T>}})}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::move(t);}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ basic\_awaiter(t);}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{template}\ <awaitable\_t\ T>}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacewebcraft_1_1async_a756c2303d30320ba433f8aa21010bd01}{awaitable\_resume\_t}}\ =\ \textcolor{keyword}{decltype}(detail::get\_awaiter(std::declval<T>()).await\_resume());}
+\DoxyCodeLine{00100\ \}}
 
 \end{DoxyCode}

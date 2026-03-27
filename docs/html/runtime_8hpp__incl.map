@@ -1,5 +1,5 @@
 <map id="include/webcraft/async/runtime.hpp" name="include/webcraft/async/runtime.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="789,5,960,45"/>
+<area shape="rect" id="Node000001" title="Event runtime and scheduling entry points." alt="" coords="789,5,960,45"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="24,269,111,295"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="816,48,118,268,116,263,814,43"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="956,343,1022,368"/>
@@ -12,11 +12,11 @@
 <area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="789,40,596,69,480,91,360,117,245,149,144,185,101,205,64,226,35,248,14,271,9,283,10,293,16,303,26,312,57,328,93,340,91,345,55,333,23,317,12,306,5,295,3,282,10,268,31,244,61,221,99,200,142,180,244,144,359,112,479,86,595,64,789,34"/>
 <area shape="rect" id="Node000007" title=" " alt="" coords="1245,101,1304,126"/>
 <area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="960,34,1090,55,1163,71,1234,91,1240,93,1238,98,1232,96,1162,76,1089,61,959,39"/>
-<area shape="rect" id="Node000008" href="$task_8hpp.html" title=" " alt="" coords="480,189,660,214"/>
+<area shape="rect" id="Node000008" href="$task_8hpp.html" title="Core coroutine task type used across WebCraft async APIs." alt="" coords="480,189,660,214"/>
 <area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="843,48,603,184,601,180,840,43"/>
-<area shape="rect" id="Node000019" href="$sync__wait_8hpp.html" title=" " alt="" coords="797,93,952,133"/>
+<area shape="rect" id="Node000019" href="$sync__wait_8hpp.html" title="Blocking bridge from awaitables to synchronous callers." alt="" coords="797,93,952,133"/>
 <area shape="poly" id="edge23_Node000001_Node000019" title=" " alt="" coords="877,46,877,79,872,79,872,46"/>
-<area shape="rect" id="Node000020" href="$fire__and__forget__task_8hpp.html" title=" " alt="" coords="685,181,848,221"/>
+<area shape="rect" id="Node000020" href="$fire__and__forget__task_8hpp.html" title="Coroutine return type for detached, non&#45;owning asynchronous work." alt="" coords="685,181,848,221"/>
 <area shape="poly" id="edge26_Node000001_Node000020" title=" " alt="" coords="839,48,811,68,787,95,773,131,769,168,763,167,768,130,783,92,807,64,836,43"/>
 <area shape="poly" id="edge22_Node000008_Node000002" title=" " alt="" coords="491,217,131,272,125,273,124,268,130,267,490,211"/>
 <area shape="poly" id="edge8_Node000008_Node000006" title=" " alt="" coords="481,210,396,217,306,229,228,247,197,258,176,271,165,284,158,298,150,330,144,328,153,297,161,281,173,267,195,254,226,242,305,224,395,212,480,205"/>
@@ -24,9 +24,9 @@
 <area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="542,216,412,267,410,262,540,212"/>
 <area shape="rect" id="Node000010" title=" " alt="" coords="670,343,753,368"/>
 <area shape="poly" id="edge10_Node000008_Node000010" title=" " alt="" coords="620,212,666,232,688,248,706,268,717,298,718,329,713,329,712,299,701,271,685,252,664,237,618,217"/>
-<area shape="rect" id="Node000011" href="$awaitable_8hpp.html" title=" " alt="" coords="186,269,301,295"/>
+<area shape="rect" id="Node000011" href="$awaitable_8hpp.html" title="Awaitable concepts and type traits." alt="" coords="186,269,301,295"/>
 <area shape="poly" id="edge11_Node000008_Node000011" title=" " alt="" coords="524,217,305,269,304,264,522,211"/>
-<area shape="rect" id="Node000013" href="$event__signal_8hpp.html" title=" " alt="" coords="818,269,952,295"/>
+<area shape="rect" id="Node000013" href="$event__signal_8hpp.html" title="Lightweight thread&#45;based signaling primitive for sync waiting." alt="" coords="818,269,952,295"/>
 <area shape="poly" id="edge15_Node000008_Node000013" title=" " alt="" coords="617,211,827,263,825,269,616,217"/>
 <area shape="rect" id="Node000016" title=" " alt="" coords="437,269,517,295"/>
 <area shape="poly" id="edge19_Node000008_Node000016" title=" " alt="" coords="558,216,503,262,500,258,555,212"/>

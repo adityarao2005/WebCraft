@@ -7,150 +7,147 @@
 \DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (c)\ Aditya\ Rao}}
 \DoxyCodeLine{00005\ \textcolor{comment}{//\ Licenced\ under\ MIT\ license.\ See\ LICENSE.txt\ for\ details.}}
 \DoxyCodeLine{00007\ }
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <coroutine>}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <utility>}}
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <exception>}}
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <vector>}}
-\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{task_8hpp}{task.hpp}}"{}}}
-\DoxyCodeLine{00015\ }
-\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacewebcraft_1_1async}{webcraft::async}}}
-\DoxyCodeLine{00017\ \{}
-\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{class\ }task\_completion\_source;}
-\DoxyCodeLine{00020\ }
-\DoxyCodeLine{00021\ \ \ \ \ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <coroutine>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <exception>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{task_8hpp}{task.hpp}}"{}}}
 \DoxyCodeLine{00022\ }
-\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base}{task\_completion\_source\_base}}}
-\DoxyCodeLine{00024\ \ \ \ \ \{}
-\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ std::coroutine\_handle<>\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_aca33f379b44510a1f8899867fe026281}{handle\_}};}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ std::exception\_ptr\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a67e45abc6d49ff3a8dec800dbb230cbc}{exception\_}};}
-\DoxyCodeLine{00028\ }
-\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a7ac12ddd590fa96e48aa3926b4eb8185}{task\_completion\_source\_base}}()\ noexcept\ :\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_aca33f379b44510a1f8899867fe026281}{handle\_}}(),\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a67e45abc6d49ff3a8dec800dbb230cbc}{exception\_}}(\textcolor{keywordtype}{nullptr})\ \{\}}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a3060e5dfceec6ec0134b85aa6a2544bd}{task\_completion\_source\_base}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base}{task\_completion\_source\_base}}\ \&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base}{task\_completion\_source\_base}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a38132e2da3a1b5dfde13c09bad88766e}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base}{task\_completion\_source\_base}}\ \&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a5122efe2cf2c9adfd669d8fa6e764571}{task\_completion\_source\_base}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base}{task\_completion\_source\_base}}\ \&\&other)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00034\ }
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base}{task\_completion\_source\_base}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a635fcc8fa15862d6144241293f5dfad5}{operator=}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base}{task\_completion\_source\_base}}\ \&\&other)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00023\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacewebcraft_1_1async}{webcraft::async}}}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{class\ }task\_completion\_source;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base}{task\_completion\_source\_base}}}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ std::coroutine\_handle<>\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_aca33f379b44510a1f8899867fe026281}{handle\_}};}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ std::exception\_ptr\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a67e45abc6d49ff3a8dec800dbb230cbc}{exception\_}};}
 \DoxyCodeLine{00036\ }
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a304b17845ad637f3e33d8fcb919fe978}{\string~task\_completion\_source\_base}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00038\ }
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_adc2b74e6b23588f553365710b1229be0}{set\_exception}}(std::exception\_ptr\ exception)}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_aca33f379b44510a1f8899867fe026281}{handle\_}}\ \&\&\ !\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_aca33f379b44510a1f8899867fe026281}{handle\_}}.done())}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a67e45abc6d49ff3a8dec800dbb230cbc}{exception\_}}\ =\ std::move(exception);}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_aca33f379b44510a1f8899867fe026281}{handle\_}}.resume();}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::logic\_error(\textcolor{stringliteral}{"{}Task\ completion\ source\ already\ completed"{}});}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00051\ }
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structwebcraft_1_1async_1_1task__completion__source__base_1_1awaitable}{awaitable}}}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base}{task\_completion\_source\_base}}\ *\mbox{\hyperlink{structwebcraft_1_1async_1_1task__completion__source__base_1_1awaitable_a9f6cdb33cb898ff8a44168eb48f35274}{tcs}};}
-\DoxyCodeLine{00055\ }
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__completion__source__base_1_1awaitable_a5353f3f20bc0316608604278d78b0413}{await\_ready}}()\ const\ noexcept}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__completion__source__base_1_1awaitable_a9f6cdb33cb898ff8a44168eb48f35274}{tcs}}-\/>\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_aca33f379b44510a1f8899867fe026281}{handle\_}}\ \&\&\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__completion__source__base_1_1awaitable_a9f6cdb33cb898ff8a44168eb48f35274}{tcs}}-\/>\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_aca33f379b44510a1f8899867fe026281}{handle\_}}.done();}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00060\ }
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__completion__source__base_1_1awaitable_a604e9e369b6edadf28c5361c09b226cd}{await\_suspend}}(std::coroutine\_handle<>\ h)\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__completion__source__base_1_1awaitable_a9f6cdb33cb898ff8a44168eb48f35274}{tcs}}-\/>\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_aca33f379b44510a1f8899867fe026281}{handle\_}}\ =\ h;}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00065\ }
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__completion__source__base_1_1awaitable_a49e3847087937e161be7b97485bf245d}{await\_resume}}()}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00070\ \ \ \ \ \};}
-\DoxyCodeLine{00071\ }
-\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base}{task\_completion\_source\_base}}}
-\DoxyCodeLine{00074\ \ \ \ \ \{}
-\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ std::optional<T>\ value\_;}
-\DoxyCodeLine{00077\ }
-\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_a0bc1c99fc8884263d51c08f535c905b5}{value\_type}}\ =\ T;}
-\DoxyCodeLine{00080\ }
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_adc2b74e6b23588f553365710b1229be0}{task\_completion\_source\_base::set\_exception}};}
-\DoxyCodeLine{00082\ }
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_a9ccbe8058cf5e0fb8b585b979b3630f6}{task\_completion\_source}}()\ noexcept\ :\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base}{task\_completion\_source\_base}}(),\ value\_(std::nullopt)\ \{\}}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_a555a81a87211aa04210e66fd1bbfd375}{task\_completion\_source}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}\ \&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_a78c7f79a1594259aa3c163363b8816d8}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}\ \&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_a729535546f1ef0f763b64e5cab48f27f}{task\_completion\_source}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}\ \&\&other)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_a6aee0027fa1e34032de6f553f04cd801}{operator=}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}\ \&\&other)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00088\ }
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_a0478b2eef7ba4a2d8d02fab95a99ce95}{\string~task\_completion\_source}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00090\ }
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_affb961695f83d4fa8623b924a6c2de4c}{set\_value}}(T\ value)}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_aca33f379b44510a1f8899867fe026281}{handle\_}})}
-\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value\_\ =\ std::move(value);}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_aca33f379b44510a1f8899867fe026281}{handle\_}}.resume();}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::logic\_error(\textcolor{stringliteral}{"{}Task\ completion\ source\ already\ completed"{}});}
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00103\ }
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{webcraft::async::task<T>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_a2e407b053f2e1c130b2e47ed9ae40548}{task}}()}
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__completion__source__base_1_1awaitable}{task\_completion\_source\_base::awaitable}}\{\textcolor{keyword}{this}\};}
-\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a67e45abc6d49ff3a8dec800dbb230cbc}{exception\_}})}
-\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::rethrow\_exception(\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a67e45abc6d49ff3a8dec800dbb230cbc}{exception\_}});}
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ value\_.value();}
-\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00113\ \ \ \ \ \};}
-\DoxyCodeLine{00114\ }
-\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{template}\ <>}
-\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}<void>\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base}{task\_completion\_source\_base}}}
-\DoxyCodeLine{00117\ \ \ \ \ \{}
-\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_3_01void_01_4_a84bd49e22916744fce0f7b8aa627b2cc}{value\_type}}\ =\ void;}
-\DoxyCodeLine{00120\ }
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_adc2b74e6b23588f553365710b1229be0}{task\_completion\_source\_base::set\_exception}};}
-\DoxyCodeLine{00122\ }
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_3_01void_01_4_a1b054a396031132f50fc1c67ed3c7c14}{task\_completion\_source}}()\ noexcept\ :\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base}{task\_completion\_source\_base}}()\ \{\}}
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_3_01void_01_4_a0b0993098877c97fb4a823feb0889a3c}{task\_completion\_source}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}\ \&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_3_01void_01_4_ae9e8a0f92589ff08ba64321d858f8405}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}\ \&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_3_01void_01_4_a57be89c3342d85a935343b4df66c98cc}{task\_completion\_source}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}\ \&\&other)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_3_01void_01_4_aef5422207ec7b10e3c1ac3ea70730f7f}{operator=}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}\ \&\&other)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00128\ }
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_3_01void_01_4_abb03f84db58e9d69d8d75fa39af8b651}{\string~task\_completion\_source}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00130\ }
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_3_01void_01_4_a3d3c0269cca426fb50684f963d15e6c2}{set\_value}}()}
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_aca33f379b44510a1f8899867fe026281}{handle\_}})}
-\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_aca33f379b44510a1f8899867fe026281}{handle\_}}.resume();}
-\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::logic\_error(\textcolor{stringliteral}{"{}Task\ completion\ source\ already\ completed"{}});}
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a7ac12ddd590fa96e48aa3926b4eb8185}{task\_completion\_source\_base}}()\ noexcept\ :\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_aca33f379b44510a1f8899867fe026281}{handle\_}}(),\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a67e45abc6d49ff3a8dec800dbb230cbc}{exception\_}}(\textcolor{keywordtype}{nullptr})\ \{\}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a3060e5dfceec6ec0134b85aa6a2544bd}{task\_completion\_source\_base}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base}{task\_completion\_source\_base}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base}{task\_completion\_source\_base}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a38132e2da3a1b5dfde13c09bad88766e}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base}{task\_completion\_source\_base}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a5122efe2cf2c9adfd669d8fa6e764571}{task\_completion\_source\_base}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base}{task\_completion\_source\_base}}\ \&\&other)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base}{task\_completion\_source\_base}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a635fcc8fa15862d6144241293f5dfad5}{operator=}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base}{task\_completion\_source\_base}}\ \&\&other)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a304b17845ad637f3e33d8fcb919fe978}{\string~task\_completion\_source\_base}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_adc2b74e6b23588f553365710b1229be0}{set\_exception}}(std::exception\_ptr\ exception)}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_aca33f379b44510a1f8899867fe026281}{handle\_}}\ \&\&\ !\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_aca33f379b44510a1f8899867fe026281}{handle\_}}.done())}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a67e45abc6d49ff3a8dec800dbb230cbc}{exception\_}}\ =\ std::move(exception);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_aca33f379b44510a1f8899867fe026281}{handle\_}}.resume();}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::logic\_error(\textcolor{stringliteral}{"{}Task\ completion\ source\ already\ completed"{}});}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structwebcraft_1_1async_1_1task__completion__source__base_1_1awaitable}{awaitable}}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base}{task\_completion\_source\_base}}\ *\mbox{\hyperlink{structwebcraft_1_1async_1_1task__completion__source__base_1_1awaitable_a9f6cdb33cb898ff8a44168eb48f35274}{tcs}};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__completion__source__base_1_1awaitable_a5353f3f20bc0316608604278d78b0413}{await\_ready}}()\ const\ noexcept}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__completion__source__base_1_1awaitable_a9f6cdb33cb898ff8a44168eb48f35274}{tcs}}-\/>\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_aca33f379b44510a1f8899867fe026281}{handle\_}}\ \&\&\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__completion__source__base_1_1awaitable_a9f6cdb33cb898ff8a44168eb48f35274}{tcs}}-\/>\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_aca33f379b44510a1f8899867fe026281}{handle\_}}.done();}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__completion__source__base_1_1awaitable_a604e9e369b6edadf28c5361c09b226cd}{await\_suspend}}(std::coroutine\_handle<>\ h)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__completion__source__base_1_1awaitable_a9f6cdb33cb898ff8a44168eb48f35274}{tcs}}-\/>\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_aca33f379b44510a1f8899867fe026281}{handle\_}}\ =\ h;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__completion__source__base_1_1awaitable_a49e3847087937e161be7b97485bf245d}{await\_resume}}()}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00084\ \ \ \ \ \};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base}{task\_completion\_source\_base}}}
+\DoxyCodeLine{00091\ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ std::optional<T>\ value\_;}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_a0bc1c99fc8884263d51c08f535c905b5}{value\_type}}\ =\ T;}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_adc2b74e6b23588f553365710b1229be0}{task\_completion\_source\_base::set\_exception}};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_a9ccbe8058cf5e0fb8b585b979b3630f6}{task\_completion\_source}}()\ noexcept\ :\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base}{task\_completion\_source\_base}}(),\ value\_(std::nullopt)\ \{\}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_a555a81a87211aa04210e66fd1bbfd375}{task\_completion\_source}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_a78c7f79a1594259aa3c163363b8816d8}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_a729535546f1ef0f763b64e5cab48f27f}{task\_completion\_source}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}\ \&\&other)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_a6aee0027fa1e34032de6f553f04cd801}{operator=}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}\ \&\&other)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_a0478b2eef7ba4a2d8d02fab95a99ce95}{\string~task\_completion\_source}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_affb961695f83d4fa8623b924a6c2de4c}{set\_value}}(T\ value)}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_aca33f379b44510a1f8899867fe026281}{handle\_}})}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value\_\ =\ std::move(value);}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_aca33f379b44510a1f8899867fe026281}{handle\_}}.resume();}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::logic\_error(\textcolor{stringliteral}{"{}Task\ completion\ source\ already\ completed"{}});}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{webcraft::async::task<T>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_a2e407b053f2e1c130b2e47ed9ae40548}{task}}()}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__completion__source__base_1_1awaitable}{task\_completion\_source\_base::awaitable}}\{\textcolor{keyword}{this}\};}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a67e45abc6d49ff3a8dec800dbb230cbc}{exception\_}})}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::rethrow\_exception(\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a67e45abc6d49ff3a8dec800dbb230cbc}{exception\_}});}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ value\_.value();}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00132\ \ \ \ \ \};}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}<void>\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base}{task\_completion\_source\_base}}}
+\DoxyCodeLine{00139\ \ \ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_3_01void_01_4_a84bd49e22916744fce0f7b8aa627b2cc}{value\_type}}\ =\ void;}
 \DoxyCodeLine{00142\ }
-\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{webcraft::async::task<void>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_3_01void_01_4_a06882bca3672085f79a57f4687d49d84}{task}}()}
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__completion__source__base_1_1awaitable}{task\_completion\_source\_base::awaitable}}\{\textcolor{keyword}{this}\};}
-\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a67e45abc6d49ff3a8dec800dbb230cbc}{exception\_}})}
-\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::rethrow\_exception(\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a67e45abc6d49ff3a8dec800dbb230cbc}{exception\_}});}
-\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00151\ \ \ \ \ \};}
-\DoxyCodeLine{00152\ \}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_adc2b74e6b23588f553365710b1229be0}{task\_completion\_source\_base::set\_exception}};}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_3_01void_01_4_a1b054a396031132f50fc1c67ed3c7c14}{task\_completion\_source}}()\ noexcept\ :\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base}{task\_completion\_source\_base}}()\ \{\}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_3_01void_01_4_a0b0993098877c97fb4a823feb0889a3c}{task\_completion\_source}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_3_01void_01_4_ae9e8a0f92589ff08ba64321d858f8405}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_3_01void_01_4_a57be89c3342d85a935343b4df66c98cc}{task\_completion\_source}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}\ \&\&other)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_3_01void_01_4_aef5422207ec7b10e3c1ac3ea70730f7f}{operator=}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{task\_completion\_source}}\ \&\&other)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_3_01void_01_4_abb03f84db58e9d69d8d75fa39af8b651}{\string~task\_completion\_source}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_3_01void_01_4_a3d3c0269cca426fb50684f963d15e6c2}{set\_value}}()}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_aca33f379b44510a1f8899867fe026281}{handle\_}})}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_aca33f379b44510a1f8899867fe026281}{handle\_}}.resume();}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::logic\_error(\textcolor{stringliteral}{"{}Task\ completion\ source\ already\ completed"{}});}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{webcraft::async::task<void>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_3_01void_01_4_a06882bca3672085f79a57f4687d49d84}{task}}()}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__completion__source__base_1_1awaitable}{task\_completion\_source\_base::awaitable}}\{\textcolor{keyword}{this}\};}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a67e45abc6d49ff3a8dec800dbb230cbc}{exception\_}})}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::rethrow\_exception(\mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a67e45abc6d49ff3a8dec800dbb230cbc}{exception\_}});}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00175\ \ \ \ \ \};}
+\DoxyCodeLine{00176\ \}}
 
 \end{DoxyCode}

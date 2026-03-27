@@ -1,23 +1,23 @@
 <map id="include/webcraft/async/fire_and_forget_task.hpp" name="include/webcraft/async/fire_and_forget_task.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="229,5,416,45"/>
-<area shape="rect" id="Node000002" href="$async_8hpp.html" title=" " alt="" coords="104,269,275,309"/>
+<area shape="rect" id="Node000001" title="Coroutine return type for detached, non&#45;owning asynchronous work." alt="" coords="229,5,416,45"/>
+<area shape="rect" id="Node000002" href="$async_8hpp.html" title="Umbrella include for the public asynchronous programming API." alt="" coords="104,269,275,309"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="216,40,159,49,105,61,60,76,33,95,14,126,8,156,15,187,33,220,47,237,64,250,105,270,103,274,62,255,43,240,28,223,10,189,3,156,9,124,29,92,58,71,104,55,158,43,215,35"/>
-<area shape="rect" id="Node000003" href="$fs_8hpp.html" title=" " alt="" coords="43,93,213,133"/>
+<area shape="rect" id="Node000003" href="$fs_8hpp.html" title="Asynchronous filesystem stream abstractions." alt="" coords="43,93,213,133"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="269,53,172,96,170,91,267,48"/>
-<area shape="rect" id="Node000005" href="$socket_8hpp.html" title=" " alt="" coords="237,93,408,133"/>
+<area shape="rect" id="Node000005" href="$socket_8hpp.html" title="Asynchronous TCP/UDP socket stream abstractions." alt="" coords="237,93,408,133"/>
 <area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="325,59,325,93,320,93,320,59"/>
-<area shape="rect" id="Node000006" href="$runtime_8hpp.html" title=" " alt="" coords="432,93,603,133"/>
+<area shape="rect" id="Node000006" href="$runtime_8hpp.html" title="Event runtime and scheduling entry points." alt="" coords="432,93,603,133"/>
 <area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="379,48,476,91,474,96,377,53"/>
-<area shape="rect" id="Node000009" href="$when__any_8hpp.html" title=" " alt="" coords="725,181,896,221"/>
+<area shape="rect" id="Node000009" href="$when__any_8hpp.html" title="Await combinator that resolves when the first awaitable completes." alt="" coords="725,181,896,221"/>
 <area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="430,41,522,62,616,91,709,135,783,179,781,183,707,140,614,96,520,67,429,46"/>
-<area shape="rect" id="Node000004" href="$io_8hpp.html" title=" " alt="" coords="43,181,213,221"/>
+<area shape="rect" id="Node000004" href="$io_8hpp.html" title="Umbrella include for WebCraft async I/O components." alt="" coords="43,181,213,221"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="131,147,131,181,125,181,125,147"/>
 <area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="152,231,178,268,174,271,147,234"/>
 <area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="269,141,172,184,170,179,267,136"/>
 <area shape="poly" id="edge8_Node000006_Node000002" title=" " alt="" coords="419,138,336,160,302,172,277,184,253,203,232,226,202,271,197,268,228,223,250,199,275,179,300,167,335,155,418,133"/>
 <area shape="rect" id="Node000007" href="$event_8hpp.html" title=" " alt="" coords="288,181,459,221"/>
 <area shape="poly" id="edge9_Node000006_Node000007" title=" " alt="" coords="475,143,406,184,404,179,473,138"/>
-<area shape="rect" id="Node000008" href="$webcraft_8hpp.html" title=" " alt="" coords="483,189,701,214"/>
+<area shape="rect" id="Node000008" href="$webcraft_8hpp.html" title="Top&#45;level include for WebCraft runtime bootstrap utilities." alt="" coords="483,189,701,214"/>
 <area shape="poly" id="edge10_Node000006_Node000008" title=" " alt="" coords="545,142,584,186,580,190,541,146"/>
 <area shape="poly" id="edge12_Node000009_Node000002" title=" " alt="" coords="712,224,471,258,275,281,275,276,470,253,711,219"/>
 </map>

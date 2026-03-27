@@ -5,6 +5,13 @@
 // Licenced under MIT license. See LICENSE.txt for details.
 ///////////////////////////////////////////////////////////////////////////////
 
+/**
+ * @file async/event_signal.hpp
+ * @brief Lightweight thread-based signaling primitive for sync waiting.
+ *
+ * `event_signal` is used by helper utilities such as `sync_wait()` to bridge
+ * coroutine completion to blocking caller code.
+ */
 
 #include <atomic>
 #include <chrono>
@@ -13,6 +20,9 @@
 namespace webcraft::async
 {
 
+    /**
+     * @brief Utility base class that disables copying and moving.
+     */
     class immovable
     {
     public:
@@ -25,29 +35,40 @@ namespace webcraft::async
         ~immovable() = default;
     };
 
+    /**
+     * @brief Busy-wait signal for synchronously waiting on async completion.
+     */
     class event_signal : public immovable
     {
     private:
         std::atomic<bool> flag;
 
     public:
+        /** @brief Constructs an unset signal. */
         event_signal() : flag(false) {}
 
+        /** @brief Sets the signal state to true. */
         void set() noexcept
         {
             flag.store(true, std::memory_order_release);
         }
 
+        /** @brief Resets the signal state to false. */
         void reset() noexcept
         {
             flag.store(false, std::memory_order_release);
         }
 
+        /** @brief Returns true when the signal is set. */
         bool is_set() const noexcept
         {
             return flag.load(std::memory_order_acquire);
         }
 
+        /**
+         * @brief Waits up to a timeout for the signal to be set.
+         * @return `true` if the signal was set before timeout, otherwise `false`.
+         */
         bool wait_for(std::chrono::milliseconds timeout) const
         {
             auto start = std::chrono::steady_clock::now();
@@ -62,6 +83,10 @@ namespace webcraft::async
             return true; // Signal was set
         }
 
+        /**
+         * @brief Blocks until the signal is set.
+         * @return Always returns `true` once signaled.
+         */
         bool wait() const
         {
             while (!is_set())
@@ -71,11 +96,13 @@ namespace webcraft::async
             return true; // Signal was set
         }
 
+        /** @brief Function-call shorthand for `is_set()`. */
         bool operator()() const
         {
             return is_set();
         }
 
+        /** @brief Bool conversion shorthand for `is_set()`. */
         explicit operator bool() const
         {
             return is_set();

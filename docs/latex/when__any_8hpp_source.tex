@@ -7,153 +7,152 @@
 \DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (c)\ Aditya\ Rao}}
 \DoxyCodeLine{00005\ \textcolor{comment}{//\ Licenced\ under\ MIT\ license.\ See\ LICENSE.txt\ for\ details.}}
 \DoxyCodeLine{00007\ }
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <coroutine>}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{async__event_8hpp}{webcraft/async/async\_event.hpp}}>}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{when__all_8hpp}{webcraft/async/when\_all.hpp}}>}}
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{fire__and__forget__task_8hpp}{webcraft/async/fire\_and\_forget\_task.hpp}}>}}
-\DoxyCodeLine{00013\ }
-\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacewebcraft_1_1async}{webcraft::async}}}
-\DoxyCodeLine{00015\ \{}
-\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{namespace\ }detail}
-\DoxyCodeLine{00017\ \ \ \ \ \{}
-\DoxyCodeLine{00018\ }
-\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <awaitable\_t\ Awaitable>}
-\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ std::same\_as<awaitable\_resume\_t<Awaitable>,\ \textcolor{keywordtype}{void}>}
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ task<void>\ wait\_and\_trigger(Awaitable\ \&\&awaitable,\ async\_event\ \&evt,\ std::atomic<bool>\ \&winner)}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ awaitable;}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ expected\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (winner.compare\_exchange\_strong(expected,\ \textcolor{keyword}{true},\ std::memory\_order\_acq\_rel))}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ evt.set();\ \textcolor{comment}{//\ Notify\ the\ event}}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return};}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <std::ranges::input\_range\ Range,}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T\ =\ std::ranges::range\_value\_t<Range>,}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ Result\ =\ awaitable\_resume\_t<T>>}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ awaitable\_t<T>\ \&\&\ std::same\_as<Result,\ void>}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ fire\_and\_forget\_task\ when\_any\_controller(Range\ \&\&tasks,\ async\_event\ \&event)}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ std::atomic<bool>\ winner\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<task<void>>\ wait\_tasks;}
-\DoxyCodeLine{00040\ }
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\&task\ :\ tasks)}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ wait\_tasks.emplace\_back(wait\_and\_trigger(std::forward<\textcolor{keyword}{decltype}(task)>(task),\ event,\ winner));}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00045\ }
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ \mbox{\hyperlink{namespacewebcraft_1_1async_adefc58a669759c7bf7067728c34cfbf5}{when\_all}}(wait\_tasks);}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return};}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00049\ }
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <awaitable\_t\ Awaitable,\ \textcolor{keyword}{typename}\ Result\ =\ awaitable\_resume\_t<Awaitable>>}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}(!std::same\_as<Result,\ void>)}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ task<void>\ wait\_and\_trigger(Awaitable\ \&\&awaitable,\ async\_event\ \&evt,\ std::atomic<bool>\ \&winner,\ std::optional<Result>\ \&opt)}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ value\ =\ \textcolor{keyword}{co\_await}\ awaitable;}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ expected\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (winner.compare\_exchange\_strong(expected,\ \textcolor{keyword}{true},\ std::memory\_order\_acq\_rel))}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ opt\ =\ std::forward<Result>(value);}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ evt.set();\ \textcolor{comment}{//\ Notify\ the\ event}}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return};}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00063\ }
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <std::ranges::input\_range\ Range,}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T\ =\ std::ranges::range\_value\_t<Range>,}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ Result\ =\ awaitable\_resume\_t<T>>}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ awaitable\_t<T>\ \&\&\ (!std::same\_as<Result,\ void>)}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ fire\_and\_forget\_task\ when\_any\_controller(Range\ \&\&tasks,\ async\_event\ \&event,\ std::optional<Result>\ \&opt)}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ std::atomic<bool>\ winner\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<task<void>>\ wait\_tasks;}
-\DoxyCodeLine{00072\ }
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\&task\ :\ tasks)}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ wait\_tasks.emplace\_back(wait\_and\_trigger(std::forward<\textcolor{keyword}{decltype}(task)>(task),\ event,\ winner,\ opt));}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00077\ }
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ \mbox{\hyperlink{namespacewebcraft_1_1async_adefc58a669759c7bf7067728c34cfbf5}{when\_all}}(wait\_tasks);}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return};}
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00081\ }
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <awaitable\_t...\ Awaitable>}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ fire\_and\_forget\_task\ when\_any\_controller\_tuple(async\_event\ \&event,\ std::optional<std::variant<normalized\_result\_t<Awaitable>...>>\ \&opt,\ Awaitable\ \&\&...t)}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ std::atomic<bool>\ winner\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<task<void>>\ wait\_tasks;}
-\DoxyCodeLine{00087\ }
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ decorator\ =\ [\&](\textcolor{keyword}{auto}\ \&\&t)\ -\/>\ task<void>}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }Result\ =\ \mbox{\hyperlink{namespacewebcraft_1_1async_a756c2303d30320ba433f8aa21010bd01}{awaitable\_resume\_t}}<\textcolor{keyword}{decltype}(t)>;}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_void\_v<Result>)}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ t;}
-\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ expected\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (winner.compare\_exchange\_strong(expected,\ \textcolor{keyword}{true},\ std::memory\_order\_acq\_rel))}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ opt\ =\ std::monostate\{\};\ \textcolor{comment}{//\ If\ already\ won,\ set\ to\ monostate}}
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ already\ won,\ do\ nothing}}
-\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ value\ =\ \textcolor{keyword}{co\_await}\ t;}
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ expected\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (winner.compare\_exchange\_strong(expected,\ \textcolor{keyword}{true},\ std::memory\_order\_acq\_rel))}
-\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ opt\ =\ std::forward<Result>(value);}
-\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{event}.set();\ \textcolor{comment}{//\ Notify\ the\ event}}
-\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00112\ }
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ \mbox{\hyperlink{namespacewebcraft_1_1async_adefc58a669759c7bf7067728c34cfbf5}{when\_all}}(std::make\_tuple(decorator(std::forward<Awaitable>(t))...));}
-\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return};}
-\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00116\ \ \ \ \ \}}
-\DoxyCodeLine{00117\ }
-\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{template}\ <std::ranges::input\_range\ Range,}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T\ =\ std::ranges::range\_value\_t<Range>,}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ Result\ =\ awaitable\_resume\_t<T>>}
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ awaitable\_t<T>}
-\DoxyCodeLine{00122\ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<Result>}}\ \mbox{\hyperlink{namespacewebcraft_1_1async_a2c5d38e8801b57b1ab7200366a8e22dc}{when\_any}}(Range\ \&\&tasks)}
-\DoxyCodeLine{00123\ \ \ \ \ \{}
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structwebcraft_1_1async_1_1async__event}{async\_event}}\ event;}
-\DoxyCodeLine{00125\ }
-\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_void\_v<Result>)}
-\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ detail::when\_any\_controller(std::forward<Range>(tasks),\ event);}
-\DoxyCodeLine{00129\ }
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ event;}
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return};}
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ std::optional<Result>\ result;}
-\DoxyCodeLine{00136\ }
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ detail::when\_any\_controller(std::forward<Range>(tasks),\ event,\ result);}
-\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ event;}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <coroutine>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{async__event_8hpp}{webcraft/async/async\_event.hpp}}>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{when__all_8hpp}{webcraft/async/when\_all.hpp}}>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{fire__and__forget__task_8hpp}{webcraft/async/fire\_and\_forget\_task.hpp}}>}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacewebcraft_1_1async}{webcraft::async}}}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{namespace\ }detail}
+\DoxyCodeLine{00024\ \ \ \ \ \{}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <awaitable\_t\ Awaitable>}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ std::same\_as<awaitable\_resume\_t<Awaitable>,\ \textcolor{keywordtype}{void}>}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ task<void>\ wait\_and\_trigger(Awaitable\ \&\&awaitable,\ async\_event\ \&evt,\ std::atomic<bool>\ \&winner)}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ awaitable;}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ expected\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (winner.compare\_exchange\_strong(expected,\ \textcolor{keyword}{true},\ std::memory\_order\_acq\_rel))}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ evt.set();\ \textcolor{comment}{//\ Notify\ the\ event}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <std::ranges::input\_range\ Range,}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T\ =\ std::ranges::range\_value\_t<Range>,}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ Result\ =\ awaitable\_resume\_t<T>>}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ awaitable\_t<T>\ \&\&\ std::same\_as<Result,\ void>}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ fire\_and\_forget\_task\ when\_any\_controller(Range\ \&\&tasks,\ async\_event\ \&event)}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ std::atomic<bool>\ winner\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<task<void>>\ wait\_tasks;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\&task\ :\ tasks)}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ wait\_tasks.emplace\_back(wait\_and\_trigger(std::forward<\textcolor{keyword}{decltype}(task)>(task),\ event,\ winner));}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ \mbox{\hyperlink{namespacewebcraft_1_1async_adefc58a669759c7bf7067728c34cfbf5}{when\_all}}(wait\_tasks);}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return};}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <awaitable\_t\ Awaitable,\ \textcolor{keyword}{typename}\ Result\ =\ awaitable\_resume\_t<Awaitable>>}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}(!std::same\_as<Result,\ void>)}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ task<void>\ wait\_and\_trigger(Awaitable\ \&\&awaitable,\ async\_event\ \&evt,\ std::atomic<bool>\ \&winner,\ std::optional<Result>\ \&opt)}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ value\ =\ \textcolor{keyword}{co\_await}\ awaitable;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ expected\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (winner.compare\_exchange\_strong(expected,\ \textcolor{keyword}{true},\ std::memory\_order\_acq\_rel))}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ opt\ =\ std::forward<Result>(value);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ evt.set();\ \textcolor{comment}{//\ Notify\ the\ event}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return};}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <std::ranges::input\_range\ Range,}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T\ =\ std::ranges::range\_value\_t<Range>,}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ Result\ =\ awaitable\_resume\_t<T>>}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ awaitable\_t<T>\ \&\&\ (!std::same\_as<Result,\ void>)}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ fire\_and\_forget\_task\ when\_any\_controller(Range\ \&\&tasks,\ async\_event\ \&event,\ std::optional<Result>\ \&opt)}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ std::atomic<bool>\ winner\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<task<void>>\ wait\_tasks;}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\&task\ :\ tasks)}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ wait\_tasks.emplace\_back(wait\_and\_trigger(std::forward<\textcolor{keyword}{decltype}(task)>(task),\ event,\ winner,\ opt));}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ \mbox{\hyperlink{namespacewebcraft_1_1async_adefc58a669759c7bf7067728c34cfbf5}{when\_all}}(wait\_tasks);}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return};}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <awaitable\_t...\ Awaitable>}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ fire\_and\_forget\_task\ when\_any\_controller\_tuple(async\_event\ \&event,\ std::optional<std::variant<normalized\_result\_t<Awaitable>...>>\ \&opt,\ Awaitable\ \&\&...t)}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ std::atomic<bool>\ winner\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<task<void>>\ wait\_tasks;}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ decorator\ =\ [\&](\textcolor{keyword}{auto}\ \&\&t)\ -\/>\ task<void>}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }Result\ =\ \mbox{\hyperlink{namespacewebcraft_1_1async_a756c2303d30320ba433f8aa21010bd01}{awaitable\_resume\_t}}<\textcolor{keyword}{decltype}(t)>;}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_void\_v<Result>)}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ t;}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ expected\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (winner.compare\_exchange\_strong(expected,\ \textcolor{keyword}{true},\ std::memory\_order\_acq\_rel))}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ opt\ =\ std::monostate\{\};\ \textcolor{comment}{//\ If\ already\ won,\ set\ to\ monostate}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ already\ won,\ do\ nothing}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ value\ =\ \textcolor{keyword}{co\_await}\ t;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ expected\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (winner.compare\_exchange\_strong(expected,\ \textcolor{keyword}{true},\ std::memory\_order\_acq\_rel))}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ opt\ =\ std::forward<Result>(value);}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{event}.set();\ \textcolor{comment}{//\ Notify\ the\ event}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ \mbox{\hyperlink{namespacewebcraft_1_1async_adefc58a669759c7bf7067728c34cfbf5}{when\_all}}(std::make\_tuple(decorator(std::forward<Awaitable>(t))...));}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return};}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00123\ \ \ \ \ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{template}\ <std::ranges::input\_range\ Range,}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T\ =\ std::ranges::range\_value\_t<Range>,}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ Result\ =\ awaitable\_resume\_t<T>>}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ awaitable\_t<T>}
+\DoxyCodeLine{00132\ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<Result>}}\ \mbox{\hyperlink{namespacewebcraft_1_1async_a2c5d38e8801b57b1ab7200366a8e22dc}{when\_any}}(Range\ \&\&tasks)}
+\DoxyCodeLine{00133\ \ \ \ \ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structwebcraft_1_1async_1_1async__event}{async\_event}}\ event;}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_void\_v<Result>)}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ detail::when\_any\_controller(std::forward<Range>(tasks),\ event);}
 \DoxyCodeLine{00139\ }
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ result.value();}
-\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00142\ \ \ \ \ \}}
-\DoxyCodeLine{00143\ }
-\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{template}\ <awaitable\_t...\ Tasks>}
-\DoxyCodeLine{00145\ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<std::variant<normalized\_result\_t<Tasks>}}...>>\ \mbox{\hyperlink{namespacewebcraft_1_1async_a2c5d38e8801b57b1ab7200366a8e22dc}{when\_any}}(Tasks\ \&\&...tasks)}
-\DoxyCodeLine{00146\ \ \ \ \ \{}
-\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_variant\_t\ =\ std::variant<normalized\_result\_t<Tasks>...>;}
-\DoxyCodeLine{00148\ }
-\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structwebcraft_1_1async_1_1async__event}{async\_event}}\ event;}
-\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ std::optional<result\_variant\_t>\ result;}
-\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ detail::when\_any\_controller\_tuple(event,\ result,\ std::forward<Tasks>(tasks)...);}
-\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ event;}
-\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ std::move(result.value());}
-\DoxyCodeLine{00154\ \ \ \ \ \}}
-\DoxyCodeLine{00155\ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ event;}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return};}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ std::optional<Result>\ result;}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ detail::when\_any\_controller(std::forward<Range>(tasks),\ event,\ result);}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ event;}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ result.value();}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00152\ \ \ \ \ \}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{template}\ <awaitable\_t...\ Tasks>}
+\DoxyCodeLine{00158\ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<std::variant<normalized\_result\_t<Tasks>}}...>>\ \mbox{\hyperlink{namespacewebcraft_1_1async_a2c5d38e8801b57b1ab7200366a8e22dc}{when\_any}}(Tasks\ \&\&...tasks)}
+\DoxyCodeLine{00159\ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }result\_variant\_t\ =\ std::variant<normalized\_result\_t<Tasks>...>;}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structwebcraft_1_1async_1_1async__event}{async\_event}}\ event;}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ std::optional<result\_variant\_t>\ result;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ detail::when\_any\_controller\_tuple(event,\ result,\ std::forward<Tasks>(tasks)...);}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ event;}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ std::move(result.value());}
+\DoxyCodeLine{00167\ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \}}
 
 \end{DoxyCode}

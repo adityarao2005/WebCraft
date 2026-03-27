@@ -5,6 +5,14 @@
 // Licenced under MIT license. See LICENSE.txt for details.
 ///////////////////////////////////////////////////////////////////////////////
 
+/**
+ * @file async/io/core.hpp
+ * @brief Core async stream concepts and adapters.
+ *
+ * Defines the readable/writable stream concepts used by WebCraft async I/O,
+ * plus helper wrappers for integrating coroutine generators with streams.
+ */
+
 #include <utility>
 #include <concepts>
 #include <optional>
@@ -18,40 +26,48 @@
 
 namespace webcraft::async::io
 {
+    /** @brief Constraint that excludes `void` element types. */
     template <typename T>
     concept non_void_v = !std::is_void_v<T>;
 
+    /** @brief Concept for streams exposing `recv()` that yields optional values. */
     template <typename Derived, typename R>
     concept async_readable_stream = std::is_move_constructible_v<Derived> && requires(Derived &stream) {
         { stream.recv() } -> std::same_as<task<std::optional<R>>>;
     };
 
+    /** @brief Concept for readable streams that also support buffered receives. */
     template <typename Derived, typename R>
     concept async_buffered_readable_stream = async_readable_stream<Derived, R> && requires(Derived &stream, std::span<R> buffer) {
         { stream.recv(buffer) } -> std::same_as<task<std::size_t>>;
     };
 
+    /** @brief Concept for streams exposing `send(value)` operations. */
     template <typename Derived, typename R>
     concept async_writable_stream = std::is_move_constructible_v<Derived> && requires(Derived &stream, R value) {
         { stream.send(value) } -> std::same_as<task<bool>>;
     };
 
+    /** @brief Concept for writable streams that also support buffered sends. */
     template <typename Derived, typename R>
     concept async_buffered_writable_stream = async_writable_stream<Derived, R> && requires(Derived &stream, std::span<R> buffer) {
         { stream.send(buffer) } -> std::same_as<task<size_t>>;
     };
 
+    /** @brief Concept for streams that provide asynchronous `close()`. */
     template <typename Derived, typename R>
     concept async_closeable_stream = (async_readable_stream<Derived, R> || async_writable_stream<Derived, R>) && requires(Derived t) {
         { t.close() } -> std::same_as<task<void>>;
     };
 
+    /** @brief Receives the next element from a readable stream. */
     template <typename R>
     auto recv(async_readable_stream<R> auto &stream)
     {
         return stream.recv();
     }
 
+    /** @brief Receives up to `buffer.size()` elements into a caller-provided buffer. */
     template <typename R, async_readable_stream<R> RStream, size_t BufferSize>
     task<std::size_t> recv(RStream &stream, std::span<R, BufferSize> buffer)
     {
@@ -76,12 +92,14 @@ namespace webcraft::async::io
         }
     }
 
+    /** @brief Sends one value to a writable stream. */
     template <typename R, async_writable_stream<R> WStream>
     task<bool> send(WStream &stream, R &&value)
     {
         co_return co_await stream.send(std::forward<R>(value));
     }
 
+    /** @brief Sends values from a caller-provided buffer to a writable stream. */
     template <typename R, async_writable_stream<R> WStream, size_t BufferSize>
     task<size_t> send(WStream &stream, std::span<R, BufferSize> buffer)
     {
@@ -106,6 +124,7 @@ namespace webcraft::async::io
         }
     }
 
+    /** @brief Wraps a readable stream as an async generator. */
     template <typename R, async_readable_stream<R> RStream>
     async_generator<R> to_async_generator(RStream &&stream)
     {
@@ -121,6 +140,7 @@ namespace webcraft::async::io
         co_return;
     }
 
+    /** @brief Wraps an async generator with the readable stream interface. */
     template <typename R>
     async_readable_stream<R> auto to_readable_stream(async_generator<R> &&gen)
     {
@@ -291,6 +311,10 @@ namespace webcraft::async::io
         static_assert(async_closeable_stream<mpsc_channel_wstream<std::string>, std::string>, "mpsc_channel_wstream should be an async closeable stream");
     }
 
+    /**
+     * @brief Creates an in-memory single-consumer async channel.
+     * @return Pair of readable and writable stream endpoints.
+     */
     template <non_void_v T>
     std::pair<detail::mpsc_channel_rstream<T>, detail::mpsc_channel_wstream<T>> make_mpsc_channel()
     {

@@ -110,40 +110,53 @@ Namespaces</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="concepts" name="concepts"></a>
 Concepts</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptwebcraft_1_1async_1_1io_1_1non__void__v.html">non_void_v</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constraint that excludes <code>void</code> element types. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptwebcraft_1_1async_1_1io_1_1async__readable__stream.html">async_readable_stream</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concept for streams exposing <code>recv()</code> that yields optional values. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptwebcraft_1_1async_1_1io_1_1async__buffered__readable__stream.html">async_buffered_readable_stream</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concept for readable streams that also support buffered receives. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptwebcraft_1_1async_1_1io_1_1async__writable__stream.html">async_writable_stream</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concept for streams exposing <code>send(value)</code> operations. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptwebcraft_1_1async_1_1io_1_1async__buffered__writable__stream.html">async_buffered_writable_stream</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concept for writable streams that also support buffered sends. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptwebcraft_1_1async_1_1io_1_1async__closeable__stream.html">async_closeable_stream</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concept for streams that provide asynchronous <code>close()</code>. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:aaaf5c2dda44d2ea9c9518aa85bf729c1" id="r_aaaf5c2dda44d2ea9c9518aa85bf729c1"><td class="memTemplParams" colspan="2">template&lt;typename R &gt; </td></tr>
 <tr class="memitem:aaaf5c2dda44d2ea9c9518aa85bf729c1"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io.html#aaaf5c2dda44d2ea9c9518aa85bf729c1">recv</a> (async_readable_stream&lt; R &gt; auto &amp;stream)</td></tr>
+<tr class="memdesc:aaaf5c2dda44d2ea9c9518aa85bf729c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receives the next element from a readable stream.  <br /></td></tr>
 <tr class="separator:aaaf5c2dda44d2ea9c9518aa85bf729c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a606eb85e8e29b7e92a82e546a2da6ded" id="r_a606eb85e8e29b7e92a82e546a2da6ded"><td class="memTemplParams" colspan="2">template&lt;typename R , async_readable_stream&lt; R &gt; RStream, size_t BufferSize&gt; </td></tr>
 <tr class="memitem:a606eb85e8e29b7e92a82e546a2da6ded"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; std::size_t &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io.html#a606eb85e8e29b7e92a82e546a2da6ded">recv</a> (RStream &amp;stream, std::span&lt; R, BufferSize &gt; buffer)</td></tr>
+<tr class="memdesc:a606eb85e8e29b7e92a82e546a2da6ded"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receives up to <code>buffer.size()</code> elements into a caller-provided buffer.  <br /></td></tr>
 <tr class="separator:a606eb85e8e29b7e92a82e546a2da6ded"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2b81544adcc4ba129f31b5797a43670" id="r_af2b81544adcc4ba129f31b5797a43670"><td class="memTemplParams" colspan="2">template&lt;typename R , async_writable_stream&lt; R &gt; WStream&gt; </td></tr>
 <tr class="memitem:af2b81544adcc4ba129f31b5797a43670"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; bool &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io.html#af2b81544adcc4ba129f31b5797a43670">send</a> (WStream &amp;stream, R &amp;&amp;value)</td></tr>
+<tr class="memdesc:af2b81544adcc4ba129f31b5797a43670"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends one value to a writable stream.  <br /></td></tr>
 <tr class="separator:af2b81544adcc4ba129f31b5797a43670"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a551b9756fc5af8a9a79973bb95c6c7b6" id="r_a551b9756fc5af8a9a79973bb95c6c7b6"><td class="memTemplParams" colspan="2">template&lt;typename R , async_writable_stream&lt; R &gt; WStream, size_t BufferSize&gt; </td></tr>
 <tr class="memitem:a551b9756fc5af8a9a79973bb95c6c7b6"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; size_t &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io.html#a551b9756fc5af8a9a79973bb95c6c7b6">send</a> (WStream &amp;stream, std::span&lt; R, BufferSize &gt; buffer)</td></tr>
+<tr class="memdesc:a551b9756fc5af8a9a79973bb95c6c7b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends values from a caller-provided buffer to a writable stream.  <br /></td></tr>
 <tr class="separator:a551b9756fc5af8a9a79973bb95c6c7b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e1420555f9b1c5e37aecdf9086d972d" id="r_a7e1420555f9b1c5e37aecdf9086d972d"><td class="memTemplParams" colspan="2">template&lt;typename R , async_readable_stream&lt; R &gt; RStream&gt; </td></tr>
 <tr class="memitem:a7e1420555f9b1c5e37aecdf9086d972d"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classcppcoro_1_1async__generator.html">async_generator</a>&lt; R &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io.html#a7e1420555f9b1c5e37aecdf9086d972d">to_async_generator</a> (RStream &amp;&amp;stream)</td></tr>
+<tr class="memdesc:a7e1420555f9b1c5e37aecdf9086d972d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps a readable stream as an async generator.  <br /></td></tr>
 <tr class="separator:a7e1420555f9b1c5e37aecdf9086d972d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65fdb2f3bc3e4af76fe30526dcb1e4b1" id="r_a65fdb2f3bc3e4af76fe30526dcb1e4b1"><td class="memTemplParams" colspan="2">template&lt;typename R &gt; </td></tr>
 <tr class="memitem:a65fdb2f3bc3e4af76fe30526dcb1e4b1"><td class="memTemplItemLeft" align="right" valign="top">async_readable_stream&lt; R &gt; auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io.html#a65fdb2f3bc3e4af76fe30526dcb1e4b1">to_readable_stream</a> (<a class="el" href="classcppcoro_1_1async__generator.html">async_generator</a>&lt; R &gt; &amp;&amp;gen)</td></tr>
+<tr class="memdesc:a65fdb2f3bc3e4af76fe30526dcb1e4b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps an async generator with the readable stream interface.  <br /></td></tr>
 <tr class="separator:a65fdb2f3bc3e4af76fe30526dcb1e4b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa003ed11d50d57e182d6b5b42151f88b" id="r_aa003ed11d50d57e182d6b5b42151f88b"><td class="memTemplParams" colspan="2">template&lt;non_void_v T&gt; </td></tr>
 <tr class="memitem:aa003ed11d50d57e182d6b5b42151f88b"><td class="memTemplItemLeft" align="right" valign="top">std::pair&lt; detail::mpsc_channel_rstream&lt; T &gt;, detail::mpsc_channel_wstream&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io.html#aa003ed11d50d57e182d6b5b42151f88b">make_mpsc_channel</a> ()</td></tr>
+<tr class="memdesc:aa003ed11d50d57e182d6b5b42151f88b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an in-memory single-consumer async channel.  <br /></td></tr>
 <tr class="separator:aa003ed11d50d57e182d6b5b42151f88b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -164,6 +177,9 @@ template&lt;non_void_v T&gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Creates an in-memory single-consumer async channel. </p>
+<dl class="section return"><dt>Returns</dt><dd>Pair of readable and writable stream endpoints. </dd></dl>
+
 </div>
 </div>
 <a id="aaaf5c2dda44d2ea9c9518aa85bf729c1" name="aaaf5c2dda44d2ea9c9518aa85bf729c1"></a>
@@ -183,6 +199,8 @@ template&lt;typename R &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Receives the next element from a readable stream. </p>
 
 </div>
 </div>
@@ -214,6 +232,8 @@ template&lt;typename R , async_readable_stream&lt; R &gt; RStream, size_t Buffer
       </table>
 </div><div class="memdoc">
 
+<p>Receives up to <code>buffer.size()</code> elements into a caller-provided buffer. </p>
+
 </div>
 </div>
 <a id="af2b81544adcc4ba129f31b5797a43670" name="af2b81544adcc4ba129f31b5797a43670"></a>
@@ -243,6 +263,8 @@ template&lt;typename R , async_writable_stream&lt; R &gt; WStream&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Sends one value to a writable stream. </p>
 
 </div>
 </div>
@@ -274,6 +296,8 @@ template&lt;typename R , async_writable_stream&lt; R &gt; WStream, size_t Buffer
       </table>
 </div><div class="memdoc">
 
+<p>Sends values from a caller-provided buffer to a writable stream. </p>
+
 </div>
 </div>
 <a id="a7e1420555f9b1c5e37aecdf9086d972d" name="a7e1420555f9b1c5e37aecdf9086d972d"></a>
@@ -294,6 +318,8 @@ template&lt;typename R , async_readable_stream&lt; R &gt; RStream&gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Wraps a readable stream as an async generator. </p>
+
 </div>
 </div>
 <a id="a65fdb2f3bc3e4af76fe30526dcb1e4b1" name="a65fdb2f3bc3e4af76fe30526dcb1e4b1"></a>
@@ -313,6 +339,8 @@ template&lt;typename R &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Wraps an async generator with the readable stream interface. </p>
 
 </div>
 </div>

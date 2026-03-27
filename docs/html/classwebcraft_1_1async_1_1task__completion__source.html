@@ -98,14 +98,17 @@ $(document).ready(function(){initNavTree('classwebcraft_1_1async_1_1task__comple
 </div><!--header-->
 <div class="contents">
 
+<p>Manual completion source for <code>task&lt;T&gt;</code>.  
+ <a href="classwebcraft_1_1async_1_1task__completion__source.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="task__completion__source_8hpp_source.html">task_completion_source.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for webcraft::async::task_completion_source&lt; T &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classwebcraft_1_1async_1_1task__completion__source__inherit__graph.png" border="0" usemap="#awebcraft_1_1async_1_1task__completion__source_3_01T_01_4_inherit__map" alt="Inheritance graph"/></div>
 <map name="awebcraft_1_1async_1_1task__completion__source_3_01T_01_4_inherit__map" id="awebcraft_1_1async_1_1task__completion__source_3_01T_01_4_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,93,196,133"/>
-<area shape="rect" href="classwebcraft_1_1async_1_1task__completion__source__base.html" title=" " alt="" coords="5,5,196,45"/>
+<area shape="rect" title="Manual completion source for task&lt;T&gt;." alt="" coords="5,93,196,133"/>
+<area shape="rect" href="classwebcraft_1_1async_1_1task__completion__source__base.html" title="Shared state for manual task completion sources." alt="" coords="5,5,196,45"/>
 <area shape="poly" title=" " alt="" coords="103,59,103,93,98,93,98,59"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -114,8 +117,8 @@ Collaboration diagram for webcraft::async::task_completion_source&lt; T &gt;:</d
 <div class="dyncontent">
 <div class="center"><img src="classwebcraft_1_1async_1_1task__completion__source__coll__graph.png" border="0" usemap="#awebcraft_1_1async_1_1task__completion__source_3_01T_01_4_coll__map" alt="Collaboration graph"/></div>
 <map name="awebcraft_1_1async_1_1task__completion__source_3_01T_01_4_coll__map" id="awebcraft_1_1async_1_1task__completion__source_3_01T_01_4_coll__map">
-<area shape="rect" title=" " alt="" coords="5,93,196,133"/>
-<area shape="rect" href="classwebcraft_1_1async_1_1task__completion__source__base.html" title=" " alt="" coords="5,5,196,45"/>
+<area shape="rect" title="Manual completion source for task&lt;T&gt;." alt="" coords="5,93,196,133"/>
+<area shape="rect" href="classwebcraft_1_1async_1_1task__completion__source__base.html" title="Shared state for manual task completion sources." alt="" coords="5,5,196,45"/>
 <area shape="poly" title=" " alt="" coords="103,59,103,93,98,93,98,59"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -140,10 +143,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0478b2eef7ba4a2d8d02fab95a99ce95" id="r_a0478b2eef7ba4a2d8d02fab95a99ce95"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1task__completion__source.html#a0478b2eef7ba4a2d8d02fab95a99ce95">~task_completion_source</a> ()=default</td></tr>
 <tr class="separator:a0478b2eef7ba4a2d8d02fab95a99ce95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:affb961695f83d4fa8623b924a6c2de4c" id="r_affb961695f83d4fa8623b924a6c2de4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1task__completion__source.html#affb961695f83d4fa8623b924a6c2de4c">set_value</a> (T value)</td></tr>
+<tr class="memdesc:affb961695f83d4fa8623b924a6c2de4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Completes the task with a value and resumes any waiter.  <br /></td></tr>
 <tr class="separator:affb961695f83d4fa8623b924a6c2de4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e407b053f2e1c130b2e47ed9ae40548" id="r_a2e407b053f2e1c130b2e47ed9ae40548"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">webcraft::async::task</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1task__completion__source.html#a2e407b053f2e1c130b2e47ed9ae40548">task</a> ()</td></tr>
+<tr class="memdesc:a2e407b053f2e1c130b2e47ed9ae40548"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the awaitable task linked to this completion source.  <br /></td></tr>
 <tr class="separator:a2e407b053f2e1c130b2e47ed9ae40548"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc2b74e6b23588f553365710b1229be0" id="r_adc2b74e6b23588f553365710b1229be0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1task__completion__source.html#adc2b74e6b23588f553365710b1229be0">set_exception</a> (std::exception_ptr exception)</td></tr>
+<tr class="memdesc:adc2b74e6b23588f553365710b1229be0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Completes the source with an exception.  <br /></td></tr>
 <tr class="separator:adc2b74e6b23588f553365710b1229be0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classwebcraft_1_1async_1_1task__completion__source__base"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classwebcraft_1_1async_1_1task__completion__source__base')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classwebcraft_1_1async_1_1task__completion__source__base.html">webcraft::async::task_completion_source_base</a></td></tr>
 <tr class="memitem:a7ac12ddd590fa96e48aa3926b4eb8185 inherit pub_methods_classwebcraft_1_1async_1_1task__completion__source__base" id="r_a7ac12ddd590fa96e48aa3926b4eb8185"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1task__completion__source__base.html#a7ac12ddd590fa96e48aa3926b4eb8185">task_completion_source_base</a> () noexcept</td></tr>
@@ -159,6 +165,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a304b17845ad637f3e33d8fcb919fe978 inherit pub_methods_classwebcraft_1_1async_1_1task__completion__source__base" id="r_a304b17845ad637f3e33d8fcb919fe978"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1task__completion__source__base.html#a304b17845ad637f3e33d8fcb919fe978">~task_completion_source_base</a> ()=default</td></tr>
 <tr class="separator:a304b17845ad637f3e33d8fcb919fe978 inherit pub_methods_classwebcraft_1_1async_1_1task__completion__source__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc2b74e6b23588f553365710b1229be0 inherit pub_methods_classwebcraft_1_1async_1_1task__completion__source__base" id="r_adc2b74e6b23588f553365710b1229be0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1task__completion__source__base.html#adc2b74e6b23588f553365710b1229be0">set_exception</a> (std::exception_ptr exception)</td></tr>
+<tr class="memdesc:adc2b74e6b23588f553365710b1229be0 inherit pub_methods_classwebcraft_1_1async_1_1task__completion__source__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Completes the source with an exception.  <br /></td></tr>
 <tr class="separator:adc2b74e6b23588f553365710b1229be0 inherit pub_methods_classwebcraft_1_1async_1_1task__completion__source__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
@@ -169,7 +176,10 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a67e45abc6d49ff3a8dec800dbb230cbc inherit pro_attribs_classwebcraft_1_1async_1_1task__completion__source__base" id="r_a67e45abc6d49ff3a8dec800dbb230cbc"><td class="memItemLeft" align="right" valign="top">std::exception_ptr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1task__completion__source__base.html#a67e45abc6d49ff3a8dec800dbb230cbc">exception_</a></td></tr>
 <tr class="separator:a67e45abc6d49ff3a8dec800dbb230cbc inherit pro_attribs_classwebcraft_1_1async_1_1task__completion__source__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename T&gt;<br />
+class webcraft::async::task_completion_source&lt; T &gt;</div><p>Manual completion source for <code>task&lt;T&gt;</code>. </p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a0bc1c99fc8884263d51c08f535c905b5" name="a0bc1c99fc8884263d51c08f535c905b5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0bc1c99fc8884263d51c08f535c905b5">&#9670;&#160;</a></span>value_type</h2>
 
@@ -380,6 +390,8 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Completes the source with an exception. </p>
+
 </div>
 </div>
 <a id="affb961695f83d4fa8623b924a6c2de4c" name="affb961695f83d4fa8623b924a6c2de4c"></a>
@@ -408,6 +420,8 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Completes the task with a value and resumes any waiter. </p>
+
 </div>
 </div>
 <a id="a2e407b053f2e1c130b2e47ed9ae40548" name="a2e407b053f2e1c130b2e47ed9ae40548"></a>
@@ -434,6 +448,8 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the awaitable task linked to this completion source. </p>
 
 </div>
 </div>

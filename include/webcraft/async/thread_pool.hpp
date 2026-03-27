@@ -5,6 +5,14 @@
 // Licenced under MIT license. See LICENSE.txt for details.
 ///////////////////////////////////////////////////////////////////////////////
 
+/**
+ * @file async/thread_pool.hpp
+ * @brief Cooperative thread pool for executing queued work items.
+ *
+ * This header exposes the thread-pool implementation used by runtime and
+ * async helper code to dispatch CPU-bound or deferred work.
+ */
+
 #include <thread>
 #include <chrono>
 #include <vector>
@@ -23,6 +31,9 @@ using namespace std::chrono_literals;
 namespace webcraft::async
 {
 
+    /**
+     * @brief Exception reported when submitting work after shutdown.
+     */
     class thread_pool_shutdown_error : public std::runtime_error
     {
     public:
@@ -31,6 +42,9 @@ namespace webcraft::async
 
     class thread_pool;
 
+    /**
+     * @brief Worker object that owns one pool thread.
+     */
     class thread_pool_worker
     {
     private:
@@ -58,6 +72,9 @@ namespace webcraft::async
         }
     };
 
+    /**
+     * @brief Dynamic thread pool for executing callable work items.
+     */
     class thread_pool
     {
     private:
@@ -109,6 +126,9 @@ namespace webcraft::async
             }
         }
 
+        /**
+         * @brief Enqueues callable work and returns a future for its result.
+         */
         template <typename F, typename... Args>
         auto submit(F &&f, Args &&...args) -> std::future<typename std::invoke_result_t<F, Args...>>
         {

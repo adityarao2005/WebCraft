@@ -94,16 +94,21 @@ $(document).ready(function(){initNavTree('conceptwebcraft_1_1async_1_1io_1_1asyn
 </div><!--header-->
 <div class="contents">
 
+<p>Concept for streams that provide asynchronous <code>close()</code>.  
+<a href="conceptwebcraft_1_1async_1_1io_1_1async__closeable__stream.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="core_8hpp_source.html">core.hpp</a>&gt;</code></p>
 <h2 class="groupheader">Concept definition</h2>
 <div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived, <span class="keyword">typename</span> R&gt;</div>
 <div class="line"><span class="keyword">concept </span><a class="code hl_concept" href="conceptwebcraft_1_1async_1_1io_1_1async__closeable__stream.html">webcraft::async::io::async_closeable_stream</a> =  (<a class="code hl_concept" href="conceptwebcraft_1_1async_1_1io_1_1async__readable__stream.html">async_readable_stream&lt;Derived, R&gt;</a> || <a class="code hl_concept" href="conceptwebcraft_1_1async_1_1io_1_1async__writable__stream.html">async_writable_stream&lt;Derived, R&gt;</a>) &amp;&amp; <span class="keyword">requires</span>(Derived t) {</div>
 <div class="line">        { t.close() } -&gt; std::same_as&lt;task&lt;void&gt;&gt;;</div>
 <div class="line">    }</div>
-<div class="ttc" id="aconceptwebcraft_1_1async_1_1io_1_1async__closeable__stream_html"><div class="ttname"><a href="conceptwebcraft_1_1async_1_1io_1_1async__closeable__stream.html">webcraft::async::io::async_closeable_stream</a></div><div class="ttdef"><b>Definition</b> core.hpp:46</div></div>
-<div class="ttc" id="aconceptwebcraft_1_1async_1_1io_1_1async__readable__stream_html"><div class="ttname"><a href="conceptwebcraft_1_1async_1_1io_1_1async__readable__stream.html">webcraft::async::io::async_readable_stream</a></div><div class="ttdef"><b>Definition</b> core.hpp:26</div></div>
-<div class="ttc" id="aconceptwebcraft_1_1async_1_1io_1_1async__writable__stream_html"><div class="ttname"><a href="conceptwebcraft_1_1async_1_1io_1_1async__writable__stream.html">webcraft::async::io::async_writable_stream</a></div><div class="ttdef"><b>Definition</b> core.hpp:36</div></div>
-</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aconceptwebcraft_1_1async_1_1io_1_1async__closeable__stream_html"><div class="ttname"><a href="conceptwebcraft_1_1async_1_1io_1_1async__closeable__stream.html">webcraft::async::io::async_closeable_stream</a></div><div class="ttdoc">Concept for streams that provide asynchronous close().</div><div class="ttdef"><b>Definition</b> core.hpp:59</div></div>
+<div class="ttc" id="aconceptwebcraft_1_1async_1_1io_1_1async__readable__stream_html"><div class="ttname"><a href="conceptwebcraft_1_1async_1_1io_1_1async__readable__stream.html">webcraft::async::io::async_readable_stream</a></div><div class="ttdoc">Concept for streams exposing recv() that yields optional values.</div><div class="ttdef"><b>Definition</b> core.hpp:35</div></div>
+<div class="ttc" id="aconceptwebcraft_1_1async_1_1io_1_1async__writable__stream_html"><div class="ttname"><a href="conceptwebcraft_1_1async_1_1io_1_1async__writable__stream.html">webcraft::async::io::async_writable_stream</a></div><div class="ttdoc">Concept for streams exposing send(value) operations.</div><div class="ttdef"><b>Definition</b> core.hpp:47</div></div>
+</div><!-- fragment --><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Concept for streams that provide asynchronous <code>close()</code>. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

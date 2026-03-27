@@ -1,5 +1,5 @@
 <map id="webcraft::async::thread_pool_shutdown_error" name="webcraft::async::thread_pool_shutdown_error">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,180,119"/>
+<area shape="rect" id="Node000001" title="Exception reported when submitting work after shutdown." alt="" coords="5,79,180,119"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="23,5,162,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,44,95,79,90,79,90,44"/>
 </map>

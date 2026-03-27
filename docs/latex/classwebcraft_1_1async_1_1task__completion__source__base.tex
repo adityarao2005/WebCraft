@@ -2,11 +2,17 @@
 \hypertarget{classwebcraft_1_1async_1_1task__completion__source__base}{}\label{classwebcraft_1_1async_1_1task__completion__source__base}\index{webcraft::async::task\_completion\_source\_base@{webcraft::async::task\_completion\_source\_base}}
 
 
+Shared state for manual task completion sources.  
+
+
+
+
 {\ttfamily \#include $<$task\+\_\+completion\+\_\+source.\+hpp$>$}
 
 
 
-Inheritance diagram for webcraft\+::async\+::task\+\_\+completion\+\_\+source\+\_\+base\+:\nopagebreak
+Inheritance diagram for webcraft\+::async\+::task\+\_\+completion\+\_\+source\+\_\+base\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -17,7 +23,7 @@ Inheritance diagram for webcraft\+::async\+::task\+\_\+completion\+\_\+source\+\
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structwebcraft_1_1async_1_1task__completion__source__base_1_1awaitable}{awaitable}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Internal awaiter used by {\ttfamily \doxylink{classwebcraft_1_1async_1_1task__completion__source_a2e407b053f2e1c130b2e47ed9ae40548}{task\+\_\+completion\+\_\+source\+::task()}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -34,7 +40,7 @@ struct \mbox{\hyperlink{structwebcraft_1_1async_1_1task__completion__source__bas
 virtual \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a304b17845ad637f3e33d8fcb919fe978}{\texorpdfstring{$\sim$}{\string~}task\+\_\+completion\+\_\+source\+\_\+base}} ()=default
 \item 
 void \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_adc2b74e6b23588f553365710b1229be0}{set\+\_\+exception}} (std\+::exception\+\_\+ptr exception)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Completes the source with an exception. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -43,6 +49,9 @@ std\+::coroutine\+\_\+handle \mbox{\hyperlink{classwebcraft_1_1async_1_1task__co
 std\+::exception\+\_\+ptr \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a67e45abc6d49ff3a8dec800dbb230cbc}{exception\+\_\+}}
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Shared state for manual task completion sources. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{classwebcraft_1_1async_1_1task__completion__source__base_a7ac12ddd590fa96e48aa3926b4eb8185}\label{classwebcraft_1_1async_1_1task__completion__source__base_a7ac12ddd590fa96e48aa3926b4eb8185} 
@@ -89,6 +98,10 @@ std\+::exception\+\_\+ptr \mbox{\hyperlink{classwebcraft_1_1async_1_1task__compl
 \index{set\_exception@{set\_exception}!webcraft::async::task\_completion\_source\_base@{webcraft::async::task\_completion\_source\_base}}
 \doxysubsubsection{\texorpdfstring{set\_exception()}{set\_exception()}}
 {\footnotesize\ttfamily void webcraft\+::async\+::task\+\_\+completion\+\_\+source\+\_\+base\+::set\+\_\+exception (\begin{DoxyParamCaption}\item[{std\+::exception\+\_\+ptr}]{exception }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Completes the source with an exception. 
 
 
 

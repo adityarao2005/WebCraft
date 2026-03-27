@@ -97,14 +97,17 @@ $(document).ready(function(){initNavTree('classwebcraft_1_1async_1_1event__signa
 </div><!--header-->
 <div class="contents">
 
+<p>Busy-wait signal for synchronously waiting on async completion.  
+ <a href="classwebcraft_1_1async_1_1event__signal.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="event__signal_8hpp_source.html">event_signal.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for webcraft::async::event_signal:</div>
 <div class="dyncontent">
 <div class="center"><img src="classwebcraft_1_1async_1_1event__signal__inherit__graph.png" border="0" usemap="#awebcraft_1_1async_1_1event__signal_inherit__map" alt="Inheritance graph"/></div>
 <map name="awebcraft_1_1async_1_1event__signal_inherit__map" id="awebcraft_1_1async_1_1event__signal_inherit__map">
-<area shape="rect" title=" " alt="" coords="24,79,193,119"/>
-<area shape="rect" href="classwebcraft_1_1async_1_1immovable.html" title=" " alt="" coords="5,5,212,31"/>
+<area shape="rect" title="Busy&#45;wait signal for synchronously waiting on async completion." alt="" coords="24,79,193,119"/>
+<area shape="rect" href="classwebcraft_1_1async_1_1immovable.html" title="Utility base class that disables copying and moving." alt="" coords="5,5,212,31"/>
 <area shape="poly" title=" " alt="" coords="111,44,111,79,106,79,106,44"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -113,8 +116,8 @@ Collaboration diagram for webcraft::async::event_signal:</div>
 <div class="dyncontent">
 <div class="center"><img src="classwebcraft_1_1async_1_1event__signal__coll__graph.png" border="0" usemap="#awebcraft_1_1async_1_1event__signal_coll__map" alt="Collaboration graph"/></div>
 <map name="awebcraft_1_1async_1_1event__signal_coll__map" id="awebcraft_1_1async_1_1event__signal_coll__map">
-<area shape="rect" title=" " alt="" coords="24,79,193,119"/>
-<area shape="rect" href="classwebcraft_1_1async_1_1immovable.html" title=" " alt="" coords="5,5,212,31"/>
+<area shape="rect" title="Busy&#45;wait signal for synchronously waiting on async completion." alt="" coords="24,79,193,119"/>
+<area shape="rect" href="classwebcraft_1_1async_1_1immovable.html" title="Utility base class that disables copying and moving." alt="" coords="5,5,212,31"/>
 <area shape="poly" title=" " alt="" coords="111,44,111,79,106,79,106,44"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -122,20 +125,28 @@ Collaboration diagram for webcraft::async::event_signal:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a77677008fd577495eac78a8f046a5835" id="r_a77677008fd577495eac78a8f046a5835"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1event__signal.html#a77677008fd577495eac78a8f046a5835">event_signal</a> ()</td></tr>
+<tr class="memdesc:a77677008fd577495eac78a8f046a5835"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an unset signal.  <br /></td></tr>
 <tr class="separator:a77677008fd577495eac78a8f046a5835"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f8cd8af66f2e588c242463029550f1e" id="r_a0f8cd8af66f2e588c242463029550f1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1event__signal.html#a0f8cd8af66f2e588c242463029550f1e">set</a> () noexcept</td></tr>
+<tr class="memdesc:a0f8cd8af66f2e588c242463029550f1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the signal state to true.  <br /></td></tr>
 <tr class="separator:a0f8cd8af66f2e588c242463029550f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a70b19b356714cda6da9b661f2d9f5c" id="r_a7a70b19b356714cda6da9b661f2d9f5c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1event__signal.html#a7a70b19b356714cda6da9b661f2d9f5c">reset</a> () noexcept</td></tr>
+<tr class="memdesc:a7a70b19b356714cda6da9b661f2d9f5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the signal state to false.  <br /></td></tr>
 <tr class="separator:a7a70b19b356714cda6da9b661f2d9f5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4a52a05dde472e3062e60c92348d5fa" id="r_ad4a52a05dde472e3062e60c92348d5fa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1event__signal.html#ad4a52a05dde472e3062e60c92348d5fa">is_set</a> () const noexcept</td></tr>
+<tr class="memdesc:ad4a52a05dde472e3062e60c92348d5fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true when the signal is set.  <br /></td></tr>
 <tr class="separator:ad4a52a05dde472e3062e60c92348d5fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30ed3534d605cf8881830fa3454a6d9c" id="r_a30ed3534d605cf8881830fa3454a6d9c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1event__signal.html#a30ed3534d605cf8881830fa3454a6d9c">wait_for</a> (std::chrono::milliseconds timeout) const</td></tr>
+<tr class="memdesc:a30ed3534d605cf8881830fa3454a6d9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits up to a timeout for the signal to be set.  <br /></td></tr>
 <tr class="separator:a30ed3534d605cf8881830fa3454a6d9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a84765130566101afcf0666378ce3c02c" id="r_a84765130566101afcf0666378ce3c02c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1event__signal.html#a84765130566101afcf0666378ce3c02c">wait</a> () const</td></tr>
+<tr class="memdesc:a84765130566101afcf0666378ce3c02c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocks until the signal is set.  <br /></td></tr>
 <tr class="separator:a84765130566101afcf0666378ce3c02c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a552efc44edcfac5ed89227105b64a742" id="r_a552efc44edcfac5ed89227105b64a742"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1event__signal.html#a552efc44edcfac5ed89227105b64a742">operator()</a> () const</td></tr>
+<tr class="memdesc:a552efc44edcfac5ed89227105b64a742"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function-call shorthand for <code><a class="el" href="classwebcraft_1_1async_1_1event__signal.html#ad4a52a05dde472e3062e60c92348d5fa" title="Returns true when the signal is set.">is_set()</a></code>.  <br /></td></tr>
 <tr class="separator:a552efc44edcfac5ed89227105b64a742"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a596c28bcd66ec204cf3c2216f0b2acd9" id="r_a596c28bcd66ec204cf3c2216f0b2acd9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1event__signal.html#a596c28bcd66ec204cf3c2216f0b2acd9">operator bool</a> () const</td></tr>
+<tr class="memdesc:a596c28bcd66ec204cf3c2216f0b2acd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bool conversion shorthand for <code><a class="el" href="classwebcraft_1_1async_1_1event__signal.html#ad4a52a05dde472e3062e60c92348d5fa" title="Returns true when the signal is set.">is_set()</a></code>.  <br /></td></tr>
 <tr class="separator:a596c28bcd66ec204cf3c2216f0b2acd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classwebcraft_1_1async_1_1immovable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classwebcraft_1_1async_1_1immovable')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classwebcraft_1_1async_1_1immovable.html">webcraft::async::immovable</a></td></tr>
 <tr class="memitem:afa3778a7c0dcd44972da924b01594349 inherit pub_methods_classwebcraft_1_1async_1_1immovable" id="r_afa3778a7c0dcd44972da924b01594349"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1immovable.html#afa3778a7c0dcd44972da924b01594349">immovable</a> ()=default</td></tr>
@@ -151,7 +162,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5b6701013be9de7b5d23045e23c667ea inherit pub_methods_classwebcraft_1_1async_1_1immovable" id="r_a5b6701013be9de7b5d23045e23c667ea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1immovable.html#a5b6701013be9de7b5d23045e23c667ea">~immovable</a> ()=default</td></tr>
 <tr class="separator:a5b6701013be9de7b5d23045e23c667ea inherit pub_methods_classwebcraft_1_1async_1_1immovable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Busy-wait signal for synchronously waiting on async completion. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a77677008fd577495eac78a8f046a5835" name="a77677008fd577495eac78a8f046a5835"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a77677008fd577495eac78a8f046a5835">&#9670;&#160;</a></span>event_signal()</h2>
 
@@ -174,6 +187,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Constructs an unset signal. </p>
 
 </div>
 </div>
@@ -201,6 +216,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Returns true when the signal is set. </p>
+
 </div>
 </div>
 <a id="a596c28bcd66ec204cf3c2216f0b2acd9" name="a596c28bcd66ec204cf3c2216f0b2acd9"></a>
@@ -225,6 +242,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Bool conversion shorthand for <code><a class="el" href="classwebcraft_1_1async_1_1event__signal.html#ad4a52a05dde472e3062e60c92348d5fa" title="Returns true when the signal is set.">is_set()</a></code>. </p>
 
 </div>
 </div>
@@ -251,6 +270,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Function-call shorthand for <code><a class="el" href="classwebcraft_1_1async_1_1event__signal.html#ad4a52a05dde472e3062e60c92348d5fa" title="Returns true when the signal is set.">is_set()</a></code>. </p>
+
 </div>
 </div>
 <a id="a7a70b19b356714cda6da9b661f2d9f5c" name="a7a70b19b356714cda6da9b661f2d9f5c"></a>
@@ -275,6 +296,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Resets the signal state to false. </p>
 
 </div>
 </div>
@@ -301,6 +324,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Sets the signal state to true. </p>
+
 </div>
 </div>
 <a id="a84765130566101afcf0666378ce3c02c" name="a84765130566101afcf0666378ce3c02c"></a>
@@ -325,6 +350,9 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Blocks until the signal is set. </p>
+<dl class="section return"><dt>Returns</dt><dd>Always returns <code>true</code> once signaled. </dd></dl>
 
 </div>
 </div>
@@ -351,6 +379,9 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Waits up to a timeout for the signal to be set. </p>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if the signal was set before timeout, otherwise <code>false</code>. </dd></dl>
 
 </div>
 </div>

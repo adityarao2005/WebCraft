@@ -1,5 +1,5 @@
 <map id="webcraft::async::task_completion_source_base::awaitable" name="webcraft::async::task_completion_source_base::awaitable">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,108,196,163"/>
-<area shape="rect" id="Node000002" href="$classwebcraft_1_1async_1_1task__completion__source__base.html" title=" " alt="" coords="5,5,196,45"/>
+<area shape="rect" id="Node000001" title="Internal awaiter used by task_completion_source::task()." alt="" coords="5,108,196,163"/>
+<area shape="rect" id="Node000002" href="$classwebcraft_1_1async_1_1task__completion__source__base.html" title="Shared state for manual task completion sources." alt="" coords="5,5,196,45"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,59,103,108,98,108,98,59"/>
 </map>

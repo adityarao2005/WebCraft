@@ -1,5 +1,10 @@
 \doxysection{include/webcraft/ranges.hpp File Reference}
 \hypertarget{ranges_8hpp}{}\label{ranges_8hpp}\index{include/webcraft/ranges.hpp@{include/webcraft/ranges.hpp}}
+
+
+Range adaptor helpers for collecting range pipelines.  
+
+
 {\ttfamily \#include $<$ranges$>$}\newline
 Include dependency graph for ranges.\+hpp\+:\nopagebreak
 \begin{figure}[H]
@@ -19,7 +24,7 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{classwebcraft_1_1ranges_1_1to}{webcraft\+::ranges\+::to$<$ T $>$}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Range adaptor closure that materializes a range into container {\ttfamily T}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -27,3 +32,9 @@ namespace \mbox{\hyperlink{namespacewebcraft}{webcraft}}
 \item 
 namespace \mbox{\hyperlink{namespacewebcraft_1_1ranges}{webcraft\+::ranges}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Range adaptor helpers for collecting range pipelines. 
+
+The main utility is {\ttfamily \doxylink{classwebcraft_1_1ranges_1_1to}{webcraft\+::ranges\+::to}\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}}, which can be used in a pipeline to materialize an input range into a target container type. 

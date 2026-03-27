@@ -97,6 +97,9 @@ $(document).ready(function(){initNavTree('when__all_8hpp.html',''); initResizabl
   <div class="headertitle"><div class="title">when_all.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Await combinator that waits for all awaitables in a range.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;optional&gt;</code><br />
 <code>#include &lt;ranges&gt;</code><br />
@@ -112,7 +115,7 @@ Include dependency graph for when_all.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="when__all_8hpp__incl.png" border="0" usemap="#ainclude_2webcraft_2async_2when__all_8hpp" alt=""/></div>
 <map name="ainclude_2webcraft_2async_2when__all_8hpp" id="ainclude_2webcraft_2async_2when__all_8hpp">
-<area shape="rect" title=" " alt="" coords="345,5,515,45"/>
+<area shape="rect" title="Await combinator that waits for all awaitables in a range." alt="" coords="345,5,515,45"/>
 <area shape="rect" title=" " alt="" coords="5,93,68,119"/>
 <area shape="poly" title=" " alt="" coords="345,45,88,96,82,97,81,92,87,91,344,40"/>
 <area shape="rect" title=" " alt="" coords="285,240,359,265"/>
@@ -125,11 +128,11 @@ Include dependency graph for when_all.hpp:</div>
 <area shape="poly" title=" " alt="" coords="516,25,608,30,718,40,837,60,953,91,1027,116,1055,134,1084,165,1099,195,1105,226,1100,227,1094,197,1080,168,1052,138,1025,121,952,96,836,65,718,46,607,35,515,30"/>
 <area shape="rect" title=" " alt="" coords="235,167,295,192"/>
 <area shape="poly" title=" " alt="" coords="448,44,468,80,471,101,464,121,405,142,309,169,307,164,404,137,460,117,466,100,463,82,444,47"/>
-<area shape="rect" href="task_8hpp.html" title=" " alt="" coords="525,93,705,119"/>
+<area shape="rect" href="task_8hpp.html" title="Core coroutine task type used across WebCraft async APIs." alt="" coords="525,93,705,119"/>
 <area shape="poly" title=" " alt="" coords="475,43,577,85,575,90,473,48"/>
-<area shape="rect" href="concepts_8hpp.html" title=" " alt="" coords="773,93,941,119"/>
+<area shape="rect" href="concepts_8hpp.html" title="Small shared concepts used by WebCraft templates." alt="" coords="773,93,941,119"/>
 <area shape="poly" title=" " alt="" coords="516,40,782,88,781,93,515,45"/>
-<area shape="rect" href="ranges_8hpp.html" title=" " alt="" coords="295,93,450,119"/>
+<area shape="rect" href="ranges_8hpp.html" title="Range adaptor helpers for collecting range pipelines." alt="" coords="295,93,450,119"/>
 <area shape="poly" title=" " alt="" coords="418,47,391,84,387,80,414,44"/>
 <area shape="rect" title=" " alt="" coords="1145,93,1213,119"/>
 <area shape="poly" title=" " alt="" coords="516,29,788,50,957,68,1126,91,1132,92,1131,97,1126,96,957,73,788,56,515,34"/>
@@ -141,9 +144,9 @@ Include dependency graph for when_all.hpp:</div>
 <area shape="poly" title=" " alt="" coords="618,119,616,153,611,153,612,119"/>
 <area shape="rect" title=" " alt="" coords="522,240,605,265"/>
 <area shape="poly" title=" " alt="" coords="633,117,650,131,666,150,675,171,671,193,647,219,617,237,615,232,644,215,666,191,670,172,662,153,646,135,630,121"/>
-<area shape="rect" href="awaitable_8hpp.html" title=" " alt="" coords="430,167,545,192"/>
+<area shape="rect" href="awaitable_8hpp.html" title="Awaitable concepts and type traits." alt="" coords="430,167,545,192"/>
 <area shape="poly" title=" " alt="" coords="596,121,522,162,519,157,593,116"/>
-<area shape="rect" href="event__signal_8hpp.html" title=" " alt="" coords="937,167,1070,192"/>
+<area shape="rect" href="event__signal_8hpp.html" title="Lightweight thread&#45;based signaling primitive for sync waiting." alt="" coords="937,167,1070,192"/>
 <area shape="poly" title=" " alt="" coords="678,116,928,162,927,167,677,121"/>
 <area shape="rect" title=" " alt="" coords="782,167,862,192"/>
 <area shape="poly" title=" " alt="" coords="649,116,776,160,775,165,648,121"/>
@@ -166,10 +169,10 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="when__all_8hpp__dep__incl.png" border="0" usemap="#ainclude_2webcraft_2async_2when__all_8hppdep" alt=""/></div>
 <map name="ainclude_2webcraft_2async_2when__all_8hppdep" id="ainclude_2webcraft_2async_2when__all_8hppdep">
-<area shape="rect" title=" " alt="" coords="5,5,176,45"/>
-<area shape="rect" href="async_8hpp.html" title=" " alt="" coords="5,181,176,221"/>
+<area shape="rect" title="Await combinator that waits for all awaitables in a range." alt="" coords="5,5,176,45"/>
+<area shape="rect" href="async_8hpp.html" title="Umbrella include for the public asynchronous programming API." alt="" coords="5,181,176,221"/>
 <area shape="poly" title=" " alt="" coords="73,58,57,94,54,113,57,133,67,158,80,180,75,183,62,160,52,134,49,113,52,93,68,56"/>
-<area shape="rect" href="when__any_8hpp.html" title=" " alt="" coords="67,93,237,133"/>
+<area shape="rect" href="when__any_8hpp.html" title="Await combinator that resolves when the first awaitable completes." alt="" coords="67,93,237,133"/>
 <area shape="poly" title=" " alt="" coords="114,55,141,92,136,95,110,58"/>
 <area shape="poly" title=" " alt="" coords="133,146,106,183,102,180,128,143"/>
 </map>
@@ -188,6 +191,7 @@ Namespaces</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:a8174852e651e90c6f296a823928af715" id="r_a8174852e651e90c6f296a823928af715"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a8174852e651e90c6f296a823928af715"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#a8174852e651e90c6f296a823928af715">webcraft::async::normalized_result_t</a> = std::conditional_t&lt; std::is_void_v&lt; <a class="el" href="namespacewebcraft_1_1async.html#a756c2303d30320ba433f8aa21010bd01">awaitable_resume_t</a>&lt; T &gt; &gt;, std::monostate, <a class="el" href="namespacewebcraft_1_1async.html#a756c2303d30320ba433f8aa21010bd01">awaitable_resume_t</a>&lt; T &gt; &gt;</td></tr>
+<tr class="memdesc:a8174852e651e90c6f296a823928af715"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalizes awaitable result types by mapping <code>void</code> to <code>std::monostate</code>.  <br /></td></tr>
 <tr class="separator:a8174852e651e90c6f296a823928af715"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -195,21 +199,28 @@ Functions</h2></td></tr>
 <tr class="memitem:adefc58a669759c7bf7067728c34cfbf5" id="r_adefc58a669759c7bf7067728c34cfbf5"><td class="memTemplParams" colspan="2">template&lt;std::ranges::input_range Range, typename T  = std::ranges::range_value_t&lt;Range&gt;, typename Result  = awaitable_resume_t&lt;T&gt;&gt; <br />
 requires awaitable_t&lt;T&gt; &amp;&amp; (!std::is_void_v&lt;Result&gt;)</td></tr>
 <tr class="memitem:adefc58a669759c7bf7067728c34cfbf5"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; std::vector&lt; Result &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#adefc58a669759c7bf7067728c34cfbf5">webcraft::async::when_all</a> (Range &amp;&amp;tasks)</td></tr>
+<tr class="memdesc:adefc58a669759c7bf7067728c34cfbf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Awaits all awaitables in a range and collects non-void results.  <br /></td></tr>
 <tr class="separator:adefc58a669759c7bf7067728c34cfbf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5be7b95a948cae4e62eae315112097d" id="r_ab5be7b95a948cae4e62eae315112097d"><td class="memTemplParams" colspan="2">template&lt;std::ranges::input_range Range, typename T  = std::ranges::range_value_t&lt;Range&gt;, typename Result  = awaitable_resume_t&lt;T&gt;&gt; <br />
 requires awaitable_t&lt;T&gt; &amp;&amp; std::is_void_v&lt;Result&gt;</td></tr>
 <tr class="memitem:ab5be7b95a948cae4e62eae315112097d"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; void &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#ab5be7b95a948cae4e62eae315112097d">webcraft::async::when_all</a> (Range &amp;&amp;tasks)</td></tr>
+<tr class="memdesc:ab5be7b95a948cae4e62eae315112097d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Awaits all void-returning awaitables in a range.  <br /></td></tr>
 <tr class="separator:ab5be7b95a948cae4e62eae315112097d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8101de822056b473833adc0e5408022b" id="r_a8101de822056b473833adc0e5408022b"><td class="memTemplParams" colspan="2">template&lt;typename... Tasks&gt; <br />
 requires (awaitable_t&lt;Tasks&gt; &amp;&amp; ...)</td></tr>
 <tr class="memitem:a8101de822056b473833adc0e5408022b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; std::tuple&lt; <a class="el" href="namespacewebcraft_1_1async.html#a8174852e651e90c6f296a823928af715">normalized_result_t</a>&lt; Tasks &gt;... &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#a8101de822056b473833adc0e5408022b">webcraft::async::when_all</a> (std::tuple&lt; Tasks... &gt; tasks)</td></tr>
+<tr class="memdesc:a8101de822056b473833adc0e5408022b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Awaits every awaitable in a tuple and returns a tuple of normalized results.  <br /></td></tr>
 <tr class="separator:a8101de822056b473833adc0e5408022b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13bbc27f5b631d3acb57bf3376614164" id="r_a13bbc27f5b631d3acb57bf3376614164"><td class="memTemplParams" colspan="2">template&lt;typename... Tasks&gt; <br />
 requires (awaitable_t&lt;Tasks&gt; &amp;&amp; ...)</td></tr>
 <tr class="memitem:a13bbc27f5b631d3acb57bf3376614164"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#a13bbc27f5b631d3acb57bf3376614164">webcraft::async::when_all</a> (Tasks &amp;&amp;...tasks)</td></tr>
+<tr class="memdesc:a13bbc27f5b631d3acb57bf3376614164"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variadic convenience overload for <code>when_all</code>.  <br /></td></tr>
 <tr class="separator:a13bbc27f5b631d3acb57bf3376614164"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Await combinator that waits for all awaitables in a range. </p>
+<p><code>when_all()</code> consumes a range of awaitables and returns results after every operation has completed. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

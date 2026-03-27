@@ -1,5 +1,10 @@
 \doxysection{include/webcraft/async/io/socket.hpp File Reference}
 \hypertarget{socket_8hpp}{}\label{socket_8hpp}\index{include/webcraft/async/io/socket.hpp@{include/webcraft/async/io/socket.hpp}}
+
+
+Asynchronous TCP/\+UDP socket stream abstractions.  
+
+
 {\ttfamily \#include "{}core.\+hpp"{}}\newline
 {\ttfamily \#include $<$webcraft/async/fire\+\_\+and\+\_\+forget\+\_\+task.\+hpp$>$}\newline
 Include dependency graph for socket.\+hpp\+:\nopagebreak
@@ -20,17 +25,17 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{webcraft\+::async\+::io\+::socket\+::connection\+\_\+info}}
-\item 
+\begin{DoxyCompactList}\small\item\em Host/port endpoint description. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream}{webcraft\+::async\+::io\+::socket\+::tcp\+\_\+rstream}}
-\item 
+\begin{DoxyCompactList}\small\item\em Read-\/only stream view over a connected TCP socket. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream}{webcraft\+::async\+::io\+::socket\+::tcp\+\_\+wstream}}
-\item 
+\begin{DoxyCompactList}\small\item\em Write-\/only stream view over a connected TCP socket. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket}{webcraft\+::async\+::io\+::socket\+::tcp\+\_\+socket}}
-\item 
+\begin{DoxyCompactList}\small\item\em Full-\/duplex TCP socket abstraction. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener}{webcraft\+::async\+::io\+::socket\+::tcp\+\_\+listener}}
-\item 
+\begin{DoxyCompactList}\small\item\em TCP server listener abstraction. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket}{webcraft\+::async\+::io\+::socket\+::udp\+\_\+socket}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em UDP socket abstraction for datagram send/receive. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -48,17 +53,23 @@ namespace \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket}{webcraft\
 enum class \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a139a43e64f79b86d82279ded4b49df98}{webcraft\+::async\+::io\+::socket\+::ip\+\_\+version}} \{ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a139a43e64f79b86d82279ded4b49df98a42a9137a05a60eb752dcdf982e717626}{webcraft\+::async\+::io\+::socket\+::\+IPv4}}
 , \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a139a43e64f79b86d82279ded4b49df98afdb7cb8f657426e7c409bfd6d1a36ce4}{webcraft\+::async\+::io\+::socket\+::\+IPv6}}
  \}
-\item 
+\begin{DoxyCompactList}\small\item\em IP address family selection. \end{DoxyCompactList}\item 
 enum class \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688}{webcraft\+::async\+::io\+::socket\+::socket\+\_\+stream\+\_\+mode}} \{ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688a3466fab4975481651940ed328aa990e4}{webcraft\+::async\+::io\+::socket\+::\+READ}}
 , \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688ad4b9e47f65b6e79b010582f15785867e}{webcraft\+::async\+::io\+::socket\+::\+WRITE}}
  \}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Direction to shutdown in duplex stream sockets. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket}{tcp\+\_\+socket}} \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a482e358e1f53606e06109999484276b3}{webcraft\+::async\+::io\+::socket\+::make\+\_\+tcp\+\_\+socket}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Creates a TCP client socket. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener}{tcp\+\_\+listener}} \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a861e0c806d177e378bae72a3cfb5f0e2}{webcraft\+::async\+::io\+::socket\+::make\+\_\+tcp\+\_\+listener}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Creates a TCP listener socket. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket}{udp\+\_\+socket}} \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a319519897370c3a984eff4980a5f6e18}{webcraft\+::async\+::io\+::socket\+::make\+\_\+udp\+\_\+socket}} (std\+::optional$<$ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a139a43e64f79b86d82279ded4b49df98}{ip\+\_\+version}} $>$ version=std\+::nullopt)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Creates a UDP socket, optionally constrained to an IP version. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Asynchronous TCP/\+UDP socket stream abstractions. 
+
+Defines connection metadata, socket mode enums, and high-\/level async socket stream APIs for network I/O with {\ttfamily task}-\/based operations. 

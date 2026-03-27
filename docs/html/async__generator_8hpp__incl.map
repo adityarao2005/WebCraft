@@ -1,5 +1,5 @@
 <map id="include/webcraft/async/async_generator.hpp" name="include/webcraft/async/async_generator.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="679,5,850,45"/>
+<area shape="rect" id="Node000001" title="Async pull&#45;based generator for coroutine streams." alt="" coords="679,5,850,45"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="374,240,454,265"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="774,45,783,76,788,116,785,157,778,176,766,194,746,209,716,222,636,239,546,249,468,253,467,248,546,244,635,234,714,217,743,205,762,190,773,174,779,156,783,116,777,77,769,46"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="92,240,175,265"/>
@@ -12,7 +12,7 @@
 <area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="679,32,513,42,414,51,314,65,219,82,135,105,68,134,43,150,25,168,21,179,25,190,51,202,103,216,225,240,224,245,102,221,49,207,21,194,15,179,21,165,40,146,65,129,133,100,218,77,313,59,414,46,512,37,679,26"/>
 <area shape="rect" id="Node000007" title=" " alt="" coords="996,93,1066,119"/>
 <area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="829,43,983,88,981,93,828,48"/>
-<area shape="rect" id="Node000008" href="$task_8hpp.html" title=" " alt="" coords="413,93,492,119"/>
+<area shape="rect" id="Node000008" href="$task_8hpp.html" title="Core coroutine task type used across WebCraft async APIs." alt="" coords="413,93,492,119"/>
 <area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="690,48,506,94,505,89,689,43"/>
 <area shape="rect" id="Node000009" title=" " alt="" coords="556,167,642,192"/>
 <area shape="poly" id="edge23_Node000001_Node000009" title=" " alt="" coords="746,47,623,159,620,155,742,44"/>
@@ -28,9 +28,9 @@
 <area shape="poly" id="edge10_Node000008_Node000003" title=" " alt="" coords="413,113,349,120,274,131,205,147,179,157,161,169,151,181,144,196,137,226,132,225,139,194,146,178,157,165,176,152,203,142,273,126,348,114,413,108"/>
 <area shape="poly" id="edge21_Node000008_Node000005" title=" " alt="" coords="413,116,116,169,110,171,109,165,115,164,412,111"/>
 <area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="477,116,564,158,562,163,475,121"/>
-<area shape="rect" id="Node000010" href="$awaitable_8hpp.html" title=" " alt="" coords="262,167,376,192"/>
+<area shape="rect" id="Node000010" href="$awaitable_8hpp.html" title="Awaitable concepts and type traits." alt="" coords="262,167,376,192"/>
 <area shape="poly" id="edge11_Node000008_Node000010" title=" " alt="" coords="432,121,354,162,352,158,430,116"/>
-<area shape="rect" id="Node000011" href="$event__signal_8hpp.html" title=" " alt="" coords="828,167,962,192"/>
+<area shape="rect" id="Node000011" href="$event__signal_8hpp.html" title="Lightweight thread&#45;based signaling primitive for sync waiting." alt="" coords="828,167,962,192"/>
 <area shape="poly" id="edge15_Node000008_Node000011" title=" " alt="" coords="492,111,815,163,814,168,492,116"/>
 <area shape="rect" id="Node000015" title=" " alt="" coords="451,167,531,192"/>
 <area shape="poly" id="edge19_Node000008_Node000015" title=" " alt="" coords="461,118,481,153,476,156,456,120"/>

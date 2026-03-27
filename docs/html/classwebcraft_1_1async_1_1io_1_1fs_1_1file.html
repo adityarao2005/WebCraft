@@ -97,6 +97,9 @@ $(document).ready(function(){initNavTree('classwebcraft_1_1async_1_1io_1_1fs_1_1
 </div><!--header-->
 <div class="contents">
 
+<p>File handle facade that opens async read/write streams.  
+ <a href="classwebcraft_1_1async_1_1io_1_1fs_1_1file.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="fs_8hpp_source.html">fs.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -106,15 +109,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abbcefdedeb4a0c02e12be466641a0fa6" id="r_abbcefdedeb4a0c02e12be466641a0fa6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1fs_1_1file.html#abbcefdedeb4a0c02e12be466641a0fa6">~file</a> ()=default</td></tr>
 <tr class="separator:abbcefdedeb4a0c02e12be466641a0fa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee749147f74f498be86b9272899a9daf" id="r_aee749147f74f498be86b9272899a9daf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; <a class="el" href="classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream.html">file_rstream</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1fs_1_1file.html#aee749147f74f498be86b9272899a9daf">open_readable_stream</a> ()</td></tr>
+<tr class="memdesc:aee749147f74f498be86b9272899a9daf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens the file for async reading.  <br /></td></tr>
 <tr class="separator:aee749147f74f498be86b9272899a9daf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a741aaf01a1f2d8c39ad7e310bcc80f" id="r_a3a741aaf01a1f2d8c39ad7e310bcc80f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; <a class="el" href="classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream.html">file_wstream</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1fs_1_1file.html#a3a741aaf01a1f2d8c39ad7e310bcc80f">open_writable_stream</a> (bool append=false)</td></tr>
+<tr class="memdesc:a3a741aaf01a1f2d8c39ad7e310bcc80f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens the file for async writing (append or truncate mode).  <br /></td></tr>
 <tr class="separator:a3a741aaf01a1f2d8c39ad7e310bcc80f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29db0eea8a5e74682c8c4648c2615a89" id="r_a29db0eea8a5e74682c8c4648c2615a89"><td class="memItemLeft" align="right" valign="top">const std::filesystem::path&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1fs_1_1file.html#a29db0eea8a5e74682c8c4648c2615a89">get_path</a> () const</td></tr>
 <tr class="separator:a29db0eea8a5e74682c8c4648c2615a89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aece09d2e972003781f10166482ef007b" id="r_aece09d2e972003781f10166482ef007b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1fs_1_1file.html#aece09d2e972003781f10166482ef007b">operator const std::filesystem::path &amp;</a> () const</td></tr>
 <tr class="separator:aece09d2e972003781f10166482ef007b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>File handle facade that opens async read/write streams. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2cad054bf2c585fbc3b2ec425387961c" name="a2cad054bf2c585fbc3b2ec425387961c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2cad054bf2c585fbc3b2ec425387961c">&#9670;&#160;</a></span>file()</h2>
 
@@ -215,6 +222,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Opens the file for async reading. </p>
+
 </div>
 </div>
 <a id="a3a741aaf01a1f2d8c39ad7e310bcc80f" name="a3a741aaf01a1f2d8c39ad7e310bcc80f"></a>
@@ -240,6 +249,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Opens the file for async writing (append or truncate mode). </p>
 
 </div>
 </div>

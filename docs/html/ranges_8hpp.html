@@ -96,13 +96,16 @@ $(document).ready(function(){initNavTree('ranges_8hpp.html',''); initResizable()
   <div class="headertitle"><div class="title">ranges.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Range adaptor helpers for collecting range pipelines.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;ranges&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for ranges.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="ranges_8hpp__incl.png" border="0" usemap="#ainclude_2webcraft_2ranges_8hpp" alt=""/></div>
 <map name="ainclude_2webcraft_2ranges_8hpp" id="ainclude_2webcraft_2ranges_8hpp">
-<area shape="rect" title=" " alt="" coords="5,5,211,31"/>
+<area shape="rect" title="Range adaptor helpers for collecting range pipelines." alt="" coords="5,5,211,31"/>
 <area shape="rect" title=" " alt="" coords="75,79,141,104"/>
 <area shape="poly" title=" " alt="" coords="111,31,111,65,105,65,105,31"/>
 </map>
@@ -112,12 +115,12 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="ranges_8hpp__dep__incl.png" border="0" usemap="#ainclude_2webcraft_2ranges_8hppdep" alt=""/></div>
 <map name="ainclude_2webcraft_2ranges_8hppdep" id="ainclude_2webcraft_2ranges_8hppdep">
-<area shape="rect" title=" " alt="" coords="5,5,211,31"/>
-<area shape="rect" href="when__all_8hpp.html" title=" " alt="" coords="23,79,193,119"/>
+<area shape="rect" title="Range adaptor helpers for collecting range pipelines." alt="" coords="5,5,211,31"/>
+<area shape="rect" href="when__all_8hpp.html" title="Await combinator that waits for all awaitables in a range." alt="" coords="23,79,193,119"/>
 <area shape="poly" title=" " alt="" coords="111,44,111,79,105,79,105,44"/>
-<area shape="rect" href="async_8hpp.html" title=" " alt="" coords="23,255,193,295"/>
+<area shape="rect" href="async_8hpp.html" title="Umbrella include for the public asynchronous programming API." alt="" coords="23,255,193,295"/>
 <area shape="poly" title=" " alt="" coords="90,131,75,167,71,187,75,206,84,231,97,253,92,256,79,233,69,207,66,187,69,166,85,129"/>
-<area shape="rect" href="when__any_8hpp.html" title=" " alt="" coords="84,167,255,207"/>
+<area shape="rect" href="when__any_8hpp.html" title="Await combinator that resolves when the first awaitable completes." alt="" coords="84,167,255,207"/>
 <area shape="poly" title=" " alt="" coords="132,128,158,165,154,168,127,132"/>
 <area shape="poly" title=" " alt="" coords="150,220,124,256,119,253,146,216"/>
 </map>
@@ -128,6 +131,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1ranges_1_1to.html">webcraft::ranges::to&lt; T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Range adaptor closure that materializes a range into container <code>T</code>.  <a href="classwebcraft_1_1ranges_1_1to.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -137,7 +141,10 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespacewebcraft_1_1ranges" id="r_namespacewebcraft_1_1ranges"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1ranges.html">webcraft::ranges</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Range adaptor helpers for collecting range pipelines. </p>
+<p>The main utility is <code><a class="el" href="classwebcraft_1_1ranges_1_1to.html" title="Range adaptor closure that materializes a range into container T.">webcraft::ranges::to</a>&lt;T&gt;</code>, which can be used in a pipeline to materialize an input range into a target container type. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

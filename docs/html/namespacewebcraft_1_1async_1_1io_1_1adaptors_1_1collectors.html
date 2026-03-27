@@ -100,6 +100,7 @@ $(document).ready(function(){initNavTree('namespacewebcraft_1_1async_1_1io_1_1ad
 Functions</h2></td></tr>
 <tr class="memitem:a7daa10abd28848093f764efd3678bc98" id="r_a7daa10abd28848093f764efd3678bc98"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a7daa10abd28848093f764efd3678bc98"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors_1_1collectors.html#a7daa10abd28848093f764efd3678bc98">reduce</a> (std::function&lt; T(T, T)&gt; &amp;&amp;func)</td></tr>
+<tr class="memdesc:a7daa10abd28848093f764efd3678bc98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collector factory that reduces stream values with a binary function.  <br /></td></tr>
 <tr class="separator:a7daa10abd28848093f764efd3678bc98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc8e437445f9247f3e767b485f468b5d" id="r_adc8e437445f9247f3e767b485f468b5d"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; <br />
 requires std::is_convertible_v&lt;T, std::string&gt;</td></tr>
@@ -107,9 +108,11 @@ requires std::is_convertible_v&lt;T, std::string&gt;</td></tr>
 <tr class="separator:adc8e437445f9247f3e767b485f468b5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1064184038eb4e5d67a1763dbc2c33f9" id="r_a1064184038eb4e5d67a1763dbc2c33f9"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a1064184038eb4e5d67a1763dbc2c33f9"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors_1_1collectors.html#a1064184038eb4e5d67a1763dbc2c33f9">to_vector</a> ()</td></tr>
+<tr class="memdesc:a1064184038eb4e5d67a1763dbc2c33f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collector factory that materializes values into <code>std::vector&lt;T&gt;</code>.  <br /></td></tr>
 <tr class="separator:a1064184038eb4e5d67a1763dbc2c33f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e67493f2e10fee623eb18b43d02ea71" id="r_a2e67493f2e10fee623eb18b43d02ea71"><td class="memTemplParams" colspan="2">template&lt;typename T , typename KeyType &gt; </td></tr>
 <tr class="memitem:a2e67493f2e10fee623eb18b43d02ea71"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors_1_1collectors.html#a2e67493f2e10fee623eb18b43d02ea71">group_by</a> (std::function&lt; KeyType(const T &amp;)&gt; key_function)</td></tr>
+<tr class="memdesc:a2e67493f2e10fee623eb18b43d02ea71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collector factory that groups values by a computed key.  <br /></td></tr>
 <tr class="separator:a2e67493f2e10fee623eb18b43d02ea71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -130,6 +133,8 @@ template&lt;typename T , typename KeyType &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Collector factory that groups values by a computed key. </p>
 
 </div>
 </div>
@@ -188,6 +193,8 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Collector factory that reduces stream values with a binary function. </p>
+
 </div>
 </div>
 <a id="a1064184038eb4e5d67a1763dbc2c33f9" name="a1064184038eb4e5d67a1763dbc2c33f9"></a>
@@ -206,6 +213,8 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Collector factory that materializes values into <code>std::vector&lt;T&gt;</code>. </p>
 
 </div>
 </div>

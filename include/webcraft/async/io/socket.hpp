@@ -5,23 +5,36 @@
 // Licenced under MIT license. See LICENSE.txt for details.
 ///////////////////////////////////////////////////////////////////////////////
 
+/**
+ * @file async/io/socket.hpp
+ * @brief Asynchronous TCP/UDP socket stream abstractions.
+ *
+ * Defines connection metadata, socket mode enums, and high-level async socket
+ * stream APIs for network I/O with `task`-based operations.
+ */
+
 #include "core.hpp"
 #include <webcraft/async/fire_and_forget_task.hpp>
 
 namespace webcraft::async::io::socket
 {
+    /**
+     * @brief Host/port endpoint description.
+     */
     struct connection_info
     {
         std::string host;
         uint16_t port;
     };
 
+    /** @brief IP address family selection. */
     enum class ip_version
     {
         IPv4,
         IPv6
     };
 
+    /** @brief Direction to shutdown in duplex stream sockets. */
     enum class socket_stream_mode
     {
         READ,
@@ -85,6 +98,7 @@ namespace webcraft::async::io::socket
 
     }
 
+    /** @brief Read-only stream view over a connected TCP socket. */
     class tcp_rstream
     {
     private:
@@ -105,11 +119,13 @@ namespace webcraft::async::io::socket
             return *this;
         }
 
+        /** @brief Reads bytes into `buffer`. */
         task<size_t> recv(std::span<char> buffer)
         {
             return descriptor->read(buffer);
         }
 
+        /** @brief Reads one byte, or `std::nullopt` if no data is available. */
         task<std::optional<char>> recv()
         {
             std::array<char, 1> buf;
@@ -120,6 +136,7 @@ namespace webcraft::async::io::socket
             co_return std::nullopt;
         }
 
+        /** @brief Shuts down the read side of the socket. */
         task<void> close()
         {
             descriptor->shutdown(socket_stream_mode::READ);
@@ -131,6 +148,7 @@ namespace webcraft::async::io::socket
     static_assert(async_buffered_readable_stream<tcp_rstream, char>);
     static_assert(async_closeable_stream<tcp_rstream, char>);
 
+    /** @brief Write-only stream view over a connected TCP socket. */
     class tcp_wstream
     {
     private:
@@ -151,11 +169,13 @@ namespace webcraft::async::io::socket
             return *this;
         }
 
+        /** @brief Writes bytes from `buffer`. */
         task<size_t> send(std::span<const char> buffer)
         {
             return descriptor->write(buffer);
         }
 
+        /** @brief Writes a single byte. */
         task<bool> send(char b)
         {
             std::array<char, 1> buf;
@@ -167,6 +187,7 @@ namespace webcraft::async::io::socket
             co_return false;
         }
 
+        /** @brief Shuts down the write side of the socket. */
         task<void> close()
         {
             descriptor->shutdown(socket_stream_mode::WRITE);
@@ -178,6 +199,9 @@ namespace webcraft::async::io::socket
     static_assert(async_buffered_writable_stream<tcp_wstream, char>);
     static_assert(async_closeable_stream<tcp_wstream, char>);
 
+    /**
+     * @brief Full-duplex TCP socket abstraction.
+     */
     class tcp_socket
     {
     private:
@@ -215,6 +239,7 @@ namespace webcraft::async::io::socket
             return *this;
         }
 
+        /** @brief Connects this socket to a remote endpoint. */
         task<void> connect(const connection_info &info)
         {
             if (!descriptor)
@@ -223,6 +248,7 @@ namespace webcraft::async::io::socket
             co_await descriptor->connect(info);
         }
 
+        /** @brief Returns the readable stream endpoint. */
         tcp_rstream &get_readable_stream()
         {
             if (!descriptor)
@@ -230,6 +256,7 @@ namespace webcraft::async::io::socket
             return read_stream;
         }
 
+        /** @brief Returns the writable stream endpoint. */
         tcp_wstream &get_writable_stream()
         {
             if (!descriptor)
@@ -237,6 +264,7 @@ namespace webcraft::async::io::socket
             return write_stream;
         }
 
+        /** @brief Shuts down the requested socket channel once. */
         void shutdown_channel(socket_stream_mode mode)
         {
             if (!descriptor)
@@ -253,6 +281,7 @@ namespace webcraft::async::io::socket
             }
         }
 
+        /** @brief Closes both channels and the underlying descriptor. */
         task<void> close()
         {
             if (descriptor)
@@ -275,6 +304,9 @@ namespace webcraft::async::io::socket
         }
     };
 
+    /**
+     * @brief TCP server listener abstraction.
+     */
     class tcp_listener
     {
     private:
@@ -290,21 +322,25 @@ namespace webcraft::async::io::socket
             }
         }
 
+        /** @brief Binds the listener to a local endpoint. */
         void bind(const connection_info &info)
         {
             descriptor->bind(info);
         }
 
+        /** @brief Starts listening with a backlog size. */
         void listen(int backlog)
         {
             descriptor->listen(backlog);
         }
 
+        /** @brief Accepts the next inbound connection. */
         task<tcp_socket> accept()
         {
             co_return co_await descriptor->accept();
         }
 
+        /** @brief Closes the listener. */
         task<void> close()
         {
             if (descriptor)
@@ -315,6 +351,9 @@ namespace webcraft::async::io::socket
         }
     };
 
+    /**
+     * @brief UDP socket abstraction for datagram send/receive.
+     */
     class udp_socket
     {
     private:
@@ -327,6 +366,7 @@ namespace webcraft::async::io::socket
             fire_and_forget(close());
         }
 
+        /** @brief Closes the UDP socket. */
         task<void> close()
         {
             if (descriptor)
@@ -336,32 +376,38 @@ namespace webcraft::async::io::socket
             }
         }
 
+        /** @brief Binds the UDP socket to a local endpoint. */
         void bind(const connection_info &info)
         {
             descriptor->bind(info);
         }
 
+        /** @brief Receives a datagram and fills sender info. */
         task<size_t> recvfrom(std::span<char> buffer, connection_info &info)
         {
             return descriptor->recvfrom(buffer, info);
         }
 
+        /** @brief Sends a datagram to the target endpoint. */
         task<size_t> sendto(std::span<const char> buffer, const connection_info &info)
         {
             return descriptor->sendto(buffer, info);
         }
     };
 
+    /** @brief Creates a TCP client socket. */
     inline tcp_socket make_tcp_socket()
     {
         return tcp_socket(detail::make_tcp_socket_descriptor());
     }
 
+    /** @brief Creates a TCP listener socket. */
     inline tcp_listener make_tcp_listener()
     {
         return tcp_listener(detail::make_tcp_listener_descriptor());
     }
 
+    /** @brief Creates a UDP socket, optionally constrained to an IP version. */
     inline udp_socket make_udp_socket(std::optional<ip_version> version = std::nullopt)
     {
         return udp_socket(detail::make_udp_socket_descriptor(version));

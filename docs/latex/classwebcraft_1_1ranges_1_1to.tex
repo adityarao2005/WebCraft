@@ -2,11 +2,17 @@
 \hypertarget{classwebcraft_1_1ranges_1_1to}{}\label{classwebcraft_1_1ranges_1_1to}\index{webcraft::ranges::to$<$ T $>$@{webcraft::ranges::to$<$ T $>$}}
 
 
+Range adaptor closure that materializes a range into container {\ttfamily T}.  
+
+
+
+
 {\ttfamily \#include $<$ranges.\+hpp$>$}
 
 
 
-Inheritance diagram for webcraft\+::ranges\+::to\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:\nopagebreak
+Inheritance diagram for webcraft\+::ranges\+::to\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -15,7 +21,8 @@ Inheritance diagram for webcraft\+::ranges\+::to\texorpdfstring{$<$}{<} T \texor
 \end{figure}
 
 
-Collaboration diagram for webcraft\+::ranges\+::to\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:\nopagebreak
+Collaboration diagram for webcraft\+::ranges\+::to\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -26,7 +33,19 @@ Collaboration diagram for webcraft\+::ranges\+::to\texorpdfstring{$<$}{<} T \tex
 \begin{DoxyCompactItemize}
 \item 
 constexpr T \mbox{\hyperlink{classwebcraft_1_1ranges_1_1to_ab397bd390c234f09d31ff61c030b53e2}{operator()}} (std\+::ranges\+::input\+\_\+range auto \&\&range) const
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Collects all values from an input range into {\ttfamily T}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class webcraft\+::ranges\+::to$<$ T $>$}
+Range adaptor closure that materializes a range into container {\ttfamily T}. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Target container type. \\
+\hline
+\end{DoxyTemplParams}
 
 
 \doxysubsection{Member Function Documentation}
@@ -36,6 +55,10 @@ constexpr T \mbox{\hyperlink{classwebcraft_1_1ranges_1_1to_ab397bd390c234f09d31f
 \doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 constexpr T \mbox{\hyperlink{classwebcraft_1_1ranges_1_1to}{webcraft\+::ranges\+::to}}$<$ T $>$\+::operator() (\begin{DoxyParamCaption}\item[{std\+::ranges\+::input\+\_\+range auto$<$ T $>$ \&\&}]{range }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+
+
+Collects all values from an input range into {\ttfamily T}. 
 
 
 

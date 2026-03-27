@@ -2,11 +2,17 @@
 \hypertarget{classwebcraft_1_1async_1_1task__completion__source}{}\label{classwebcraft_1_1async_1_1task__completion__source}\index{webcraft::async::task\_completion\_source$<$ T $>$@{webcraft::async::task\_completion\_source$<$ T $>$}}
 
 
+Manual completion source for {\ttfamily task\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}}.  
+
+
+
+
 {\ttfamily \#include $<$task\+\_\+completion\+\_\+source.\+hpp$>$}
 
 
 
-Inheritance diagram for webcraft\+::async\+::task\+\_\+completion\+\_\+source\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:\nopagebreak
+Inheritance diagram for webcraft\+::async\+::task\+\_\+completion\+\_\+source\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -15,7 +21,8 @@ Inheritance diagram for webcraft\+::async\+::task\+\_\+completion\+\_\+source\te
 \end{figure}
 
 
-Collaboration diagram for webcraft\+::async\+::task\+\_\+completion\+\_\+source\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:\nopagebreak
+Collaboration diagram for webcraft\+::async\+::task\+\_\+completion\+\_\+source\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -43,11 +50,11 @@ using \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_a0bc1c
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_a0478b2eef7ba4a2d8d02fab95a99ce95}{\texorpdfstring{$\sim$}{\string~}task\+\_\+completion\+\_\+source}} ()=default
 \item 
 void \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_affb961695f83d4fa8623b924a6c2de4c}{set\+\_\+value}} (T value)
-\item 
+\begin{DoxyCompactList}\small\item\em Completes the task with a value and resumes any waiter. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{webcraft\+::async\+::task}}$<$ T $>$ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_a2e407b053f2e1c130b2e47ed9ae40548}{task}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Returns the awaitable task linked to this completion source. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_adc2b74e6b23588f553365710b1229be0}{set\+\_\+exception}} (std\+::exception\+\_\+ptr exception)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Completes the source with an exception. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base}{webcraft\+::async\+::task\+\_\+completion\+\_\+source\+\_\+base}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -64,7 +71,7 @@ void \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source_adc2b74
 virtual \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a304b17845ad637f3e33d8fcb919fe978}{\texorpdfstring{$\sim$}{\string~}task\+\_\+completion\+\_\+source\+\_\+base}} ()=default
 \item 
 void \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_adc2b74e6b23588f553365710b1229be0}{set\+\_\+exception}} (std\+::exception\+\_\+ptr exception)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Completes the source with an exception. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base}{webcraft\+::async\+::task\+\_\+completion\+\_\+source\+\_\+base}}}
 \begin{DoxyCompactItemize}
@@ -74,6 +81,11 @@ std\+::coroutine\+\_\+handle \mbox{\hyperlink{classwebcraft_1_1async_1_1task__co
 std\+::exception\+\_\+ptr \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source__base_a67e45abc6d49ff3a8dec800dbb230cbc}{exception\+\_\+}}
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class webcraft\+::async\+::task\+\_\+completion\+\_\+source$<$ T $>$}
+Manual completion source for {\ttfamily task\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}}. 
 
 \doxysubsection{Member Typedef Documentation}
 \Hypertarget{classwebcraft_1_1async_1_1task__completion__source_a0bc1c99fc8884263d51c08f535c905b5}\label{classwebcraft_1_1async_1_1task__completion__source_a0bc1c99fc8884263d51c08f535c905b5} 
@@ -138,6 +150,10 @@ using \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{webcr
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 void webcraft\+::async\+::task\+\_\+completion\+\_\+source\+\_\+base\+::set\+\_\+exception (\begin{DoxyParamCaption}\item[{std\+::exception\+\_\+ptr}]{exception }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Completes the source with an exception. 
+
 \Hypertarget{classwebcraft_1_1async_1_1task__completion__source_affb961695f83d4fa8623b924a6c2de4c}\label{classwebcraft_1_1async_1_1task__completion__source_affb961695f83d4fa8623b924a6c2de4c} 
 \index{webcraft::async::task\_completion\_source$<$ T $>$@{webcraft::async::task\_completion\_source$<$ T $>$}!set\_value@{set\_value}}
 \index{set\_value@{set\_value}!webcraft::async::task\_completion\_source$<$ T $>$@{webcraft::async::task\_completion\_source$<$ T $>$}}
@@ -145,12 +161,20 @@ void webcraft\+::async\+::task\+\_\+completion\+\_\+source\+\_\+base\+::set\+\_\
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 void \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{webcraft\+::async\+::task\+\_\+completion\+\_\+source}}$<$ T $>$\+::set\+\_\+value (\begin{DoxyParamCaption}\item[{T}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Completes the task with a value and resumes any waiter. 
+
 \Hypertarget{classwebcraft_1_1async_1_1task__completion__source_a2e407b053f2e1c130b2e47ed9ae40548}\label{classwebcraft_1_1async_1_1task__completion__source_a2e407b053f2e1c130b2e47ed9ae40548} 
 \index{webcraft::async::task\_completion\_source$<$ T $>$@{webcraft::async::task\_completion\_source$<$ T $>$}!task@{task}}
 \index{task@{task}!webcraft::async::task\_completion\_source$<$ T $>$@{webcraft::async::task\_completion\_source$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{task()}{task()}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{webcraft\+::async\+::task}}$<$ T $>$ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__completion__source}{webcraft\+::async\+::task\+\_\+completion\+\_\+source}}$<$ T $>$\+::task (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the awaitable task linked to this completion source. 
 
 
 

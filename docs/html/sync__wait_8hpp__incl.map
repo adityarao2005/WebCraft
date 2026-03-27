@@ -1,8 +1,8 @@
 <map id="include/webcraft/async/sync_wait.hpp" name="include/webcraft/async/sync_wait.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="260,5,431,45"/>
-<area shape="rect" id="Node000002" href="$event__signal_8hpp.html" title=" " alt="" coords="63,167,196,192"/>
+<area shape="rect" id="Node000001" title="Blocking bridge from awaitables to synchronous callers." alt="" coords="260,5,431,45"/>
+<area shape="rect" id="Node000002" href="$event__signal_8hpp.html" title="Lightweight thread&#45;based signaling primitive for sync waiting." alt="" coords="63,167,196,192"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="320,48,159,161,156,156,317,43"/>
-<area shape="rect" id="Node000006" href="$task_8hpp.html" title=" " alt="" coords="461,93,539,119"/>
+<area shape="rect" id="Node000006" href="$task_8hpp.html" title="Core coroutine task type used across WebCraft async APIs." alt="" coords="461,93,539,119"/>
 <area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="384,43,466,85,464,89,381,48"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="5,240,72,265"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="116,194,66,233,63,229,113,190"/>
@@ -17,7 +17,7 @@
 <area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="463,121,316,165,315,160,461,116"/>
 <area shape="rect" id="Node000009" title=" " alt="" coords="304,240,387,265"/>
 <area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="461,119,415,137,392,151,373,168,357,196,350,226,345,225,352,195,369,165,389,147,412,132,459,114"/>
-<area shape="rect" id="Node000010" href="$awaitable_8hpp.html" title=" " alt="" coords="383,167,497,192"/>
+<area shape="rect" id="Node000010" href="$awaitable_8hpp.html" title="Awaitable concepts and type traits." alt="" coords="383,167,497,192"/>
 <area shape="poly" id="edge9_Node000006_Node000010" title=" " alt="" coords="492,121,461,158,456,154,488,117"/>
 <area shape="rect" id="Node000012" title=" " alt="" coords="521,167,601,192"/>
 <area shape="poly" id="edge14_Node000006_Node000012" title=" " alt="" coords="512,117,544,154,540,158,508,121"/>

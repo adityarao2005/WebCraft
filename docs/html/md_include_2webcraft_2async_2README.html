@@ -127,7 +127,7 @@ Awaitable Concepts</h1>
 <div class="line"> </div>
 <div class="line"><span class="keyword">template</span> &lt;awaitable_t T&gt;</div>
 <div class="line"><span class="keyword">using </span><a class="code hl_typedef" href="namespacewebcraft_1_1async.html#a756c2303d30320ba433f8aa21010bd01">awaitable_resume_t</a> = <span class="keyword">decltype</span>(detail::get_awaiter(std::declval&lt;T&gt;()).await_resume());</div>
-<div class="ttc" id="anamespacewebcraft_1_1async_html_a756c2303d30320ba433f8aa21010bd01"><div class="ttname"><a href="namespacewebcraft_1_1async.html#a756c2303d30320ba433f8aa21010bd01">webcraft::async::awaitable_resume_t</a></div><div class="ttdeci">decltype(detail::get_awaiter(std::declval&lt; T &gt;()).await_resume()) awaitable_resume_t</div><div class="ttdef"><b>Definition</b> awaitable.hpp:86</div></div>
+<div class="ttc" id="anamespacewebcraft_1_1async_html_a756c2303d30320ba433f8aa21010bd01"><div class="ttname"><a href="namespacewebcraft_1_1async.html#a756c2303d30320ba433f8aa21010bd01">webcraft::async::awaitable_resume_t</a></div><div class="ttdeci">decltype(detail::get_awaiter(std::declval&lt; T &gt;()).await_resume()) awaitable_resume_t</div><div class="ttdoc">Resolved result type produced by awaiting T.</div><div class="ttdef"><b>Definition</b> awaitable.hpp:99</div></div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md43"></a>
 Task&lt;T&gt;</h1>
 <p>The fundamental coroutine type in <code><a class="el" href="namespacewebcraft_1_1async.html">webcraft::async</a></code>. A <code>task&lt;T&gt;</code> represents an asynchronous operation that produces a result of type <code>T</code>. Implementation inspired by <a href="https://github.com/microsoft/cpp-async">microsoft/cpp-async</a> and <a href="https://github.com/lewissbaker/cppcoro/">lewissbaker/cppcoro</a>. The task type implementation is an eager task (it starts as soon as its constructed, similar to JS Promises):</p>
@@ -249,7 +249,7 @@ task_completion_source&lt;T&gt;</h2>
 <div class="line">    </div>
 <div class="line">    <a class="code hl_namespace" href="namespacewebcraft.html">webcraft</a>::async::task&lt;T&gt; task();</div>
 <div class="line">};</div>
-<div class="ttc" id="anamespacewebcraft_html"><div class="ttname"><a href="namespacewebcraft.html">webcraft</a></div><div class="ttdef"><b>Definition</b> async_event.hpp:12</div></div>
+<div class="ttc" id="anamespacewebcraft_html"><div class="ttname"><a href="namespacewebcraft.html">webcraft</a></div><div class="ttdef"><b>Definition</b> async_event.hpp:21</div></div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md50"></a>
 fire_and_forget_task</h2>
 <p>A task type that runs without needing to be awaited. It will destroy itself once the coroutine has finished (reached final suspend or coroutine frame is destroyed via <code>h.destroy()</code>):</p>
@@ -366,7 +366,7 @@ Thread Pool</h1>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md59"></a>
 Macros and Type Aliases</h1>
 <p>The namespace also provides convenient macros and type aliases:</p>
-<p>```cpp // Macro for creating async lambdas #define co_async [&amp;]() -&gt; <a class="el" href="classwebcraft_1_1async_1_1task_3_01void_01_4.html">webcraft::async::task&lt;void&gt;</a></p>
+<p>```cpp // Macro for creating async lambdas #define co_async [&amp;]() -&gt; <a class="el" href="classwebcraft_1_1async_1_1task_3_01void_01_4.html" title="Awaitable coroutine result specialization for void.">webcraft::async::task&lt;void&gt;</a></p>
 <p>// Type alias for tasks #define <a class="el" href="async_8hpp.html#a90487a295616cb8cb36ce0c38e0b7417">async_t(T)</a> ::webcraft::async::task&lt;T&gt; </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

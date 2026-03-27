@@ -94,15 +94,20 @@ $(document).ready(function(){initNavTree('conceptwebcraft_1_1async_1_1awaitable_
 </div><!--header-->
 <div class="contents">
 
+<p>Primary concept indicating a type is awaitable.  
+<a href="conceptwebcraft_1_1async_1_1awaitable__t.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="awaitable_8hpp_source.html">awaitable.hpp</a>&gt;</code></p>
 <h2 class="groupheader">Concept definition</h2>
 <div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
 <div class="line"><span class="keyword">concept </span><a class="code hl_concept" href="conceptwebcraft_1_1async_1_1awaitable__t.html">webcraft::async::awaitable_t</a> =  <a class="code hl_concept" href="conceptwebcraft_1_1async_1_1has__member__operator__co__await__v.html">has_member_operator_co_await_v&lt;T&gt;</a> || <a class="code hl_concept" href="conceptwebcraft_1_1async_1_1has__awaitable__elements.html">has_awaitable_elements&lt;T&gt;</a> || <a class="code hl_concept" href="conceptwebcraft_1_1async_1_1has__non__member__operator__co__await__v.html">has_non_member_operator_co_await_v&lt;T&gt;</a></div>
-<div class="ttc" id="aconceptwebcraft_1_1async_1_1awaitable__t_html"><div class="ttname"><a href="conceptwebcraft_1_1async_1_1awaitable__t.html">webcraft::async::awaitable_t</a></div><div class="ttdef"><b>Definition</b> awaitable.hpp:36</div></div>
-<div class="ttc" id="aconceptwebcraft_1_1async_1_1has__awaitable__elements_html"><div class="ttname"><a href="conceptwebcraft_1_1async_1_1has__awaitable__elements.html">webcraft::async::has_awaitable_elements</a></div><div class="ttdef"><b>Definition</b> awaitable.hpp:24</div></div>
-<div class="ttc" id="aconceptwebcraft_1_1async_1_1has__member__operator__co__await__v_html"><div class="ttname"><a href="conceptwebcraft_1_1async_1_1has__member__operator__co__await__v.html">webcraft::async::has_member_operator_co_await_v</a></div><div class="ttdef"><b>Definition</b> awaitable.hpp:16</div></div>
-<div class="ttc" id="aconceptwebcraft_1_1async_1_1has__non__member__operator__co__await__v_html"><div class="ttname"><a href="conceptwebcraft_1_1async_1_1has__non__member__operator__co__await__v.html">webcraft::async::has_non_member_operator_co_await_v</a></div><div class="ttdef"><b>Definition</b> awaitable.hpp:31</div></div>
-</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aconceptwebcraft_1_1async_1_1awaitable__t_html"><div class="ttname"><a href="conceptwebcraft_1_1async_1_1awaitable__t.html">webcraft::async::awaitable_t</a></div><div class="ttdoc">Primary concept indicating a type is awaitable.</div><div class="ttdef"><b>Definition</b> awaitable.hpp:48</div></div>
+<div class="ttc" id="aconceptwebcraft_1_1async_1_1has__awaitable__elements_html"><div class="ttname"><a href="conceptwebcraft_1_1async_1_1has__awaitable__elements.html">webcraft::async::has_awaitable_elements</a></div><div class="ttdoc">Detects awaiter protocol members (await_ready/suspend/resume).</div><div class="ttdef"><b>Definition</b> awaitable.hpp:34</div></div>
+<div class="ttc" id="aconceptwebcraft_1_1async_1_1has__member__operator__co__await__v_html"><div class="ttname"><a href="conceptwebcraft_1_1async_1_1has__member__operator__co__await__v.html">webcraft::async::has_member_operator_co_await_v</a></div><div class="ttdoc">Detects member operator co_await.</div><div class="ttdef"><b>Definition</b> awaitable.hpp:24</div></div>
+<div class="ttc" id="aconceptwebcraft_1_1async_1_1has__non__member__operator__co__await__v_html"><div class="ttname"><a href="conceptwebcraft_1_1async_1_1has__non__member__operator__co__await__v.html">webcraft::async::has_non_member_operator_co_await_v</a></div><div class="ttdoc">Detects non-member operator co_await.</div><div class="ttdef"><b>Definition</b> awaitable.hpp:42</div></div>
+</div><!-- fragment --><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Primary concept indicating a type is awaitable. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

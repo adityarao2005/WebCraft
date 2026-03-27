@@ -103,117 +103,116 @@ $(document).ready(function(){initNavTree('event__signal_8hpp_source.html',''); i
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// Copyright (c) Aditya Rao</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// Licenced under MIT license. See LICENSE.txt for details.</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;atomic&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;chrono&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;thread&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacewebcraft_1_1async.html">webcraft::async</a></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1immovable.html">   16</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classwebcraft_1_1async_1_1immovable.html">immovable</a></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    {</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1immovable.html#afa3778a7c0dcd44972da924b01594349">   19</a></span>        <a class="code hl_function" href="classwebcraft_1_1async_1_1immovable.html#afa3778a7c0dcd44972da924b01594349">immovable</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1immovable.html#aa27e42f2638b66ab277ba8451c6e6840">   20</a></span>        <a class="code hl_function" href="classwebcraft_1_1async_1_1immovable.html#aa27e42f2638b66ab277ba8451c6e6840">immovable</a>(<span class="keyword">const</span> <a class="code hl_class" href="classwebcraft_1_1async_1_1immovable.html">immovable</a> &amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1immovable.html#a6e7021164eeaa1af0c09a250d8b19d2e">   21</a></span>        <a class="code hl_class" href="classwebcraft_1_1async_1_1immovable.html">immovable</a> &amp;<a class="code hl_function" href="classwebcraft_1_1async_1_1immovable.html#a6e7021164eeaa1af0c09a250d8b19d2e">operator=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classwebcraft_1_1async_1_1immovable.html">immovable</a> &amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1immovable.html#aeb639d321b1d9cccdef2b30f18d984fa">   22</a></span>        <a class="code hl_function" href="classwebcraft_1_1async_1_1immovable.html#aeb639d321b1d9cccdef2b30f18d984fa">immovable</a>(<a class="code hl_class" href="classwebcraft_1_1async_1_1immovable.html">immovable</a> &amp;&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1immovable.html#a5eca96af1b27ac31e201561df7c6a193">   23</a></span>        <a class="code hl_class" href="classwebcraft_1_1async_1_1immovable.html">immovable</a> &amp;<a class="code hl_function" href="classwebcraft_1_1async_1_1immovable.html#a5eca96af1b27ac31e201561df7c6a193">operator=</a>(<a class="code hl_class" href="classwebcraft_1_1async_1_1immovable.html">immovable</a> &amp;&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1immovable.html#a5b6701013be9de7b5d23045e23c667ea">   25</a></span>        <a class="code hl_function" href="classwebcraft_1_1async_1_1immovable.html#a5b6701013be9de7b5d23045e23c667ea">~immovable</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    };</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;atomic&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;chrono&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;thread&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacewebcraft_1_1async.html">webcraft::async</a></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>{</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="foldopen" id="foldopen00026" data-start="{" data-end="};">
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1immovable.html">   26</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classwebcraft_1_1async_1_1immovable.html">immovable</a></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1immovable.html#afa3778a7c0dcd44972da924b01594349">   29</a></span>        <a class="code hl_function" href="classwebcraft_1_1async_1_1immovable.html#afa3778a7c0dcd44972da924b01594349">immovable</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1immovable.html#aa27e42f2638b66ab277ba8451c6e6840">   30</a></span>        <a class="code hl_function" href="classwebcraft_1_1async_1_1immovable.html#aa27e42f2638b66ab277ba8451c6e6840">immovable</a>(<span class="keyword">const</span> <a class="code hl_class" href="classwebcraft_1_1async_1_1immovable.html">immovable</a> &amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1immovable.html#a6e7021164eeaa1af0c09a250d8b19d2e">   31</a></span>        <a class="code hl_class" href="classwebcraft_1_1async_1_1immovable.html">immovable</a> &amp;<a class="code hl_function" href="classwebcraft_1_1async_1_1immovable.html#a6e7021164eeaa1af0c09a250d8b19d2e">operator=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classwebcraft_1_1async_1_1immovable.html">immovable</a> &amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1immovable.html#aeb639d321b1d9cccdef2b30f18d984fa">   32</a></span>        <a class="code hl_function" href="classwebcraft_1_1async_1_1immovable.html#aeb639d321b1d9cccdef2b30f18d984fa">immovable</a>(<a class="code hl_class" href="classwebcraft_1_1async_1_1immovable.html">immovable</a> &amp;&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1immovable.html#a5eca96af1b27ac31e201561df7c6a193">   33</a></span>        <a class="code hl_class" href="classwebcraft_1_1async_1_1immovable.html">immovable</a> &amp;<a class="code hl_function" href="classwebcraft_1_1async_1_1immovable.html#a5eca96af1b27ac31e201561df7c6a193">operator=</a>(<a class="code hl_class" href="classwebcraft_1_1async_1_1immovable.html">immovable</a> &amp;&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1immovable.html#a5b6701013be9de7b5d23045e23c667ea">   35</a></span>        <a class="code hl_function" href="classwebcraft_1_1async_1_1immovable.html#a5b6701013be9de7b5d23045e23c667ea">~immovable</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    };</div>
 </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="foldopen" id="foldopen00028" data-start="{" data-end="};">
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1event__signal.html">   28</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classwebcraft_1_1async_1_1event__signal.html">event_signal</a> : <span class="keyword">public</span> <a class="code hl_class" href="classwebcraft_1_1async_1_1immovable.html">immovable</a></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    {</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        std::atomic&lt;bool&gt; flag;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1event__signal.html#a77677008fd577495eac78a8f046a5835">   34</a></span>        <a class="code hl_function" href="classwebcraft_1_1async_1_1event__signal.html#a77677008fd577495eac78a8f046a5835">event_signal</a>() : flag(false) {}</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="foldopen" id="foldopen00036" data-start="{" data-end="}">
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1event__signal.html#a0f8cd8af66f2e588c242463029550f1e">   36</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classwebcraft_1_1async_1_1event__signal.html#a0f8cd8af66f2e588c242463029550f1e">set</a>() noexcept</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        {</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            flag.store(<span class="keyword">true</span>, std::memory_order_release);</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        }</div>
-</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="foldopen" id="foldopen00041" data-start="{" data-end="}">
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1event__signal.html#a7a70b19b356714cda6da9b661f2d9f5c">   41</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classwebcraft_1_1async_1_1event__signal.html#a7a70b19b356714cda6da9b661f2d9f5c">reset</a>() noexcept</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        {</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>            flag.store(<span class="keyword">false</span>, std::memory_order_release);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        }</div>
-</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="};">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1event__signal.html">   41</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classwebcraft_1_1async_1_1event__signal.html">event_signal</a> : <span class="keyword">public</span> <a class="code hl_class" href="classwebcraft_1_1async_1_1immovable.html">immovable</a></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        std::atomic&lt;bool&gt; flag;</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="foldopen" id="foldopen00046" data-start="{" data-end="}">
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1event__signal.html#ad4a52a05dde472e3062e60c92348d5fa">   46</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classwebcraft_1_1async_1_1event__signal.html#ad4a52a05dde472e3062e60c92348d5fa">is_set</a>() const noexcept</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        {</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            <span class="keywordflow">return</span> flag.load(std::memory_order_acquire);</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        }</div>
-</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1event__signal.html#a77677008fd577495eac78a8f046a5835">   48</a></span>        <a class="code hl_function" href="classwebcraft_1_1async_1_1event__signal.html#a77677008fd577495eac78a8f046a5835">event_signal</a>() : flag(false) {}</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
 <div class="foldopen" id="foldopen00051" data-start="{" data-end="}">
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1event__signal.html#a30ed3534d605cf8881830fa3454a6d9c">   51</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classwebcraft_1_1async_1_1event__signal.html#a30ed3534d605cf8881830fa3454a6d9c">wait_for</a>(std::chrono::milliseconds timeout)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword">        </span>{</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            <span class="keyword">auto</span> start = std::chrono::steady_clock::now();</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            <span class="keywordflow">while</span> (!<a class="code hl_function" href="classwebcraft_1_1async_1_1event__signal.html#ad4a52a05dde472e3062e60c92348d5fa">is_set</a>())</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            {</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                <span class="keywordflow">if</span> (std::chrono::steady_clock::now() - start &gt;= timeout)</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>                {</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                    <span class="keywordflow">return</span> <span class="keyword">false</span>; <span class="comment">// Timeout</span></div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                }</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                std::this_thread::yield(); <span class="comment">// Yield to avoid busy waiting</span></div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            }</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>; <span class="comment">// Signal was set</span></div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        }</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1event__signal.html#a0f8cd8af66f2e588c242463029550f1e">   51</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classwebcraft_1_1async_1_1event__signal.html#a0f8cd8af66f2e588c242463029550f1e">set</a>() noexcept</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            flag.store(<span class="keyword">true</span>, std::memory_order_release);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        }</div>
 </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="foldopen" id="foldopen00065" data-start="{" data-end="}">
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1event__signal.html#a84765130566101afcf0666378ce3c02c">   65</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classwebcraft_1_1async_1_1event__signal.html#a84765130566101afcf0666378ce3c02c">wait</a>()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="keyword">        </span>{</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>            <span class="keywordflow">while</span> (!<a class="code hl_function" href="classwebcraft_1_1async_1_1event__signal.html#ad4a52a05dde472e3062e60c92348d5fa">is_set</a>())</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            {</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                std::this_thread::yield(); <span class="comment">// Yield to avoid busy waiting</span></div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            }</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>; <span class="comment">// Signal was set</span></div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        }</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="foldopen" id="foldopen00057" data-start="{" data-end="}">
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1event__signal.html#a7a70b19b356714cda6da9b661f2d9f5c">   57</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classwebcraft_1_1async_1_1event__signal.html#a7a70b19b356714cda6da9b661f2d9f5c">reset</a>() noexcept</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        {</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            flag.store(<span class="keyword">false</span>, std::memory_order_release);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        }</div>
 </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="foldopen" id="foldopen00074" data-start="{" data-end="}">
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1event__signal.html#a552efc44edcfac5ed89227105b64a742">   74</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classwebcraft_1_1async_1_1event__signal.html#a552efc44edcfac5ed89227105b64a742">operator()</a>()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="keyword">        </span>{</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="classwebcraft_1_1async_1_1event__signal.html#ad4a52a05dde472e3062e60c92348d5fa">is_set</a>();</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        }</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="foldopen" id="foldopen00063" data-start="{" data-end="}">
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1event__signal.html#ad4a52a05dde472e3062e60c92348d5fa">   63</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classwebcraft_1_1async_1_1event__signal.html#ad4a52a05dde472e3062e60c92348d5fa">is_set</a>() const noexcept</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            <span class="keywordflow">return</span> flag.load(std::memory_order_acquire);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        }</div>
 </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="foldopen" id="foldopen00079" data-start="{" data-end="}">
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1event__signal.html#a596c28bcd66ec204cf3c2216f0b2acd9">   79</a></span>        <span class="keyword">explicit</span> <span class="keyword">operator</span> bool()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="keyword">        </span>{</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="classwebcraft_1_1async_1_1event__signal.html#ad4a52a05dde472e3062e60c92348d5fa">is_set</a>();</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        }</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="foldopen" id="foldopen00072" data-start="{" data-end="}">
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1event__signal.html#a30ed3534d605cf8881830fa3454a6d9c">   72</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classwebcraft_1_1async_1_1event__signal.html#a30ed3534d605cf8881830fa3454a6d9c">wait_for</a>(std::chrono::milliseconds timeout)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">        </span>{</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>            <span class="keyword">auto</span> start = std::chrono::steady_clock::now();</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            <span class="keywordflow">while</span> (!<a class="code hl_function" href="classwebcraft_1_1async_1_1event__signal.html#ad4a52a05dde472e3062e60c92348d5fa">is_set</a>())</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            {</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                <span class="keywordflow">if</span> (std::chrono::steady_clock::now() - start &gt;= timeout)</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>                {</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>                    <span class="keywordflow">return</span> <span class="keyword">false</span>; <span class="comment">// Timeout</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>                }</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                std::this_thread::yield(); <span class="comment">// Yield to avoid busy waiting</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>            }</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>; <span class="comment">// Signal was set</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        }</div>
 </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    };</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="foldopen" id="foldopen00090" data-start="{" data-end="}">
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1event__signal.html#a84765130566101afcf0666378ce3c02c">   90</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classwebcraft_1_1async_1_1event__signal.html#a84765130566101afcf0666378ce3c02c">wait</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="keyword">        </span>{</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>            <span class="keywordflow">while</span> (!<a class="code hl_function" href="classwebcraft_1_1async_1_1event__signal.html#ad4a52a05dde472e3062e60c92348d5fa">is_set</a>())</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>            {</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>                std::this_thread::yield(); <span class="comment">// Yield to avoid busy waiting</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>            }</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>; <span class="comment">// Signal was set</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        }</div>
 </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>}</div>
-<div class="ttc" id="aclasswebcraft_1_1async_1_1event__signal_html"><div class="ttname"><a href="classwebcraft_1_1async_1_1event__signal.html">webcraft::async::event_signal</a></div><div class="ttdef"><b>Definition</b> event_signal.hpp:29</div></div>
-<div class="ttc" id="aclasswebcraft_1_1async_1_1event__signal_html_a0f8cd8af66f2e588c242463029550f1e"><div class="ttname"><a href="classwebcraft_1_1async_1_1event__signal.html#a0f8cd8af66f2e588c242463029550f1e">webcraft::async::event_signal::set</a></div><div class="ttdeci">void set() noexcept</div><div class="ttdef"><b>Definition</b> event_signal.hpp:36</div></div>
-<div class="ttc" id="aclasswebcraft_1_1async_1_1event__signal_html_a30ed3534d605cf8881830fa3454a6d9c"><div class="ttname"><a href="classwebcraft_1_1async_1_1event__signal.html#a30ed3534d605cf8881830fa3454a6d9c">webcraft::async::event_signal::wait_for</a></div><div class="ttdeci">bool wait_for(std::chrono::milliseconds timeout) const</div><div class="ttdef"><b>Definition</b> event_signal.hpp:51</div></div>
-<div class="ttc" id="aclasswebcraft_1_1async_1_1event__signal_html_a552efc44edcfac5ed89227105b64a742"><div class="ttname"><a href="classwebcraft_1_1async_1_1event__signal.html#a552efc44edcfac5ed89227105b64a742">webcraft::async::event_signal::operator()</a></div><div class="ttdeci">bool operator()() const</div><div class="ttdef"><b>Definition</b> event_signal.hpp:74</div></div>
-<div class="ttc" id="aclasswebcraft_1_1async_1_1event__signal_html_a77677008fd577495eac78a8f046a5835"><div class="ttname"><a href="classwebcraft_1_1async_1_1event__signal.html#a77677008fd577495eac78a8f046a5835">webcraft::async::event_signal::event_signal</a></div><div class="ttdeci">event_signal()</div><div class="ttdef"><b>Definition</b> event_signal.hpp:34</div></div>
-<div class="ttc" id="aclasswebcraft_1_1async_1_1event__signal_html_a7a70b19b356714cda6da9b661f2d9f5c"><div class="ttname"><a href="classwebcraft_1_1async_1_1event__signal.html#a7a70b19b356714cda6da9b661f2d9f5c">webcraft::async::event_signal::reset</a></div><div class="ttdeci">void reset() noexcept</div><div class="ttdef"><b>Definition</b> event_signal.hpp:41</div></div>
-<div class="ttc" id="aclasswebcraft_1_1async_1_1event__signal_html_a84765130566101afcf0666378ce3c02c"><div class="ttname"><a href="classwebcraft_1_1async_1_1event__signal.html#a84765130566101afcf0666378ce3c02c">webcraft::async::event_signal::wait</a></div><div class="ttdeci">bool wait() const</div><div class="ttdef"><b>Definition</b> event_signal.hpp:65</div></div>
-<div class="ttc" id="aclasswebcraft_1_1async_1_1event__signal_html_ad4a52a05dde472e3062e60c92348d5fa"><div class="ttname"><a href="classwebcraft_1_1async_1_1event__signal.html#ad4a52a05dde472e3062e60c92348d5fa">webcraft::async::event_signal::is_set</a></div><div class="ttdeci">bool is_set() const noexcept</div><div class="ttdef"><b>Definition</b> event_signal.hpp:46</div></div>
-<div class="ttc" id="aclasswebcraft_1_1async_1_1immovable_html"><div class="ttname"><a href="classwebcraft_1_1async_1_1immovable.html">webcraft::async::immovable</a></div><div class="ttdef"><b>Definition</b> event_signal.hpp:17</div></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="foldopen" id="foldopen00100" data-start="{" data-end="}">
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1event__signal.html#a552efc44edcfac5ed89227105b64a742">  100</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classwebcraft_1_1async_1_1event__signal.html#a552efc44edcfac5ed89227105b64a742">operator()</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="keyword">        </span>{</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="classwebcraft_1_1async_1_1event__signal.html#ad4a52a05dde472e3062e60c92348d5fa">is_set</a>();</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        }</div>
+</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="foldopen" id="foldopen00106" data-start="{" data-end="}">
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="classwebcraft_1_1async_1_1event__signal.html#a596c28bcd66ec204cf3c2216f0b2acd9">  106</a></span>        <span class="keyword">explicit</span> <span class="keyword">operator</span> bool()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="keyword">        </span>{</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="classwebcraft_1_1async_1_1event__signal.html#ad4a52a05dde472e3062e60c92348d5fa">is_set</a>();</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        }</div>
+</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    };</div>
+</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>}</div>
+<div class="ttc" id="aclasswebcraft_1_1async_1_1event__signal_html"><div class="ttname"><a href="classwebcraft_1_1async_1_1event__signal.html">webcraft::async::event_signal</a></div><div class="ttdoc">Busy-wait signal for synchronously waiting on async completion.</div><div class="ttdef"><b>Definition</b> event_signal.hpp:42</div></div>
+<div class="ttc" id="aclasswebcraft_1_1async_1_1event__signal_html_a0f8cd8af66f2e588c242463029550f1e"><div class="ttname"><a href="classwebcraft_1_1async_1_1event__signal.html#a0f8cd8af66f2e588c242463029550f1e">webcraft::async::event_signal::set</a></div><div class="ttdeci">void set() noexcept</div><div class="ttdoc">Sets the signal state to true.</div><div class="ttdef"><b>Definition</b> event_signal.hpp:51</div></div>
+<div class="ttc" id="aclasswebcraft_1_1async_1_1event__signal_html_a30ed3534d605cf8881830fa3454a6d9c"><div class="ttname"><a href="classwebcraft_1_1async_1_1event__signal.html#a30ed3534d605cf8881830fa3454a6d9c">webcraft::async::event_signal::wait_for</a></div><div class="ttdeci">bool wait_for(std::chrono::milliseconds timeout) const</div><div class="ttdoc">Waits up to a timeout for the signal to be set.</div><div class="ttdef"><b>Definition</b> event_signal.hpp:72</div></div>
+<div class="ttc" id="aclasswebcraft_1_1async_1_1event__signal_html_a552efc44edcfac5ed89227105b64a742"><div class="ttname"><a href="classwebcraft_1_1async_1_1event__signal.html#a552efc44edcfac5ed89227105b64a742">webcraft::async::event_signal::operator()</a></div><div class="ttdeci">bool operator()() const</div><div class="ttdoc">Function-call shorthand for is_set().</div><div class="ttdef"><b>Definition</b> event_signal.hpp:100</div></div>
+<div class="ttc" id="aclasswebcraft_1_1async_1_1event__signal_html_a77677008fd577495eac78a8f046a5835"><div class="ttname"><a href="classwebcraft_1_1async_1_1event__signal.html#a77677008fd577495eac78a8f046a5835">webcraft::async::event_signal::event_signal</a></div><div class="ttdeci">event_signal()</div><div class="ttdoc">Constructs an unset signal.</div><div class="ttdef"><b>Definition</b> event_signal.hpp:48</div></div>
+<div class="ttc" id="aclasswebcraft_1_1async_1_1event__signal_html_a7a70b19b356714cda6da9b661f2d9f5c"><div class="ttname"><a href="classwebcraft_1_1async_1_1event__signal.html#a7a70b19b356714cda6da9b661f2d9f5c">webcraft::async::event_signal::reset</a></div><div class="ttdeci">void reset() noexcept</div><div class="ttdoc">Resets the signal state to false.</div><div class="ttdef"><b>Definition</b> event_signal.hpp:57</div></div>
+<div class="ttc" id="aclasswebcraft_1_1async_1_1event__signal_html_a84765130566101afcf0666378ce3c02c"><div class="ttname"><a href="classwebcraft_1_1async_1_1event__signal.html#a84765130566101afcf0666378ce3c02c">webcraft::async::event_signal::wait</a></div><div class="ttdeci">bool wait() const</div><div class="ttdoc">Blocks until the signal is set.</div><div class="ttdef"><b>Definition</b> event_signal.hpp:90</div></div>
+<div class="ttc" id="aclasswebcraft_1_1async_1_1event__signal_html_ad4a52a05dde472e3062e60c92348d5fa"><div class="ttname"><a href="classwebcraft_1_1async_1_1event__signal.html#ad4a52a05dde472e3062e60c92348d5fa">webcraft::async::event_signal::is_set</a></div><div class="ttdeci">bool is_set() const noexcept</div><div class="ttdoc">Returns true when the signal is set.</div><div class="ttdef"><b>Definition</b> event_signal.hpp:63</div></div>
+<div class="ttc" id="aclasswebcraft_1_1async_1_1immovable_html"><div class="ttname"><a href="classwebcraft_1_1async_1_1immovable.html">webcraft::async::immovable</a></div><div class="ttdoc">Utility base class that disables copying and moving.</div><div class="ttdef"><b>Definition</b> event_signal.hpp:27</div></div>
 <div class="ttc" id="aclasswebcraft_1_1async_1_1immovable_html_a5b6701013be9de7b5d23045e23c667ea"><div class="ttname"><a href="classwebcraft_1_1async_1_1immovable.html#a5b6701013be9de7b5d23045e23c667ea">webcraft::async::immovable::~immovable</a></div><div class="ttdeci">~immovable()=default</div></div>
 <div class="ttc" id="aclasswebcraft_1_1async_1_1immovable_html_a5eca96af1b27ac31e201561df7c6a193"><div class="ttname"><a href="classwebcraft_1_1async_1_1immovable.html#a5eca96af1b27ac31e201561df7c6a193">webcraft::async::immovable::operator=</a></div><div class="ttdeci">immovable &amp; operator=(immovable &amp;&amp;)=delete</div></div>
 <div class="ttc" id="aclasswebcraft_1_1async_1_1immovable_html_a6e7021164eeaa1af0c09a250d8b19d2e"><div class="ttname"><a href="classwebcraft_1_1async_1_1immovable.html#a6e7021164eeaa1af0c09a250d8b19d2e">webcraft::async::immovable::operator=</a></div><div class="ttdeci">immovable &amp; operator=(const immovable &amp;)=delete</div></div>
 <div class="ttc" id="aclasswebcraft_1_1async_1_1immovable_html_aa27e42f2638b66ab277ba8451c6e6840"><div class="ttname"><a href="classwebcraft_1_1async_1_1immovable.html#aa27e42f2638b66ab277ba8451c6e6840">webcraft::async::immovable::immovable</a></div><div class="ttdeci">immovable(const immovable &amp;)=delete</div></div>
 <div class="ttc" id="aclasswebcraft_1_1async_1_1immovable_html_aeb639d321b1d9cccdef2b30f18d984fa"><div class="ttname"><a href="classwebcraft_1_1async_1_1immovable.html#aeb639d321b1d9cccdef2b30f18d984fa">webcraft::async::immovable::immovable</a></div><div class="ttdeci">immovable(immovable &amp;&amp;)=delete</div></div>
 <div class="ttc" id="aclasswebcraft_1_1async_1_1immovable_html_afa3778a7c0dcd44972da924b01594349"><div class="ttname"><a href="classwebcraft_1_1async_1_1immovable.html#afa3778a7c0dcd44972da924b01594349">webcraft::async::immovable::immovable</a></div><div class="ttdeci">immovable()=default</div></div>
-<div class="ttc" id="anamespacewebcraft_1_1async_html"><div class="ttname"><a href="namespacewebcraft_1_1async.html">webcraft::async</a></div><div class="ttdef"><b>Definition</b> async_event.hpp:12</div></div>
+<div class="ttc" id="anamespacewebcraft_1_1async_html"><div class="ttname"><a href="namespacewebcraft_1_1async.html">webcraft::async</a></div><div class="ttdef"><b>Definition</b> async_event.hpp:21</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

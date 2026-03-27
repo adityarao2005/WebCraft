@@ -5,6 +5,14 @@
 // Licenced under MIT license. See LICENSE.txt for details.
 ///////////////////////////////////////////////////////////////////////////////
 
+/**
+ * @file async/io/fs.hpp
+ * @brief Asynchronous filesystem stream abstractions.
+ *
+ * Provides file stream types and open helpers for reading/writing files using
+ * `task`-based async operations.
+ */
+
 #include "core.hpp"
 #include <fstream>
 #include <filesystem>
@@ -68,6 +76,9 @@ namespace webcraft::async::io::fs
         };
     }
 
+    /**
+     * @brief Async readable stream over a file descriptor.
+     */
     class file_rstream : public detail::file_stream
     {
     public:
@@ -79,11 +90,13 @@ namespace webcraft::async::io::fs
         file_rstream(const file_rstream &) = delete;
         file_rstream &operator=(const file_rstream &) = delete;
 
+        /** @brief Reads as many bytes as available into `buffer`. */
         task<size_t> recv(std::span<char> buffer)
         {
             return fd->read(buffer);
         }
 
+        /** @brief Reads a single byte, or `std::nullopt` on end-of-stream. */
         task<std::optional<char>> recv()
         {
             std::array<char, 1> buf;
@@ -99,6 +112,9 @@ namespace webcraft::async::io::fs
     static_assert(async_buffered_readable_stream<file_rstream, char>);
     static_assert(async_closeable_stream<file_rstream, char>);
 
+    /**
+     * @brief Async writable stream over a file descriptor.
+     */
     class file_wstream : public detail::file_stream
     {
     public:
@@ -110,11 +126,13 @@ namespace webcraft::async::io::fs
         file_wstream(const file_wstream &) = delete;
         file_wstream &operator=(const file_wstream &) = delete;
 
+        /** @brief Writes bytes from `buffer` to the file. */
         task<size_t> send(std::span<char> buffer)
         {
             return fd->write(buffer);
         }
 
+        /** @brief Writes a single byte to the file. */
         task<bool> send(char b)
         {
             std::array<char, 1> buf;
@@ -131,6 +149,9 @@ namespace webcraft::async::io::fs
     static_assert(async_buffered_writable_stream<file_wstream, char>);
     static_assert(async_closeable_stream<file_wstream, char>);
 
+    /**
+     * @brief File handle facade that opens async read/write streams.
+     */
     class file
     {
     private:
@@ -140,12 +161,14 @@ namespace webcraft::async::io::fs
         file(std::filesystem::path p) : p(std::move(p)) {}
         ~file() = default;
 
+        /** @brief Opens the file for async reading. */
         task<file_rstream> open_readable_stream()
         {
             auto descriptor = co_await detail::make_file_descriptor(p, std::ios_base::in);
             co_return file_rstream(descriptor);
         }
 
+        /** @brief Opens the file for async writing (append or truncate mode). */
         task<file_wstream> open_writable_stream(bool append = false)
         {
             auto descriptor = co_await detail::make_file_descriptor(p, std::ios_base::out | (append ? std::ios_base::app : std::ios_base::trunc));
@@ -156,6 +179,7 @@ namespace webcraft::async::io::fs
         operator const std::filesystem::path &() const { return p; }
     };
 
+    /** @brief Creates a file facade from a path. */
     inline file make_file(std::filesystem::path p)
     {
         return file(p);

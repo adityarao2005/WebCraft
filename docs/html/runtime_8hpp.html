@@ -97,6 +97,9 @@ $(document).ready(function(){initNavTree('runtime_8hpp.html',''); initResizable(
   <div class="headertitle"><div class="title">runtime.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Event runtime and scheduling entry points.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;functional&gt;</code><br />
 <code>#include &lt;chrono&gt;</code><br />
 <code>#include &lt;stop_token&gt;</code><br />
@@ -111,7 +114,7 @@ Include dependency graph for runtime.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="runtime_8hpp__incl.png" border="0" usemap="#ainclude_2webcraft_2async_2runtime_8hpp" alt=""/></div>
 <map name="ainclude_2webcraft_2async_2runtime_8hpp" id="ainclude_2webcraft_2async_2runtime_8hpp">
-<area shape="rect" title=" " alt="" coords="789,5,960,45"/>
+<area shape="rect" title="Event runtime and scheduling entry points." alt="" coords="789,5,960,45"/>
 <area shape="rect" title=" " alt="" coords="24,269,111,295"/>
 <area shape="poly" title=" " alt="" coords="816,48,118,268,116,263,814,43"/>
 <area shape="rect" title=" " alt="" coords="956,343,1022,368"/>
@@ -124,11 +127,11 @@ Include dependency graph for runtime.hpp:</div>
 <area shape="poly" title=" " alt="" coords="789,40,596,69,480,91,360,117,245,149,144,185,101,205,64,226,35,248,14,271,9,283,10,293,16,303,26,312,57,328,93,340,91,345,55,333,23,317,12,306,5,295,3,282,10,268,31,244,61,221,99,200,142,180,244,144,359,112,479,86,595,64,789,34"/>
 <area shape="rect" title=" " alt="" coords="1245,101,1304,126"/>
 <area shape="poly" title=" " alt="" coords="960,34,1090,55,1163,71,1234,91,1240,93,1238,98,1232,96,1162,76,1089,61,959,39"/>
-<area shape="rect" href="task_8hpp.html" title=" " alt="" coords="480,189,660,214"/>
+<area shape="rect" href="task_8hpp.html" title="Core coroutine task type used across WebCraft async APIs." alt="" coords="480,189,660,214"/>
 <area shape="poly" title=" " alt="" coords="843,48,603,184,601,180,840,43"/>
-<area shape="rect" href="sync__wait_8hpp.html" title=" " alt="" coords="797,93,952,133"/>
+<area shape="rect" href="sync__wait_8hpp.html" title="Blocking bridge from awaitables to synchronous callers." alt="" coords="797,93,952,133"/>
 <area shape="poly" title=" " alt="" coords="877,46,877,79,872,79,872,46"/>
-<area shape="rect" href="fire__and__forget__task_8hpp.html" title=" " alt="" coords="685,181,848,221"/>
+<area shape="rect" href="fire__and__forget__task_8hpp.html" title="Coroutine return type for detached, non&#45;owning asynchronous work." alt="" coords="685,181,848,221"/>
 <area shape="poly" title=" " alt="" coords="839,48,811,68,787,95,773,131,769,168,763,167,768,130,783,92,807,64,836,43"/>
 <area shape="poly" title=" " alt="" coords="491,217,131,272,125,273,124,268,130,267,490,211"/>
 <area shape="poly" title=" " alt="" coords="481,210,396,217,306,229,228,247,197,258,176,271,165,284,158,298,150,330,144,328,153,297,161,281,173,267,195,254,226,242,305,224,395,212,480,205"/>
@@ -136,9 +139,9 @@ Include dependency graph for runtime.hpp:</div>
 <area shape="poly" title=" " alt="" coords="542,216,412,267,410,262,540,212"/>
 <area shape="rect" title=" " alt="" coords="670,343,753,368"/>
 <area shape="poly" title=" " alt="" coords="620,212,666,232,688,248,706,268,717,298,718,329,713,329,712,299,701,271,685,252,664,237,618,217"/>
-<area shape="rect" href="awaitable_8hpp.html" title=" " alt="" coords="186,269,301,295"/>
+<area shape="rect" href="awaitable_8hpp.html" title="Awaitable concepts and type traits." alt="" coords="186,269,301,295"/>
 <area shape="poly" title=" " alt="" coords="524,217,305,269,304,264,522,211"/>
-<area shape="rect" href="event__signal_8hpp.html" title=" " alt="" coords="818,269,952,295"/>
+<area shape="rect" href="event__signal_8hpp.html" title="Lightweight thread&#45;based signaling primitive for sync waiting." alt="" coords="818,269,952,295"/>
 <area shape="poly" title=" " alt="" coords="617,211,827,263,825,269,616,217"/>
 <area shape="rect" title=" " alt="" coords="437,269,517,295"/>
 <area shape="poly" title=" " alt="" coords="558,216,503,262,500,258,555,212"/>
@@ -165,12 +168,12 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="runtime_8hpp__dep__incl.png" border="0" usemap="#ainclude_2webcraft_2async_2runtime_8hppdep" alt=""/></div>
 <map name="ainclude_2webcraft_2async_2runtime_8hppdep" id="ainclude_2webcraft_2async_2runtime_8hppdep">
-<area shape="rect" title=" " alt="" coords="200,5,371,45"/>
-<area shape="rect" href="async_8hpp.html" title=" " alt="" coords="5,93,176,133"/>
+<area shape="rect" title="Event runtime and scheduling entry points." alt="" coords="200,5,371,45"/>
+<area shape="rect" href="async_8hpp.html" title="Umbrella include for the public asynchronous programming API." alt="" coords="5,93,176,133"/>
 <area shape="poly" title=" " alt="" coords="231,53,134,96,132,91,229,48"/>
 <area shape="rect" href="event_8hpp.html" title=" " alt="" coords="200,93,371,133"/>
 <area shape="poly" title=" " alt="" coords="288,59,288,93,283,93,283,59"/>
-<area shape="rect" href="webcraft_8hpp.html" title=" " alt="" coords="395,101,613,126"/>
+<area shape="rect" href="webcraft_8hpp.html" title="Top&#45;level include for WebCraft runtime bootstrap utilities." alt="" coords="395,101,613,126"/>
 <area shape="poly" title=" " alt="" coords="347,48,476,98,474,103,345,53"/>
 </map>
 </div>
@@ -180,7 +183,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1runtime__context.html">webcraft::async::runtime_context</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acts as a context for the async runtime, managing the lifecycle of async operations. This class is designed to be used as a singleton within the async runtime but won't be created like a singleton, more like a guard.  <a href="classwebcraft_1_1async_1_1runtime__context.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">RAII guard that initializes and shuts down the async runtime.  <a href="classwebcraft_1_1async_1_1runtime__context.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -193,25 +196,31 @@ Namespaces</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ab1927641273e522291a9aabe3d44688f" id="r_ab1927641273e522291a9aabe3d44688f"><td class="memItemLeft" align="right" valign="top">std::stop_token&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#ab1927641273e522291a9aabe3d44688f">webcraft::async::get_stop_token</a> ()</td></tr>
-<tr class="memdesc:ab1927641273e522291a9aabe3d44688f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the stop token for the current async runtime.  <br /></td></tr>
+<tr class="memdesc:ab1927641273e522291a9aabe3d44688f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the stop token associated with the active runtime.  <br /></td></tr>
 <tr class="separator:ab1927641273e522291a9aabe3d44688f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99e5bf717ae187ed2c3eaeea49c7f885" id="r_a99e5bf717ae187ed2c3eaeea49c7f885"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; void &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#a99e5bf717ae187ed2c3eaeea49c7f885">webcraft::async::yield</a> ()</td></tr>
-<tr class="memdesc:a99e5bf717ae187ed2c3eaeea49c7f885"><td class="mdescLeft">&#160;</td><td class="mdescRight">Yields control back to the async runtime, allowing other tasks to run.  <br /></td></tr>
+<tr class="memdesc:a99e5bf717ae187ed2c3eaeea49c7f885"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cooperatively yields execution back to the runtime scheduler.  <br /></td></tr>
 <tr class="separator:a99e5bf717ae187ed2c3eaeea49c7f885"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ca6a5c7afbc6ff19d3757b8982794f6" id="r_a3ca6a5c7afbc6ff19d3757b8982794f6"><td class="memTemplParams" colspan="2">template&lt;typename Rep , typename Period &gt; </td></tr>
 <tr class="memitem:a3ca6a5c7afbc6ff19d3757b8982794f6"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; void &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#a3ca6a5c7afbc6ff19d3757b8982794f6">webcraft::async::sleep_for</a> (std::chrono::duration&lt; Rep, Period &gt; duration, std::stop_token token=<a class="el" href="namespacewebcraft_1_1async.html#ab1927641273e522291a9aabe3d44688f">get_stop_token</a>())</td></tr>
-<tr class="memdesc:a3ca6a5c7afbc6ff19d3757b8982794f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sleeps for a specified duration, allowing other tasks to run during the sleep.  <br /></td></tr>
+<tr class="memdesc:a3ca6a5c7afbc6ff19d3757b8982794f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Suspends for a duration unless cancellation is requested.  <br /></td></tr>
 <tr class="separator:a3ca6a5c7afbc6ff19d3757b8982794f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a956a68bbb57834f7dd09decdbac3053a" id="r_a956a68bbb57834f7dd09decdbac3053a"><td class="memTemplParams" colspan="2">template&lt;typename Rep , typename Period &gt; </td></tr>
 <tr class="memitem:a956a68bbb57834f7dd09decdbac3053a"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1fire__and__forget__task.html">fire_and_forget_task</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#a956a68bbb57834f7dd09decdbac3053a">webcraft::async::set_timeout</a> (std::function&lt; void()&gt; func, std::chrono::duration&lt; Rep, Period &gt; duration, std::stop_token token=<a class="el" href="namespacewebcraft_1_1async.html#ab1927641273e522291a9aabe3d44688f">get_stop_token</a>())</td></tr>
+<tr class="memdesc:a956a68bbb57834f7dd09decdbac3053a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs a callback once after a delay.  <br /></td></tr>
 <tr class="separator:a956a68bbb57834f7dd09decdbac3053a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33e3ad8fe28c5febe5782a0b74d1366c" id="r_a33e3ad8fe28c5febe5782a0b74d1366c"><td class="memTemplParams" colspan="2">template&lt;typename Rep , typename Period &gt; </td></tr>
 <tr class="memitem:a33e3ad8fe28c5febe5782a0b74d1366c"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1fire__and__forget__task.html">fire_and_forget_task</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#a33e3ad8fe28c5febe5782a0b74d1366c">webcraft::async::set_interval</a> (std::function&lt; void()&gt; func, std::chrono::duration&lt; Rep, Period &gt; duration, std::stop_token token=<a class="el" href="namespacewebcraft_1_1async.html#ab1927641273e522291a9aabe3d44688f">get_stop_token</a>())</td></tr>
+<tr class="memdesc:a33e3ad8fe28c5febe5782a0b74d1366c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Repeatedly runs a callback at fixed delay intervals until stopped.  <br /></td></tr>
 <tr class="separator:a33e3ad8fe28c5febe5782a0b74d1366c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a32cc887e48f12d360656c6f023977a2d" id="r_a32cc887e48f12d360656c6f023977a2d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; void &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#a32cc887e48f12d360656c6f023977a2d">webcraft::async::shutdown</a> ()</td></tr>
+<tr class="memdesc:a32cc887e48f12d360656c6f023977a2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Requests runtime shutdown and yields once to flush completion.  <br /></td></tr>
 <tr class="separator:a32cc887e48f12d360656c6f023977a2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Event runtime and scheduling entry points. </p>
+<p>Include this header to initialize, run, and stop the async runtime and to schedule callbacks on runtime-backed timing/event facilities. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

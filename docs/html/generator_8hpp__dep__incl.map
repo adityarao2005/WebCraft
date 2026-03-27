@@ -1,16 +1,16 @@
 <map id="include/webcraft/async/generator.hpp" name="include/webcraft/async/generator.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="21,5,192,45"/>
-<area shape="rect" id="Node000002" href="$async_8hpp.html" title=" " alt="" coords="21,357,192,397"/>
+<area shape="rect" id="Node000001" title="Synchronous coroutine generator abstraction." alt="" coords="21,5,192,45"/>
+<area shape="rect" id="Node000002" href="$async_8hpp.html" title="Umbrella include for the public asynchronous programming API." alt="" coords="21,357,192,397"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,57,44,113,25,147,12,182,8,207,11,232,18,257,30,281,59,323,88,355,84,359,55,327,25,284,13,259,5,234,3,207,7,181,21,144,39,110,79,54"/>
-<area shape="rect" id="Node000003" href="$core_8hpp.html" title=" " alt="" coords="144,93,315,133"/>
+<area shape="rect" id="Node000003" href="$core_8hpp.html" title="Core async stream concepts and adapters." alt="" coords="144,93,315,133"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="146,51,204,91,201,95,143,55"/>
-<area shape="rect" id="Node000004" href="$adaptors_8hpp.html" title=" " alt="" coords="21,181,192,221"/>
+<area shape="rect" id="Node000004" href="$adaptors_8hpp.html" title="Composable stream transformation adaptors for async I/O pipelines." alt="" coords="21,181,192,221"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="192,143,135,183,132,179,189,139"/>
-<area shape="rect" id="Node000005" href="$io_8hpp.html" title=" " alt="" coords="144,269,315,309"/>
+<area shape="rect" id="Node000005" href="$io_8hpp.html" title="Umbrella include for WebCraft async I/O components." alt="" coords="144,269,315,309"/>
 <area shape="poly" id="edge8_Node000003_Node000005" title=" " alt="" coords="232,147,232,269,227,269,227,147"/>
-<area shape="rect" id="Node000006" href="$fs_8hpp.html" title=" " alt="" coords="267,181,437,221"/>
+<area shape="rect" id="Node000006" href="$fs_8hpp.html" title="Asynchronous filesystem stream abstractions." alt="" coords="267,181,437,221"/>
 <area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="269,139,326,179,323,183,266,143"/>
-<area shape="rect" id="Node000007" href="$socket_8hpp.html" title=" " alt="" coords="461,181,632,221"/>
+<area shape="rect" id="Node000007" href="$socket_8hpp.html" title="Asynchronous TCP/UDP socket stream abstractions." alt="" coords="461,181,632,221"/>
 <area shape="poly" id="edge9_Node000003_Node000007" title=" " alt="" coords="313,134,478,179,476,184,312,140"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="146,227,204,267,201,271,143,231"/>
 <area shape="poly" id="edge5_Node000005_Node000002" title=" " alt="" coords="192,319,135,359,132,355,189,315"/>

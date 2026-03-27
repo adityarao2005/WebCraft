@@ -5,6 +5,13 @@
 // Licenced under MIT license. See LICENSE.txt for details.
 ///////////////////////////////////////////////////////////////////////////////
 
+/**
+ * @file async/when_any.hpp
+ * @brief Await combinator that resolves when the first awaitable completes.
+ *
+ * `when_any()` is useful for race-style coordination such as timeout vs work,
+ * or selecting the first producer to finish.
+ */
 
 #include <coroutine>
 #include <webcraft/async/async_event.hpp>
@@ -115,6 +122,9 @@ namespace webcraft::async
         };
     }
 
+    /**
+     * @brief Awaits a range and returns when the first awaitable completes.
+     */
     template <std::ranges::input_range Range,
               typename T = std::ranges::range_value_t<Range>,
               typename Result = awaitable_resume_t<T>>
@@ -141,6 +151,9 @@ namespace webcraft::async
         }
     }
 
+    /**
+     * @brief Variadic overload that races awaitables and returns the first result as a variant.
+     */
     template <awaitable_t... Tasks>
     task<std::variant<normalized_result_t<Tasks>...>> when_any(Tasks &&...tasks)
     {

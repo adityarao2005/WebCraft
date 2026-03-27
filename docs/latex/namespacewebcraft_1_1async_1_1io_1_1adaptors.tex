@@ -9,38 +9,38 @@ namespace \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_1_1colle
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1adaptors_1_1async__readable__stream__adaptor}{async\+\_\+readable\+\_\+stream\+\_\+adaptor}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Base helper for pipeable readable-\/stream adaptors. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Concepts}
 \begin{DoxyCompactItemize}
 \item 
 concept \mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1adaptors_1_1collector}{collector}}
-\item 
+\begin{DoxyCompactList}\small\item\em Collector concept for adaptors that reduce a stream to a value. \end{DoxyCompactList}\item 
 concept \mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1adaptors_1_1closure__under__addition}{closure\+\_\+under\+\_\+addition}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Constraint for types closed under addition. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 {\footnotesize template$<$typename In\+Type , typename Func $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_ab1e6d4ed87247b8982c2536eeb7220e5}{transform}} (Func \&\&fn)
-\item 
+\begin{DoxyCompactList}\small\item\em Adaptor that transforms stream elements via an async-\/generator transform function. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename In\+Type , typename Func , typename Out\+Type  = std\+::invoke\+\_\+result\+\_\+t$<$\+Func, In\+Type$>$$>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_a467323c557b8245b25c7cc5c6cd28e22}{map}} (Func \&\&fn)
-\item 
+\begin{DoxyCompactList}\small\item\em Element-\/wise mapping adaptor. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ \newline
 requires std\+::is\+\_\+copy\+\_\+assignable\+\_\+v$<$T$>$}\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_ade46e7a4ed2b78a5081564b197a8ea57}{pipe}} (async\+\_\+writable\+\_\+stream$<$ T $>$ auto \&str)
-\item 
+\begin{DoxyCompactList}\small\item\em Forwards stream elements to a writable stream while passing values through. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename To\+Type , typename Stream\+Type , collector$<$ To\+Type, Stream\+Type $>$ Collector$>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_ac259db7916278ffc530b8c127be7a191}{collect}} (Collector \&\&collector\+\_\+func)
-\item 
+\begin{DoxyCompactList}\small\item\em Builds a collector adaptor from a collector functor. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_a9ddb8e7a2a4c065a9340e9800ff7f0ed}{forward\+\_\+to}} (async\+\_\+writable\+\_\+stream$<$ T $>$ auto \&stream)
-\item 
+\begin{DoxyCompactList}\small\item\em Collector adaptor that writes each incoming value to a target stream. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T , typename Func $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_adda76c1251d855604fa6c9f4b752de2c}{filter}} (Func \&\&predicate)
-\item 
+\begin{DoxyCompactList}\small\item\em Retains only values that satisfy a predicate. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_a7f89d23f44cca5e13f844ad7c5b3282d}{limit}} (size\+\_\+t count)
-\item 
+\begin{DoxyCompactList}\small\item\em Retains at most the first {\ttfamily count} values. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_a5102607d13477fb88df1a0b93c50e6d1}{skip}} (size\+\_\+t count)
-\item 
+\begin{DoxyCompactList}\small\item\em Skips the first {\ttfamily count} values. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T , typename Func $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_a16136cc18f9808fabc53ff6ab854d997}{take\+\_\+while}} (Func \&\&predicate)
-\item 
+\begin{DoxyCompactList}\small\item\em Retains values while a predicate remains true. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T , typename Func $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_ad7cac35a119147fb1d053553ff1ce6f4}{drop\+\_\+while}} (Func \&\&predicate)
-\item 
+\begin{DoxyCompactList}\small\item\em Drops values while a predicate remains true, then yields the rest. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ \newline
 requires std\+::totally\+\_\+ordered$<$T$>$}\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_abe983922626e1ab45c906444bbf74239}{min}} ()
 \item 
@@ -51,15 +51,15 @@ requires std\+::totally\+\_\+ordered$<$T$>$}\\auto \mbox{\hyperlink{namespaceweb
 requires closure\+\_\+under\+\_\+addition$<$T$>$}\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_a01eae8f829e97817419aed01f5ad37dc}{sum}} ()
 \item 
 {\footnotesize template$<$typename T $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_afea35e0603fe1056bdc052faa20b8411}{find\+\_\+first}} (std\+::function$<$ bool(const T \&)$>$ \&\&predicate)
-\item 
+\begin{DoxyCompactList}\small\item\em Finds the first value that matches a predicate. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_a21b0723e172b9758a9e78ae20dbe3bf1}{find\+\_\+last}} (std\+::function$<$ bool(const T \&)$>$ \&\&predicate)
-\item 
+\begin{DoxyCompactList}\small\item\em Finds the last value that matches a predicate. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_af103d36599b9cd7baf15f2c7e75e70b9}{any\+\_\+matches}} (std\+::function$<$ bool(const T \&)$>$ \&\&predicate)
-\item 
+\begin{DoxyCompactList}\small\item\em Returns true if any value matches a predicate. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_a1566ca935350435b72631ee11d574ee7}{all\+\_\+matches}} (std\+::function$<$ bool(const T \&)$>$ \&\&predicate)
-\item 
+\begin{DoxyCompactList}\small\item\em Returns true if all values match a predicate. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_af0226fefe32175663e7ab469a785566c}{none\+\_\+matches}} (std\+::function$<$ bool(const T \&)$>$ \&\&predicate)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Returns true if no values match a predicate. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
@@ -70,12 +70,20 @@ requires closure\+\_\+under\+\_\+addition$<$T$>$}\\auto \mbox{\hyperlink{namespa
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 auto webcraft\+::async\+::io\+::adaptors\+::all\+\_\+matches (\begin{DoxyParamCaption}\item[{std\+::function$<$ bool(const T \&)$>$ \&\&}]{predicate }\end{DoxyParamCaption})}
 
+
+
+Returns true if all values match a predicate. 
+
 \Hypertarget{namespacewebcraft_1_1async_1_1io_1_1adaptors_af103d36599b9cd7baf15f2c7e75e70b9}\label{namespacewebcraft_1_1async_1_1io_1_1adaptors_af103d36599b9cd7baf15f2c7e75e70b9} 
 \index{webcraft::async::io::adaptors@{webcraft::async::io::adaptors}!any\_matches@{any\_matches}}
 \index{any\_matches@{any\_matches}!webcraft::async::io::adaptors@{webcraft::async::io::adaptors}}
 \doxysubsubsection{\texorpdfstring{any\_matches()}{any\_matches()}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 auto webcraft\+::async\+::io\+::adaptors\+::any\+\_\+matches (\begin{DoxyParamCaption}\item[{std\+::function$<$ bool(const T \&)$>$ \&\&}]{predicate }\end{DoxyParamCaption})}
+
+
+
+Returns true if any value matches a predicate. 
 
 \Hypertarget{namespacewebcraft_1_1async_1_1io_1_1adaptors_ac259db7916278ffc530b8c127be7a191}\label{namespacewebcraft_1_1async_1_1io_1_1adaptors_ac259db7916278ffc530b8c127be7a191} 
 \index{webcraft::async::io::adaptors@{webcraft::async::io::adaptors}!collect@{collect}}
@@ -84,12 +92,20 @@ auto webcraft\+::async\+::io\+::adaptors\+::any\+\_\+matches (\begin{DoxyParamCa
 {\footnotesize\ttfamily template$<$typename To\+Type , typename Stream\+Type , collector$<$ To\+Type, Stream\+Type $>$ Collector$>$ \\
 auto webcraft\+::async\+::io\+::adaptors\+::collect (\begin{DoxyParamCaption}\item[{Collector \&\&}]{collector\+\_\+func }\end{DoxyParamCaption})}
 
+
+
+Builds a collector adaptor from a collector functor. 
+
 \Hypertarget{namespacewebcraft_1_1async_1_1io_1_1adaptors_ad7cac35a119147fb1d053553ff1ce6f4}\label{namespacewebcraft_1_1async_1_1io_1_1adaptors_ad7cac35a119147fb1d053553ff1ce6f4} 
 \index{webcraft::async::io::adaptors@{webcraft::async::io::adaptors}!drop\_while@{drop\_while}}
 \index{drop\_while@{drop\_while}!webcraft::async::io::adaptors@{webcraft::async::io::adaptors}}
 \doxysubsubsection{\texorpdfstring{drop\_while()}{drop\_while()}}
 {\footnotesize\ttfamily template$<$typename T , typename Func $>$ \\
 auto webcraft\+::async\+::io\+::adaptors\+::drop\+\_\+while (\begin{DoxyParamCaption}\item[{Func \&\&}]{predicate }\end{DoxyParamCaption})}
+
+
+
+Drops values while a predicate remains true, then yields the rest. 
 
 \Hypertarget{namespacewebcraft_1_1async_1_1io_1_1adaptors_adda76c1251d855604fa6c9f4b752de2c}\label{namespacewebcraft_1_1async_1_1io_1_1adaptors_adda76c1251d855604fa6c9f4b752de2c} 
 \index{webcraft::async::io::adaptors@{webcraft::async::io::adaptors}!filter@{filter}}
@@ -98,12 +114,20 @@ auto webcraft\+::async\+::io\+::adaptors\+::drop\+\_\+while (\begin{DoxyParamCap
 {\footnotesize\ttfamily template$<$typename T , typename Func $>$ \\
 auto webcraft\+::async\+::io\+::adaptors\+::filter (\begin{DoxyParamCaption}\item[{Func \&\&}]{predicate }\end{DoxyParamCaption})}
 
+
+
+Retains only values that satisfy a predicate. 
+
 \Hypertarget{namespacewebcraft_1_1async_1_1io_1_1adaptors_afea35e0603fe1056bdc052faa20b8411}\label{namespacewebcraft_1_1async_1_1io_1_1adaptors_afea35e0603fe1056bdc052faa20b8411} 
 \index{webcraft::async::io::adaptors@{webcraft::async::io::adaptors}!find\_first@{find\_first}}
 \index{find\_first@{find\_first}!webcraft::async::io::adaptors@{webcraft::async::io::adaptors}}
 \doxysubsubsection{\texorpdfstring{find\_first()}{find\_first()}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 auto webcraft\+::async\+::io\+::adaptors\+::find\+\_\+first (\begin{DoxyParamCaption}\item[{std\+::function$<$ bool(const T \&)$>$ \&\&}]{predicate }\end{DoxyParamCaption})}
+
+
+
+Finds the first value that matches a predicate. 
 
 \Hypertarget{namespacewebcraft_1_1async_1_1io_1_1adaptors_a21b0723e172b9758a9e78ae20dbe3bf1}\label{namespacewebcraft_1_1async_1_1io_1_1adaptors_a21b0723e172b9758a9e78ae20dbe3bf1} 
 \index{webcraft::async::io::adaptors@{webcraft::async::io::adaptors}!find\_last@{find\_last}}
@@ -112,12 +136,20 @@ auto webcraft\+::async\+::io\+::adaptors\+::find\+\_\+first (\begin{DoxyParamCap
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 auto webcraft\+::async\+::io\+::adaptors\+::find\+\_\+last (\begin{DoxyParamCaption}\item[{std\+::function$<$ bool(const T \&)$>$ \&\&}]{predicate }\end{DoxyParamCaption})}
 
+
+
+Finds the last value that matches a predicate. 
+
 \Hypertarget{namespacewebcraft_1_1async_1_1io_1_1adaptors_a9ddb8e7a2a4c065a9340e9800ff7f0ed}\label{namespacewebcraft_1_1async_1_1io_1_1adaptors_a9ddb8e7a2a4c065a9340e9800ff7f0ed} 
 \index{webcraft::async::io::adaptors@{webcraft::async::io::adaptors}!forward\_to@{forward\_to}}
 \index{forward\_to@{forward\_to}!webcraft::async::io::adaptors@{webcraft::async::io::adaptors}}
 \doxysubsubsection{\texorpdfstring{forward\_to()}{forward\_to()}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 auto webcraft\+::async\+::io\+::adaptors\+::forward\+\_\+to (\begin{DoxyParamCaption}\item[{async\+\_\+writable\+\_\+stream$<$ T $>$ auto \&}]{stream }\end{DoxyParamCaption})}
+
+
+
+Collector adaptor that writes each incoming value to a target stream. 
 
 \Hypertarget{namespacewebcraft_1_1async_1_1io_1_1adaptors_a7f89d23f44cca5e13f844ad7c5b3282d}\label{namespacewebcraft_1_1async_1_1io_1_1adaptors_a7f89d23f44cca5e13f844ad7c5b3282d} 
 \index{webcraft::async::io::adaptors@{webcraft::async::io::adaptors}!limit@{limit}}
@@ -126,12 +158,20 @@ auto webcraft\+::async\+::io\+::adaptors\+::forward\+\_\+to (\begin{DoxyParamCap
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 auto webcraft\+::async\+::io\+::adaptors\+::limit (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{count }\end{DoxyParamCaption})}
 
+
+
+Retains at most the first {\ttfamily count} values. 
+
 \Hypertarget{namespacewebcraft_1_1async_1_1io_1_1adaptors_a467323c557b8245b25c7cc5c6cd28e22}\label{namespacewebcraft_1_1async_1_1io_1_1adaptors_a467323c557b8245b25c7cc5c6cd28e22} 
 \index{webcraft::async::io::adaptors@{webcraft::async::io::adaptors}!map@{map}}
 \index{map@{map}!webcraft::async::io::adaptors@{webcraft::async::io::adaptors}}
 \doxysubsubsection{\texorpdfstring{map()}{map()}}
 {\footnotesize\ttfamily template$<$typename In\+Type , typename Func , typename Out\+Type  = std\+::invoke\+\_\+result\+\_\+t$<$\+Func, In\+Type$>$$>$ \\
 auto webcraft\+::async\+::io\+::adaptors\+::map (\begin{DoxyParamCaption}\item[{Func \&\&}]{fn }\end{DoxyParamCaption})}
+
+
+
+Element-\/wise mapping adaptor. 
 
 \Hypertarget{namespacewebcraft_1_1async_1_1io_1_1adaptors_a5d9d3a60fa12ea699dc5fc59ae5d0f63}\label{namespacewebcraft_1_1async_1_1io_1_1adaptors_a5d9d3a60fa12ea699dc5fc59ae5d0f63} 
 \index{webcraft::async::io::adaptors@{webcraft::async::io::adaptors}!max@{max}}
@@ -156,6 +196,10 @@ auto webcraft\+::async\+::io\+::adaptors\+::min (\begin{DoxyParamCaption}{ }\end
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 auto webcraft\+::async\+::io\+::adaptors\+::none\+\_\+matches (\begin{DoxyParamCaption}\item[{std\+::function$<$ bool(const T \&)$>$ \&\&}]{predicate }\end{DoxyParamCaption})}
 
+
+
+Returns true if no values match a predicate. 
+
 \Hypertarget{namespacewebcraft_1_1async_1_1io_1_1adaptors_ade46e7a4ed2b78a5081564b197a8ea57}\label{namespacewebcraft_1_1async_1_1io_1_1adaptors_ade46e7a4ed2b78a5081564b197a8ea57} 
 \index{webcraft::async::io::adaptors@{webcraft::async::io::adaptors}!pipe@{pipe}}
 \index{pipe@{pipe}!webcraft::async::io::adaptors@{webcraft::async::io::adaptors}}
@@ -164,12 +208,20 @@ auto webcraft\+::async\+::io\+::adaptors\+::none\+\_\+matches (\begin{DoxyParamC
 requires std\+::is\+\_\+copy\+\_\+assignable\+\_\+v$<$T$>$\\
 auto webcraft\+::async\+::io\+::adaptors\+::pipe (\begin{DoxyParamCaption}\item[{async\+\_\+writable\+\_\+stream$<$ T $>$ auto \&}]{str }\end{DoxyParamCaption})}
 
+
+
+Forwards stream elements to a writable stream while passing values through. 
+
 \Hypertarget{namespacewebcraft_1_1async_1_1io_1_1adaptors_a5102607d13477fb88df1a0b93c50e6d1}\label{namespacewebcraft_1_1async_1_1io_1_1adaptors_a5102607d13477fb88df1a0b93c50e6d1} 
 \index{webcraft::async::io::adaptors@{webcraft::async::io::adaptors}!skip@{skip}}
 \index{skip@{skip}!webcraft::async::io::adaptors@{webcraft::async::io::adaptors}}
 \doxysubsubsection{\texorpdfstring{skip()}{skip()}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 auto webcraft\+::async\+::io\+::adaptors\+::skip (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{count }\end{DoxyParamCaption})}
+
+
+
+Skips the first {\ttfamily count} values. 
 
 \Hypertarget{namespacewebcraft_1_1async_1_1io_1_1adaptors_a01eae8f829e97817419aed01f5ad37dc}\label{namespacewebcraft_1_1async_1_1io_1_1adaptors_a01eae8f829e97817419aed01f5ad37dc} 
 \index{webcraft::async::io::adaptors@{webcraft::async::io::adaptors}!sum@{sum}}
@@ -186,10 +238,18 @@ auto webcraft\+::async\+::io\+::adaptors\+::sum (\begin{DoxyParamCaption}{ }\end
 {\footnotesize\ttfamily template$<$typename T , typename Func $>$ \\
 auto webcraft\+::async\+::io\+::adaptors\+::take\+\_\+while (\begin{DoxyParamCaption}\item[{Func \&\&}]{predicate }\end{DoxyParamCaption})}
 
+
+
+Retains values while a predicate remains true. 
+
 \Hypertarget{namespacewebcraft_1_1async_1_1io_1_1adaptors_ab1e6d4ed87247b8982c2536eeb7220e5}\label{namespacewebcraft_1_1async_1_1io_1_1adaptors_ab1e6d4ed87247b8982c2536eeb7220e5} 
 \index{webcraft::async::io::adaptors@{webcraft::async::io::adaptors}!transform@{transform}}
 \index{transform@{transform}!webcraft::async::io::adaptors@{webcraft::async::io::adaptors}}
 \doxysubsubsection{\texorpdfstring{transform()}{transform()}}
 {\footnotesize\ttfamily template$<$typename In\+Type , typename Func $>$ \\
 auto webcraft\+::async\+::io\+::adaptors\+::transform (\begin{DoxyParamCaption}\item[{Func \&\&}]{fn }\end{DoxyParamCaption})}
+
+
+
+Adaptor that transforms stream elements via an async-\/generator transform function. 
 

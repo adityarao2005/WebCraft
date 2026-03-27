@@ -13,34 +13,34 @@ namespace \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket}{socket}}
 \begin{DoxyCompactItemize}
 \item 
 concept \mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1non__void__v}{non\+\_\+void\+\_\+v}}
-\item 
+\begin{DoxyCompactList}\small\item\em Constraint that excludes {\ttfamily void} element types. \end{DoxyCompactList}\item 
 concept \mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__readable__stream}{async\+\_\+readable\+\_\+stream}}
-\item 
+\begin{DoxyCompactList}\small\item\em Concept for streams exposing {\ttfamily recv()} that yields optional values. \end{DoxyCompactList}\item 
 concept \mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__buffered__readable__stream}{async\+\_\+buffered\+\_\+readable\+\_\+stream}}
-\item 
+\begin{DoxyCompactList}\small\item\em Concept for readable streams that also support buffered receives. \end{DoxyCompactList}\item 
 concept \mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__writable__stream}{async\+\_\+writable\+\_\+stream}}
-\item 
+\begin{DoxyCompactList}\small\item\em Concept for streams exposing {\ttfamily send(value)} operations. \end{DoxyCompactList}\item 
 concept \mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__buffered__writable__stream}{async\+\_\+buffered\+\_\+writable\+\_\+stream}}
-\item 
+\begin{DoxyCompactList}\small\item\em Concept for writable streams that also support buffered sends. \end{DoxyCompactList}\item 
 concept \mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__closeable__stream}{async\+\_\+closeable\+\_\+stream}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Concept for streams that provide asynchronous {\ttfamily close()}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 {\footnotesize template$<$typename R $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_aaaf5c2dda44d2ea9c9518aa85bf729c1}{recv}} (async\+\_\+readable\+\_\+stream$<$ R $>$ auto \&stream)
-\item 
+\begin{DoxyCompactList}\small\item\em Receives the next element from a readable stream. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename R , async\+\_\+readable\+\_\+stream$<$ R $>$ RStream, size\+\_\+t Buffer\+Size$>$ }\\\mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ std\+::size\+\_\+t $>$ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_a606eb85e8e29b7e92a82e546a2da6ded}{recv}} (RStream \&stream, std\+::span$<$ R, Buffer\+Size $>$ buffer)
-\item 
+\begin{DoxyCompactList}\small\item\em Receives up to {\ttfamily buffer.\+size()} elements into a caller-\/provided buffer. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename R , async\+\_\+writable\+\_\+stream$<$ R $>$ WStream$>$ }\\\mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ bool $>$ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_af2b81544adcc4ba129f31b5797a43670}{send}} (WStream \&stream, R \&\&value)
-\item 
+\begin{DoxyCompactList}\small\item\em Sends one value to a writable stream. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename R , async\+\_\+writable\+\_\+stream$<$ R $>$ WStream, size\+\_\+t Buffer\+Size$>$ }\\\mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ size\+\_\+t $>$ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_a551b9756fc5af8a9a79973bb95c6c7b6}{send}} (WStream \&stream, std\+::span$<$ R, Buffer\+Size $>$ buffer)
-\item 
+\begin{DoxyCompactList}\small\item\em Sends values from a caller-\/provided buffer to a writable stream. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename R , async\+\_\+readable\+\_\+stream$<$ R $>$ RStream$>$ }\\\mbox{\hyperlink{classcppcoro_1_1async__generator}{async\+\_\+generator}}$<$ R $>$ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_a7e1420555f9b1c5e37aecdf9086d972d}{to\+\_\+async\+\_\+generator}} (RStream \&\&stream)
-\item 
+\begin{DoxyCompactList}\small\item\em Wraps a readable stream as an async generator. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename R $>$ }\\async\+\_\+readable\+\_\+stream$<$ R $>$ auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_a65fdb2f3bc3e4af76fe30526dcb1e4b1}{to\+\_\+readable\+\_\+stream}} (\mbox{\hyperlink{classcppcoro_1_1async__generator}{async\+\_\+generator}}$<$ R $>$ \&\&gen)
-\item 
+\begin{DoxyCompactList}\small\item\em Wraps an async generator with the readable stream interface. \end{DoxyCompactList}\item 
 {\footnotesize template$<$non\+\_\+void\+\_\+v T$>$ }\\std\+::pair$<$ detail\+::mpsc\+\_\+channel\+\_\+rstream$<$ T $>$, detail\+::mpsc\+\_\+channel\+\_\+wstream$<$ T $>$ $>$ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_aa003ed11d50d57e182d6b5b42151f88b}{make\+\_\+mpsc\+\_\+channel}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Creates an in-\/memory single-\/consumer async channel. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
@@ -51,12 +51,23 @@ concept \mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__closeable__str
 {\footnotesize\ttfamily template$<$non\+\_\+void\+\_\+v T$>$ \\
 std\+::pair$<$ detail\+::mpsc\+\_\+channel\+\_\+rstream$<$ T $>$, detail\+::mpsc\+\_\+channel\+\_\+wstream$<$ T $>$ $>$ webcraft\+::async\+::io\+::make\+\_\+mpsc\+\_\+channel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+
+Creates an in-\/memory single-\/consumer async channel. 
+
+\begin{DoxyReturn}{Returns}
+Pair of readable and writable stream endpoints. 
+\end{DoxyReturn}
 \Hypertarget{namespacewebcraft_1_1async_1_1io_aaaf5c2dda44d2ea9c9518aa85bf729c1}\label{namespacewebcraft_1_1async_1_1io_aaaf5c2dda44d2ea9c9518aa85bf729c1} 
 \index{webcraft::async::io@{webcraft::async::io}!recv@{recv}}
 \index{recv@{recv}!webcraft::async::io@{webcraft::async::io}}
 \doxysubsubsection{\texorpdfstring{recv()}{recv()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename R $>$ \\
 auto webcraft\+::async\+::io\+::recv (\begin{DoxyParamCaption}\item[{async\+\_\+readable\+\_\+stream$<$ R $>$ auto \&}]{stream }\end{DoxyParamCaption})}
+
+
+
+Receives the next element from a readable stream. 
 
 \Hypertarget{namespacewebcraft_1_1async_1_1io_a606eb85e8e29b7e92a82e546a2da6ded}\label{namespacewebcraft_1_1async_1_1io_a606eb85e8e29b7e92a82e546a2da6ded} 
 \index{webcraft::async::io@{webcraft::async::io}!recv@{recv}}
@@ -65,12 +76,20 @@ auto webcraft\+::async\+::io\+::recv (\begin{DoxyParamCaption}\item[{async\+\_\+
 {\footnotesize\ttfamily template$<$typename R , async\+\_\+readable\+\_\+stream$<$ R $>$ RStream, size\+\_\+t Buffer\+Size$>$ \\
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ std\+::size\+\_\+t $>$ webcraft\+::async\+::io\+::recv (\begin{DoxyParamCaption}\item[{RStream \&}]{stream,  }\item[{std\+::span$<$ R, Buffer\+Size $>$}]{buffer }\end{DoxyParamCaption})}
 
+
+
+Receives up to {\ttfamily buffer.\+size()} elements into a caller-\/provided buffer. 
+
 \Hypertarget{namespacewebcraft_1_1async_1_1io_af2b81544adcc4ba129f31b5797a43670}\label{namespacewebcraft_1_1async_1_1io_af2b81544adcc4ba129f31b5797a43670} 
 \index{webcraft::async::io@{webcraft::async::io}!send@{send}}
 \index{send@{send}!webcraft::async::io@{webcraft::async::io}}
 \doxysubsubsection{\texorpdfstring{send()}{send()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename R , async\+\_\+writable\+\_\+stream$<$ R $>$ WStream$>$ \\
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ bool $>$ webcraft\+::async\+::io\+::send (\begin{DoxyParamCaption}\item[{WStream \&}]{stream,  }\item[{R \&\&}]{value }\end{DoxyParamCaption})}
+
+
+
+Sends one value to a writable stream. 
 
 \Hypertarget{namespacewebcraft_1_1async_1_1io_a551b9756fc5af8a9a79973bb95c6c7b6}\label{namespacewebcraft_1_1async_1_1io_a551b9756fc5af8a9a79973bb95c6c7b6} 
 \index{webcraft::async::io@{webcraft::async::io}!send@{send}}
@@ -79,6 +98,10 @@ auto webcraft\+::async\+::io\+::recv (\begin{DoxyParamCaption}\item[{async\+\_\+
 {\footnotesize\ttfamily template$<$typename R , async\+\_\+writable\+\_\+stream$<$ R $>$ WStream, size\+\_\+t Buffer\+Size$>$ \\
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ size\+\_\+t $>$ webcraft\+::async\+::io\+::send (\begin{DoxyParamCaption}\item[{WStream \&}]{stream,  }\item[{std\+::span$<$ R, Buffer\+Size $>$}]{buffer }\end{DoxyParamCaption})}
 
+
+
+Sends values from a caller-\/provided buffer to a writable stream. 
+
 \Hypertarget{namespacewebcraft_1_1async_1_1io_a7e1420555f9b1c5e37aecdf9086d972d}\label{namespacewebcraft_1_1async_1_1io_a7e1420555f9b1c5e37aecdf9086d972d} 
 \index{webcraft::async::io@{webcraft::async::io}!to\_async\_generator@{to\_async\_generator}}
 \index{to\_async\_generator@{to\_async\_generator}!webcraft::async::io@{webcraft::async::io}}
@@ -86,10 +109,18 @@ auto webcraft\+::async\+::io\+::recv (\begin{DoxyParamCaption}\item[{async\+\_\+
 {\footnotesize\ttfamily template$<$typename R , async\+\_\+readable\+\_\+stream$<$ R $>$ RStream$>$ \\
 \mbox{\hyperlink{classcppcoro_1_1async__generator}{async\+\_\+generator}}$<$ R $>$ webcraft\+::async\+::io\+::to\+\_\+async\+\_\+generator (\begin{DoxyParamCaption}\item[{RStream \&\&}]{stream }\end{DoxyParamCaption})}
 
+
+
+Wraps a readable stream as an async generator. 
+
 \Hypertarget{namespacewebcraft_1_1async_1_1io_a65fdb2f3bc3e4af76fe30526dcb1e4b1}\label{namespacewebcraft_1_1async_1_1io_a65fdb2f3bc3e4af76fe30526dcb1e4b1} 
 \index{webcraft::async::io@{webcraft::async::io}!to\_readable\_stream@{to\_readable\_stream}}
 \index{to\_readable\_stream@{to\_readable\_stream}!webcraft::async::io@{webcraft::async::io}}
 \doxysubsubsection{\texorpdfstring{to\_readable\_stream()}{to\_readable\_stream()}}
 {\footnotesize\ttfamily template$<$typename R $>$ \\
 async\+\_\+readable\+\_\+stream$<$ R $>$ auto webcraft\+::async\+::io\+::to\+\_\+readable\+\_\+stream (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcppcoro_1_1async__generator}{async\+\_\+generator}}$<$ R $>$ \&\&}]{gen }\end{DoxyParamCaption})}
+
+
+
+Wraps an async generator with the readable stream interface. 
 

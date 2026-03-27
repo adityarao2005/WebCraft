@@ -2,6 +2,11 @@
 \hypertarget{conceptwebcraft_1_1async_1_1is__awaitable__suspend__type}{}\label{conceptwebcraft_1_1async_1_1is__awaitable__suspend__type}\index{webcraft::async::is\_awaitable\_suspend\_type@{webcraft::async::is\_awaitable\_suspend\_type}}
 
 
+Valid return types for {\ttfamily await\+\_\+suspend}.  
+
+
+
+
 {\ttfamily \#include $<$awaitable.\+hpp$>$}
 
 \doxysubsection{Concept definition}
@@ -11,3 +16,7 @@
 \DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptwebcraft_1_1async_1_1is__awaitable__suspend__type}{webcraft::async::is\_awaitable\_suspend\_type}}\ =\ \ std::same\_as<T,\ void>\ ||\ std::convertible\_to<T,\ bool>\ ||\ std::convertible\_to<T,\ std::coroutine\_handle<>>}
 
 \end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+Valid return types for {\ttfamily await\+\_\+suspend}. 

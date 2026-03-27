@@ -96,6 +96,9 @@ $(document).ready(function(){initNavTree('event__signal_8hpp.html',''); initResi
   <div class="headertitle"><div class="title">event_signal.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Lightweight thread-based signaling primitive for sync waiting.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;atomic&gt;</code><br />
 <code>#include &lt;chrono&gt;</code><br />
 <code>#include &lt;thread&gt;</code><br />
@@ -104,7 +107,7 @@ Include dependency graph for event_signal.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="event__signal_8hpp__incl.png" border="0" usemap="#ainclude_2webcraft_2async_2event__signal_8hpp" alt=""/></div>
 <map name="ainclude_2webcraft_2async_2event__signal_8hpp" id="ainclude_2webcraft_2async_2event__signal_8hpp">
-<area shape="rect" title=" " alt="" coords="44,5,215,45"/>
+<area shape="rect" title="Lightweight thread&#45;based signaling primitive for sync waiting." alt="" coords="44,5,215,45"/>
 <area shape="rect" title=" " alt="" coords="5,93,72,119"/>
 <area shape="poly" title=" " alt="" coords="109,48,64,86,61,82,106,44"/>
 <area shape="rect" title=" " alt="" coords="96,93,163,119"/>
@@ -118,43 +121,43 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="event__signal_8hpp__dep__incl.png" border="0" usemap="#ainclude_2webcraft_2async_2event__signal_8hppdep" alt=""/></div>
 <map name="ainclude_2webcraft_2async_2event__signal_8hppdep" id="ainclude_2webcraft_2async_2event__signal_8hppdep">
-<area shape="rect" title=" " alt="" coords="192,5,363,45"/>
-<area shape="rect" href="async_8hpp.html" title=" " alt="" coords="560,533,731,573"/>
+<area shape="rect" title="Lightweight thread&#45;based signaling primitive for sync waiting." alt="" coords="192,5,363,45"/>
+<area shape="rect" href="async_8hpp.html" title="Umbrella include for the public asynchronous programming API." alt="" coords="560,533,731,573"/>
 <area shape="poly" title=" " alt="" coords="179,50,120,71,64,103,42,122,24,145,12,171,8,200,8,379,11,403,18,422,31,436,47,447,88,464,138,483,172,494,218,504,330,522,560,544,559,549,329,527,217,510,171,499,136,488,86,469,44,451,27,440,14,424,6,404,3,379,3,200,7,169,19,142,38,119,61,98,117,66,177,45"/>
-<area shape="rect" href="sync__wait_8hpp.html" title=" " alt="" coords="192,181,363,221"/>
+<area shape="rect" href="sync__wait_8hpp.html" title="Blocking bridge from awaitables to synchronous callers." alt="" coords="192,181,363,221"/>
 <area shape="poly" title=" " alt="" coords="280,59,280,181,275,181,275,59"/>
-<area shape="rect" href="task_8hpp.html" title=" " alt="" coords="632,93,803,133"/>
+<area shape="rect" href="task_8hpp.html" title="Core coroutine task type used across WebCraft async APIs." alt="" coords="632,93,803,133"/>
 <area shape="poly" title=" " alt="" coords="377,43,632,93,631,98,376,48"/>
 <area shape="poly" title=" " alt="" coords="233,231,182,271,145,311,133,330,123,358,118,380,118,400,123,417,132,432,161,459,201,483,229,494,267,505,361,522,560,543,560,549,361,527,266,510,227,499,199,488,158,463,128,435,119,419,113,400,113,380,117,357,128,328,141,307,178,267,230,227"/>
-<area shape="rect" href="runtime_8hpp.html" title=" " alt="" coords="192,269,363,309"/>
+<area shape="rect" href="runtime_8hpp.html" title="Event runtime and scheduling entry points." alt="" coords="192,269,363,309"/>
 <area shape="poly" title=" " alt="" coords="280,235,280,269,275,269,275,235"/>
 <area shape="poly" title=" " alt="" coords="202,317,167,332,140,351,132,362,127,372,128,384,134,396,161,420,203,443,256,464,316,483,445,514,560,536,559,541,444,519,315,488,254,469,201,448,158,424,130,399,123,385,122,371,127,359,137,347,165,328,199,312"/>
 <area shape="rect" href="event_8hpp.html" title=" " alt="" coords="144,357,315,397"/>
 <area shape="poly" title=" " alt="" coords="262,323,242,358,238,356,258,320"/>
-<area shape="rect" href="webcraft_8hpp.html" title=" " alt="" coords="339,365,557,390"/>
+<area shape="rect" href="webcraft_8hpp.html" title="Top&#45;level include for WebCraft runtime bootstrap utilities." alt="" coords="339,365,557,390"/>
 <area shape="poly" title=" " alt="" coords="328,313,426,362,424,367,326,318"/>
 <area shape="poly" title=" " alt="" coords="667,143,642,161,622,183,607,209,600,232,597,288,597,379,602,423,612,465,639,532,634,534,607,467,596,423,592,379,592,288,594,231,602,207,618,180,639,157,663,138"/>
 <area shape="poly" title=" " alt="" coords="619,136,363,186,362,181,618,131"/>
 <area shape="poly" title=" " alt="" coords="658,141,326,272,324,267,656,136"/>
-<area shape="rect" href="async__generator_8hpp.html" title=" " alt="" coords="632,181,803,221"/>
+<area shape="rect" href="async__generator_8hpp.html" title="Async pull&#45;based generator for coroutine streams." alt="" coords="632,181,803,221"/>
 <area shape="poly" title=" " alt="" coords="720,147,720,181,715,181,715,147"/>
-<area shape="rect" href="core_8hpp.html" title=" " alt="" coords="755,269,925,309"/>
+<area shape="rect" href="core_8hpp.html" title="Core async stream concepts and adapters." alt="" coords="755,269,925,309"/>
 <area shape="poly" title=" " alt="" coords="771,138,796,157,817,180,829,202,836,226,842,269,837,269,831,227,824,204,812,183,792,161,768,143"/>
-<area shape="rect" href="task__completion__source_8hpp.html" title=" " alt="" coords="950,269,1162,309"/>
+<area shape="rect" href="task__completion__source_8hpp.html" title="External completion source for manually&#45;resolved tasks." alt="" coords="950,269,1162,309"/>
 <area shape="poly" title=" " alt="" coords="768,137,1020,267,1018,272,765,142"/>
-<area shape="rect" href="when__all_8hpp.html" title=" " alt="" coords="1368,357,1539,397"/>
+<area shape="rect" href="when__all_8hpp.html" title="Await combinator that waits for all awaitables in a range." alt="" coords="1368,357,1539,397"/>
 <area shape="poly" title=" " alt="" coords="789,135,1176,267,1407,355,1405,360,1174,272,787,140"/>
-<area shape="rect" href="util_8hpp.html" title=" " alt="" coords="1236,181,1391,221"/>
+<area shape="rect" href="util_8hpp.html" title="Cross&#45;platform networking helper utilities." alt="" coords="1236,181,1391,221"/>
 <area shape="poly" title=" " alt="" coords="817,124,1003,147,1218,179,1236,182,1235,187,1217,184,1003,152,816,129"/>
 <area shape="poly" title=" " alt="" coords="709,235,690,292,673,358,657,456,649,533,644,533,652,456,668,357,685,290,704,234"/>
 <area shape="poly" title=" " alt="" coords="757,227,814,267,811,271,754,231"/>
-<area shape="rect" href="adaptors_8hpp.html" title=" " alt="" coords="683,357,853,397"/>
+<area shape="rect" href="adaptors_8hpp.html" title="Composable stream transformation adaptors for async I/O pipelines." alt="" coords="683,357,853,397"/>
 <area shape="poly" title=" " alt="" coords="817,322,786,359,782,355,813,318"/>
-<area shape="rect" href="io_8hpp.html" title=" " alt="" coords="805,445,976,485"/>
+<area shape="rect" href="io_8hpp.html" title="Umbrella include for WebCraft async I/O components." alt="" coords="805,445,976,485"/>
 <area shape="poly" title=" " alt="" coords="855,321,868,357,890,445,884,446,863,358,850,323"/>
-<area shape="rect" href="fs_8hpp.html" title=" " alt="" coords="928,357,1099,397"/>
+<area shape="rect" href="fs_8hpp.html" title="Asynchronous filesystem stream abstractions." alt="" coords="928,357,1099,397"/>
 <area shape="poly" title=" " alt="" coords="891,313,977,355,974,360,889,318"/>
-<area shape="rect" href="socket_8hpp.html" title=" " alt="" coords="1123,357,1293,397"/>
+<area shape="rect" href="socket_8hpp.html" title="Asynchronous TCP/UDP socket stream abstractions." alt="" coords="1123,357,1293,397"/>
 <area shape="poly" title=" " alt="" coords="935,310,1128,355,1127,360,933,315"/>
 <area shape="poly" title=" " alt="" coords="808,403,865,443,862,447,805,407"/>
 <area shape="poly" title=" " alt="" coords="825,492,700,536,698,531,823,487"/>
@@ -162,7 +165,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <area shape="poly" title=" " alt="" coords="1126,404,961,448,959,443,1124,398"/>
 <area shape="poly" title=" " alt="" coords="1176,306,1256,326,1287,340,1307,356,1316,377,1308,399,1291,416,1269,431,1210,459,1137,483,1054,502,880,531,731,548,731,542,879,526,1053,497,1135,477,1208,454,1266,427,1288,412,1303,396,1311,377,1303,359,1284,344,1254,331,1175,311"/>
 <area shape="poly" title=" " alt="" coords="1435,411,1400,452,1376,472,1350,488,1299,505,1231,520,1061,539,881,550,731,554,731,549,881,544,1061,534,1230,514,1298,500,1348,483,1373,468,1396,448,1431,407"/>
-<area shape="rect" href="when__any_8hpp.html" title=" " alt="" coords="1419,445,1589,485"/>
+<area shape="rect" href="when__any_8hpp.html" title="Await combinator that resolves when the first awaitable completes." alt="" coords="1419,445,1589,485"/>
 <area shape="poly" title=" " alt="" coords="1474,408,1495,444,1490,446,1469,411"/>
 <area shape="poly" title=" " alt="" coords="1405,487,1400,488,1214,510,1028,528,731,550,731,544,1027,522,1213,505,1400,483,1405,482"/>
 </map>
@@ -173,8 +176,10 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1immovable.html">webcraft::async::immovable</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utility base class that disables copying and moving.  <a href="classwebcraft_1_1async_1_1immovable.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1event__signal.html">webcraft::async::event_signal</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Busy-wait signal for synchronously waiting on async completion.  <a href="classwebcraft_1_1async_1_1event__signal.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -184,7 +189,10 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespacewebcraft_1_1async" id="r_namespacewebcraft_1_1async"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html">webcraft::async</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Lightweight thread-based signaling primitive for sync waiting. </p>
+<p><code>event_signal</code> is used by helper utilities such as <code>sync_wait()</code> to bridge coroutine completion to blocking caller code. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

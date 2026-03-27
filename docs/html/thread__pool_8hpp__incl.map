@@ -1,5 +1,5 @@
 <map id="include/webcraft/async/thread_pool.hpp" name="include/webcraft/async/thread_pool.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="556,5,727,45"/>
+<area shape="rect" id="Node000001" title="Cooperative thread pool for executing queued work items." alt="" coords="556,5,727,45"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,93,69,119"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="556,36,345,57,216,74,83,96,82,91,215,69,344,52,556,31"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="93,93,160,119"/>

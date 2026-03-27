@@ -94,12 +94,17 @@ $(document).ready(function(){initNavTree('conceptwebcraft_1_1async_1_1is__awaita
 </div><!--header-->
 <div class="contents">
 
+<p>Valid return types for <code>await_suspend</code>.  
+<a href="conceptwebcraft_1_1async_1_1is__awaitable__suspend__type.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="awaitable_8hpp_source.html">awaitable.hpp</a>&gt;</code></p>
 <h2 class="groupheader">Concept definition</h2>
 <div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
 <div class="line"><span class="keyword">concept </span><a class="code hl_concept" href="conceptwebcraft_1_1async_1_1is__awaitable__suspend__type.html">webcraft::async::is_awaitable_suspend_type</a> =  std::same_as&lt;T, void&gt; || std::convertible_to&lt;T, bool&gt; || std::convertible_to&lt;T, std::coroutine_handle&lt;&gt;&gt;</div>
-<div class="ttc" id="aconceptwebcraft_1_1async_1_1is__awaitable__suspend__type_html"><div class="ttname"><a href="conceptwebcraft_1_1async_1_1is__awaitable__suspend__type.html">webcraft::async::is_awaitable_suspend_type</a></div><div class="ttdef"><b>Definition</b> awaitable.hpp:21</div></div>
-</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aconceptwebcraft_1_1async_1_1is__awaitable__suspend__type_html"><div class="ttname"><a href="conceptwebcraft_1_1async_1_1is__awaitable__suspend__type.html">webcraft::async::is_awaitable_suspend_type</a></div><div class="ttdoc">Valid return types for await_suspend.</div><div class="ttdef"><b>Definition</b> awaitable.hpp:30</div></div>
+</div><!-- fragment --><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Valid return types for <code>await_suspend</code>. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

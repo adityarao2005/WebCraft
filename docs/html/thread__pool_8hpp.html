@@ -96,6 +96,9 @@ $(document).ready(function(){initNavTree('thread__pool_8hpp.html',''); initResiz
   <div class="headertitle"><div class="title">thread_pool.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Cooperative thread pool for executing queued work items.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;thread&gt;</code><br />
 <code>#include &lt;chrono&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
@@ -113,7 +116,7 @@ Include dependency graph for thread_pool.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread__pool_8hpp__incl.png" border="0" usemap="#ainclude_2webcraft_2async_2thread__pool_8hpp" alt=""/></div>
 <map name="ainclude_2webcraft_2async_2thread__pool_8hpp" id="ainclude_2webcraft_2async_2thread__pool_8hpp">
-<area shape="rect" title=" " alt="" coords="556,5,727,45"/>
+<area shape="rect" title="Cooperative thread pool for executing queued work items." alt="" coords="556,5,727,45"/>
 <area shape="rect" title=" " alt="" coords="5,93,69,119"/>
 <area shape="poly" title=" " alt="" coords="556,36,345,57,216,74,83,96,82,91,215,69,344,52,556,31"/>
 <area shape="rect" title=" " alt="" coords="93,93,160,119"/>
@@ -145,8 +148,8 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread__pool_8hpp__dep__incl.png" border="0" usemap="#ainclude_2webcraft_2async_2thread__pool_8hppdep" alt=""/></div>
 <map name="ainclude_2webcraft_2async_2thread__pool_8hppdep" id="ainclude_2webcraft_2async_2thread__pool_8hppdep">
-<area shape="rect" title=" " alt="" coords="5,5,176,45"/>
-<area shape="rect" href="async_8hpp.html" title=" " alt="" coords="5,93,176,133"/>
+<area shape="rect" title="Cooperative thread pool for executing queued work items." alt="" coords="5,5,176,45"/>
+<area shape="rect" href="async_8hpp.html" title="Umbrella include for the public asynchronous programming API." alt="" coords="5,93,176,133"/>
 <area shape="poly" title=" " alt="" coords="93,59,93,93,88,93,88,59"/>
 </map>
 </div>
@@ -156,10 +159,13 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1thread__pool__shutdown__error.html">webcraft::async::thread_pool_shutdown_error</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exception reported when submitting work after shutdown.  <a href="classwebcraft_1_1async_1_1thread__pool__shutdown__error.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1thread__pool__worker.html">webcraft::async::thread_pool_worker</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Worker object that owns one pool thread.  <a href="classwebcraft_1_1async_1_1thread__pool__worker.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1thread__pool.html">webcraft::async::thread_pool</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dynamic thread pool for executing callable work items.  <a href="classwebcraft_1_1async_1_1thread__pool.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -169,7 +175,10 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespacewebcraft_1_1async" id="r_namespacewebcraft_1_1async"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html">webcraft::async</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Cooperative thread pool for executing queued work items. </p>
+<p>This header exposes the thread-pool implementation used by runtime and async helper code to dispatch CPU-bound or deferred work. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

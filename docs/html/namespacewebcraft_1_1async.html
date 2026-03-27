@@ -108,114 +108,149 @@ Namespaces</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structwebcraft_1_1async_1_1async__event.html">async_event</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">One-shot awaitable event for coroutine coordination.  <a href="structwebcraft_1_1async_1_1async__event.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1event__signal.html">event_signal</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Busy-wait signal for synchronously waiting on async completion.  <a href="classwebcraft_1_1async_1_1event__signal.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1fire__and__forget__task.html">fire_and_forget_task</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coroutine return type for detached tasks that are not awaited.  <a href="classwebcraft_1_1async_1_1fire__and__forget__task.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1immovable.html">immovable</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utility base class that disables copying and moving.  <a href="classwebcraft_1_1async_1_1immovable.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1runtime__context.html">runtime_context</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acts as a context for the async runtime, managing the lifecycle of async operations. This class is designed to be used as a singleton within the async runtime but won't be created like a singleton, more like a guard.  <a href="classwebcraft_1_1async_1_1runtime__context.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">RAII guard that initializes and shuts down the async runtime.  <a href="classwebcraft_1_1async_1_1runtime__context.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Awaitable coroutine result that yields a value of type <code>T</code>.  <a href="classwebcraft_1_1async_1_1task.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1task_3_01void_01_4.html">task&lt; void &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Awaitable coroutine result specialization for <code>void</code>.  <a href="classwebcraft_1_1async_1_1task_3_01void_01_4.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structwebcraft_1_1async_1_1task__adaptor__closure.html">task_adaptor_closure</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class for pipe-style task adaptors.  <a href="structwebcraft_1_1async_1_1task__adaptor__closure.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1task__completion__source.html">task_completion_source</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manual completion source for <code>task&lt;T&gt;</code>.  <a href="classwebcraft_1_1async_1_1task__completion__source.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1task__completion__source_3_01void_01_4.html">task_completion_source&lt; void &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manual completion source specialization for <code>task&lt;void&gt;</code>.  <a href="classwebcraft_1_1async_1_1task__completion__source_3_01void_01_4.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1task__completion__source__base.html">task_completion_source_base</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shared state for manual task completion sources.  <a href="classwebcraft_1_1async_1_1task__completion__source__base.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1task__promise.html">task_promise</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Promise type backing <code>task&lt;T&gt;</code> coroutines.  <a href="classwebcraft_1_1async_1_1task__promise.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1task__promise_3_01void_01_4.html">task_promise&lt; void &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Promise specialization for <code>task&lt;void&gt;</code> coroutines.  <a href="classwebcraft_1_1async_1_1task__promise_3_01void_01_4.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1thread__pool.html">thread_pool</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dynamic thread pool for executing callable work items.  <a href="classwebcraft_1_1async_1_1thread__pool.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1thread__pool__shutdown__error.html">thread_pool_shutdown_error</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exception reported when submitting work after shutdown.  <a href="classwebcraft_1_1async_1_1thread__pool__shutdown__error.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1thread__pool__worker.html">thread_pool_worker</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Worker object that owns one pool thread.  <a href="classwebcraft_1_1async_1_1thread__pool__worker.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="concepts" name="concepts"></a>
 Concepts</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptwebcraft_1_1async_1_1has__member__operator__co__await__v.html">has_member_operator_co_await_v</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detects member <code>operator co_await</code>. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptwebcraft_1_1async_1_1is__awaitable__suspend__type.html">is_awaitable_suspend_type</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Valid return types for <code>await_suspend</code>. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptwebcraft_1_1async_1_1has__awaitable__elements.html">has_awaitable_elements</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detects awaiter protocol members (<code>await_ready/suspend/resume</code>). <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptwebcraft_1_1async_1_1has__non__member__operator__co__await__v.html">has_non_member_operator_co_await_v</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detects non-member <code>operator co_await</code>. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptwebcraft_1_1async_1_1awaitable__t.html">awaitable_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primary concept indicating a type is awaitable. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:a756c2303d30320ba433f8aa21010bd01" id="r_a756c2303d30320ba433f8aa21010bd01"><td class="memTemplParams" colspan="2">template&lt;awaitable_t T&gt; </td></tr>
 <tr class="memitem:a756c2303d30320ba433f8aa21010bd01"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#a756c2303d30320ba433f8aa21010bd01">awaitable_resume_t</a> = decltype(detail::get_awaiter(std::declval&lt; T &gt;()).await_resume())</td></tr>
+<tr class="memdesc:a756c2303d30320ba433f8aa21010bd01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resolved result type produced by awaiting <code>T</code>.  <br /></td></tr>
 <tr class="separator:a756c2303d30320ba433f8aa21010bd01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8174852e651e90c6f296a823928af715" id="r_a8174852e651e90c6f296a823928af715"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a8174852e651e90c6f296a823928af715"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#a8174852e651e90c6f296a823928af715">normalized_result_t</a> = std::conditional_t&lt; std::is_void_v&lt; <a class="el" href="namespacewebcraft_1_1async.html#a756c2303d30320ba433f8aa21010bd01">awaitable_resume_t</a>&lt; T &gt; &gt;, std::monostate, <a class="el" href="namespacewebcraft_1_1async.html#a756c2303d30320ba433f8aa21010bd01">awaitable_resume_t</a>&lt; T &gt; &gt;</td></tr>
+<tr class="memdesc:a8174852e651e90c6f296a823928af715"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalizes awaitable result types by mapping <code>void</code> to <code>std::monostate</code>.  <br /></td></tr>
 <tr class="separator:a8174852e651e90c6f296a823928af715"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:aa32214c386ded164491af1d325b36e11" id="r_aa32214c386ded164491af1d325b36e11"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1fire__and__forget__task.html">fire_and_forget_task</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#aa32214c386ded164491af1d325b36e11">fire_and_forget</a> (<a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; void &gt; t)</td></tr>
+<tr class="memdesc:aa32214c386ded164491af1d325b36e11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a <code>task&lt;void&gt;</code> in detached fire-and-forget mode.  <br /></td></tr>
 <tr class="separator:aa32214c386ded164491af1d325b36e11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1927641273e522291a9aabe3d44688f" id="r_ab1927641273e522291a9aabe3d44688f"><td class="memItemLeft" align="right" valign="top">std::stop_token&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#ab1927641273e522291a9aabe3d44688f">get_stop_token</a> ()</td></tr>
-<tr class="memdesc:ab1927641273e522291a9aabe3d44688f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the stop token for the current async runtime.  <br /></td></tr>
+<tr class="memdesc:ab1927641273e522291a9aabe3d44688f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the stop token associated with the active runtime.  <br /></td></tr>
 <tr class="separator:ab1927641273e522291a9aabe3d44688f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99e5bf717ae187ed2c3eaeea49c7f885" id="r_a99e5bf717ae187ed2c3eaeea49c7f885"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; void &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#a99e5bf717ae187ed2c3eaeea49c7f885">yield</a> ()</td></tr>
-<tr class="memdesc:a99e5bf717ae187ed2c3eaeea49c7f885"><td class="mdescLeft">&#160;</td><td class="mdescRight">Yields control back to the async runtime, allowing other tasks to run.  <br /></td></tr>
+<tr class="memdesc:a99e5bf717ae187ed2c3eaeea49c7f885"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cooperatively yields execution back to the runtime scheduler.  <br /></td></tr>
 <tr class="separator:a99e5bf717ae187ed2c3eaeea49c7f885"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ca6a5c7afbc6ff19d3757b8982794f6" id="r_a3ca6a5c7afbc6ff19d3757b8982794f6"><td class="memTemplParams" colspan="2">template&lt;typename Rep , typename Period &gt; </td></tr>
 <tr class="memitem:a3ca6a5c7afbc6ff19d3757b8982794f6"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; void &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#a3ca6a5c7afbc6ff19d3757b8982794f6">sleep_for</a> (std::chrono::duration&lt; Rep, Period &gt; duration, std::stop_token token=<a class="el" href="namespacewebcraft_1_1async.html#ab1927641273e522291a9aabe3d44688f">get_stop_token</a>())</td></tr>
-<tr class="memdesc:a3ca6a5c7afbc6ff19d3757b8982794f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sleeps for a specified duration, allowing other tasks to run during the sleep.  <br /></td></tr>
+<tr class="memdesc:a3ca6a5c7afbc6ff19d3757b8982794f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Suspends for a duration unless cancellation is requested.  <br /></td></tr>
 <tr class="separator:a3ca6a5c7afbc6ff19d3757b8982794f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a956a68bbb57834f7dd09decdbac3053a" id="r_a956a68bbb57834f7dd09decdbac3053a"><td class="memTemplParams" colspan="2">template&lt;typename Rep , typename Period &gt; </td></tr>
 <tr class="memitem:a956a68bbb57834f7dd09decdbac3053a"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1fire__and__forget__task.html">fire_and_forget_task</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#a956a68bbb57834f7dd09decdbac3053a">set_timeout</a> (std::function&lt; void()&gt; func, std::chrono::duration&lt; Rep, Period &gt; duration, std::stop_token token=<a class="el" href="namespacewebcraft_1_1async.html#ab1927641273e522291a9aabe3d44688f">get_stop_token</a>())</td></tr>
+<tr class="memdesc:a956a68bbb57834f7dd09decdbac3053a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs a callback once after a delay.  <br /></td></tr>
 <tr class="separator:a956a68bbb57834f7dd09decdbac3053a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33e3ad8fe28c5febe5782a0b74d1366c" id="r_a33e3ad8fe28c5febe5782a0b74d1366c"><td class="memTemplParams" colspan="2">template&lt;typename Rep , typename Period &gt; </td></tr>
 <tr class="memitem:a33e3ad8fe28c5febe5782a0b74d1366c"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1fire__and__forget__task.html">fire_and_forget_task</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#a33e3ad8fe28c5febe5782a0b74d1366c">set_interval</a> (std::function&lt; void()&gt; func, std::chrono::duration&lt; Rep, Period &gt; duration, std::stop_token token=<a class="el" href="namespacewebcraft_1_1async.html#ab1927641273e522291a9aabe3d44688f">get_stop_token</a>())</td></tr>
+<tr class="memdesc:a33e3ad8fe28c5febe5782a0b74d1366c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Repeatedly runs a callback at fixed delay intervals until stopped.  <br /></td></tr>
 <tr class="separator:a33e3ad8fe28c5febe5782a0b74d1366c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a32cc887e48f12d360656c6f023977a2d" id="r_a32cc887e48f12d360656c6f023977a2d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; void &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#a32cc887e48f12d360656c6f023977a2d">shutdown</a> ()</td></tr>
+<tr class="memdesc:a32cc887e48f12d360656c6f023977a2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Requests runtime shutdown and yields once to flush completion.  <br /></td></tr>
 <tr class="separator:a32cc887e48f12d360656c6f023977a2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a367712ca561ac34d7d28f495a6462c09" id="r_a367712ca561ac34d7d28f495a6462c09"><td class="memTemplParams" colspan="2">template&lt;awaitable_t T&gt; </td></tr>
 <tr class="memitem:a367712ca561ac34d7d28f495a6462c09"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespacewebcraft_1_1async.html#a756c2303d30320ba433f8aa21010bd01">awaitable_resume_t</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#a367712ca561ac34d7d28f495a6462c09">sync_wait</a> (T &amp;&amp;awaitable)</td></tr>
+<tr class="memdesc:a367712ca561ac34d7d28f495a6462c09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocks the current thread until an awaitable completes.  <br /></td></tr>
 <tr class="separator:a367712ca561ac34d7d28f495a6462c09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2f7829b92b3c6f724586abddbe4147c" id="r_aa2f7829b92b3c6f724586abddbe4147c"><td class="memTemplParams" colspan="2">template&lt;typename Func &gt; </td></tr>
 <tr class="memitem:aa2f7829b92b3c6f724586abddbe4147c"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#aa2f7829b92b3c6f724586abddbe4147c">then</a> (Func &amp;&amp;func)</td></tr>
+<tr class="memdesc:aa2f7829b92b3c6f724586abddbe4147c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a continuation adaptor to transform successful task results.  <br /></td></tr>
 <tr class="separator:aa2f7829b92b3c6f724586abddbe4147c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4cdc12c581f571e77dba6f036250a51a" id="r_a4cdc12c581f571e77dba6f036250a51a"><td class="memTemplParams" colspan="2">template&lt;typename Func &gt; </td></tr>
 <tr class="memitem:a4cdc12c581f571e77dba6f036250a51a"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#a4cdc12c581f571e77dba6f036250a51a">upon_error</a> (Func &amp;&amp;handler)</td></tr>
+<tr class="memdesc:a4cdc12c581f571e77dba6f036250a51a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an error-recovery adaptor for failed awaitables.  <br /></td></tr>
 <tr class="separator:a4cdc12c581f571e77dba6f036250a51a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adefc58a669759c7bf7067728c34cfbf5" id="r_adefc58a669759c7bf7067728c34cfbf5"><td class="memTemplParams" colspan="2">template&lt;std::ranges::input_range Range, typename T  = std::ranges::range_value_t&lt;Range&gt;, typename Result  = awaitable_resume_t&lt;T&gt;&gt; <br />
 requires awaitable_t&lt;T&gt; &amp;&amp; (!std::is_void_v&lt;Result&gt;)</td></tr>
 <tr class="memitem:adefc58a669759c7bf7067728c34cfbf5"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; std::vector&lt; Result &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#adefc58a669759c7bf7067728c34cfbf5">when_all</a> (Range &amp;&amp;tasks)</td></tr>
+<tr class="memdesc:adefc58a669759c7bf7067728c34cfbf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Awaits all awaitables in a range and collects non-void results.  <br /></td></tr>
 <tr class="separator:adefc58a669759c7bf7067728c34cfbf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5be7b95a948cae4e62eae315112097d" id="r_ab5be7b95a948cae4e62eae315112097d"><td class="memTemplParams" colspan="2">template&lt;std::ranges::input_range Range, typename T  = std::ranges::range_value_t&lt;Range&gt;, typename Result  = awaitable_resume_t&lt;T&gt;&gt; <br />
 requires awaitable_t&lt;T&gt; &amp;&amp; std::is_void_v&lt;Result&gt;</td></tr>
 <tr class="memitem:ab5be7b95a948cae4e62eae315112097d"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; void &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#ab5be7b95a948cae4e62eae315112097d">when_all</a> (Range &amp;&amp;tasks)</td></tr>
+<tr class="memdesc:ab5be7b95a948cae4e62eae315112097d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Awaits all void-returning awaitables in a range.  <br /></td></tr>
 <tr class="separator:ab5be7b95a948cae4e62eae315112097d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8101de822056b473833adc0e5408022b" id="r_a8101de822056b473833adc0e5408022b"><td class="memTemplParams" colspan="2">template&lt;typename... Tasks&gt; <br />
 requires (awaitable_t&lt;Tasks&gt; &amp;&amp; ...)</td></tr>
 <tr class="memitem:a8101de822056b473833adc0e5408022b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; std::tuple&lt; <a class="el" href="namespacewebcraft_1_1async.html#a8174852e651e90c6f296a823928af715">normalized_result_t</a>&lt; Tasks &gt;... &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#a8101de822056b473833adc0e5408022b">when_all</a> (std::tuple&lt; Tasks... &gt; tasks)</td></tr>
+<tr class="memdesc:a8101de822056b473833adc0e5408022b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Awaits every awaitable in a tuple and returns a tuple of normalized results.  <br /></td></tr>
 <tr class="separator:a8101de822056b473833adc0e5408022b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13bbc27f5b631d3acb57bf3376614164" id="r_a13bbc27f5b631d3acb57bf3376614164"><td class="memTemplParams" colspan="2">template&lt;typename... Tasks&gt; <br />
 requires (awaitable_t&lt;Tasks&gt; &amp;&amp; ...)</td></tr>
 <tr class="memitem:a13bbc27f5b631d3acb57bf3376614164"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#a13bbc27f5b631d3acb57bf3376614164">when_all</a> (Tasks &amp;&amp;...tasks)</td></tr>
+<tr class="memdesc:a13bbc27f5b631d3acb57bf3376614164"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variadic convenience overload for <code>when_all</code>.  <br /></td></tr>
 <tr class="separator:a13bbc27f5b631d3acb57bf3376614164"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c5d38e8801b57b1ab7200366a8e22dc" id="r_a2c5d38e8801b57b1ab7200366a8e22dc"><td class="memTemplParams" colspan="2">template&lt;std::ranges::input_range Range, typename T  = std::ranges::range_value_t&lt;Range&gt;, typename Result  = awaitable_resume_t&lt;T&gt;&gt; <br />
 requires awaitable_t&lt;T&gt;</td></tr>
 <tr class="memitem:a2c5d38e8801b57b1ab7200366a8e22dc"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; Result &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#a2c5d38e8801b57b1ab7200366a8e22dc">when_any</a> (Range &amp;&amp;tasks)</td></tr>
+<tr class="memdesc:a2c5d38e8801b57b1ab7200366a8e22dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Awaits a range and returns when the first awaitable completes.  <br /></td></tr>
 <tr class="separator:a2c5d38e8801b57b1ab7200366a8e22dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ca722dc3d2eed95e56f4d1d0b352673" id="r_a9ca722dc3d2eed95e56f4d1d0b352673"><td class="memTemplParams" colspan="2">template&lt;awaitable_t... Tasks&gt; </td></tr>
 <tr class="memitem:a9ca722dc3d2eed95e56f4d1d0b352673"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; std::variant&lt; <a class="el" href="namespacewebcraft_1_1async.html#a8174852e651e90c6f296a823928af715">normalized_result_t</a>&lt; Tasks &gt;... &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html#a9ca722dc3d2eed95e56f4d1d0b352673">when_any</a> (Tasks &amp;&amp;...tasks)</td></tr>
+<tr class="memdesc:a9ca722dc3d2eed95e56f4d1d0b352673"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variadic overload that races awaitables and returns the first result as a variant.  <br /></td></tr>
 <tr class="separator:a9ca722dc3d2eed95e56f4d1d0b352673"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
@@ -233,6 +268,8 @@ template&lt;awaitable_t T&gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Resolved result type produced by awaiting <code>T</code>. </p>
+
 </div>
 </div>
 <a id="a8174852e651e90c6f296a823928af715" name="a8174852e651e90c6f296a823928af715"></a>
@@ -248,6 +285,8 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Normalizes awaitable result types by mapping <code>void</code> to <code>std::monostate</code>. </p>
 
 </div>
 </div>
@@ -276,6 +315,8 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Starts a <code>task&lt;void&gt;</code> in detached fire-and-forget mode. </p>
+
 </div>
 </div>
 <a id="ab1927641273e522291a9aabe3d44688f" name="ab1927641273e522291a9aabe3d44688f"></a>
@@ -293,8 +334,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Gets the stop token for the current async runtime. </p>
-<dl class="section return"><dt>Returns</dt><dd>the stop token associated with the async runtime. </dd></dl>
+<p>Returns the stop token associated with the active runtime. </p>
 
 </div>
 </div>
@@ -340,6 +380,8 @@ template&lt;typename Rep , typename Period &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Repeatedly runs a callback at fixed delay intervals until stopped. </p>
+
 </div>
 </div>
 <a id="a956a68bbb57834f7dd09decdbac3053a" name="a956a68bbb57834f7dd09decdbac3053a"></a>
@@ -384,6 +426,8 @@ template&lt;typename Rep , typename Period &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Runs a callback once after a delay. </p>
+
 </div>
 </div>
 <a id="a32cc887e48f12d360656c6f023977a2d" name="a32cc887e48f12d360656c6f023977a2d"></a>
@@ -408,6 +452,8 @@ template&lt;typename Rep , typename Period &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Requests runtime shutdown and yields once to flush completion. </p>
 
 </div>
 </div>
@@ -447,15 +493,7 @@ template&lt;typename Rep , typename Period &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Sleeps for a specified duration, allowing other tasks to run during the sleep. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">duration</td><td>The duration to sleep. </td></tr>
-    <tr><td class="paramname">token</td><td>The stop token to check for cancellation requests. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A task that completes when the sleep operation is done. </dd></dl>
+<p>Suspends for a duration unless cancellation is requested. </p>
 
 </div>
 </div>
@@ -477,6 +515,27 @@ template&lt;awaitable_t T&gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Blocks the current thread until an awaitable completes. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Any awaitable type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">awaitable</td><td>Awaitable object to execute and wait on. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The awaitable result for non-void awaitables. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Rethrows</td><td>exceptions captured from the awaited operation. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="aa2f7829b92b3c6f724586abddbe4147c" name="aa2f7829b92b3c6f724586abddbe4147c"></a>
@@ -497,6 +556,8 @@ template&lt;typename Func &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Creates a continuation adaptor to transform successful task results. </p>
+
 </div>
 </div>
 <a id="a4cdc12c581f571e77dba6f036250a51a" name="a4cdc12c581f571e77dba6f036250a51a"></a>
@@ -516,6 +577,8 @@ template&lt;typename Func &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Creates an error-recovery adaptor for failed awaitables. </p>
 
 </div>
 </div>
@@ -538,6 +601,8 @@ requires awaitable_t&lt;T&gt; &amp;&amp; (!std::is_void_v&lt;Result&gt;)</div>
       </table>
 </div><div class="memdoc">
 
+<p>Awaits all awaitables in a range and collects non-void results. </p>
+
 </div>
 </div>
 <a id="ab5be7b95a948cae4e62eae315112097d" name="ab5be7b95a948cae4e62eae315112097d"></a>
@@ -558,6 +623,8 @@ requires awaitable_t&lt;T&gt; &amp;&amp; std::is_void_v&lt;Result&gt;</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Awaits all void-returning awaitables in a range. </p>
 
 </div>
 </div>
@@ -580,6 +647,8 @@ requires (awaitable_t&lt;Tasks&gt; &amp;&amp; ...)</div>
       </table>
 </div><div class="memdoc">
 
+<p>Awaits every awaitable in a tuple and returns a tuple of normalized results. </p>
+
 </div>
 </div>
 <a id="a13bbc27f5b631d3acb57bf3376614164" name="a13bbc27f5b631d3acb57bf3376614164"></a>
@@ -600,6 +669,8 @@ requires (awaitable_t&lt;Tasks&gt; &amp;&amp; ...)</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Variadic convenience overload for <code>when_all</code>. </p>
 
 </div>
 </div>
@@ -622,6 +693,8 @@ requires awaitable_t&lt;T&gt;</div>
       </table>
 </div><div class="memdoc">
 
+<p>Awaits a range and returns when the first awaitable completes. </p>
+
 </div>
 </div>
 <a id="a9ca722dc3d2eed95e56f4d1d0b352673" name="a9ca722dc3d2eed95e56f4d1d0b352673"></a>
@@ -641,6 +714,8 @@ template&lt;awaitable_t... Tasks&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Variadic overload that races awaitables and returns the first result as a variant. </p>
 
 </div>
 </div>
@@ -667,8 +742,7 @@ template&lt;awaitable_t... Tasks&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Yields control back to the async runtime, allowing other tasks to run. </p>
-<dl class="section return"><dt>Returns</dt><dd>A task that completes when the yield operation is done. </dd></dl>
+<p>Cooperatively yields execution back to the runtime scheduler. </p>
 
 </div>
 </div>

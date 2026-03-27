@@ -98,6 +98,9 @@ $(document).ready(function(){initNavTree('util_8hpp.html',''); initResizable(); 
   <div class="headertitle"><div class="title">util.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Cross-platform networking helper utilities.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;sstream&gt;</code><br />
 <code>#include &lt;<a class="el" href="task_8hpp_source.html">webcraft/async/task.hpp</a>&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
@@ -106,10 +109,10 @@ Include dependency graph for util.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="util_8hpp__incl.png" border="0" usemap="#ainclude_2webcraft_2net_2util_8hpp" alt=""/></div>
 <map name="ainclude_2webcraft_2net_2util_8hpp" id="ainclude_2webcraft_2net_2util_8hpp">
-<area shape="rect" title=" " alt="" coords="324,5,479,45"/>
+<area shape="rect" title="Cross&#45;platform networking helper utilities." alt="" coords="324,5,479,45"/>
 <area shape="rect" title=" " alt="" coords="212,93,287,119"/>
 <area shape="poly" title=" " alt="" coords="366,48,286,89,283,84,364,43"/>
-<area shape="rect" href="task_8hpp.html" title=" " alt="" coords="311,93,491,119"/>
+<area shape="rect" href="task_8hpp.html" title="Core coroutine task type used across WebCraft async APIs." alt="" coords="311,93,491,119"/>
 <area shape="poly" title=" " alt="" coords="404,46,404,79,399,79,399,46"/>
 <area shape="rect" title=" " alt="" coords="515,93,586,119"/>
 <area shape="poly" title=" " alt="" coords="438,43,518,84,515,89,436,48"/>
@@ -119,9 +122,9 @@ Include dependency graph for util.hpp:</div>
 <area shape="poly" title=" " alt="" coords="350,121,135,168,134,163,349,116"/>
 <area shape="rect" title=" " alt="" coords="213,240,296,265"/>
 <area shape="poly" title=" " alt="" coords="385,121,356,142,325,169,296,200,273,230,268,227,292,196,321,165,352,138,382,117"/>
-<area shape="rect" href="awaitable_8hpp.html" title=" " alt="" coords="145,167,260,192"/>
+<area shape="rect" href="awaitable_8hpp.html" title="Awaitable concepts and type traits." alt="" coords="145,167,260,192"/>
 <area shape="poly" title=" " alt="" coords="370,121,249,164,247,159,369,116"/>
-<area shape="rect" href="event__signal_8hpp.html" title=" " alt="" coords="335,167,468,192"/>
+<area shape="rect" href="event__signal_8hpp.html" title="Lightweight thread&#45;based signaling primitive for sync waiting." alt="" coords="335,167,468,192"/>
 <area shape="poly" title=" " alt="" coords="404,119,404,153,399,153,399,119"/>
 <area shape="rect" title=" " alt="" coords="492,167,572,192"/>
 <area shape="poly" title=" " alt="" coords="424,116,500,158,498,162,421,121"/>
@@ -149,6 +152,7 @@ Include dependency graph for util.hpp:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1net_1_1util_1_1get__addr__info__error.html">webcraft::net::util::get_addr_info_error</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exception thrown for address-resolution failures.  <a href="classwebcraft_1_1net_1_1util_1_1get__addr__info__error.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -168,11 +172,16 @@ Typedefs</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a775955cd186c9fa74a1e9831a7e0969c" id="r_a775955cd186c9fa74a1e9831a7e0969c"><td class="memItemLeft" align="right" valign="top">std::pair&lt; std::string, uint16_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1net_1_1util.html#a775955cd186c9fa74a1e9831a7e0969c">webcraft::net::util::addr_to_host_port</a> (const struct sockaddr_storage &amp;addr)</td></tr>
+<tr class="memdesc:a775955cd186c9fa74a1e9831a7e0969c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a socket address into numeric host and port.  <br /></td></tr>
 <tr class="separator:a775955cd186c9fa74a1e9831a7e0969c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96e3abcd87cfe0a3fc6a68e47cd3ca75" id="r_a96e3abcd87cfe0a3fc6a68e47cd3ca75"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1net_1_1util.html#a96e3abcd87cfe0a3fc6a68e47cd3ca75">webcraft::net::util::host_port_to_addr</a> (const <a class="el" href="structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info.html">webcraft::async::io::socket::connection_info</a> &amp;info, <a class="el" href="namespacewebcraft_1_1net_1_1util.html#ab2b6e4887c083400ff40f68f06545dcf">on_address_resolved</a> callback)</td></tr>
+<tr class="memdesc:a96e3abcd87cfe0a3fc6a68e47cd3ca75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resolves host/port and invokes a callback for each resolved address.  <br /></td></tr>
 <tr class="separator:a96e3abcd87cfe0a3fc6a68e47cd3ca75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Cross-platform networking helper utilities. </p>
+<p>This header wraps common address-resolution and socket helper logic used by async socket abstractions. Include it when implementing or extending network-facing components that need these low-level helpers. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

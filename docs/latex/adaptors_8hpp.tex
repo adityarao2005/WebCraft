@@ -1,5 +1,10 @@
 \doxysection{include/webcraft/async/io/adaptors.hpp File Reference}
 \hypertarget{adaptors_8hpp}{}\label{adaptors_8hpp}\index{include/webcraft/async/io/adaptors.hpp@{include/webcraft/async/io/adaptors.hpp}}
+
+
+Composable stream transformation adaptors for async I/O pipelines.  
+
+
 {\ttfamily \#include $<$concepts$>$}\newline
 {\ttfamily \#include $<$type\+\_\+traits$>$}\newline
 {\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
@@ -26,7 +31,7 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1adaptors_1_1async__readable__stream__adaptor}{webcraft\+::async\+::io\+::adaptors\+::async\+\_\+readable\+\_\+stream\+\_\+adaptor$<$ Derived, T $>$}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Base helper for pipeable readable-\/stream adaptors. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -44,42 +49,42 @@ namespace \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_1_1colle
 \begin{DoxyCompactItemize}
 \item 
 concept \mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1adaptors_1_1collector}{webcraft\+::async\+::io\+::adaptors\+::collector}}
-\item 
+\begin{DoxyCompactList}\small\item\em Collector concept for adaptors that reduce a stream to a value. \end{DoxyCompactList}\item 
 concept \mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1adaptors_1_1closure__under__addition}{webcraft\+::async\+::io\+::adaptors\+::closure\+\_\+under\+\_\+addition}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Constraint for types closed under addition. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 {\footnotesize template$<$typename In\+Type , typename Func $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_ab1e6d4ed87247b8982c2536eeb7220e5}{webcraft\+::async\+::io\+::adaptors\+::transform}} (Func \&\&fn)
-\item 
+\begin{DoxyCompactList}\small\item\em Adaptor that transforms stream elements via an async-\/generator transform function. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename In\+Type , typename Func , typename Out\+Type  = std\+::invoke\+\_\+result\+\_\+t$<$\+Func, In\+Type$>$$>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_a467323c557b8245b25c7cc5c6cd28e22}{webcraft\+::async\+::io\+::adaptors\+::map}} (Func \&\&fn)
-\item 
+\begin{DoxyCompactList}\small\item\em Element-\/wise mapping adaptor. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ \newline
 requires std\+::is\+\_\+copy\+\_\+assignable\+\_\+v$<$T$>$}\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_ade46e7a4ed2b78a5081564b197a8ea57}{webcraft\+::async\+::io\+::adaptors\+::pipe}} (async\+\_\+writable\+\_\+stream$<$ T $>$ auto \&str)
-\item 
+\begin{DoxyCompactList}\small\item\em Forwards stream elements to a writable stream while passing values through. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename To\+Type , typename Stream\+Type , collector$<$ To\+Type, Stream\+Type $>$ Collector$>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_ac259db7916278ffc530b8c127be7a191}{webcraft\+::async\+::io\+::adaptors\+::collect}} (Collector \&\&collector\+\_\+func)
-\item 
+\begin{DoxyCompactList}\small\item\em Builds a collector adaptor from a collector functor. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_a9ddb8e7a2a4c065a9340e9800ff7f0ed}{webcraft\+::async\+::io\+::adaptors\+::forward\+\_\+to}} (async\+\_\+writable\+\_\+stream$<$ T $>$ auto \&stream)
-\item 
+\begin{DoxyCompactList}\small\item\em Collector adaptor that writes each incoming value to a target stream. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T , typename Func $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_adda76c1251d855604fa6c9f4b752de2c}{webcraft\+::async\+::io\+::adaptors\+::filter}} (Func \&\&predicate)
-\item 
+\begin{DoxyCompactList}\small\item\em Retains only values that satisfy a predicate. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_a7f89d23f44cca5e13f844ad7c5b3282d}{webcraft\+::async\+::io\+::adaptors\+::limit}} (size\+\_\+t count)
-\item 
+\begin{DoxyCompactList}\small\item\em Retains at most the first {\ttfamily count} values. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_a5102607d13477fb88df1a0b93c50e6d1}{webcraft\+::async\+::io\+::adaptors\+::skip}} (size\+\_\+t count)
-\item 
+\begin{DoxyCompactList}\small\item\em Skips the first {\ttfamily count} values. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T , typename Func $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_a16136cc18f9808fabc53ff6ab854d997}{webcraft\+::async\+::io\+::adaptors\+::take\+\_\+while}} (Func \&\&predicate)
-\item 
+\begin{DoxyCompactList}\small\item\em Retains values while a predicate remains true. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T , typename Func $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_ad7cac35a119147fb1d053553ff1ce6f4}{webcraft\+::async\+::io\+::adaptors\+::drop\+\_\+while}} (Func \&\&predicate)
-\item 
+\begin{DoxyCompactList}\small\item\em Drops values while a predicate remains true, then yields the rest. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_1_1collectors_a7daa10abd28848093f764efd3678bc98}{webcraft\+::async\+::io\+::adaptors\+::collectors\+::reduce}} (std\+::function$<$ T(T, T)$>$ \&\&func)
-\item 
+\begin{DoxyCompactList}\small\item\em Collector factory that reduces stream values with a binary function. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ \newline
 requires std\+::is\+\_\+convertible\+\_\+v$<$T, std\+::string$>$}\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_1_1collectors_adc8e437445f9247f3e767b485f468b5d}{webcraft\+::async\+::io\+::adaptors\+::collectors\+::joining}} (std\+::string separator="{}"{}, std\+::string prefix="{}"{}, std\+::string suffix="{}"{})
 \item 
 {\footnotesize template$<$typename T $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_1_1collectors_a1064184038eb4e5d67a1763dbc2c33f9}{webcraft\+::async\+::io\+::adaptors\+::collectors\+::to\+\_\+vector}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Collector factory that materializes values into {\ttfamily std\+::vector\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}}. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T , typename Key\+Type $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_1_1collectors_a2e67493f2e10fee623eb18b43d02ea71}{webcraft\+::async\+::io\+::adaptors\+::collectors\+::group\+\_\+by}} (std\+::function$<$ Key\+Type(const T \&)$>$ key\+\_\+function)
-\item 
+\begin{DoxyCompactList}\small\item\em Collector factory that groups values by a computed key. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ \newline
 requires std\+::totally\+\_\+ordered$<$T$>$}\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_abe983922626e1ab45c906444bbf74239}{webcraft\+::async\+::io\+::adaptors\+::min}} ()
 \item 
@@ -90,12 +95,18 @@ requires std\+::totally\+\_\+ordered$<$T$>$}\\auto \mbox{\hyperlink{namespaceweb
 requires closure\+\_\+under\+\_\+addition$<$T$>$}\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_a01eae8f829e97817419aed01f5ad37dc}{webcraft\+::async\+::io\+::adaptors\+::sum}} ()
 \item 
 {\footnotesize template$<$typename T $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_afea35e0603fe1056bdc052faa20b8411}{webcraft\+::async\+::io\+::adaptors\+::find\+\_\+first}} (std\+::function$<$ bool(const T \&)$>$ \&\&predicate)
-\item 
+\begin{DoxyCompactList}\small\item\em Finds the first value that matches a predicate. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_a21b0723e172b9758a9e78ae20dbe3bf1}{webcraft\+::async\+::io\+::adaptors\+::find\+\_\+last}} (std\+::function$<$ bool(const T \&)$>$ \&\&predicate)
-\item 
+\begin{DoxyCompactList}\small\item\em Finds the last value that matches a predicate. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_af103d36599b9cd7baf15f2c7e75e70b9}{webcraft\+::async\+::io\+::adaptors\+::any\+\_\+matches}} (std\+::function$<$ bool(const T \&)$>$ \&\&predicate)
-\item 
+\begin{DoxyCompactList}\small\item\em Returns true if any value matches a predicate. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_a1566ca935350435b72631ee11d574ee7}{webcraft\+::async\+::io\+::adaptors\+::all\+\_\+matches}} (std\+::function$<$ bool(const T \&)$>$ \&\&predicate)
-\item 
+\begin{DoxyCompactList}\small\item\em Returns true if all values match a predicate. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_af0226fefe32175663e7ab469a785566c}{webcraft\+::async\+::io\+::adaptors\+::none\+\_\+matches}} (std\+::function$<$ bool(const T \&)$>$ \&\&predicate)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Returns true if no values match a predicate. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Composable stream transformation adaptors for async I/O pipelines. 
+
+Use adaptor objects in pipe expressions to transform, filter, or reshape async stream payloads while preserving coroutine-\/friendly flow. 

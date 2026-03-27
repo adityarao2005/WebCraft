@@ -1,10 +1,10 @@
 <map id="include/webcraft/concepts.hpp" name="include/webcraft/concepts.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,224,31"/>
-<area shape="rect" id="Node000002" href="$when__all_8hpp.html" title=" " alt="" coords="29,79,200,119"/>
+<area shape="rect" id="Node000001" title="Small shared concepts used by WebCraft templates." alt="" coords="5,5,224,31"/>
+<area shape="rect" id="Node000002" href="$when__all_8hpp.html" title="Await combinator that waits for all awaitables in a range." alt="" coords="29,79,200,119"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,44,117,79,112,79,112,44"/>
-<area shape="rect" id="Node000003" href="$async_8hpp.html" title=" " alt="" coords="29,255,200,295"/>
+<area shape="rect" id="Node000003" href="$async_8hpp.html" title="Umbrella include for the public asynchronous programming API." alt="" coords="29,255,200,295"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="97,131,81,167,78,187,81,206,91,231,104,253,99,256,86,233,76,207,73,187,76,166,92,129"/>
-<area shape="rect" id="Node000004" href="$when__any_8hpp.html" title=" " alt="" coords="91,167,261,207"/>
+<area shape="rect" id="Node000004" href="$when__any_8hpp.html" title="Await combinator that resolves when the first awaitable completes." alt="" coords="91,167,261,207"/>
 <area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="138,128,165,165,160,168,134,132"/>
 <area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="157,220,130,256,126,253,152,216"/>
 </map>

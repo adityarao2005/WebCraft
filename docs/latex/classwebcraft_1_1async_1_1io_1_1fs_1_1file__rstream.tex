@@ -2,11 +2,17 @@
 \hypertarget{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream}{}\label{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream}\index{webcraft::async::io::fs::file\_rstream@{webcraft::async::io::fs::file\_rstream}}
 
 
+Async readable stream over a file descriptor.  
+
+
+
+
 {\ttfamily \#include $<$fs.\+hpp$>$}
 
 
 
-Inheritance diagram for webcraft\+::async\+::io\+::fs\+::file\+\_\+rstream\+:\nopagebreak
+Inheritance diagram for webcraft\+::async\+::io\+::fs\+::file\+\_\+rstream\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -15,7 +21,8 @@ Inheritance diagram for webcraft\+::async\+::io\+::fs\+::file\+\_\+rstream\+:\no
 \end{figure}
 
 
-Collaboration diagram for webcraft\+::async\+::io\+::fs\+::file\+\_\+rstream\+:\nopagebreak
+Collaboration diagram for webcraft\+::async\+::io\+::fs\+::file\+\_\+rstream\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -38,10 +45,13 @@ Collaboration diagram for webcraft\+::async\+::io\+::fs\+::file\+\_\+rstream\+:\
 \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream}{file\+\_\+rstream}} \& \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream_abe8cec28e2c20890e6f4a366f0dcfb5d}{operator=}} (const \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream}{file\+\_\+rstream}} \&)=delete
 \item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ size\+\_\+t $>$ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream_a1a6da33057e45971055f78d677e50a0c}{recv}} (std\+::span$<$ char $>$ buffer)
-\item 
+\begin{DoxyCompactList}\small\item\em Reads as many bytes as available into {\ttfamily buffer}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ std\+::optional$<$ char $>$ $>$ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream_afb263a148b621484b1bc3388a6a43cdd}{recv}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Reads a single byte, or {\ttfamily std\+::nullopt} on end-\/of-\/stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Async readable stream over a file descriptor. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream_af316878c8f54e26620b81c31a5589996}\label{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream_af316878c8f54e26620b81c31a5589996} 
@@ -89,11 +99,19 @@ Collaboration diagram for webcraft\+::async\+::io\+::fs\+::file\+\_\+rstream\+:\
 \doxysubsubsection{\texorpdfstring{recv()}{recv()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ std\+::optional$<$ char $>$ $>$ webcraft\+::async\+::io\+::fs\+::file\+\_\+rstream\+::recv (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Reads a single byte, or {\ttfamily std\+::nullopt} on end-\/of-\/stream. 
+
 \Hypertarget{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream_a1a6da33057e45971055f78d677e50a0c}\label{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream_a1a6da33057e45971055f78d677e50a0c} 
 \index{webcraft::async::io::fs::file\_rstream@{webcraft::async::io::fs::file\_rstream}!recv@{recv}}
 \index{recv@{recv}!webcraft::async::io::fs::file\_rstream@{webcraft::async::io::fs::file\_rstream}}
 \doxysubsubsection{\texorpdfstring{recv()}{recv()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ size\+\_\+t $>$ webcraft\+::async\+::io\+::fs\+::file\+\_\+rstream\+::recv (\begin{DoxyParamCaption}\item[{std\+::span$<$ char $>$}]{buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reads as many bytes as available into {\ttfamily buffer}. 
 
 
 

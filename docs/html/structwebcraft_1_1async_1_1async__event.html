@@ -97,22 +97,33 @@ $(document).ready(function(){initNavTree('structwebcraft_1_1async_1_1async__even
 </div><!--header-->
 <div class="contents">
 
+<p>One-shot awaitable event for coroutine coordination.  
+ <a href="structwebcraft_1_1async_1_1async__event.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="async__event_8hpp_source.html">async_event.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aef4936a0e74c447f244fb62452576faf" id="r_aef4936a0e74c447f244fb62452576faf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structwebcraft_1_1async_1_1async__event.html#aef4936a0e74c447f244fb62452576faf">await_ready</a> ()</td></tr>
+<tr class="memdesc:aef4936a0e74c447f244fb62452576faf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true when the event has already been set.  <br /></td></tr>
 <tr class="separator:aef4936a0e74c447f244fb62452576faf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf1866b546a0dea665b1263e92c887ed" id="r_adf1866b546a0dea665b1263e92c887ed"><td class="memItemLeft" align="right" valign="top">constexpr void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structwebcraft_1_1async_1_1async__event.html#adf1866b546a0dea665b1263e92c887ed">await_suspend</a> (std::coroutine_handle&lt;&gt; h)</td></tr>
+<tr class="memdesc:adf1866b546a0dea665b1263e92c887ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers the awaiting coroutine for resumption.  <br /></td></tr>
 <tr class="separator:adf1866b546a0dea665b1263e92c887ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7e0179966b8be6c58897b2e9713750d" id="r_ae7e0179966b8be6c58897b2e9713750d"><td class="memItemLeft" align="right" valign="top">constexpr void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structwebcraft_1_1async_1_1async__event.html#ae7e0179966b8be6c58897b2e9713750d">await_resume</a> ()</td></tr>
+<tr class="memdesc:ae7e0179966b8be6c58897b2e9713750d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Completes the await operation.  <br /></td></tr>
 <tr class="separator:ae7e0179966b8be6c58897b2e9713750d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49de077f7eace2cd7a8ed81b257a7379" id="r_a49de077f7eace2cd7a8ed81b257a7379"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structwebcraft_1_1async_1_1async__event.html#a49de077f7eace2cd7a8ed81b257a7379">set</a> ()</td></tr>
+<tr class="memdesc:a49de077f7eace2cd7a8ed81b257a7379"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the event and resumes all waiting coroutines.  <br /></td></tr>
 <tr class="separator:a49de077f7eace2cd7a8ed81b257a7379"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c276db76c04e8a305b835cd42fbd40c" id="r_a9c276db76c04e8a305b835cd42fbd40c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structwebcraft_1_1async_1_1async__event.html#a9c276db76c04e8a305b835cd42fbd40c">is_set</a> () const</td></tr>
+<tr class="memdesc:a9c276db76c04e8a305b835cd42fbd40c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the event has already been set.  <br /></td></tr>
 <tr class="separator:a9c276db76c04e8a305b835cd42fbd40c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>One-shot awaitable event for coroutine coordination. </p>
+<p>Coroutines can suspend on this object and are resumed when <code><a class="el" href="structwebcraft_1_1async_1_1async__event.html#a49de077f7eace2cd7a8ed81b257a7379" title="Sets the event and resumes all waiting coroutines.">set()</a></code> is called. Once set, subsequent awaits complete immediately. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="aef4936a0e74c447f244fb62452576faf" name="aef4936a0e74c447f244fb62452576faf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aef4936a0e74c447f244fb62452576faf">&#9670;&#160;</a></span>await_ready()</h2>
 
@@ -135,6 +146,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns true when the event has already been set. </p>
 
 </div>
 </div>
@@ -160,6 +173,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Completes the await operation. </p>
 
 </div>
 </div>
@@ -187,6 +202,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Registers the awaiting coroutine for resumption. </p>
+
 </div>
 </div>
 <a id="a9c276db76c04e8a305b835cd42fbd40c" name="a9c276db76c04e8a305b835cd42fbd40c"></a>
@@ -212,6 +229,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Checks whether the event has already been set. </p>
+
 </div>
 </div>
 <a id="a49de077f7eace2cd7a8ed81b257a7379" name="a49de077f7eace2cd7a8ed81b257a7379"></a>
@@ -236,6 +255,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Sets the event and resumes all waiting coroutines. </p>
 
 </div>
 </div>

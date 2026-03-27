@@ -5,6 +5,13 @@
 // Licenced under MIT license. See LICENSE.txt for details.
 ///////////////////////////////////////////////////////////////////////////////
 
+/**
+ * @file async/when_all.hpp
+ * @brief Await combinator that waits for all awaitables in a range.
+ *
+ * `when_all()` consumes a range of awaitables and returns results after every
+ * operation has completed.
+ */
 
 #include <vector>
 #include <optional>
@@ -20,6 +27,9 @@
 
 namespace webcraft::async
 {
+    /**
+     * @brief Awaits all awaitables in a range and collects non-void results.
+     */
     template <std::ranges::input_range Range,
               typename T = std::ranges::range_value_t<Range>,
               typename Result = awaitable_resume_t<T>>
@@ -37,6 +47,9 @@ namespace webcraft::async
         co_return results;
     }
 
+    /**
+     * @brief Awaits all void-returning awaitables in a range.
+     */
     template <std::ranges::input_range Range,
               typename T = std::ranges::range_value_t<Range>,
               typename Result = awaitable_resume_t<T>>
@@ -51,12 +64,18 @@ namespace webcraft::async
         co_return;
     }
 
+    /**
+     * @brief Normalizes awaitable result types by mapping `void` to `std::monostate`.
+     */
     template <typename T>
     using normalized_result_t = std::conditional_t<
         std::is_void_v<awaitable_resume_t<T>>,
         std::monostate,
         awaitable_resume_t<T>>;
 
+    /**
+     * @brief Awaits every awaitable in a tuple and returns a tuple of normalized results.
+     */
     template <typename... Tasks>
         requires(awaitable_t<Tasks> && ...)
     task<std::tuple<normalized_result_t<Tasks>...>> when_all(std::tuple<Tasks...> tasks)
@@ -83,6 +102,9 @@ namespace webcraft::async
         co_return co_await await_many(std::make_index_sequence<sizeof...(Tasks)>{});
     }
 
+    /**
+     * @brief Variadic convenience overload for `when_all`.
+     */
     template <typename... Tasks>
         requires(awaitable_t<Tasks> && ...)
     auto when_all(Tasks &&...tasks)
