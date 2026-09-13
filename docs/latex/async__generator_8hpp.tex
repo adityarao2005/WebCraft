@@ -1,5 +1,10 @@
 \doxysection{include/webcraft/async/async\+\_\+generator.hpp File Reference}
 \hypertarget{async__generator_8hpp}{}\label{async__generator_8hpp}\index{include/webcraft/async/async\_generator.hpp@{include/webcraft/async/async\_generator.hpp}}
+
+
+Async pull-\/based generator for coroutine streams.  
+
+
 {\ttfamily \#include $<$concepts$>$}\newline
 {\ttfamily \#include $<$coroutine$>$}\newline
 {\ttfamily \#include $<$type\+\_\+traits$>$}\newline
@@ -44,8 +49,13 @@ namespace \mbox{\hyperlink{namespacewebcraft_1_1async}{webcraft\+::async}}
 \begin{DoxyCompactItemize}
 \item 
 \#define \mbox{\hyperlink{async__generator_8hpp_a4d7b3885bfafff1b24249b43416127d2}{for\+\_\+each\+\_\+async}}(value,  gen,  code)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Helper macro to iterate async generators inside coroutines. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Async pull-\/based generator for coroutine streams. 
+
+This header provides {\ttfamily webcraft\+::async\+::async\+\_\+generator\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} for producing values lazily where each iteration step may suspend asynchronously. 
 
 \doxysubsection{Macro Definition Documentation}
 \Hypertarget{async__generator_8hpp_a4d7b3885bfafff1b24249b43416127d2}\label{async__generator_8hpp_a4d7b3885bfafff1b24249b43416127d2} 
@@ -65,3 +75,7 @@ namespace \mbox{\hyperlink{namespacewebcraft_1_1async}{webcraft\+::async}}
 \DoxyCodeLine{\ \ \ \ \}}
 
 \end{DoxyCode}
+
+
+Helper macro to iterate async generators inside coroutines. 
+

@@ -1,5 +1,10 @@
 \doxysection{include/webcraft/net/util.hpp File Reference}
 \hypertarget{util_8hpp}{}\label{util_8hpp}\index{include/webcraft/net/util.hpp@{include/webcraft/net/util.hpp}}
+
+
+Cross-\/platform networking helper utilities.  
+
+
 {\ttfamily \#include $<$sstream$>$}\newline
 {\ttfamily \#include $<$webcraft/async/task.\+hpp$>$}\newline
 {\ttfamily \#include $<$string.\+h$>$}\newline
@@ -14,7 +19,7 @@ Include dependency graph for util.\+hpp\+:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{classwebcraft_1_1net_1_1util_1_1get__addr__info__error}{webcraft\+::net\+::util\+::get\+\_\+addr\+\_\+info\+\_\+error}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Exception thrown for address-\/resolution failures. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -33,6 +38,12 @@ using \mbox{\hyperlink{namespacewebcraft_1_1net_1_1util_ab2b6e4887c083400ff40f68
 \begin{DoxyCompactItemize}
 \item 
 std\+::pair$<$ std\+::string, uint16\+\_\+t $>$ \mbox{\hyperlink{namespacewebcraft_1_1net_1_1util_a775955cd186c9fa74a1e9831a7e0969c}{webcraft\+::net\+::util\+::addr\+\_\+to\+\_\+host\+\_\+port}} (const struct sockaddr\+\_\+storage \&addr)
-\item 
+\begin{DoxyCompactList}\small\item\em Converts a socket address into numeric host and port. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{namespacewebcraft_1_1net_1_1util_a96e3abcd87cfe0a3fc6a68e47cd3ca75}{webcraft\+::net\+::util\+::host\+\_\+port\+\_\+to\+\_\+addr}} (const \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{webcraft\+::async\+::io\+::socket\+::connection\+\_\+info}} \&info, \mbox{\hyperlink{namespacewebcraft_1_1net_1_1util_ab2b6e4887c083400ff40f68f06545dcf}{on\+\_\+address\+\_\+resolved}} callback)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Resolves host/port and invokes a callback for each resolved address. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Cross-\/platform networking helper utilities. 
+
+This header wraps common address-\/resolution and socket helper logic used by async socket abstractions. Include it when implementing or extending network-\/facing components that need these low-\/level helpers. 

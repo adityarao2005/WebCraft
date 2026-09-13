@@ -127,13 +127,13 @@ $(document).ready(function(){initNavTree('windows_8event_8hpp_source.html',''); 
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">using </span>overlapped_operation = std::function&lt;BOOL(LPDWORD, LPOVERLAPPED)&gt;;</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">using </span>overlapped_cancel = std::function&lt;void(LPOVERLAPPED)&gt;;</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    std::system_error overlapped_runtime_event_error(std::string message)</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">inline</span> std::system_error overlapped_runtime_event_error(std::string message)</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    {</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        std::error_code ec(GetLastError(), std::system_category());</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordflow">return</span> std::system_error(ec, message);</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    }</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    std::system_error overlapped_winsock2_runtime_error(std::string message)</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">inline</span> std::system_error overlapped_winsock2_runtime_error(std::string message)</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    {</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        std::error_code ec(WSAGetLastError(), std::system_category());</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordflow">return</span> std::system_error(ec, message);</div>
@@ -284,8 +284,8 @@ $(document).ready(function(){initNavTree('windows_8event_8hpp_source.html',''); 
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>}</div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="anamespacewebcraft_1_1async_html_ab1927641273e522291a9aabe3d44688f"><div class="ttname"><a href="namespacewebcraft_1_1async.html#ab1927641273e522291a9aabe3d44688f">webcraft::async::get_stop_token</a></div><div class="ttdeci">std::stop_token get_stop_token()</div><div class="ttdoc">Gets the stop token for the current async runtime.</div></div>
-<div class="ttc" id="aruntime_8hpp_html"><div class="ttname"><a href="runtime_8hpp.html">runtime.hpp</a></div></div>
+<div class="ttc" id="anamespacewebcraft_1_1async_html_ab1927641273e522291a9aabe3d44688f"><div class="ttname"><a href="namespacewebcraft_1_1async.html#ab1927641273e522291a9aabe3d44688f">webcraft::async::get_stop_token</a></div><div class="ttdeci">std::stop_token get_stop_token()</div><div class="ttdoc">Returns the stop token associated with the active runtime.</div></div>
+<div class="ttc" id="aruntime_8hpp_html"><div class="ttname"><a href="runtime_8hpp.html">runtime.hpp</a></div><div class="ttdoc">Event runtime and scheduling entry points.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -1,5 +1,5 @@
 <map id="webcraft::net::util::get_addr_info_error" name="webcraft::net::util::get_addr_info_error">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,163,119"/>
+<area shape="rect" id="Node000001" title="Exception thrown for address&#45;resolution failures." alt="" coords="5,79,163,119"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="27,5,141,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,44,87,79,81,79,81,44"/>
 </map>

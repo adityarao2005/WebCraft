@@ -5,6 +5,13 @@
 // Licenced under MIT license. See LICENSE.txt for details.
 ///////////////////////////////////////////////////////////////////////////////
 
+/**
+ * @file async/task_completion_source.hpp
+ * @brief External completion source for manually-resolved tasks.
+ *
+ * Use `task_completion_source<T>` when bridging callback-driven code into
+ * coroutines and you need to complete a `task<T>` from outside the coroutine.
+ */
 
 #include <coroutine>
 #include <type_traits>
@@ -18,8 +25,9 @@ namespace webcraft::async
     template <typename T>
     class task_completion_source;
 
-    
-
+    /**
+     * @brief Shared state for manual task completion sources.
+     */
     class task_completion_source_base
     {
     protected:
@@ -36,6 +44,9 @@ namespace webcraft::async
 
         virtual ~task_completion_source_base() = default;
 
+        /**
+         * @brief Completes the source with an exception.
+         */
         void set_exception(std::exception_ptr exception)
         {
             if (handle_ && !handle_.done())
@@ -49,6 +60,9 @@ namespace webcraft::async
             }
         }
 
+        /**
+         * @brief Internal awaiter used by `task_completion_source::task()`.
+         */
         struct awaitable
         {
             task_completion_source_base *tcs;
@@ -69,6 +83,9 @@ namespace webcraft::async
         };
     };
 
+    /**
+     * @brief Manual completion source for `task<T>`.
+     */
     template <typename T>
     class task_completion_source : public task_completion_source_base
     {
@@ -88,6 +105,7 @@ namespace webcraft::async
 
         ~task_completion_source() = default;
 
+        /** @brief Completes the task with a value and resumes any waiter. */
         void set_value(T value)
         {
             if (handle_)
@@ -101,6 +119,7 @@ namespace webcraft::async
             }
         }
 
+        /** @brief Returns the awaitable task linked to this completion source. */
         webcraft::async::task<T> task()
         {
             co_await task_completion_source_base::awaitable{this};
@@ -112,6 +131,9 @@ namespace webcraft::async
         }
     };
 
+    /**
+     * @brief Manual completion source specialization for `task<void>`.
+     */
     template <>
     class task_completion_source<void> : public task_completion_source_base
     {
@@ -128,6 +150,7 @@ namespace webcraft::async
 
         ~task_completion_source() = default;
 
+        /** @brief Completes the void task and resumes any waiter. */
         void set_value()
         {
             if (handle_)
@@ -140,6 +163,7 @@ namespace webcraft::async
             }
         }
 
+        /** @brief Returns the awaitable void task linked to this completion source. */
         webcraft::async::task<void> task()
         {
             co_await task_completion_source_base::awaitable{this};

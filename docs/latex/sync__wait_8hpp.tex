@@ -1,5 +1,10 @@
 \doxysection{include/webcraft/async/sync\+\_\+wait.hpp File Reference}
 \hypertarget{sync__wait_8hpp}{}\label{sync__wait_8hpp}\index{include/webcraft/async/sync\_wait.hpp@{include/webcraft/async/sync\_wait.hpp}}
+
+
+Blocking bridge from awaitables to synchronous callers.  
+
+
 {\ttfamily \#include "{}event\+\_\+signal.\+hpp"{}}\newline
 {\ttfamily \#include "{}task.\+hpp"{}}\newline
 Include dependency graph for sync\+\_\+wait.\+hpp\+:\nopagebreak
@@ -27,4 +32,10 @@ namespace \mbox{\hyperlink{namespacewebcraft_1_1async}{webcraft\+::async}}
 \begin{DoxyCompactItemize}
 \item 
 {\footnotesize template$<$awaitable\+\_\+t T$>$ }\\\mbox{\hyperlink{namespacewebcraft_1_1async_a756c2303d30320ba433f8aa21010bd01}{awaitable\+\_\+resume\+\_\+t}}$<$ T $>$ \mbox{\hyperlink{namespacewebcraft_1_1async_a367712ca561ac34d7d28f495a6462c09}{webcraft\+::async\+::sync\+\_\+wait}} (T \&\&awaitable)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Blocks the current thread until an awaitable completes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Blocking bridge from awaitables to synchronous callers. 
+
+Call {\ttfamily sync\+\_\+wait(awaitable)} at program boundaries (tests, setup code, or adapters) when you need to wait for coroutine completion on the current thread and obtain its result. 

@@ -1,15 +1,15 @@
 <map id="include/webcraft/async/io/core.hpp" name="include/webcraft/async/io/core.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="189,5,360,45"/>
-<area shape="rect" id="Node000002" href="$adaptors_8hpp.html" title=" " alt="" coords="5,93,176,133"/>
+<area shape="rect" id="Node000001" title="Core async stream concepts and adapters." alt="" coords="189,5,360,45"/>
+<area shape="rect" id="Node000002" href="$adaptors_8hpp.html" title="Composable stream transformation adaptors for async I/O pipelines." alt="" coords="5,93,176,133"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="223,54,132,96,130,91,221,49"/>
-<area shape="rect" id="Node000003" href="$io_8hpp.html" title=" " alt="" coords="189,181,360,221"/>
+<area shape="rect" id="Node000003" href="$io_8hpp.html" title="Umbrella include for WebCraft async I/O components." alt="" coords="189,181,360,221"/>
 <area shape="poly" id="edge6_Node000001_Node000003" title=" " alt="" coords="257,58,241,94,238,113,241,133,251,158,264,180,259,183,246,160,236,134,233,113,236,93,252,56"/>
-<area shape="rect" id="Node000005" href="$fs_8hpp.html" title=" " alt="" coords="251,93,421,133"/>
+<area shape="rect" id="Node000005" href="$fs_8hpp.html" title="Asynchronous filesystem stream abstractions." alt="" coords="251,93,421,133"/>
 <area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="298,55,325,92,320,95,294,58"/>
-<area shape="rect" id="Node000006" href="$socket_8hpp.html" title=" " alt="" coords="445,93,616,133"/>
+<area shape="rect" id="Node000006" href="$socket_8hpp.html" title="Asynchronous TCP/UDP socket stream abstractions." alt="" coords="445,93,616,133"/>
 <area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="345,47,475,91,474,96,343,52"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="145,137,236,179,233,184,142,142"/>
-<area shape="rect" id="Node000004" href="$async_8hpp.html" title=" " alt="" coords="189,269,360,309"/>
+<area shape="rect" id="Node000004" href="$async_8hpp.html" title="Umbrella include for the public asynchronous programming API." alt="" coords="189,269,360,309"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="277,235,277,269,272,269,272,235"/>
 <area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="317,146,290,183,286,180,312,143"/>
 <area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="462,140,332,184,330,179,461,135"/>

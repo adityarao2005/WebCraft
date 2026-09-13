@@ -1,5 +1,14 @@
 #pragma once
 
+/**
+ * @file net/util.hpp
+ * @brief Cross-platform networking helper utilities.
+ *
+ * This header wraps common address-resolution and socket helper logic used
+ * by async socket abstractions. Include it when implementing or extending
+ * network-facing components that need these low-level helpers.
+ */
+
 #include <sstream>
 
 #if defined(__linux__)
@@ -31,6 +40,9 @@
 namespace webcraft::net::util
 {
 
+    /**
+     * @brief Exception thrown for address-resolution failures.
+     */
     class get_addr_info_error : public std::exception
     {
     public:
@@ -49,6 +61,9 @@ namespace webcraft::net::util
         std::string message_;
     };
 
+    /**
+     * @brief Converts a socket address into numeric host and port.
+     */
     inline std::pair<std::string, uint16_t> addr_to_host_port(
         const struct sockaddr_storage &addr)
     {
@@ -68,6 +83,10 @@ namespace webcraft::net::util
 
     using on_address_resolved = std::function<bool(sockaddr *addr, socklen_t addrlen)>;
 
+    /**
+     * @brief Resolves host/port and invokes a callback for each resolved address.
+     * @return `true` if callback accepted one resolved address, otherwise `false`.
+     */
     inline bool host_port_to_addr(const webcraft::async::io::socket::connection_info &info, on_address_resolved callback)
     {
         struct addrinfo hints{};

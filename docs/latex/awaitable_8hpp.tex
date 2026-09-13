@@ -1,5 +1,10 @@
 \doxysection{include/webcraft/async/awaitable.hpp File Reference}
 \hypertarget{awaitable_8hpp}{}\label{awaitable_8hpp}\index{include/webcraft/async/awaitable.hpp@{include/webcraft/async/awaitable.hpp}}
+
+
+Awaitable concepts and type traits.  
+
+
 {\ttfamily \#include $<$coroutine$>$}\newline
 {\ttfamily \#include $<$optional$>$}\newline
 {\ttfamily \#include $<$concepts$>$}\newline
@@ -28,17 +33,23 @@ namespace \mbox{\hyperlink{namespacewebcraft_1_1async}{webcraft\+::async}}
 \begin{DoxyCompactItemize}
 \item 
 concept \mbox{\hyperlink{conceptwebcraft_1_1async_1_1has__member__operator__co__await__v}{webcraft\+::async\+::has\+\_\+member\+\_\+operator\+\_\+co\+\_\+await\+\_\+v}}
-\item 
+\begin{DoxyCompactList}\small\item\em Detects member {\ttfamily operator co\+\_\+await}. \end{DoxyCompactList}\item 
 concept \mbox{\hyperlink{conceptwebcraft_1_1async_1_1is__awaitable__suspend__type}{webcraft\+::async\+::is\+\_\+awaitable\+\_\+suspend\+\_\+type}}
-\item 
+\begin{DoxyCompactList}\small\item\em Valid return types for {\ttfamily await\+\_\+suspend}. \end{DoxyCompactList}\item 
 concept \mbox{\hyperlink{conceptwebcraft_1_1async_1_1has__awaitable__elements}{webcraft\+::async\+::has\+\_\+awaitable\+\_\+elements}}
-\item 
+\begin{DoxyCompactList}\small\item\em Detects awaiter protocol members ({\ttfamily await\+\_\+ready/suspend/resume}). \end{DoxyCompactList}\item 
 concept \mbox{\hyperlink{conceptwebcraft_1_1async_1_1has__non__member__operator__co__await__v}{webcraft\+::async\+::has\+\_\+non\+\_\+member\+\_\+operator\+\_\+co\+\_\+await\+\_\+v}}
-\item 
+\begin{DoxyCompactList}\small\item\em Detects non-\/member {\ttfamily operator co\+\_\+await}. \end{DoxyCompactList}\item 
 concept \mbox{\hyperlink{conceptwebcraft_1_1async_1_1awaitable__t}{webcraft\+::async\+::awaitable\+\_\+t}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Primary concept indicating a type is awaitable. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
 {\footnotesize template$<$awaitable\+\_\+t T$>$ }\\using \mbox{\hyperlink{namespacewebcraft_1_1async_a756c2303d30320ba433f8aa21010bd01}{webcraft\+::async\+::awaitable\+\_\+resume\+\_\+t}} = decltype(detail\+::get\+\_\+awaiter(std\+::declval$<$ T $>$()).await\+\_\+resume())
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Resolved result type produced by awaiting {\ttfamily T}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Awaitable concepts and type traits. 
+
+Include this header when you need compile-\/time checks for awaitable types or the resolved resume type ({\ttfamily awaitable\+\_\+resume\+\_\+t}) in generic coroutine code. 

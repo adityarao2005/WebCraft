@@ -103,36 +103,35 @@ $(document).ready(function(){initNavTree('ranges_8hpp_source.html',''); initResi
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// Copyright (c) Aditya Rao</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// Licenced under MIT license. See LICENSE.txt for details.</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;ranges&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacewebcraft_1_1ranges.html">webcraft::ranges</a></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>{</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classwebcraft_1_1ranges_1_1to.html">   15</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classwebcraft_1_1ranges_1_1to.html">to</a> : <span class="keyword">public</span> std::ranges::range_adaptor_closure&lt;to&lt;T&gt;&gt;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    {</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00018" data-start="{" data-end="}">
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classwebcraft_1_1ranges_1_1to.html#ab397bd390c234f09d31ff61c030b53e2">   18</a></span>        <span class="keyword">constexpr</span> T <a class="code hl_function" href="classwebcraft_1_1ranges_1_1to.html#ab397bd390c234f09d31ff61c030b53e2">operator()</a>(std::ranges::input_range <span class="keyword">auto</span> &amp;&amp;range)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">        </span>{</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>            T result;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>            <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;&amp;item : range)</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>            {</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>                result.insert(result.end(), std::forward&lt;decltype(item)&gt;(item));</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>            }</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>            <span class="keywordflow">return</span> std::move(result);</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        }</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;ranges&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacewebcraft_1_1ranges.html">webcraft::ranges</a></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00026" data-start="{" data-end="};">
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classwebcraft_1_1ranges_1_1to.html">   26</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classwebcraft_1_1ranges_1_1to.html">to</a> : <span class="keyword">public</span> std::ranges::range_adaptor_closure&lt;to&lt;T&gt;&gt;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00032" data-start="{" data-end="}">
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classwebcraft_1_1ranges_1_1to.html#ab397bd390c234f09d31ff61c030b53e2">   32</a></span>        <span class="keyword">constexpr</span> T <a class="code hl_function" href="classwebcraft_1_1ranges_1_1to.html#ab397bd390c234f09d31ff61c030b53e2">operator()</a>(std::ranges::input_range <span class="keyword">auto</span> &amp;&amp;range)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">        </span>{</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>            T result;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;&amp;item : range)</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                result.insert(result.end(), std::forward&lt;decltype(item)&gt;(item));</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            }</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            <span class="keywordflow">return</span> std::move(result);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        }</div>
 </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    };</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    };</div>
 </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>}</div>
-<div class="ttc" id="aclasswebcraft_1_1ranges_1_1to_html"><div class="ttname"><a href="classwebcraft_1_1ranges_1_1to.html">webcraft::ranges::to</a></div><div class="ttdef"><b>Definition</b> ranges.hpp:16</div></div>
-<div class="ttc" id="aclasswebcraft_1_1ranges_1_1to_html_ab397bd390c234f09d31ff61c030b53e2"><div class="ttname"><a href="classwebcraft_1_1ranges_1_1to.html#ab397bd390c234f09d31ff61c030b53e2">webcraft::ranges::to::operator()</a></div><div class="ttdeci">constexpr T operator()(std::ranges::input_range auto &amp;&amp;range) const</div><div class="ttdef"><b>Definition</b> ranges.hpp:18</div></div>
-<div class="ttc" id="anamespacewebcraft_1_1ranges_html"><div class="ttname"><a href="namespacewebcraft_1_1ranges.html">webcraft::ranges</a></div><div class="ttdef"><b>Definition</b> generator.hpp:252</div></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>}</div>
+<div class="ttc" id="aclasswebcraft_1_1ranges_1_1to_html"><div class="ttname"><a href="classwebcraft_1_1ranges_1_1to.html">webcraft::ranges::to</a></div><div class="ttdoc">Range adaptor closure that materializes a range into container T.</div><div class="ttdef"><b>Definition</b> ranges.hpp:27</div></div>
+<div class="ttc" id="aclasswebcraft_1_1ranges_1_1to_html_ab397bd390c234f09d31ff61c030b53e2"><div class="ttname"><a href="classwebcraft_1_1ranges_1_1to.html#ab397bd390c234f09d31ff61c030b53e2">webcraft::ranges::to::operator()</a></div><div class="ttdeci">constexpr T operator()(std::ranges::input_range auto &amp;&amp;range) const</div><div class="ttdoc">Collects all values from an input range into T.</div><div class="ttdef"><b>Definition</b> ranges.hpp:32</div></div>
+<div class="ttc" id="anamespacewebcraft_1_1ranges_html"><div class="ttname"><a href="namespacewebcraft_1_1ranges.html">webcraft::ranges</a></div><div class="ttdef"><b>Definition</b> generator.hpp:261</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

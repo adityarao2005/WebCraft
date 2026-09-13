@@ -1,9 +1,9 @@
 <map id="include/webcraft/async/runtime.hpp" name="include/webcraft/async/runtime.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="200,5,371,45"/>
-<area shape="rect" id="Node000002" href="$async_8hpp.html" title=" " alt="" coords="5,93,176,133"/>
+<area shape="rect" id="Node000001" title="Event runtime and scheduling entry points." alt="" coords="200,5,371,45"/>
+<area shape="rect" id="Node000002" href="$async_8hpp.html" title="Umbrella include for the public asynchronous programming API." alt="" coords="5,93,176,133"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="231,53,134,96,132,91,229,48"/>
 <area shape="rect" id="Node000003" href="$event_8hpp.html" title=" " alt="" coords="200,93,371,133"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="288,59,288,93,283,93,283,59"/>
-<area shape="rect" id="Node000004" href="$webcraft_8hpp.html" title=" " alt="" coords="395,101,613,126"/>
+<area shape="rect" id="Node000004" href="$webcraft_8hpp.html" title="Top&#45;level include for WebCraft runtime bootstrap utilities." alt="" coords="395,101,613,126"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="347,48,476,98,474,103,345,53"/>
 </map>

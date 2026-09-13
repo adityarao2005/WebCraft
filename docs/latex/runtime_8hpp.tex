@@ -1,5 +1,10 @@
 \doxysection{include/webcraft/async/runtime.hpp File Reference}
 \hypertarget{runtime_8hpp}{}\label{runtime_8hpp}\index{include/webcraft/async/runtime.hpp@{include/webcraft/async/runtime.hpp}}
+
+
+Event runtime and scheduling entry points.  
+
+
 {\ttfamily \#include $<$functional$>$}\newline
 {\ttfamily \#include $<$chrono$>$}\newline
 {\ttfamily \#include $<$stop\+\_\+token$>$}\newline
@@ -27,7 +32,7 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1runtime__context}{webcraft\+::async\+::runtime\+\_\+context}}
-\begin{DoxyCompactList}\small\item\em Acts as a context for the async runtime, managing the lifecycle of async operations. This class is designed to be used as a singleton within the async runtime but won\textquotesingle{}t be created like a singleton, more like a guard. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em RAII guard that initializes and shuts down the async runtime. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -39,14 +44,20 @@ namespace \mbox{\hyperlink{namespacewebcraft_1_1async}{webcraft\+::async}}
 \begin{DoxyCompactItemize}
 \item 
 std\+::stop\+\_\+token \mbox{\hyperlink{namespacewebcraft_1_1async_ab1927641273e522291a9aabe3d44688f}{webcraft\+::async\+::get\+\_\+stop\+\_\+token}} ()
-\begin{DoxyCompactList}\small\item\em Gets the stop token for the current async runtime. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Returns the stop token associated with the active runtime. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ void $>$ \mbox{\hyperlink{namespacewebcraft_1_1async_a99e5bf717ae187ed2c3eaeea49c7f885}{webcraft\+::async\+::yield}} ()
-\begin{DoxyCompactList}\small\item\em Yields control back to the async runtime, allowing other tasks to run. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Cooperatively yields execution back to the runtime scheduler. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename Rep , typename Period $>$ }\\\mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ void $>$ \mbox{\hyperlink{namespacewebcraft_1_1async_a3ca6a5c7afbc6ff19d3757b8982794f6}{webcraft\+::async\+::sleep\+\_\+for}} (std\+::chrono\+::duration$<$ Rep, Period $>$ duration, std\+::stop\+\_\+token token=\mbox{\hyperlink{namespacewebcraft_1_1async_ab1927641273e522291a9aabe3d44688f}{get\+\_\+stop\+\_\+token}}())
-\begin{DoxyCompactList}\small\item\em Sleeps for a specified duration, allowing other tasks to run during the sleep. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Suspends for a duration unless cancellation is requested. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename Rep , typename Period $>$ }\\\mbox{\hyperlink{classwebcraft_1_1async_1_1fire__and__forget__task}{fire\+\_\+and\+\_\+forget\+\_\+task}} \mbox{\hyperlink{namespacewebcraft_1_1async_a956a68bbb57834f7dd09decdbac3053a}{webcraft\+::async\+::set\+\_\+timeout}} (std\+::function$<$ void()$>$ func, std\+::chrono\+::duration$<$ Rep, Period $>$ duration, std\+::stop\+\_\+token token=\mbox{\hyperlink{namespacewebcraft_1_1async_ab1927641273e522291a9aabe3d44688f}{get\+\_\+stop\+\_\+token}}())
-\item 
+\begin{DoxyCompactList}\small\item\em Runs a callback once after a delay. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename Rep , typename Period $>$ }\\\mbox{\hyperlink{classwebcraft_1_1async_1_1fire__and__forget__task}{fire\+\_\+and\+\_\+forget\+\_\+task}} \mbox{\hyperlink{namespacewebcraft_1_1async_a33e3ad8fe28c5febe5782a0b74d1366c}{webcraft\+::async\+::set\+\_\+interval}} (std\+::function$<$ void()$>$ func, std\+::chrono\+::duration$<$ Rep, Period $>$ duration, std\+::stop\+\_\+token token=\mbox{\hyperlink{namespacewebcraft_1_1async_ab1927641273e522291a9aabe3d44688f}{get\+\_\+stop\+\_\+token}}())
-\item 
+\begin{DoxyCompactList}\small\item\em Repeatedly runs a callback at fixed delay intervals until stopped. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ void $>$ \mbox{\hyperlink{namespacewebcraft_1_1async_a32cc887e48f12d360656c6f023977a2d}{webcraft\+::async\+::shutdown}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Requests runtime shutdown and yields once to flush completion. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Event runtime and scheduling entry points. 
+
+Include this header to initialize, run, and stop the async runtime and to schedule callbacks on runtime-\/backed timing/event facilities. 

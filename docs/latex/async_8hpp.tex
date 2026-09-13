@@ -1,5 +1,10 @@
 \doxysection{include/webcraft/async/async.hpp File Reference}
 \hypertarget{async_8hpp}{}\label{async_8hpp}\index{include/webcraft/async/async.hpp@{include/webcraft/async/async.hpp}}
+
+
+Umbrella include for the public asynchronous programming API.  
+
+
 {\ttfamily \#include $<$atomic$>$}\newline
 {\ttfamily \#include "{}async\+\_\+event.\+hpp"{}}\newline
 {\ttfamily \#include "{}async\+\_\+generator.\+hpp"{}}\newline
@@ -25,11 +30,16 @@ Include dependency graph for async.\+hpp\+:\nopagebreak
 \doxysubsubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \mbox{\hyperlink{async_8hpp_a7e84a3cbfc9d41237f7c292a96053679}{co\+\_\+async}}~\mbox{[}\&\mbox{]}() -\/$>$ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{\+::webcraft\+::async\+::task}}$<$void$>$
+\#define \mbox{\hyperlink{async_8hpp_a7e84a3cbfc9d41237f7c292a96053679}{co\+\_\+async}}~\mbox{[}\&\mbox{]}()-\/$>$\mbox{\hyperlink{classwebcraft_1_1async_1_1task}{\+::webcraft\+::async\+::task}}$<$void$>$
 \item 
 \#define \mbox{\hyperlink{async_8hpp_a90487a295616cb8cb36ce0c38e0b7417}{async\+\_\+t}}(T)~\mbox{\hyperlink{classwebcraft_1_1async_1_1task}{\+::webcraft\+::async\+::task}}$<$T$>$
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Umbrella include for the public asynchronous programming API. 
+
+Include this header to access common coroutine types ({\ttfamily task}, generators, synchronization primitives, runtime utilities, and I/O components) in one place. It also exposes convenience macros for coroutine declarations. 
 
 \doxysubsection{Macro Definition Documentation}
 \Hypertarget{async_8hpp_a90487a295616cb8cb36ce0c38e0b7417}\label{async_8hpp_a90487a295616cb8cb36ce0c38e0b7417} 
@@ -42,5 +52,5 @@ Include dependency graph for async.\+hpp\+:\nopagebreak
 \index{async.hpp@{async.hpp}!co\_async@{co\_async}}
 \index{co\_async@{co\_async}!async.hpp@{async.hpp}}
 \doxysubsubsection{\texorpdfstring{co\_async}{co\_async}}
-{\footnotesize\ttfamily \#define co\+\_\+async~\mbox{[}\&\mbox{]}() -\/$>$ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{\+::webcraft\+::async\+::task}}$<$void$>$}
+{\footnotesize\ttfamily \#define co\+\_\+async~\mbox{[}\&\mbox{]}()-\/$>$\mbox{\hyperlink{classwebcraft_1_1async_1_1task}{\+::webcraft\+::async\+::task}}$<$void$>$}
 

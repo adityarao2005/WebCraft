@@ -7,90 +7,89 @@
 \DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (c)\ Aditya\ Rao}}
 \DoxyCodeLine{00005\ \textcolor{comment}{//\ Licenced\ under\ MIT\ license.\ See\ LICENSE.txt\ for\ details.}}
 \DoxyCodeLine{00007\ }
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <vector>}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <optional>}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <ranges>}}
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <memory>}}
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <atomic>}}
-\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <utility>}}
-\DoxyCodeLine{00015\ }
-\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{task_8hpp}{webcraft/async/task.hpp}}>}}
-\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{concepts_8hpp}{webcraft/concepts.hpp}}>}}
-\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{ranges_8hpp}{webcraft/ranges.hpp}}>}}
-\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <variant>}}
-\DoxyCodeLine{00020\ }
-\DoxyCodeLine{00021\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacewebcraft_1_1async}{webcraft::async}}}
-\DoxyCodeLine{00022\ \{}
-\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{template}\ <std::ranges::input\_range\ Range,}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T\ =\ std::ranges::range\_value\_t<Range>,}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ Result\ =\ awaitable\_resume\_t<T>>}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ awaitable\_t<T>\ \&\&\ (!std::is\_void\_v<Result>)}
-\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}<std::vector<Result>>\ \mbox{\hyperlink{namespacewebcraft_1_1async_adefc58a669759c7bf7067728c34cfbf5}{when\_all}}(Range\ \&\&tasks)}
-\DoxyCodeLine{00028\ \ \ \ \ \{}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ std::vector<Result>\ results;}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ results.reserve(std::ranges::size(tasks));}
-\DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\&t\ :\ tasks)}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ results.push\_back(\textcolor{keyword}{co\_await}\ t);}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00036\ }
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ results;}
-\DoxyCodeLine{00038\ \ \ \ \ \}}
-\DoxyCodeLine{00039\ }
-\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{template}\ <std::ranges::input\_range\ Range,}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T\ =\ std::ranges::range\_value\_t<Range>,}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ Result\ =\ awaitable\_resume\_t<T>>}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ awaitable\_t<T>\ \&\&\ std::is\_void\_v<Result>}
-\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\ \mbox{\hyperlink{namespacewebcraft_1_1async_adefc58a669759c7bf7067728c34cfbf5}{when\_all}}(Range\ \&\&tasks)}
-\DoxyCodeLine{00045\ \ \ \ \ \{}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\&t\ :\ tasks)}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ t;}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00050\ }
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return};}
-\DoxyCodeLine{00052\ \ \ \ \ \}}
-\DoxyCodeLine{00053\ }
-\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacewebcraft_1_1async_a8174852e651e90c6f296a823928af715}{normalized\_result\_t}}\ =\ std::conditional\_t<}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ std::is\_void\_v<awaitable\_resume\_t<T>>,}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ std::monostate,}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacewebcraft_1_1async_a756c2303d30320ba433f8aa21010bd01}{awaitable\_resume\_t<T>}}>;}
-\DoxyCodeLine{00059\ }
-\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}...\ Tasks>}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1awaitable__t}{awaitable\_t<Tasks>}}\ \&\&\ ...)}
-\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}<std::tuple<\mbox{\hyperlink{namespacewebcraft_1_1async_a8174852e651e90c6f296a823928af715}{normalized\_result\_t}}<Tasks>...>>\ \mbox{\hyperlink{namespacewebcraft_1_1async_adefc58a669759c7bf7067728c34cfbf5}{when\_all}}(std::tuple<Tasks...>\ tasks)}
-\DoxyCodeLine{00063\ \ \ \ \ \{}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ await\_one\ =\ [](\textcolor{keyword}{auto}\ \&\&t)\ -\/>\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}<\mbox{\hyperlink{namespacewebcraft_1_1async_a8174852e651e90c6f296a823928af715}{normalized\_result\_t}}<\textcolor{keyword}{decltype}(t)>>}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::same\_as<\mbox{\hyperlink{namespacewebcraft_1_1async_a756c2303d30320ba433f8aa21010bd01}{awaitable\_resume\_t}}<\textcolor{keyword}{decltype}(t)>,\ \textcolor{keywordtype}{void}>)}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ t;}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ std::monostate\{\};}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{co\_await}\ t;}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00076\ }
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ await\_many\ =\ [\&]<std::size\_t...\ Is>(std::index\_sequence<Is...>)\ -\/>\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}<std::tuple<\mbox{\hyperlink{namespacewebcraft_1_1async_a8174852e651e90c6f296a823928af715}{normalized\_result\_t<Tasks>}}...>>}
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ std::tuple<normalized\_result\_t<Tasks>...>\{}
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ await\_one(std::get<Is>(tasks))...\};}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00082\ }
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{co\_await}\ await\_many(std::make\_index\_sequence<\textcolor{keyword}{sizeof}...(Tasks)>\{\});}
-\DoxyCodeLine{00084\ \ \ \ \ \}}
-\DoxyCodeLine{00085\ }
-\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}...\ Tasks>}
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}(awaitable\_t<Tasks>\ \&\&\ ...)}
-\DoxyCodeLine{00088\ \ \ \ \ auto\ \mbox{\hyperlink{namespacewebcraft_1_1async_adefc58a669759c7bf7067728c34cfbf5}{when\_all}}(Tasks\ \&\&...tasks)}
-\DoxyCodeLine{00089\ \ \ \ \ \{}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacewebcraft_1_1async_adefc58a669759c7bf7067728c34cfbf5}{when\_all}}(std::make\_tuple(std::forward<Tasks>(tasks)...));}
-\DoxyCodeLine{00091\ \ \ \ \ \}}
-\DoxyCodeLine{00092\ \}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <ranges>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{task_8hpp}{webcraft/async/task.hpp}}>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{concepts_8hpp}{webcraft/concepts.hpp}}>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{ranges_8hpp}{webcraft/ranges.hpp}}>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <variant>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacewebcraft_1_1async}{webcraft::async}}}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{template}\ <std::ranges::input\_range\ Range,}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T\ =\ std::ranges::range\_value\_t<Range>,}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ Result\ =\ awaitable\_resume\_t<T>>}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ awaitable\_t<T>\ \&\&\ (!std::is\_void\_v<Result>)}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}<std::vector<Result>>\ \mbox{\hyperlink{namespacewebcraft_1_1async_adefc58a669759c7bf7067728c34cfbf5}{when\_all}}(Range\ \&\&tasks)}
+\DoxyCodeLine{00038\ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ std::vector<Result>\ results;}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ results.reserve(std::ranges::size(tasks));}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\&t\ :\ tasks)}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ results.push\_back(\textcolor{keyword}{co\_await}\ t);}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ results;}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{template}\ <std::ranges::input\_range\ Range,}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T\ =\ std::ranges::range\_value\_t<Range>,}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ Result\ =\ awaitable\_resume\_t<T>>}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ awaitable\_t<T>\ \&\&\ std::is\_void\_v<Result>}
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\ \mbox{\hyperlink{namespacewebcraft_1_1async_adefc58a669759c7bf7067728c34cfbf5}{when\_all}}(Range\ \&\&tasks)}
+\DoxyCodeLine{00058\ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&\&t\ :\ tasks)}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ t;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return};}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacewebcraft_1_1async_a8174852e651e90c6f296a823928af715}{normalized\_result\_t}}\ =\ std::conditional\_t<}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ std::is\_void\_v<awaitable\_resume\_t<T>>,}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ std::monostate,}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacewebcraft_1_1async_a756c2303d30320ba433f8aa21010bd01}{awaitable\_resume\_t<T>}}>;}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}...\ Tasks>}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1awaitable__t}{awaitable\_t<Tasks>}}\ \&\&\ ...)}
+\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}<std::tuple<\mbox{\hyperlink{namespacewebcraft_1_1async_a8174852e651e90c6f296a823928af715}{normalized\_result\_t}}<Tasks>...>>\ \mbox{\hyperlink{namespacewebcraft_1_1async_adefc58a669759c7bf7067728c34cfbf5}{when\_all}}(std::tuple<Tasks...>\ tasks)}
+\DoxyCodeLine{00082\ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ await\_one\ =\ [](\textcolor{keyword}{auto}\ \&\&t)\ -\/>\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}<\mbox{\hyperlink{namespacewebcraft_1_1async_a8174852e651e90c6f296a823928af715}{normalized\_result\_t}}<\textcolor{keyword}{decltype}(t)>>}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::same\_as<\mbox{\hyperlink{namespacewebcraft_1_1async_a756c2303d30320ba433f8aa21010bd01}{awaitable\_resume\_t}}<\textcolor{keyword}{decltype}(t)>,\ \textcolor{keywordtype}{void}>)}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ t;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ std::monostate\{\};}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{co\_await}\ t;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ await\_many\ =\ [\&]<std::size\_t...\ Is>(std::index\_sequence<Is...>)\ -\/>\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}<std::tuple<\mbox{\hyperlink{namespacewebcraft_1_1async_a8174852e651e90c6f296a823928af715}{normalized\_result\_t<Tasks>}}...>>}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ std::tuple<normalized\_result\_t<Tasks>...>\{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ await\_one(std::get<Is>(tasks))...\};}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{co\_await}\ await\_many(std::make\_index\_sequence<\textcolor{keyword}{sizeof}...(Tasks)>\{\});}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}...\ Tasks>}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}(awaitable\_t<Tasks>\ \&\&\ ...)}
+\DoxyCodeLine{00110\ \ \ \ \ auto\ \mbox{\hyperlink{namespacewebcraft_1_1async_adefc58a669759c7bf7067728c34cfbf5}{when\_all}}(Tasks\ \&\&...tasks)}
+\DoxyCodeLine{00111\ \ \ \ \ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacewebcraft_1_1async_adefc58a669759c7bf7067728c34cfbf5}{when\_all}}(std::make\_tuple(std::forward<Tasks>(tasks)...));}
+\DoxyCodeLine{00113\ \ \ \ \ \}}
+\DoxyCodeLine{00114\ \}}
 
 \end{DoxyCode}

@@ -2,6 +2,11 @@
 \hypertarget{classwebcraft_1_1async_1_1thread__pool}{}\label{classwebcraft_1_1async_1_1thread__pool}\index{webcraft::async::thread\_pool@{webcraft::async::thread\_pool}}
 
 
+Dynamic thread pool for executing callable work items.  
+
+
+
+
 {\ttfamily \#include $<$thread\+\_\+pool.\+hpp$>$}
 
 \doxysubsubsection*{Public Member Functions}
@@ -14,7 +19,7 @@
 void \mbox{\hyperlink{classwebcraft_1_1async_1_1thread__pool_aae466a2741b3efa9f5f17f7f19a1ba55}{try\+\_\+shutdown}} ()
 \item 
 {\footnotesize template$<$typename F , typename... Args$>$ }\\auto \mbox{\hyperlink{classwebcraft_1_1async_1_1thread__pool_a1872beb7bf2cef37b4424654c1ac68fd}{submit}} (F \&\&f, Args \&\&...args) -\/$>$ std\+::future$<$ typename std\+::invoke\+\_\+result\+\_\+t$<$ F, Args... $>$ $>$
-\item 
+\begin{DoxyCompactList}\small\item\em Enqueues callable work and returns a future for its result. \end{DoxyCompactList}\item 
 const size\+\_\+t \mbox{\hyperlink{classwebcraft_1_1async_1_1thread__pool_a8f16d178a02a392feb5767055a714491}{get\+\_\+min\+\_\+threads}} () const
 \item 
 const size\+\_\+t \mbox{\hyperlink{classwebcraft_1_1async_1_1thread__pool_aafa668fb25c2e9e62a21679f15a2b495}{get\+\_\+max\+\_\+threads}} () const
@@ -31,6 +36,9 @@ const size\+\_\+t \mbox{\hyperlink{classwebcraft_1_1async_1_1thread__pool_a1f427
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1thread__pool_ad4d9f050b6c5fe9a92513b113052b2a3}{thread\+\_\+pool\+\_\+worker}}
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Dynamic thread pool for executing callable work items. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{classwebcraft_1_1async_1_1thread__pool_aea82fd2172489074165235730e332570}\label{classwebcraft_1_1async_1_1thread__pool_aea82fd2172489074165235730e332570} 
@@ -84,6 +92,10 @@ class \mbox{\hyperlink{classwebcraft_1_1async_1_1thread__pool_ad4d9f050b6c5fe9a9
 \doxysubsubsection{\texorpdfstring{submit()}{submit()}}
 {\footnotesize\ttfamily template$<$typename F , typename... Args$>$ \\
 auto webcraft\+::async\+::thread\+\_\+pool\+::submit (\begin{DoxyParamCaption}\item[{F \&\&}]{f,  }\item[{Args \&\&...}]{args }\end{DoxyParamCaption}) -\/$>$ std\+::future$<$typename std\+::invoke\+\_\+result\+\_\+t$<$F, Args...$>$$>$         \hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Enqueues callable work and returns a future for its result. 
 
 \Hypertarget{classwebcraft_1_1async_1_1thread__pool_aae466a2741b3efa9f5f17f7f19a1ba55}\label{classwebcraft_1_1async_1_1thread__pool_aae466a2741b3efa9f5f17f7f19a1ba55} 
 \index{webcraft::async::thread\_pool@{webcraft::async::thread\_pool}!try\_shutdown@{try\_shutdown}}

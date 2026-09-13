@@ -7,252 +7,298 @@
 \DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (c)\ Aditya\ Rao}}
 \DoxyCodeLine{00005\ \textcolor{comment}{//\ Licenced\ under\ MIT\ license.\ See\ LICENSE.txt\ for\ details.}}
 \DoxyCodeLine{00007\ }
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <utility>}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <concepts>}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <optional>}}
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <coroutine>}}
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{task_8hpp}{webcraft/async/task.hpp}}>}}
-\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{generator_8hpp}{webcraft/async/generator.hpp}}>}}
-\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{async__generator_8hpp}{webcraft/async/async\_generator.hpp}}>}}
-\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <mutex>}}
-\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <queue>}}
-\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <span>}}
-\DoxyCodeLine{00019\ }
-\DoxyCodeLine{00020\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacewebcraft_1_1async_1_1io}{webcraft::async::io}}}
-\DoxyCodeLine{00021\ \{}
-\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1non__void__v}{non\_void\_v}}\ =\ !std::is\_void\_v<T>;}
-\DoxyCodeLine{00024\ }
-\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ R>}
-\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__readable__stream}{async\_readable\_stream}}\ =\ std::is\_move\_constructible\_v<Derived>\ \&\&\ \textcolor{keyword}{requires}(Derived\ \&stream)\ \{}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \{\ stream.recv()\ \}\ -\/>\ std::same\_as<task<std::optional<R>>>;}
-\DoxyCodeLine{00028\ \ \ \ \ \};}
-\DoxyCodeLine{00029\ }
-\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ R>}
-\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__buffered__readable__stream}{async\_buffered\_readable\_stream}}\ =\ \mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__readable__stream}{async\_readable\_stream<Derived,\ R>}}\ \&\&\ \textcolor{keyword}{requires}(Derived\ \&stream,\ std::span<R>\ buffer)\ \{}
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \{\ stream.recv(buffer)\ \}\ -\/>\ std::same\_as<task<std::size\_t>>;}
-\DoxyCodeLine{00033\ \ \ \ \ \};}
-\DoxyCodeLine{00034\ }
-\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ R>}
-\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__writable__stream}{async\_writable\_stream}}\ =\ std::is\_move\_constructible\_v<Derived>\ \&\&\ \textcolor{keyword}{requires}(Derived\ \&stream,\ R\ value)\ \{}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \{\ stream.send(value)\ \}\ -\/>\ std::same\_as<task<bool>>;}
-\DoxyCodeLine{00038\ \ \ \ \ \};}
-\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <coroutine>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{task_8hpp}{webcraft/async/task.hpp}}>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{generator_8hpp}{webcraft/async/generator.hpp}}>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{async__generator_8hpp}{webcraft/async/async\_generator.hpp}}>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <queue>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <span>}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacewebcraft_1_1async_1_1io}{webcraft::async::io}}}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1non__void__v}{non\_void\_v}}\ =\ !std::is\_void\_v<T>;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ R>}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__readable__stream}{async\_readable\_stream}}\ =\ std::is\_move\_constructible\_v<Derived>\ \&\&\ \textcolor{keyword}{requires}(Derived\ \&stream)\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \{\ stream.recv()\ \}\ -\/>\ std::same\_as<task<std::optional<R>>>;}
+\DoxyCodeLine{00037\ \ \ \ \ \};}
+\DoxyCodeLine{00038\ }
 \DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ R>}
-\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__buffered__writable__stream}{async\_buffered\_writable\_stream}}\ =\ \mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__writable__stream}{async\_writable\_stream<Derived,\ R>}}\ \&\&\ \textcolor{keyword}{requires}(Derived\ \&stream,\ std::span<R>\ buffer)\ \{}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \{\ stream.send(buffer)\ \}\ -\/>\ std::same\_as<task<size\_t>>;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__buffered__readable__stream}{async\_buffered\_readable\_stream}}\ =\ \mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__readable__stream}{async\_readable\_stream<Derived,\ R>}}\ \&\&\ \textcolor{keyword}{requires}(Derived\ \&stream,\ std::span<R>\ buffer)\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \{\ stream.recv(buffer)\ \}\ -\/>\ std::same\_as<task<std::size\_t>>;}
 \DoxyCodeLine{00043\ \ \ \ \ \};}
 \DoxyCodeLine{00044\ }
-\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ R>}
-\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__closeable__stream}{async\_closeable\_stream}}\ =\ (\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__readable__stream}{async\_readable\_stream<Derived,\ R>}}\ ||\ \mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__writable__stream}{async\_writable\_stream<Derived,\ R>}})\ \&\&\ \textcolor{keyword}{requires}(Derived\ t)\ \{}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \{\ t.close()\ \}\ -\/>\ std::same\_as<task<void>>;}
-\DoxyCodeLine{00048\ \ \ \ \ \};}
-\DoxyCodeLine{00049\ }
-\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ R>}
-\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_aaaf5c2dda44d2ea9c9518aa85bf729c1}{recv}}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__readable__stream}{async\_readable\_stream<R>}}\ \textcolor{keyword}{auto}\ \&stream)}
-\DoxyCodeLine{00052\ \ \ \ \ \{}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ stream.recv();}
-\DoxyCodeLine{00054\ \ \ \ \ \}}
-\DoxyCodeLine{00055\ }
-\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ R,\ async\_readable\_stream<R>\ RStream,\ \textcolor{keywordtype}{size\_t}\ BufferSize>}
-\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<std::size\_t>}}\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_aaaf5c2dda44d2ea9c9518aa85bf729c1}{recv}}(RStream\ \&stream,\ std::span<R,\ BufferSize>\ buffer)}
-\DoxyCodeLine{00058\ \ \ \ \ \{}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__buffered__readable__stream}{async\_buffered\_readable\_stream<RStream,\ R>}})}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{co\_await}\ stream.recv(buffer);}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ count\ =\ 0;}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ size\ =\ buffer.size();}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (count\ <\ size)}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ value\ =\ \textcolor{keyword}{co\_await}\ stream.recv();}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!value.has\_value())}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ buffer[count++]\ =\ std::move(value.value());}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ count;}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ R>}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__writable__stream}{async\_writable\_stream}}\ =\ std::is\_move\_constructible\_v<Derived>\ \&\&\ \textcolor{keyword}{requires}(Derived\ \&stream,\ R\ value)\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \{\ stream.send(value)\ \}\ -\/>\ std::same\_as<task<bool>>;}
+\DoxyCodeLine{00049\ \ \ \ \ \};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ R>}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__buffered__writable__stream}{async\_buffered\_writable\_stream}}\ =\ \mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__writable__stream}{async\_writable\_stream<Derived,\ R>}}\ \&\&\ \textcolor{keyword}{requires}(Derived\ \&stream,\ std::span<R>\ buffer)\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \{\ stream.send(buffer)\ \}\ -\/>\ std::same\_as<task<size\_t>>;}
+\DoxyCodeLine{00055\ \ \ \ \ \};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ R>}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__closeable__stream}{async\_closeable\_stream}}\ =\ (\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__readable__stream}{async\_readable\_stream<Derived,\ R>}}\ ||\ \mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__writable__stream}{async\_writable\_stream<Derived,\ R>}})\ \&\&\ \textcolor{keyword}{requires}(Derived\ t)\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \{\ t.close()\ \}\ -\/>\ std::same\_as<task<void>>;}
+\DoxyCodeLine{00061\ \ \ \ \ \};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ R>}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_aaaf5c2dda44d2ea9c9518aa85bf729c1}{recv}}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__readable__stream}{async\_readable\_stream<R>}}\ \textcolor{keyword}{auto}\ \&stream)}
+\DoxyCodeLine{00066\ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ stream.recv();}
+\DoxyCodeLine{00068\ \ \ \ \ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ R,\ async\_readable\_stream<R>\ RStream,\ \textcolor{keywordtype}{size\_t}\ BufferSize>}
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<std::size\_t>}}\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_aaaf5c2dda44d2ea9c9518aa85bf729c1}{recv}}(RStream\ \&stream,\ std::span<R,\ BufferSize>\ buffer)}
+\DoxyCodeLine{00073\ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__buffered__readable__stream}{async\_buffered\_readable\_stream<RStream,\ R>}})}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{co\_await}\ stream.recv(buffer);}
 \DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00078\ \ \ \ \ \}}
-\DoxyCodeLine{00079\ }
-\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ R,\ async\_writable\_stream<R>\ WStream>}
-\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<bool>}}\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_af2b81544adcc4ba129f31b5797a43670}{send}}(WStream\ \&stream,\ R\ \&\&value)}
-\DoxyCodeLine{00082\ \ \ \ \ \{}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{co\_await}\ stream.send(std::forward<R>(value));}
-\DoxyCodeLine{00084\ \ \ \ \ \}}
-\DoxyCodeLine{00085\ }
-\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ R,\ async\_writable\_stream<R>\ WStream,\ \textcolor{keywordtype}{size\_t}\ BufferSize>}
-\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<size\_t>}}\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_af2b81544adcc4ba129f31b5797a43670}{send}}(WStream\ \&stream,\ std::span<R,\ BufferSize>\ buffer)}
-\DoxyCodeLine{00088\ \ \ \ \ \{}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__buffered__writable__stream}{async\_buffered\_writable\_stream<WStream,\ R>}})}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{co\_await}\ stream.send(buffer);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ count\ =\ 0;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ size\ =\ buffer.size();}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (count\ <\ size)}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ value\ =\ \textcolor{keyword}{co\_await}\ stream.recv();}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!value.has\_value())}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ buffer[count++]\ =\ std::move(value.value());}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ count;}
 \DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ count\ =\ 0;}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ size\ =\ buffer.size();}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (count\ <\ size)}
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ sent\ =\ \textcolor{keyword}{co\_await}\ stream.send(std::move(buffer[count]));}
-\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!sent)}
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ count++;}
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ count;}
-\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00108\ \ \ \ \ \}}
-\DoxyCodeLine{00109\ }
-\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ R,\ async\_readable\_stream<R>\ RStream>}
-\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator<R>}}\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_a7e1420555f9b1c5e37aecdf9086d972d}{to\_async\_generator}}(RStream\ \&\&stream)}
-\DoxyCodeLine{00112\ \ \ \ \ \{}
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})}
-\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ value\ =\ \textcolor{keyword}{co\_await}\ stream.recv();}
-\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!value.has\_value())}
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_yield}\ std::move(value.value());}
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return};}
-\DoxyCodeLine{00123\ \ \ \ \ \}}
-\DoxyCodeLine{00124\ }
-\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ R>}
-\DoxyCodeLine{00126\ \ \ \ \ \mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__readable__stream}{async\_readable\_stream<R>}}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_a65fdb2f3bc3e4af76fe30526dcb1e4b1}{to\_readable\_stream}}(\mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator<R>}}\ \&\&gen)}
-\DoxyCodeLine{00127\ \ \ \ \ \{}
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }stream}
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator<R>}}\ gen;}
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ std::optional<typename\ async\_generator<R>::iterator>\ it;}
-\DoxyCodeLine{00132\ }
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ stream(\mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator<R>}}\ \&\&gen)\ :\ gen(std::move(gen))\ \{\}}
-\DoxyCodeLine{00134\ }
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<std::optional<R>}}>\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_aaaf5c2dda44d2ea9c9518aa85bf729c1}{recv}}()}
-\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!it.has\_value())}
-\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ it\ =\ \textcolor{keyword}{co\_await}\ gen.\mbox{\hyperlink{classcppcoro_1_1async__generator_a054c1cf89d1e45491e2e393370facdd5}{begin}}();}
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00141\ }
-\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (it\ ==\ gen.\mbox{\hyperlink{classcppcoro_1_1async__generator_a0ed729f4c0a1537a56833ffebfdab94c}{end}}())}
-\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ std::nullopt;}
-\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00146\ }
-\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \&itr\ =\ *it;}
-\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::optional<R>\ value\ =\ std::move(*itr);}
-\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ ++itr;}
-\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ std::move(value);}
-\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00093\ \ \ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ R,\ async\_writable\_stream<R>\ WStream>}
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<bool>}}\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_af2b81544adcc4ba129f31b5797a43670}{send}}(WStream\ \&stream,\ R\ \&\&value)}
+\DoxyCodeLine{00098\ \ \ \ \ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{co\_await}\ stream.send(std::forward<R>(value));}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ R,\ async\_writable\_stream<R>\ WStream,\ \textcolor{keywordtype}{size\_t}\ BufferSize>}
+\DoxyCodeLine{00104\ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<size\_t>}}\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_af2b81544adcc4ba129f31b5797a43670}{send}}(WStream\ \&stream,\ std::span<R,\ BufferSize>\ buffer)}
+\DoxyCodeLine{00105\ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__buffered__writable__stream}{async\_buffered\_writable\_stream<WStream,\ R>}})}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{co\_await}\ stream.send(buffer);}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ count\ =\ 0;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ size\ =\ buffer.size();}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (count\ <\ size)}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ sent\ =\ \textcolor{keyword}{co\_await}\ stream.send(std::move(buffer[count]));}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!sent)}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ count++;}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ count;}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00125\ \ \ \ \ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ R,\ async\_readable\_stream<R>\ RStream>}
+\DoxyCodeLine{00129\ \ \ \ \ \mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator<R>}}\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_a7e1420555f9b1c5e37aecdf9086d972d}{to\_async\_generator}}(RStream\ \&\&stream)}
+\DoxyCodeLine{00130\ \ \ \ \ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ value\ =\ \textcolor{keyword}{co\_await}\ stream.recv();}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!value.has\_value())}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_yield}\ std::move(value.value());}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return};}
+\DoxyCodeLine{00141\ \ \ \ \ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ R>}
+\DoxyCodeLine{00145\ \ \ \ \ \mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__readable__stream}{async\_readable\_stream<R>}}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_a65fdb2f3bc3e4af76fe30526dcb1e4b1}{to\_readable\_stream}}(\mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator<R>}}\ \&\&gen)}
+\DoxyCodeLine{00146\ \ \ \ \ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }stream}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator<R>}}\ gen;}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ std::optional<typename\ async\_generator<R>::iterator>\ it;}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ stream(\mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator<R>}}\ \&\&gen)\ :\ gen(std::move(gen))\ \{\}}
 \DoxyCodeLine{00153\ }
-\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__readable__stream}{async\_readable\_stream<stream,\ R>}},\ \textcolor{stringliteral}{"{}Should\ be\ an\ async\_readable\_stream"{}});}
-\DoxyCodeLine{00155\ }
-\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ stream\{std::move(gen)\};}
-\DoxyCodeLine{00157\ \ \ \ \ \};}
-\DoxyCodeLine{00158\ }
-\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keyword}{namespace\ }detail}
-\DoxyCodeLine{00160\ \ \ \ \ \{}
-\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <non\_\textcolor{keywordtype}{void}\_v\ T>}
-\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }mpsc\_channel\_subscription}
-\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ std::coroutine\_handle<>\ continuation;}
-\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ std::queue<T>\ values;}
-\DoxyCodeLine{00166\ }
-\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<std::optional<T>}}>\ get\_next()}
-\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }awaitable}
-\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mpsc\_channel\_subscription<T>\ \&sub;}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<std::optional<R>}}>\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_aaaf5c2dda44d2ea9c9518aa85bf729c1}{recv}}()}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!it.has\_value())}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ it\ =\ \textcolor{keyword}{co\_await}\ gen.\mbox{\hyperlink{classcppcoro_1_1async__generator_a054c1cf89d1e45491e2e393370facdd5}{begin}}();}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (it\ ==\ gen.\mbox{\hyperlink{classcppcoro_1_1async__generator_a0ed729f4c0a1537a56833ffebfdab94c}{end}}())}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ std::nullopt;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \&itr\ =\ *it;}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::optional<R>\ value\ =\ std::move(*itr);}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ ++itr;}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ std::move(value);}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \};}
 \DoxyCodeLine{00172\ }
-\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ await\_ready()\ const\ noexcept}
-\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !sub.values.empty();}
-\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__readable__stream}{async\_readable\_stream<stream,\ R>}},\ \textcolor{stringliteral}{"{}Should\ be\ an\ async\_readable\_stream"{}});}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ stream\{std::move(gen)\};}
+\DoxyCodeLine{00176\ \ \ \ \ \};}
 \DoxyCodeLine{00177\ }
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ await\_suspend(std::coroutine\_handle<>\ h)\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sub.continuation\ =\ h;}
-\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00182\ }
-\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ T\ await\_resume()\ noexcept}
-\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ value\ =\ sub.values.front();}
-\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sub.values.pop();}
-\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value;}
-\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00190\ }
-\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{co\_await}\ awaitable\{*\textcolor{keyword}{this}\};}
-\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keyword}{namespace\ }detail}
+\DoxyCodeLine{00179\ \ \ \ \ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <non\_\textcolor{keywordtype}{void}\_v\ T>}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }mpsc\_channel\_subscription}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ std::mutex\ state\_mutex;}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ std::coroutine\_handle<>\ continuation;}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ std::queue<T>\ values;}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ closed\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<std::optional<T>}}>\ get\_next()}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }awaitable}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mpsc\_channel\_subscription<T>\ \&sub;}
 \DoxyCodeLine{00193\ }
-\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ task<bool>\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_af2b81544adcc4ba129f31b5797a43670}{send}}(T\ val)}
-\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ values.push(val);}
-\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (continuation)}
-\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ continuation.resume();}
-\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ continuation\ =\ std::exchange(continuation,\ \{\});}
-\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00205\ }
-\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <non\_\textcolor{keywordtype}{void}\_v\ T>}
-\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }mpsc\_channel\_rstream}
-\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ std::shared\_ptr<mpsc\_channel\_subscription<T>>\ subscription;}
-\DoxyCodeLine{00211\ }
-\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ mpsc\_channel\_rstream(std::shared\_ptr<mpsc\_channel\_subscription<T>>\ sub)\ noexcept}
-\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ subscription(sub)}
-\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00217\ }
-\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ task<std::optional<T>>\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_aaaf5c2dda44d2ea9c9518aa85bf729c1}{recv}}()}
-\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ subscription-\/>get\_next();}
-\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ await\_ready()\ const\ noexcept}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::scoped\_lock\ lock(sub.state\_mutex);}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !sub.values.empty()\ ||\ sub.closed;}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ await\_suspend(std::coroutine\_handle<>\ h)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::scoped\_lock\ lock(sub.state\_mutex);}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!sub.values.empty()\ ||\ sub.closed)}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sub.continuation\ =\ h;}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::optional<T>\ await\_resume()\ noexcept}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::scoped\_lock\ lock(sub.state\_mutex);}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sub.closed\ \&\&\ sub.values.empty())}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::nullopt;}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ value\ =\ std::move(sub.values.front());}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sub.values.pop();}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::move(value);}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \};}
 \DoxyCodeLine{00223\ }
-\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <non\_\textcolor{keywordtype}{void}\_v\ T>}
-\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }mpsc\_channel\_wstream}
-\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ std::shared\_ptr<mpsc\_channel\_subscription<T>>\ subscription;}
-\DoxyCodeLine{00229\ }
-\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ mpsc\_channel\_wstream(std::shared\_ptr<mpsc\_channel\_subscription<T>>\ sub)\ noexcept}
-\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ subscription(sub)}
-\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00235\ }
-\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ task<bool>\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_af2b81544adcc4ba129f31b5797a43670}{send}}(T\ val)}
-\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ subscription-\/>send(val);}
-\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00241\ }
-\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(async\_readable\_stream<mpsc\_channel\_rstream<int>,\ \textcolor{keywordtype}{int}>,\ \textcolor{stringliteral}{"{}mpsc\_channel\_rstream\ should\ be\ an\ async\ readable\ stream"{}});}
-\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(async\_writable\_stream<mpsc\_channel\_wstream<int>,\ \textcolor{keywordtype}{int}>,\ \textcolor{stringliteral}{"{}mpsc\_channel\_wstream\ should\ be\ an\ async\ writable\ stream"{}});}
-\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(async\_readable\_stream<mpsc\_channel\_rstream<std::string>,\ std::string>,\ \textcolor{stringliteral}{"{}mpsc\_channel\_rstream\ should\ be\ an\ async\ readable\ stream"{}});}
-\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(async\_writable\_stream<mpsc\_channel\_wstream<std::string>,\ std::string>,\ \textcolor{stringliteral}{"{}mpsc\_channel\_wstream\ should\ be\ an\ async\ writable\ stream"{}});}
-\DoxyCodeLine{00246\ \ \ \ \ \}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{co\_await}\ awaitable\{*\textcolor{keyword}{this}\};}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ task<bool>\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_af2b81544adcc4ba129f31b5797a43670}{send}}(T\ val)}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::coroutine\_handle<>\ to\_resume;}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::scoped\_lock\ lock(state\_mutex);}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (closed)}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ values.push(std::move(val));}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ to\_resume\ =\ std::exchange(continuation,\ \{\});}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (to\_resume)}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ to\_resume.resume();}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00247\ }
-\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keyword}{template}\ <non\_\textcolor{keywordtype}{void}\_v\ T>}
-\DoxyCodeLine{00249\ \ \ \ \ std::pair<detail::mpsc\_channel\_rstream<T>,\ detail::mpsc\_channel\_wstream<T>>\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_aa003ed11d50d57e182d6b5b42151f88b}{make\_mpsc\_channel}}()}
-\DoxyCodeLine{00250\ \ \ \ \ \{}
-\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ subscription\ =\ std::make\_shared<detail::mpsc\_channel\_subscription<T>>();}
-\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{detail::mpsc\_channel\_rstream<T>(subscription),\ detail::mpsc\_channel\_wstream<T>(subscription)\};}
-\DoxyCodeLine{00253\ \ \ \ \ \}}
-\DoxyCodeLine{00254\ \}}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ close()}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::coroutine\_handle<>\ to\_resume;}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::scoped\_lock\ lock(state\_mutex);}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closed\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ to\_resume\ =\ std::exchange(continuation,\ \{\});}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (to\_resume)}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ to\_resume.resume();}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <non\_\textcolor{keywordtype}{void}\_v\ T>}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }mpsc\_channel\_rstream}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ std::shared\_ptr<mpsc\_channel\_subscription<T>>\ subscription;}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ mpsc\_channel\_rstream(std::shared\_ptr<mpsc\_channel\_subscription<T>>\ sub)\ noexcept}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ subscription(sub)}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ task<std::optional<T>>\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_aaaf5c2dda44d2ea9c9518aa85bf729c1}{recv}}()}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ subscription-\/>get\_next();}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <non\_\textcolor{keywordtype}{void}\_v\ T>}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }mpsc\_channel\_wstream}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ std::shared\_ptr<mpsc\_channel\_subscription<T>>\ subscription;}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ mpsc\_channel\_wstream(std::shared\_ptr<mpsc\_channel\_subscription<T>>\ sub)\ noexcept}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ subscription(sub)}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ task<bool>\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_af2b81544adcc4ba129f31b5797a43670}{send}}(T\ val)}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ subscription-\/>send(std::move(val));}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ task<void>\ close()}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ subscription-\/>close();}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return};}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(async\_readable\_stream<mpsc\_channel\_rstream<int>,\ \textcolor{keywordtype}{int}>,\ \textcolor{stringliteral}{"{}mpsc\_channel\_rstream\ should\ be\ an\ async\ readable\ stream"{}});}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(async\_writable\_stream<mpsc\_channel\_wstream<int>,\ \textcolor{keywordtype}{int}>,\ \textcolor{stringliteral}{"{}mpsc\_channel\_wstream\ should\ be\ an\ async\ writable\ stream"{}});}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(async\_closeable\_stream<mpsc\_channel\_wstream<int>,\ \textcolor{keywordtype}{int}>,\ \textcolor{stringliteral}{"{}mpsc\_channel\_wstream\ should\ be\ an\ async\ closeable\ stream"{}});}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(async\_readable\_stream<mpsc\_channel\_rstream<std::string>,\ std::string>,\ \textcolor{stringliteral}{"{}mpsc\_channel\_rstream\ should\ be\ an\ async\ readable\ stream"{}});}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(async\_writable\_stream<mpsc\_channel\_wstream<std::string>,\ std::string>,\ \textcolor{stringliteral}{"{}mpsc\_channel\_wstream\ should\ be\ an\ async\ writable\ stream"{}});}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(async\_closeable\_stream<mpsc\_channel\_wstream<std::string>,\ std::string>,\ \textcolor{stringliteral}{"{}mpsc\_channel\_wstream\ should\ be\ an\ async\ closeable\ stream"{}});}
+\DoxyCodeLine{00312\ \ \ \ \ \}}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00318\ \ \ \ \ \textcolor{keyword}{template}\ <non\_\textcolor{keywordtype}{void}\_v\ T>}
+\DoxyCodeLine{00319\ \ \ \ \ std::pair<detail::mpsc\_channel\_rstream<T>,\ detail::mpsc\_channel\_wstream<T>>\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_aa003ed11d50d57e182d6b5b42151f88b}{make\_mpsc\_channel}}()}
+\DoxyCodeLine{00320\ \ \ \ \ \{}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ subscription\ =\ std::make\_shared<detail::mpsc\_channel\_subscription<T>>();}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{detail::mpsc\_channel\_rstream<T>(subscription),\ detail::mpsc\_channel\_wstream<T>(subscription)\};}
+\DoxyCodeLine{00323\ \ \ \ \ \}}
+\DoxyCodeLine{00324\ \}}
 
 \end{DoxyCode}

@@ -1,5 +1,5 @@
 <map id="webcraft::async::task_completion_source&lt; void &gt;" name="webcraft::async::task_completion_source&lt; void &gt;">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,93,216,133"/>
-<area shape="rect" id="Node000002" href="$classwebcraft_1_1async_1_1task__completion__source__base.html" title=" " alt="" coords="15,5,206,45"/>
+<area shape="rect" id="Node000001" title="Manual completion source specialization for task&lt;void&gt;." alt="" coords="5,93,216,133"/>
+<area shape="rect" id="Node000002" href="$classwebcraft_1_1async_1_1task__completion__source__base.html" title="Shared state for manual task completion sources." alt="" coords="15,5,206,45"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,59,113,93,108,93,108,59"/>
 </map>

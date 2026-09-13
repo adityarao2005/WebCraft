@@ -1,5 +1,10 @@
 \doxysection{include/webcraft/async/io/fs.hpp File Reference}
 \hypertarget{fs_8hpp}{}\label{fs_8hpp}\index{include/webcraft/async/io/fs.hpp@{include/webcraft/async/io/fs.hpp}}
+
+
+Asynchronous filesystem stream abstractions.  
+
+
 {\ttfamily \#include "{}core.\+hpp"{}}\newline
 {\ttfamily \#include $<$fstream$>$}\newline
 {\ttfamily \#include $<$filesystem$>$}\newline
@@ -23,11 +28,11 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream}{webcraft\+::async\+::io\+::fs\+::file\+\_\+rstream}}
-\item 
+\begin{DoxyCompactList}\small\item\em Async readable stream over a file descriptor. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream}{webcraft\+::async\+::io\+::fs\+::file\+\_\+wstream}}
-\item 
+\begin{DoxyCompactList}\small\item\em Async writable stream over a file descriptor. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file}{webcraft\+::async\+::io\+::fs\+::file}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em File handle facade that opens async read/write streams. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -43,4 +48,10 @@ namespace \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1fs}{webcraft\+::a
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file}{file}} \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1fs_a8d8e45ed576cda72f736cd9e66952947}{webcraft\+::async\+::io\+::fs\+::make\+\_\+file}} (std\+::filesystem\+::path p)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Creates a file facade from a path. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Asynchronous filesystem stream abstractions. 
+
+Provides file stream types and open helpers for reading/writing files using {\ttfamily task}-\/based async operations. 

@@ -1,5 +1,13 @@
 #pragma once
 
+/**
+ * @file async/generator.hpp
+ * @brief Synchronous coroutine generator abstraction.
+ *
+ * Provides `webcraft::ranges::generator<T>` (or a compatibility equivalent)
+ * for lazily yielding values in range-based pipelines.
+ */
+
 #include <coroutine>
 #include <type_traits>
 #include <utility>
@@ -15,6 +23,7 @@
 
 namespace webcraft::ranges
 {
+    /** @brief Standard library generator alias when available. */
     using std::generator;
 }
 #else
@@ -250,6 +259,7 @@ namespace cppcoro
 
 namespace webcraft::ranges
 {
+    /** @brief Compatibility generator alias backed by cppcoro implementation. */
     using cppcoro::generator;
 }
 

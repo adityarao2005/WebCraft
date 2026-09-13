@@ -98,6 +98,9 @@ $(document).ready(function(){initNavTree('adaptors_8hpp.html',''); initResizable
   <div class="headertitle"><div class="title">adaptors.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Composable stream transformation adaptors for async I/O pipelines.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;concepts&gt;</code><br />
 <code>#include &lt;type_traits&gt;</code><br />
 <code>#include &lt;unordered_map&gt;</code><br />
@@ -111,7 +114,7 @@ Include dependency graph for adaptors.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="adaptors_8hpp__incl.png" border="0" usemap="#ainclude_2webcraft_2async_2io_2adaptors_8hpp" alt=""/></div>
 <map name="ainclude_2webcraft_2async_2io_2adaptors_8hpp" id="ainclude_2webcraft_2async_2io_2adaptors_8hpp">
-<area shape="rect" title=" " alt="" coords="773,5,944,45"/>
+<area shape="rect" title="Composable stream transformation adaptors for async I/O pipelines." alt="" coords="773,5,944,45"/>
 <area shape="rect" title=" " alt="" coords="325,401,405,427"/>
 <area shape="poly" title=" " alt="" coords="773,33,612,45,519,56,428,71,345,91,277,117,251,132,232,148,220,166,216,186,216,268,219,290,227,310,254,345,290,373,326,393,323,398,287,377,250,349,222,313,214,291,211,269,211,185,215,164,228,145,248,127,275,112,343,86,427,66,518,50,611,39,773,27"/>
 <area shape="rect" title=" " alt="" coords="1475,328,1567,353"/>
@@ -126,7 +129,7 @@ Include dependency graph for adaptors.hpp:</div>
 <area shape="poly" title=" " alt="" coords="892,43,962,84,959,89,889,48"/>
 <area shape="rect" title=" " alt="" coords="403,328,490,353"/>
 <area shape="poly" title=" " alt="" coords="774,40,698,60,660,75,626,96,595,120,567,148,520,210,483,269,460,317,455,314,479,267,515,207,563,144,592,116,622,91,658,70,696,54,772,34"/>
-<area shape="rect" href="core_8hpp.html" title=" " alt="" coords="1289,93,1367,119"/>
+<area shape="rect" href="core_8hpp.html" title="Core async stream concepts and adapters." alt="" coords="1289,93,1367,119"/>
 <area shape="poly" title=" " alt="" coords="945,37,1270,91,1275,92,1274,97,1269,96,944,42"/>
 <area shape="poly" title=" " alt="" coords="1289,113,1116,131,871,162,744,182,626,204,526,230,453,257,406,285,390,303,374,329,366,358,365,387,360,387,361,358,370,327,385,300,402,281,451,252,524,224,624,199,743,176,870,156,1115,126,1288,108"/>
 <area shape="rect" title=" " alt="" coords="1297,328,1357,353"/>
@@ -135,11 +138,11 @@ Include dependency graph for adaptors.hpp:</div>
 <area shape="poly" title=" " alt="" coords="1368,103,1417,106,1475,114,1536,133,1565,147,1591,165,1617,189,1638,217,1672,279,1693,339,1705,387,1700,388,1688,341,1667,281,1634,220,1613,193,1588,169,1562,151,1534,138,1474,120,1416,111,1367,109"/>
 <area shape="rect" title=" " alt="" coords="1217,401,1300,427"/>
 <area shape="poly" title=" " alt="" coords="1368,104,1411,107,1461,116,1511,134,1534,148,1555,165,1596,210,1612,233,1623,257,1628,281,1627,305,1619,330,1602,355,1582,370,1553,382,1477,400,1391,410,1314,414,1314,409,1390,404,1476,394,1552,377,1580,366,1598,352,1614,328,1622,304,1623,282,1618,259,1607,236,1592,213,1551,169,1531,152,1509,139,1460,121,1410,112,1367,109"/>
-<area shape="rect" href="task_8hpp.html" title=" " alt="" coords="645,255,825,280"/>
+<area shape="rect" href="task_8hpp.html" title="Core coroutine task type used across WebCraft async APIs." alt="" coords="645,255,825,280"/>
 <area shape="poly" title=" " alt="" coords="1289,115,1164,135,1011,169,881,211,775,252,773,247,879,206,1010,164,1163,130,1288,110"/>
-<area shape="rect" href="generator_8hpp.html" title=" " alt="" coords="901,255,1115,280"/>
+<area shape="rect" href="generator_8hpp.html" title="Synchronous coroutine generator abstraction." alt="" coords="901,255,1115,280"/>
 <area shape="poly" title=" " alt="" coords="1289,113,1151,131,1084,147,1058,157,1040,169,1028,184,1019,203,1011,241,1006,240,1014,201,1023,182,1037,165,1056,153,1082,142,1150,126,1288,108"/>
-<area shape="rect" href="async__generator_8hpp.html" title=" " alt="" coords="1051,167,1213,207"/>
+<area shape="rect" href="async__generator_8hpp.html" title="Async pull&#45;based generator for coroutine streams." alt="" coords="1051,167,1213,207"/>
 <area shape="poly" title=" " alt="" coords="1300,121,1193,164,1191,159,1299,116"/>
 <area shape="rect" title=" " alt="" coords="1288,174,1352,199"/>
 <area shape="poly" title=" " alt="" coords="1329,119,1325,160,1320,160,1324,119"/>
@@ -153,9 +156,9 @@ Include dependency graph for adaptors.hpp:</div>
 <area shape="poly" title=" " alt="" coords="748,278,790,315,818,335,849,351,895,368,943,381,1041,399,1131,408,1204,411,1203,416,1130,413,1040,404,942,386,894,373,847,356,816,339,787,319,744,282"/>
 <area shape="rect" title=" " alt="" coords="859,328,946,353"/>
 <area shape="poly" title=" " alt="" coords="763,278,864,320,862,325,761,282"/>
-<area shape="rect" href="awaitable_8hpp.html" title=" " alt="" coords="669,328,784,353"/>
+<area shape="rect" href="awaitable_8hpp.html" title="Awaitable concepts and type traits." alt="" coords="669,328,784,353"/>
 <area shape="poly" title=" " alt="" coords="736,281,732,315,727,314,731,280"/>
-<area shape="rect" href="event__signal_8hpp.html" title=" " alt="" coords="43,328,176,353"/>
+<area shape="rect" href="event__signal_8hpp.html" title="Lightweight thread&#45;based signaling primitive for sync waiting." alt="" coords="43,328,176,353"/>
 <area shape="poly" title=" " alt="" coords="645,282,190,333,189,328,644,276"/>
 <area shape="rect" title=" " alt="" coords="515,328,595,353"/>
 <area shape="poly" title=" " alt="" coords="707,283,598,325,596,320,705,278"/>
@@ -203,10 +206,10 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="adaptors_8hpp__dep__incl.png" border="0" usemap="#ainclude_2webcraft_2async_2io_2adaptors_8hppdep" alt=""/></div>
 <map name="ainclude_2webcraft_2async_2io_2adaptors_8hppdep" id="ainclude_2webcraft_2async_2io_2adaptors_8hppdep">
-<area shape="rect" title=" " alt="" coords="5,5,176,45"/>
-<area shape="rect" href="io_8hpp.html" title=" " alt="" coords="5,93,176,133"/>
+<area shape="rect" title="Composable stream transformation adaptors for async I/O pipelines." alt="" coords="5,5,176,45"/>
+<area shape="rect" href="io_8hpp.html" title="Umbrella include for WebCraft async I/O components." alt="" coords="5,93,176,133"/>
 <area shape="poly" title=" " alt="" coords="93,59,93,93,88,93,88,59"/>
-<area shape="rect" href="async_8hpp.html" title=" " alt="" coords="5,181,176,221"/>
+<area shape="rect" href="async_8hpp.html" title="Umbrella include for the public asynchronous programming API." alt="" coords="5,181,176,221"/>
 <area shape="poly" title=" " alt="" coords="93,147,93,181,88,181,88,147"/>
 </map>
 </div>
@@ -216,6 +219,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structwebcraft_1_1async_1_1io_1_1adaptors_1_1async__readable__stream__adaptor.html">webcraft::async::io::adaptors::async_readable_stream_adaptor&lt; Derived, T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base helper for pipeable readable-stream adaptors.  <a href="structwebcraft_1_1async_1_1io_1_1adaptors_1_1async__readable__stream__adaptor.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -234,45 +238,58 @@ Namespaces</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="concepts" name="concepts"></a>
 Concepts</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptwebcraft_1_1async_1_1io_1_1adaptors_1_1collector.html">webcraft::async::io::adaptors::collector</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collector concept for adaptors that reduce a stream to a value. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptwebcraft_1_1async_1_1io_1_1adaptors_1_1closure__under__addition.html">webcraft::async::io::adaptors::closure_under_addition</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constraint for types closed under addition. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ab1e6d4ed87247b8982c2536eeb7220e5" id="r_ab1e6d4ed87247b8982c2536eeb7220e5"><td class="memTemplParams" colspan="2">template&lt;typename InType , typename Func &gt; </td></tr>
 <tr class="memitem:ab1e6d4ed87247b8982c2536eeb7220e5"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#ab1e6d4ed87247b8982c2536eeb7220e5">webcraft::async::io::adaptors::transform</a> (Func &amp;&amp;fn)</td></tr>
+<tr class="memdesc:ab1e6d4ed87247b8982c2536eeb7220e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adaptor that transforms stream elements via an async-generator transform function.  <br /></td></tr>
 <tr class="separator:ab1e6d4ed87247b8982c2536eeb7220e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a467323c557b8245b25c7cc5c6cd28e22" id="r_a467323c557b8245b25c7cc5c6cd28e22"><td class="memTemplParams" colspan="2">template&lt;typename InType , typename Func , typename OutType  = std::invoke_result_t&lt;Func, InType&gt;&gt; </td></tr>
 <tr class="memitem:a467323c557b8245b25c7cc5c6cd28e22"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#a467323c557b8245b25c7cc5c6cd28e22">webcraft::async::io::adaptors::map</a> (Func &amp;&amp;fn)</td></tr>
+<tr class="memdesc:a467323c557b8245b25c7cc5c6cd28e22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Element-wise mapping adaptor.  <br /></td></tr>
 <tr class="separator:a467323c557b8245b25c7cc5c6cd28e22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade46e7a4ed2b78a5081564b197a8ea57" id="r_ade46e7a4ed2b78a5081564b197a8ea57"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; <br />
 requires std::is_copy_assignable_v&lt;T&gt;</td></tr>
 <tr class="memitem:ade46e7a4ed2b78a5081564b197a8ea57"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#ade46e7a4ed2b78a5081564b197a8ea57">webcraft::async::io::adaptors::pipe</a> (async_writable_stream&lt; T &gt; auto &amp;str)</td></tr>
+<tr class="memdesc:ade46e7a4ed2b78a5081564b197a8ea57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forwards stream elements to a writable stream while passing values through.  <br /></td></tr>
 <tr class="separator:ade46e7a4ed2b78a5081564b197a8ea57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac259db7916278ffc530b8c127be7a191" id="r_ac259db7916278ffc530b8c127be7a191"><td class="memTemplParams" colspan="2">template&lt;typename ToType , typename StreamType , collector&lt; ToType, StreamType &gt; Collector&gt; </td></tr>
 <tr class="memitem:ac259db7916278ffc530b8c127be7a191"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#ac259db7916278ffc530b8c127be7a191">webcraft::async::io::adaptors::collect</a> (Collector &amp;&amp;collector_func)</td></tr>
+<tr class="memdesc:ac259db7916278ffc530b8c127be7a191"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds a collector adaptor from a collector functor.  <br /></td></tr>
 <tr class="separator:ac259db7916278ffc530b8c127be7a191"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ddb8e7a2a4c065a9340e9800ff7f0ed" id="r_a9ddb8e7a2a4c065a9340e9800ff7f0ed"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a9ddb8e7a2a4c065a9340e9800ff7f0ed"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#a9ddb8e7a2a4c065a9340e9800ff7f0ed">webcraft::async::io::adaptors::forward_to</a> (async_writable_stream&lt; T &gt; auto &amp;stream)</td></tr>
+<tr class="memdesc:a9ddb8e7a2a4c065a9340e9800ff7f0ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collector adaptor that writes each incoming value to a target stream.  <br /></td></tr>
 <tr class="separator:a9ddb8e7a2a4c065a9340e9800ff7f0ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adda76c1251d855604fa6c9f4b752de2c" id="r_adda76c1251d855604fa6c9f4b752de2c"><td class="memTemplParams" colspan="2">template&lt;typename T , typename Func &gt; </td></tr>
 <tr class="memitem:adda76c1251d855604fa6c9f4b752de2c"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#adda76c1251d855604fa6c9f4b752de2c">webcraft::async::io::adaptors::filter</a> (Func &amp;&amp;predicate)</td></tr>
+<tr class="memdesc:adda76c1251d855604fa6c9f4b752de2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retains only values that satisfy a predicate.  <br /></td></tr>
 <tr class="separator:adda76c1251d855604fa6c9f4b752de2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f89d23f44cca5e13f844ad7c5b3282d" id="r_a7f89d23f44cca5e13f844ad7c5b3282d"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a7f89d23f44cca5e13f844ad7c5b3282d"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#a7f89d23f44cca5e13f844ad7c5b3282d">webcraft::async::io::adaptors::limit</a> (size_t count)</td></tr>
+<tr class="memdesc:a7f89d23f44cca5e13f844ad7c5b3282d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retains at most the first <code>count</code> values.  <br /></td></tr>
 <tr class="separator:a7f89d23f44cca5e13f844ad7c5b3282d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5102607d13477fb88df1a0b93c50e6d1" id="r_a5102607d13477fb88df1a0b93c50e6d1"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a5102607d13477fb88df1a0b93c50e6d1"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#a5102607d13477fb88df1a0b93c50e6d1">webcraft::async::io::adaptors::skip</a> (size_t count)</td></tr>
+<tr class="memdesc:a5102607d13477fb88df1a0b93c50e6d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Skips the first <code>count</code> values.  <br /></td></tr>
 <tr class="separator:a5102607d13477fb88df1a0b93c50e6d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16136cc18f9808fabc53ff6ab854d997" id="r_a16136cc18f9808fabc53ff6ab854d997"><td class="memTemplParams" colspan="2">template&lt;typename T , typename Func &gt; </td></tr>
 <tr class="memitem:a16136cc18f9808fabc53ff6ab854d997"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#a16136cc18f9808fabc53ff6ab854d997">webcraft::async::io::adaptors::take_while</a> (Func &amp;&amp;predicate)</td></tr>
+<tr class="memdesc:a16136cc18f9808fabc53ff6ab854d997"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retains values while a predicate remains true.  <br /></td></tr>
 <tr class="separator:a16136cc18f9808fabc53ff6ab854d997"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7cac35a119147fb1d053553ff1ce6f4" id="r_ad7cac35a119147fb1d053553ff1ce6f4"><td class="memTemplParams" colspan="2">template&lt;typename T , typename Func &gt; </td></tr>
 <tr class="memitem:ad7cac35a119147fb1d053553ff1ce6f4"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#ad7cac35a119147fb1d053553ff1ce6f4">webcraft::async::io::adaptors::drop_while</a> (Func &amp;&amp;predicate)</td></tr>
+<tr class="memdesc:ad7cac35a119147fb1d053553ff1ce6f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drops values while a predicate remains true, then yields the rest.  <br /></td></tr>
 <tr class="separator:ad7cac35a119147fb1d053553ff1ce6f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7daa10abd28848093f764efd3678bc98" id="r_a7daa10abd28848093f764efd3678bc98"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a7daa10abd28848093f764efd3678bc98"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors_1_1collectors.html#a7daa10abd28848093f764efd3678bc98">webcraft::async::io::adaptors::collectors::reduce</a> (std::function&lt; T(T, T)&gt; &amp;&amp;func)</td></tr>
+<tr class="memdesc:a7daa10abd28848093f764efd3678bc98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collector factory that reduces stream values with a binary function.  <br /></td></tr>
 <tr class="separator:a7daa10abd28848093f764efd3678bc98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc8e437445f9247f3e767b485f468b5d" id="r_adc8e437445f9247f3e767b485f468b5d"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; <br />
 requires std::is_convertible_v&lt;T, std::string&gt;</td></tr>
@@ -280,9 +297,11 @@ requires std::is_convertible_v&lt;T, std::string&gt;</td></tr>
 <tr class="separator:adc8e437445f9247f3e767b485f468b5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1064184038eb4e5d67a1763dbc2c33f9" id="r_a1064184038eb4e5d67a1763dbc2c33f9"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a1064184038eb4e5d67a1763dbc2c33f9"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors_1_1collectors.html#a1064184038eb4e5d67a1763dbc2c33f9">webcraft::async::io::adaptors::collectors::to_vector</a> ()</td></tr>
+<tr class="memdesc:a1064184038eb4e5d67a1763dbc2c33f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collector factory that materializes values into <code>std::vector&lt;T&gt;</code>.  <br /></td></tr>
 <tr class="separator:a1064184038eb4e5d67a1763dbc2c33f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e67493f2e10fee623eb18b43d02ea71" id="r_a2e67493f2e10fee623eb18b43d02ea71"><td class="memTemplParams" colspan="2">template&lt;typename T , typename KeyType &gt; </td></tr>
 <tr class="memitem:a2e67493f2e10fee623eb18b43d02ea71"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors_1_1collectors.html#a2e67493f2e10fee623eb18b43d02ea71">webcraft::async::io::adaptors::collectors::group_by</a> (std::function&lt; KeyType(const T &amp;)&gt; key_function)</td></tr>
+<tr class="memdesc:a2e67493f2e10fee623eb18b43d02ea71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collector factory that groups values by a computed key.  <br /></td></tr>
 <tr class="separator:a2e67493f2e10fee623eb18b43d02ea71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe983922626e1ab45c906444bbf74239" id="r_abe983922626e1ab45c906444bbf74239"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; <br />
 requires std::totally_ordered&lt;T&gt;</td></tr>
@@ -298,21 +317,29 @@ requires closure_under_addition&lt;T&gt;</td></tr>
 <tr class="separator:a01eae8f829e97817419aed01f5ad37dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afea35e0603fe1056bdc052faa20b8411" id="r_afea35e0603fe1056bdc052faa20b8411"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:afea35e0603fe1056bdc052faa20b8411"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#afea35e0603fe1056bdc052faa20b8411">webcraft::async::io::adaptors::find_first</a> (std::function&lt; bool(const T &amp;)&gt; &amp;&amp;predicate)</td></tr>
+<tr class="memdesc:afea35e0603fe1056bdc052faa20b8411"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the first value that matches a predicate.  <br /></td></tr>
 <tr class="separator:afea35e0603fe1056bdc052faa20b8411"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21b0723e172b9758a9e78ae20dbe3bf1" id="r_a21b0723e172b9758a9e78ae20dbe3bf1"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a21b0723e172b9758a9e78ae20dbe3bf1"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#a21b0723e172b9758a9e78ae20dbe3bf1">webcraft::async::io::adaptors::find_last</a> (std::function&lt; bool(const T &amp;)&gt; &amp;&amp;predicate)</td></tr>
+<tr class="memdesc:a21b0723e172b9758a9e78ae20dbe3bf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the last value that matches a predicate.  <br /></td></tr>
 <tr class="separator:a21b0723e172b9758a9e78ae20dbe3bf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af103d36599b9cd7baf15f2c7e75e70b9" id="r_af103d36599b9cd7baf15f2c7e75e70b9"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:af103d36599b9cd7baf15f2c7e75e70b9"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#af103d36599b9cd7baf15f2c7e75e70b9">webcraft::async::io::adaptors::any_matches</a> (std::function&lt; bool(const T &amp;)&gt; &amp;&amp;predicate)</td></tr>
+<tr class="memdesc:af103d36599b9cd7baf15f2c7e75e70b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if any value matches a predicate.  <br /></td></tr>
 <tr class="separator:af103d36599b9cd7baf15f2c7e75e70b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1566ca935350435b72631ee11d574ee7" id="r_a1566ca935350435b72631ee11d574ee7"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a1566ca935350435b72631ee11d574ee7"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#a1566ca935350435b72631ee11d574ee7">webcraft::async::io::adaptors::all_matches</a> (std::function&lt; bool(const T &amp;)&gt; &amp;&amp;predicate)</td></tr>
+<tr class="memdesc:a1566ca935350435b72631ee11d574ee7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if all values match a predicate.  <br /></td></tr>
 <tr class="separator:a1566ca935350435b72631ee11d574ee7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0226fefe32175663e7ab469a785566c" id="r_af0226fefe32175663e7ab469a785566c"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:af0226fefe32175663e7ab469a785566c"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#af0226fefe32175663e7ab469a785566c">webcraft::async::io::adaptors::none_matches</a> (std::function&lt; bool(const T &amp;)&gt; &amp;&amp;predicate)</td></tr>
+<tr class="memdesc:af0226fefe32175663e7ab469a785566c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if no values match a predicate.  <br /></td></tr>
 <tr class="separator:af0226fefe32175663e7ab469a785566c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Composable stream transformation adaptors for async I/O pipelines. </p>
+<p>Use adaptor objects in pipe expressions to transform, filter, or reshape async stream payloads while preserving coroutine-friendly flow. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

@@ -97,6 +97,9 @@ $(document).ready(function(){initNavTree('classwebcraft_1_1async_1_1io_1_1socket
 </div><!--header-->
 <div class="contents">
 
+<p>UDP socket abstraction for datagram send/receive.  
+ <a href="classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="socket_8hpp_source.html">socket.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -106,15 +109,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0b23dcc783c95098c0834354dbff46b5" id="r_a0b23dcc783c95098c0834354dbff46b5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket.html#a0b23dcc783c95098c0834354dbff46b5">~udp_socket</a> ()</td></tr>
 <tr class="separator:a0b23dcc783c95098c0834354dbff46b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7260cbae1666f2c520fd8597a2d57cd" id="r_ac7260cbae1666f2c520fd8597a2d57cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; void &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket.html#ac7260cbae1666f2c520fd8597a2d57cd">close</a> ()</td></tr>
+<tr class="memdesc:ac7260cbae1666f2c520fd8597a2d57cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes the UDP socket.  <br /></td></tr>
 <tr class="separator:ac7260cbae1666f2c520fd8597a2d57cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a7aa2353e562f9eb47ebe787c9b9a1d" id="r_a4a7aa2353e562f9eb47ebe787c9b9a1d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket.html#a4a7aa2353e562f9eb47ebe787c9b9a1d">bind</a> (const <a class="el" href="structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info.html">connection_info</a> &amp;info)</td></tr>
+<tr class="memdesc:a4a7aa2353e562f9eb47ebe787c9b9a1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds the UDP socket to a local endpoint.  <br /></td></tr>
 <tr class="separator:a4a7aa2353e562f9eb47ebe787c9b9a1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18751af1edf893b9eaeec9907b8db916" id="r_a18751af1edf893b9eaeec9907b8db916"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket.html#a18751af1edf893b9eaeec9907b8db916">recvfrom</a> (std::span&lt; char &gt; buffer, <a class="el" href="structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info.html">connection_info</a> &amp;info)</td></tr>
+<tr class="memdesc:a18751af1edf893b9eaeec9907b8db916"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receives a datagram and fills sender info.  <br /></td></tr>
 <tr class="separator:a18751af1edf893b9eaeec9907b8db916"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb7e3ca1b1c13e893134e022308c65a3" id="r_acb7e3ca1b1c13e893134e022308c65a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket.html#acb7e3ca1b1c13e893134e022308c65a3">sendto</a> (std::span&lt; const char &gt; buffer, const <a class="el" href="structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info.html">connection_info</a> &amp;info)</td></tr>
+<tr class="memdesc:acb7e3ca1b1c13e893134e022308c65a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a datagram to the target endpoint.  <br /></td></tr>
 <tr class="separator:acb7e3ca1b1c13e893134e022308c65a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>UDP socket abstraction for datagram send/receive. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a89dcd929f914f2ddc33cfc6c095293d6" name="a89dcd929f914f2ddc33cfc6c095293d6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a89dcd929f914f2ddc33cfc6c095293d6">&#9670;&#160;</a></span>udp_socket()</h2>
 
@@ -191,6 +200,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Binds the UDP socket to a local endpoint. </p>
+
 </div>
 </div>
 <a id="ac7260cbae1666f2c520fd8597a2d57cd" name="ac7260cbae1666f2c520fd8597a2d57cd"></a>
@@ -215,6 +226,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Closes the UDP socket. </p>
 
 </div>
 </div>
@@ -252,6 +265,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Receives a datagram and fills sender info. </p>
+
 </div>
 </div>
 <a id="acb7e3ca1b1c13e893134e022308c65a3" name="acb7e3ca1b1c13e893134e022308c65a3"></a>
@@ -287,6 +302,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Sends a datagram to the target endpoint. </p>
 
 </div>
 </div>

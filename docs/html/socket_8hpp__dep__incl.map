@@ -1,7 +1,7 @@
 <map id="include/webcraft/async/io/socket.hpp" name="include/webcraft/async/io/socket.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,176,45"/>
-<area shape="rect" id="Node000002" href="$io_8hpp.html" title=" " alt="" coords="5,93,176,133"/>
+<area shape="rect" id="Node000001" title="Asynchronous TCP/UDP socket stream abstractions." alt="" coords="5,5,176,45"/>
+<area shape="rect" id="Node000002" href="$io_8hpp.html" title="Umbrella include for WebCraft async I/O components." alt="" coords="5,93,176,133"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,59,93,93,88,93,88,59"/>
-<area shape="rect" id="Node000003" href="$async_8hpp.html" title=" " alt="" coords="5,181,176,221"/>
+<area shape="rect" id="Node000003" href="$async_8hpp.html" title="Umbrella include for the public asynchronous programming API." alt="" coords="5,181,176,221"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="93,147,93,181,88,181,88,147"/>
 </map>

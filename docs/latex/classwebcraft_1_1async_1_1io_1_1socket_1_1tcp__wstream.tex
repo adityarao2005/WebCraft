@@ -2,6 +2,11 @@
 \hypertarget{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream}{}\label{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream}\index{webcraft::async::io::socket::tcp\_wstream@{webcraft::async::io::socket::tcp\_wstream}}
 
 
+Write-\/only stream view over a connected TCP socket.  
+
+
+
+
 {\ttfamily \#include $<$socket.\+hpp$>$}
 
 \doxysubsubsection*{Public Member Functions}
@@ -20,12 +25,15 @@
 \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream}{tcp\+\_\+wstream}} \& \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_a8d38dd95d1ec9723bb489e27a4962a03}{operator=}} (\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream}{tcp\+\_\+wstream}} \&\&other)
 \item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ size\+\_\+t $>$ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_a4557adf266c25d34196f6322b7b98f75}{send}} (std\+::span$<$ const char $>$ buffer)
-\item 
+\begin{DoxyCompactList}\small\item\em Writes bytes from {\ttfamily buffer}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ bool $>$ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_aa14c46fb23d62d367b5203d62b8ba900}{send}} (char b)
-\item 
+\begin{DoxyCompactList}\small\item\em Writes a single byte. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ void $>$ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_a969f3cc6c744feb7072b40d90807786f}{close}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Shuts down the write side of the socket. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Write-\/only stream view over a connected TCP socket. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_a247bea3321e3c666a9eea2612de5211d}\label{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_a247bea3321e3c666a9eea2612de5211d} 
@@ -61,6 +69,10 @@
 \doxysubsubsection{\texorpdfstring{close()}{close()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ void $>$ webcraft\+::async\+::io\+::socket\+::tcp\+\_\+wstream\+::close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Shuts down the write side of the socket. 
+
 \Hypertarget{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_a8d38dd95d1ec9723bb489e27a4962a03}\label{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_a8d38dd95d1ec9723bb489e27a4962a03} 
 \index{webcraft::async::io::socket::tcp\_wstream@{webcraft::async::io::socket::tcp\_wstream}!operator=@{operator=}}
 \index{operator=@{operator=}!webcraft::async::io::socket::tcp\_wstream@{webcraft::async::io::socket::tcp\_wstream}}
@@ -79,11 +91,19 @@
 \doxysubsubsection{\texorpdfstring{send()}{send()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ bool $>$ webcraft\+::async\+::io\+::socket\+::tcp\+\_\+wstream\+::send (\begin{DoxyParamCaption}\item[{char}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Writes a single byte. 
+
 \Hypertarget{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_a4557adf266c25d34196f6322b7b98f75}\label{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_a4557adf266c25d34196f6322b7b98f75} 
 \index{webcraft::async::io::socket::tcp\_wstream@{webcraft::async::io::socket::tcp\_wstream}!send@{send}}
 \index{send@{send}!webcraft::async::io::socket::tcp\_wstream@{webcraft::async::io::socket::tcp\_wstream}}
 \doxysubsubsection{\texorpdfstring{send()}{send()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ size\+\_\+t $>$ webcraft\+::async\+::io\+::socket\+::tcp\+\_\+wstream\+::send (\begin{DoxyParamCaption}\item[{std\+::span$<$ const char $>$}]{buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Writes bytes from {\ttfamily buffer}. 
 
 
 

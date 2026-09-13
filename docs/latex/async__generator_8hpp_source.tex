@@ -20,416 +20,416 @@
 \DoxyCodeLine{00017\ \textcolor{comment}{//\ Copyright\ (c)\ Lewis\ Baker}}
 \DoxyCodeLine{00018\ \textcolor{comment}{//\ Licenced\ under\ MIT\ license.\ See\ LICENSE.txt\ for\ details.}}
 \DoxyCodeLine{00020\ }
-\DoxyCodeLine{00021\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecppcoro}{cppcoro}}}
-\DoxyCodeLine{00022\ \{}
-\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator}};}
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{namespace\ }detail}
-\DoxyCodeLine{00027\ \ \ \ \ \{}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }async\_generator\_iterator;}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }async\_generator\_yield\_operation;}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }async\_generator\_advance\_operation;}
-\DoxyCodeLine{00032\ }
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }async\_generator\_promise\_base}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_promise\_base()\ noexcept}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ m\_exception(\textcolor{keyword}{nullptr})}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Other\ variables\ left\ intentionally\ uninitialised\ as\ they're}}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ only\ referenced\ in\ certain\ states\ by\ which\ time\ they\ should}}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ have\ been\ initialised.}}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00043\ }
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_promise\_base(\textcolor{keyword}{const}\ async\_generator\_promise\_base\ \&other)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_promise\_base\ \&operator=(\textcolor{keyword}{const}\ async\_generator\_promise\_base\ \&other)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ std::suspend\_always\ initial\_suspend()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecppcoro}{cppcoro}}}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator}};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{namespace\ }detail}
+\DoxyCodeLine{00035\ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }async\_generator\_iterator;}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }async\_generator\_yield\_operation;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }async\_generator\_advance\_operation;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }async\_generator\_promise\_base}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_promise\_base()\ noexcept}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ m\_exception(\textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Other\ variables\ left\ intentionally\ uninitialised\ as\ they're}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ only\ referenced\ in\ certain\ states\ by\ which\ time\ they\ should}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ have\ been\ initialised.}}
 \DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00051\ }
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_yield\_operation\ final\_suspend()\ \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{00053\ }
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ unhandled\_exception()\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_exception\ =\ std::current\_exception();}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00058\ }
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ return\_void()\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ finished()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_promise\_base(\textcolor{keyword}{const}\ async\_generator\_promise\_base\ \&other)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_promise\_base\ \&operator=(\textcolor{keyword}{const}\ async\_generator\_promise\_base\ \&other)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ std::suspend\_always\ initial\_suspend()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_yield\_operation\ final\_suspend()\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ unhandled\_exception()\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_exception\ =\ std::current\_exception();}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ return\_void()\ \textcolor{keyword}{noexcept}}
 \DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_currentValue\ ==\ \textcolor{keyword}{nullptr};}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00071\ }
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ rethrow\_if\_unhandled\_exception()}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_exception)}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::rethrow\_exception(std::move(m\_exception));}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ finished()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_currentValue\ ==\ \textcolor{keyword}{nullptr};}
 \DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00079\ }
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_yield\_operation\ internal\_yield\_value()\ \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{00082\ }
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }async\_generator\_yield\_operation;}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }async\_generator\_advance\_operation;}
-\DoxyCodeLine{00086\ }
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ std::exception\_ptr\ m\_exception;}
-\DoxyCodeLine{00088\ }
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ std::coroutine\_handle<>\ m\_consumerCoroutine;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ rethrow\_if\_unhandled\_exception()}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_exception)}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::rethrow\_exception(std::move(m\_exception));}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_yield\_operation\ internal\_yield\_value()\ \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{00090\ }
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ *m\_currentValue;}
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }async\_generator\_yield\_operation;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }async\_generator\_advance\_operation;}
 \DoxyCodeLine{00094\ }
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }async\_generator\_yield\_operation\ final}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_yield\_operation(std::coroutine\_handle<>\ consumer)\ noexcept}
-\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ m\_consumer(consumer)}
-\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ std::exception\_ptr\ m\_exception;}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ std::coroutine\_handle<>\ m\_consumerCoroutine;}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ *m\_currentValue;}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \};}
 \DoxyCodeLine{00102\ }
-\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ await\_ready()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00107\ }
-\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::coroutine\_handle<>}
-\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ await\_suspend([[maybe\_unused]]\ std::coroutine\_handle<>\ producer)\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ symmetric\ transfer\ to\ avoid\ stack\ buildup}}
-\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_consumer;}
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00114\ }
-\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ await\_resume()\ \textcolor{keyword}{noexcept}\ \{\}}
-\DoxyCodeLine{00116\ }
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ std::coroutine\_handle<>\ m\_consumer;}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00120\ }
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ async\_generator\_yield\_operation\ async\_generator\_promise\_base::final\_suspend()\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentValue\ =\ \textcolor{keyword}{nullptr};}
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ internal\_yield\_value();}
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00126\ }
-\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ async\_generator\_yield\_operation\ async\_generator\_promise\_base::internal\_yield\_value()\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ async\_generator\_yield\_operation\{m\_consumerCoroutine\};}
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00131\ }
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }async\_generator\_advance\_operation}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_advance\_operation(std::nullptr\_t)\ noexcept}
-\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ m\_promise(\textcolor{keyword}{nullptr}),\ m\_producerCoroutine(\textcolor{keyword}{nullptr})}
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }async\_generator\_yield\_operation\ final}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_yield\_operation(std::coroutine\_handle<>\ consumer)\ noexcept}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ m\_consumer(consumer)}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ await\_ready()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::coroutine\_handle<>}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ await\_suspend([[maybe\_unused]]\ std::coroutine\_handle<>\ producer)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ symmetric\ transfer\ to\ avoid\ stack\ buildup}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_consumer;}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ await\_resume()\ \textcolor{keyword}{noexcept}\ \{\}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ std::coroutine\_handle<>\ m\_consumer;}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ async\_generator\_yield\_operation\ async\_generator\_promise\_base::final\_suspend()\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentValue\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ internal\_yield\_value();}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ async\_generator\_yield\_operation\ async\_generator\_promise\_base::internal\_yield\_value()\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ async\_generator\_yield\_operation\{m\_consumerCoroutine\};}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00139\ }
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_advance\_operation(}
-\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_promise\_base\ \&promise,}
-\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::coroutine\_handle<>\ producerCoroutine)\ noexcept}
-\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ m\_promise(std::addressof(promise)),\ m\_producerCoroutine(producerCoroutine)}
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00146\ }
-\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ await\_ready()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}}
-\DoxyCodeLine{00149\ }
-\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#ifndef\ \_WIN32}}
-\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ [[gnu::noinline]]}
-\DoxyCodeLine{00152\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ std::coroutine\_handle<>\ await\_suspend(std::coroutine\_handle<>\ consumerCoroutine)\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_promise-\/>m\_consumerCoroutine\ =\ consumerCoroutine;}
-\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_producerCoroutine;}
-\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00158\ }
-\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ await\_resume()}
-\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_promise)}
-\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_promise-\/>rethrow\_if\_unhandled\_exception();}
-\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }async\_generator\_advance\_operation}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_advance\_operation(std::nullptr\_t)\ noexcept}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ m\_promise(\textcolor{keyword}{nullptr}),\ m\_producerCoroutine(\textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_advance\_operation(}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_promise\_base\ \&promise,}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::coroutine\_handle<>\ producerCoroutine)\ noexcept}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ m\_promise(std::addressof(promise)),\ m\_producerCoroutine(producerCoroutine)}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ await\_ready()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#ifndef\ \_WIN32}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ [[gnu::noinline]]}
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ std::coroutine\_handle<>\ await\_suspend(std::coroutine\_handle<>\ consumerCoroutine)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_promise-\/>m\_consumerCoroutine\ =\ consumerCoroutine;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_producerCoroutine;}
 \DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00166\ }
-\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_promise\_base\ *m\_promise;}
-\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ std::coroutine\_handle<>\ m\_producerCoroutine;}
-\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00171\ }
-\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }async\_generator\_promise\ final\ :\ \textcolor{keyword}{public}\ async\_generator\_promise\_base}
-\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }value\_type\ =\ std::remove\_reference\_t<T>;}
-\DoxyCodeLine{00176\ }
-\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_promise()\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ await\_resume()}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_promise)}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_promise-\/>rethrow\_if\_unhandled\_exception();}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_promise\_base\ *m\_promise;}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ std::coroutine\_handle<>\ m\_producerCoroutine;}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \};}
 \DoxyCodeLine{00179\ }
-\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator<T>}}\ get\_return\_object()\ \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{00181\ }
-\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_yield\_operation\ yield\_value(value\_type\ \&value)\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentValue\ =\ std::addressof(value);}
-\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ internal\_yield\_value();}
-\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }async\_generator\_promise\ final\ :\ \textcolor{keyword}{public}\ async\_generator\_promise\_base}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }value\_type\ =\ std::remove\_reference\_t<T>;}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_promise()\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keywordflow}{default};}
 \DoxyCodeLine{00187\ }
-\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_yield\_operation\ yield\_value(value\_type\ \&\&value)\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ yield\_value(value);}
-\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00192\ }
-\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ T\ \&value()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{static\_cast<}T\ *\textcolor{keyword}{>}(m\_currentValue);}
-\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00198\ }
-\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }async\_generator\_promise<T\ \&\&>\ final\ :\ \textcolor{keyword}{public}\ async\_generator\_promise\_base}
-\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_promise()\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00204\ }
-\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator<T>}}\ get\_return\_object()\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator<T>}}\ get\_return\_object()\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_yield\_operation\ yield\_value(value\_type\ \&value)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentValue\ =\ std::addressof(value);}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ internal\_yield\_value();}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_yield\_operation\ yield\_value(value\_type\ \&\&value)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ yield\_value(value);}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ T\ \&value()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{static\_cast<}T\ *\textcolor{keyword}{>}(m\_currentValue);}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \};}
 \DoxyCodeLine{00206\ }
-\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_yield\_operation\ yield\_value(T\ \&\&value)\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentValue\ =\ std::addressof(value);}
-\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ internal\_yield\_value();}
-\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }async\_generator\_promise<T\ \&\&>\ final\ :\ \textcolor{keyword}{public}\ async\_generator\_promise\_base}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_promise()\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keywordflow}{default};}
 \DoxyCodeLine{00212\ }
-\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ T\ \&\&value()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::move(*\textcolor{keyword}{static\_cast<}T\ *\textcolor{keyword}{>}(m\_currentValue));}
-\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00218\ }
-\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }async\_generator\_increment\_operation\ final\ :\ \textcolor{keyword}{public}\ async\_generator\_advance\_operation}
-\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_increment\_operation(async\_generator\_iterator<T>\ \&iterator)\ noexcept}
-\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ async\_generator\_advance\_operation(iterator.m\_coroutine.promise(),\ iterator.m\_coroutine),\ m\_iterator(iterator)}
-\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00227\ }
-\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_iterator<T>\ \&await\_resume();}
-\DoxyCodeLine{00229\ }
-\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_iterator<T>\ \&m\_iterator;}
-\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00233\ }
-\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }async\_generator\_iterator\ final}
-\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }promise\_type\ =\ async\_generator\_promise<T>;}
-\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }handle\_type\ =\ std::coroutine\_handle<promise\_type>;}
-\DoxyCodeLine{00239\ }
-\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }iterator\_category\ =\ std::input\_iterator\_tag;}
-\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Not\ sure\ what\ type\ should\ be\ used\ for\ difference\_type\ as\ we\ don't}}
-\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ allow\ calculating\ difference\ between\ two\ iterators.}}
-\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }difference\_type\ =\ std::ptrdiff\_t;}
-\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }value\_type\ =\ std::remove\_reference\_t<T>;}
-\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }reference\ =\ std::add\_lvalue\_reference\_t<T>;}
-\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }pointer\ =\ std::add\_pointer\_t<value\_type>;}
-\DoxyCodeLine{00248\ }
-\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_iterator(std::nullptr\_t)\ noexcept}
-\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ m\_coroutine(\textcolor{keyword}{nullptr})}
-\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00253\ }
-\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_iterator(handle\_type\ coroutine)\ noexcept}
-\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ m\_coroutine(coroutine)}
-\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00258\ }
-\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_increment\_operation<T>\ operator++()\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ async\_generator\_increment\_operation<T>\{*\textcolor{keyword}{this}\};}
-\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00263\ }
-\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ reference\ operator*()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_coroutine.promise().value();}
-\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00268\ }
-\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ operator==(\textcolor{keyword}{const}\ async\_generator\_iterator\ \&other)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_coroutine\ ==\ other.m\_coroutine;}
-\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00273\ }
-\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ operator!=(\textcolor{keyword}{const}\ async\_generator\_iterator\ \&other)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ ==\ other);}
-\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00278\ }
-\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }async\_generator\_increment\_operation<T>;}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator<T>}}\ get\_return\_object()\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_yield\_operation\ yield\_value(T\ \&\&value)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentValue\ =\ std::addressof(value);}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ internal\_yield\_value();}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ T\ \&\&value()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::move(*\textcolor{keyword}{static\_cast<}T\ *\textcolor{keyword}{>}(m\_currentValue));}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }async\_generator\_increment\_operation\ final\ :\ \textcolor{keyword}{public}\ async\_generator\_advance\_operation}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_increment\_operation(async\_generator\_iterator<T>\ \&iterator)\ noexcept}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ async\_generator\_advance\_operation(iterator.m\_coroutine.promise(),\ iterator.m\_coroutine),\ m\_iterator(iterator)}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_iterator<T>\ \&await\_resume();}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_iterator<T>\ \&m\_iterator;}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }async\_generator\_iterator\ final}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }promise\_type\ =\ async\_generator\_promise<T>;}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }handle\_type\ =\ std::coroutine\_handle<promise\_type>;}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }iterator\_category\ =\ std::input\_iterator\_tag;}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Not\ sure\ what\ type\ should\ be\ used\ for\ difference\_type\ as\ we\ don't}}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ allow\ calculating\ difference\ between\ two\ iterators.}}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }difference\_type\ =\ std::ptrdiff\_t;}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }value\_type\ =\ std::remove\_reference\_t<T>;}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }reference\ =\ std::add\_lvalue\_reference\_t<T>;}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }pointer\ =\ std::add\_pointer\_t<value\_type>;}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_iterator(std::nullptr\_t)\ noexcept}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ m\_coroutine(\textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_iterator(handle\_type\ coroutine)\ noexcept}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ m\_coroutine(coroutine)}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_increment\_operation<T>\ operator++()\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ async\_generator\_increment\_operation<T>\{*\textcolor{keyword}{this}\};}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ reference\ operator*()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_coroutine.promise().value();}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ operator==(\textcolor{keyword}{const}\ async\_generator\_iterator\ \&other)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_coroutine\ ==\ other.m\_coroutine;}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00281\ }
-\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ handle\_type\ m\_coroutine;}
-\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00284\ }
-\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ async\_generator\_iterator<T>\ \&async\_generator\_increment\_operation<T>::await\_resume()}
-\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_promise-\/>finished())}
-\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ iterator\ to\ end()}}
-\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_iterator\ =\ async\_generator\_iterator<T>\{\textcolor{keyword}{nullptr}\};}
-\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_promise-\/>rethrow\_if\_unhandled\_exception();}
-\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00294\ }
-\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_iterator;}
-\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00297\ }
-\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }async\_generator\_begin\_operation\ final\ :\ \textcolor{keyword}{public}\ async\_generator\_advance\_operation}
-\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }promise\_type\ =\ async\_generator\_promise<T>;}
-\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }handle\_type\ =\ std::coroutine\_handle<promise\_type>;}
-\DoxyCodeLine{00303\ }
-\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_begin\_operation(std::nullptr\_t)\ noexcept}
-\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ async\_generator\_advance\_operation(\textcolor{keyword}{nullptr})}
-\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00309\ }
-\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_begin\_operation(handle\_type\ producerCoroutine)\ noexcept}
-\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ async\_generator\_advance\_operation(producerCoroutine.promise(),\ producerCoroutine)}
-\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00314\ }
-\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ await\_ready()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_promise\ ==\ \textcolor{keyword}{nullptr}\ ||\ async\_generator\_advance\_operation::await\_ready();}
-\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00319\ }
-\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_iterator<T>\ await\_resume()}
-\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_promise\ ==\ \textcolor{keyword}{nullptr})}
-\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Called\ begin()\ on\ the\ empty\ generator.}}
-\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ async\_generator\_iterator<T>\{\textcolor{keyword}{nullptr}\};}
-\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (m\_promise-\/>finished())}
-\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Completed\ without\ yielding\ any\ values.}}
-\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_promise-\/>rethrow\_if\_unhandled\_exception();}
-\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ async\_generator\_iterator<T>\{\textcolor{keyword}{nullptr}\};}
-\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00333\ }
-\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ async\_generator\_iterator<T>\{}
-\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ handle\_type::from\_promise(*\textcolor{keyword}{static\_cast<}promise\_type\ *\textcolor{keyword}{>}(m\_promise))\};}
-\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00338\ \ \ \ \ \}}
-\DoxyCodeLine{00339\ }
-\DoxyCodeLine{00340\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00341\ \ \ \ \ \textcolor{keyword}{class\ }[[nodiscard]]\ \mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator}}}
-\DoxyCodeLine{00342\ \ \ \ \ \{}
-\DoxyCodeLine{00343\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classcppcoro_1_1async__generator_a499dd8116a5fb93fd965f42de23bdca3}{promise\_type}}\ =\ detail::async\_generator\_promise<T>;}
-\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classcppcoro_1_1async__generator_ad86f4cdde6fb14f04f585605c72a4fd2}{iterator}}\ =\ detail::async\_generator\_iterator<T>;}
-\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classcppcoro_1_1async__generator_a7032c82ac1de013361ce4cda60c6457f}{value\_type}}\ =\ std::remove\_reference\_t<T>;}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ operator!=(\textcolor{keyword}{const}\ async\_generator\_iterator\ \&other)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ ==\ other);}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }async\_generator\_increment\_operation<T>;}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ handle\_type\ m\_coroutine;}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ async\_generator\_iterator<T>\ \&async\_generator\_increment\_operation<T>::await\_resume()}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_promise-\/>finished())}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ iterator\ to\ end()}}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_iterator\ =\ async\_generator\_iterator<T>\{\textcolor{keyword}{nullptr}\};}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_promise-\/>rethrow\_if\_unhandled\_exception();}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_iterator;}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }async\_generator\_begin\_operation\ final\ :\ \textcolor{keyword}{public}\ async\_generator\_advance\_operation}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }promise\_type\ =\ async\_generator\_promise<T>;}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }handle\_type\ =\ std::coroutine\_handle<promise\_type>;}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_begin\_operation(std::nullptr\_t)\ noexcept}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ async\_generator\_advance\_operation(\textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_begin\_operation(handle\_type\ producerCoroutine)\ noexcept}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ async\_generator\_advance\_operation(producerCoroutine.promise(),\ producerCoroutine)}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ await\_ready()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_promise\ ==\ \textcolor{keyword}{nullptr}\ ||\ async\_generator\_advance\_operation::await\_ready();}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ async\_generator\_iterator<T>\ await\_resume()}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_promise\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Called\ begin()\ on\ the\ empty\ generator.}}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ async\_generator\_iterator<T>\{\textcolor{keyword}{nullptr}\};}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (m\_promise-\/>finished())}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Completed\ without\ yielding\ any\ values.}}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_promise-\/>rethrow\_if\_unhandled\_exception();}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ async\_generator\_iterator<T>\{\textcolor{keyword}{nullptr}\};}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ async\_generator\_iterator<T>\{}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ handle\_type::from\_promise(*\textcolor{keyword}{static\_cast<}promise\_type\ *\textcolor{keyword}{>}(m\_promise))\};}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00346\ \ \ \ \ \}}
 \DoxyCodeLine{00347\ }
-\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcppcoro_1_1async__generator_a94f8f29ebfdf25fee7c07f20563fb3df}{async\_generator}}()\ noexcept}
-\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ :\ m\_coroutine(\textcolor{keywordtype}{nullptr})}
-\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00352\ }
-\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classcppcoro_1_1async__generator_a8682134e821161c905445c217d09b859}{async\_generator}}(\mbox{\hyperlink{classcppcoro_1_1async__generator_a499dd8116a5fb93fd965f42de23bdca3}{promise\_type}}\ \&promise)\ noexcept}
-\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ :\ m\_coroutine(std::coroutine\_handle<promise\_type>::from\_promise(promise))}
-\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00357\ }
-\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcppcoro_1_1async__generator_ae9ea28c2d04d2fe74519ed1e050d4b39}{async\_generator}}(\mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator}}\ \&\&other)\ noexcept}
-\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ :\ m\_coroutine(other.m\_coroutine)}
-\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ other.m\_coroutine\ =\ \textcolor{keyword}{nullptr};}
-\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00363\ }
-\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcppcoro_1_1async__generator_afd2bdf8499bd9ac8162b288745d32e4d}{\string~async\_generator}}()}
-\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_coroutine)}
-\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_coroutine.destroy();}
-\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00348\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keyword}{class\ }[[nodiscard]]\ \mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator}}}
+\DoxyCodeLine{00350\ \ \ \ \ \{}
+\DoxyCodeLine{00351\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classcppcoro_1_1async__generator_a499dd8116a5fb93fd965f42de23bdca3}{promise\_type}}\ =\ detail::async\_generator\_promise<T>;}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classcppcoro_1_1async__generator_ad86f4cdde6fb14f04f585605c72a4fd2}{iterator}}\ =\ detail::async\_generator\_iterator<T>;}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classcppcoro_1_1async__generator_a7032c82ac1de013361ce4cda60c6457f}{value\_type}}\ =\ std::remove\_reference\_t<T>;}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcppcoro_1_1async__generator_a94f8f29ebfdf25fee7c07f20563fb3df}{async\_generator}}()\ noexcept}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ :\ m\_coroutine(\textcolor{keywordtype}{nullptr})}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classcppcoro_1_1async__generator_a8682134e821161c905445c217d09b859}{async\_generator}}(\mbox{\hyperlink{classcppcoro_1_1async__generator_a499dd8116a5fb93fd965f42de23bdca3}{promise\_type}}\ \&promise)\ noexcept}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ :\ m\_coroutine(std::coroutine\_handle<promise\_type>::from\_promise(promise))}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcppcoro_1_1async__generator_ae9ea28c2d04d2fe74519ed1e050d4b39}{async\_generator}}(\mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator}}\ \&\&other)\ noexcept}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ :\ m\_coroutine(other.m\_coroutine)}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ other.m\_coroutine\ =\ \textcolor{keyword}{nullptr};}
 \DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00371\ }
-\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator}}\ \&\mbox{\hyperlink{classcppcoro_1_1async__generator_a524a6039ea9cb9af15ae00aac4e67a52}{operator=}}(\mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator}}\ \&\&other)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcppcoro_1_1async__generator_afd2bdf8499bd9ac8162b288745d32e4d}{\string~async\_generator}}()}
 \DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator}}\ temp(std::move(other));}
-\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ swap(temp);}
-\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00378\ }
-\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcppcoro_1_1async__generator_a83d07083fc6dec76fceab020bdc5c7f1}{async\_generator}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator}}\ \&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator}}\ \&\mbox{\hyperlink{classcppcoro_1_1async__generator_a3c26e9db81ebcfa5d74dfb83b4ace7cf}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator}}\ \&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00381\ }
-\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcppcoro_1_1async__generator_a054c1cf89d1e45491e2e393370facdd5}{begin}}()\ noexcept}
-\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!m\_coroutine)}
-\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ detail::async\_generator\_begin\_operation<T>\{\textcolor{keyword}{nullptr}\};}
-\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00388\ }
-\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ detail::async\_generator\_begin\_operation<T>\{m\_coroutine\};}
-\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00391\ }
-\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcppcoro_1_1async__generator_a0ed729f4c0a1537a56833ffebfdab94c}{end}}()\ noexcept}
-\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcppcoro_1_1async__generator_ad86f4cdde6fb14f04f585605c72a4fd2}{iterator}}\{\textcolor{keyword}{nullptr}\};}
-\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_coroutine)}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_coroutine.destroy();}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator}}\ \&\mbox{\hyperlink{classcppcoro_1_1async__generator_a524a6039ea9cb9af15ae00aac4e67a52}{operator=}}(\mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator}}\ \&\&other)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator}}\ temp(std::move(other));}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ swap(temp);}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00386\ }
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcppcoro_1_1async__generator_a83d07083fc6dec76fceab020bdc5c7f1}{async\_generator}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator}}\ \&\mbox{\hyperlink{classcppcoro_1_1async__generator_a3c26e9db81ebcfa5d74dfb83b4ace7cf}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00389\ }
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcppcoro_1_1async__generator_a054c1cf89d1e45491e2e393370facdd5}{begin}}()\ noexcept}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!m\_coroutine)}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ detail::async\_generator\_begin\_operation<T>\{\textcolor{keyword}{nullptr}\};}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00396\ }
-\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcppcoro_1_1async__generator_ae1b6714ec3425bc67c2034b7bdad07ba}{swap}}(\mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator}}\ \&other)\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }std::swap;}
-\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ swap(m\_coroutine,\ other.m\_coroutine);}
-\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00402\ }
-\DoxyCodeLine{00403\ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ std::coroutine\_handle<promise\_type>\ m\_coroutine;}
-\DoxyCodeLine{00405\ \ \ \ \ \};}
-\DoxyCodeLine{00406\ }
-\DoxyCodeLine{00407\ \ \ \ \ \textcolor{keyword}{namespace\ }detail}
-\DoxyCodeLine{00408\ \ \ \ \ \{}
-\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ async\_generator<T>\ async\_generator\_promise<T>::get\_return\_object()\ noexcept}
-\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ async\_generator<T>\{*\textcolor{keyword}{this}\};}
-\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00414\ \ \ \ \ \}}
-\DoxyCodeLine{00415\ \}}
-\DoxyCodeLine{00416\ }
-\DoxyCodeLine{00417\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacewebcraft_1_1async}{webcraft::async}}}
-\DoxyCodeLine{00418\ \{}
-\DoxyCodeLine{00419\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00420\ \ \ \ \ \textcolor{keyword}{using\ }async\_generator\ =\ \mbox{\hyperlink{classcppcoro_1_1async__generator}{cppcoro::async\_generator<T>}};}
-\DoxyCodeLine{00421\ }
-\DoxyCodeLine{00422\ \}}
-\DoxyCodeLine{00423\ }
-\DoxyCodeLine{00424\ \textcolor{preprocessor}{\#define\ for\_each\_async(value,\ gen,\ code)\ \(\backslash\)}}
-\DoxyCodeLine{00425\ \textcolor{preprocessor}{\ \ \ \ auto\ \_it\ =\ co\_await\ gen.begin();\ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00426\ \textcolor{preprocessor}{\ \ \ \ while\ (\_it\ !=\ gen.end())\ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00427\ \textcolor{preprocessor}{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00428\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ auto\ value\ =\ *\_it;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00429\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ code;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00430\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ co\_await\ ++\_it;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00431\ \textcolor{preprocessor}{\ \ \ \ \}}}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ detail::async\_generator\_begin\_operation<T>\{m\_coroutine\};}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00399\ }
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcppcoro_1_1async__generator_a0ed729f4c0a1537a56833ffebfdab94c}{end}}()\ noexcept}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcppcoro_1_1async__generator_ad86f4cdde6fb14f04f585605c72a4fd2}{iterator}}\{\textcolor{keyword}{nullptr}\};}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcppcoro_1_1async__generator_ae1b6714ec3425bc67c2034b7bdad07ba}{swap}}(\mbox{\hyperlink{classcppcoro_1_1async__generator}{async\_generator}}\ \&other)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }std::swap;}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \ \ \ \ swap(m\_coroutine,\ other.m\_coroutine);}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00410\ }
+\DoxyCodeLine{00411\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ std::coroutine\_handle<promise\_type>\ m\_coroutine;}
+\DoxyCodeLine{00413\ \ \ \ \ \};}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00415\ \ \ \ \ \textcolor{keyword}{namespace\ }detail}
+\DoxyCodeLine{00416\ \ \ \ \ \{}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ async\_generator<T>\ async\_generator\_promise<T>::get\_return\_object()\ noexcept}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ async\_generator<T>\{*\textcolor{keyword}{this}\};}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00422\ \ \ \ \ \}}
+\DoxyCodeLine{00423\ \}}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00425\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacewebcraft_1_1async}{webcraft::async}}}
+\DoxyCodeLine{00426\ \{}
+\DoxyCodeLine{00428\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00429\ \ \ \ \ \textcolor{keyword}{using\ }async\_generator\ =\ \mbox{\hyperlink{classcppcoro_1_1async__generator}{cppcoro::async\_generator<T>}};}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00431\ \}}
 \DoxyCodeLine{00432\ }
-\DoxyCodeLine{00433\ \textcolor{keyword}{namespace}}
-\DoxyCodeLine{00434\ \{}
-\DoxyCodeLine{00435\ \}}
+\DoxyCodeLine{00436\ \textcolor{preprocessor}{\#define\ for\_each\_async(value,\ gen,\ code)\ \(\backslash\)}}
+\DoxyCodeLine{00437\ \textcolor{preprocessor}{\ \ \ \ auto\ \_it\ =\ co\_await\ gen.begin();\ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00438\ \textcolor{preprocessor}{\ \ \ \ while\ (\_it\ !=\ gen.end())\ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00439\ \textcolor{preprocessor}{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00440\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ auto\ value\ =\ *\_it;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00441\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ code;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00442\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ co\_await\ ++\_it;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00443\ \textcolor{preprocessor}{\ \ \ \ \}}}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00445\ \textcolor{keyword}{namespace}}
+\DoxyCodeLine{00446\ \{}
+\DoxyCodeLine{00447\ \}}
 
 \end{DoxyCode}

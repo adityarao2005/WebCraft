@@ -5,6 +5,14 @@
 // Licenced under MIT license. See LICENSE.txt for details.
 ///////////////////////////////////////////////////////////////////////////////
 
+/**
+ * @file async/sync_wait.hpp
+ * @brief Blocking bridge from awaitables to synchronous callers.
+ *
+ * Call `sync_wait(awaitable)` at program boundaries (tests, setup code, or
+ * adapters) when you need to wait for coroutine completion on the current
+ * thread and obtain its result.
+ */
 
 #include "event_signal.hpp"
 #include "task.hpp"
@@ -12,6 +20,13 @@
 namespace webcraft::async
 {
 
+    /**
+     * @brief Blocks the current thread until an awaitable completes.
+     * @tparam T Any awaitable type.
+     * @param awaitable Awaitable object to execute and wait on.
+     * @return The awaitable result for non-void awaitables.
+     * @throws Rethrows exceptions captured from the awaited operation.
+     */
     template <awaitable_t T>
     awaitable_resume_t<T> sync_wait(T &&awaitable)
     {

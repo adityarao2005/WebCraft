@@ -31,13 +31,13 @@
 \DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{using\ }overlapped\_operation\ =\ std::function<BOOL(LPDWORD,\ LPOVERLAPPED)>;}
 \DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{using\ }overlapped\_cancel\ =\ std::function<void(LPOVERLAPPED)>;}
 \DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ \ \ \ \ std::system\_error\ overlapped\_runtime\_event\_error(std::string\ message)}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{inline}\ std::system\_error\ overlapped\_runtime\_event\_error(std::string\ message)}
 \DoxyCodeLine{00033\ \ \ \ \ \{}
 \DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ std::error\_code\ ec(GetLastError(),\ std::system\_category());}
 \DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::system\_error(ec,\ message);}
 \DoxyCodeLine{00036\ \ \ \ \ \}}
 \DoxyCodeLine{00037\ }
-\DoxyCodeLine{00038\ \ \ \ \ std::system\_error\ overlapped\_winsock2\_runtime\_error(std::string\ message)}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{inline}\ std::system\_error\ overlapped\_winsock2\_runtime\_error(std::string\ message)}
 \DoxyCodeLine{00039\ \ \ \ \ \{}
 \DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ std::error\_code\ ec(WSAGetLastError(),\ std::system\_category());}
 \DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::system\_error(ec,\ message);}

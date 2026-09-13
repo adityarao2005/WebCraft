@@ -2,11 +2,17 @@
 \hypertarget{classwebcraft_1_1async_1_1event__signal}{}\label{classwebcraft_1_1async_1_1event__signal}\index{webcraft::async::event\_signal@{webcraft::async::event\_signal}}
 
 
+Busy-\/wait signal for synchronously waiting on async completion.  
+
+
+
+
 {\ttfamily \#include $<$event\+\_\+signal.\+hpp$>$}
 
 
 
-Inheritance diagram for webcraft\+::async\+::event\+\_\+signal\+:\nopagebreak
+Inheritance diagram for webcraft\+::async\+::event\+\_\+signal\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -15,7 +21,8 @@ Inheritance diagram for webcraft\+::async\+::event\+\_\+signal\+:\nopagebreak
 \end{figure}
 
 
-Collaboration diagram for webcraft\+::async\+::event\+\_\+signal\+:\nopagebreak
+Collaboration diagram for webcraft\+::async\+::event\+\_\+signal\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -26,21 +33,21 @@ Collaboration diagram for webcraft\+::async\+::event\+\_\+signal\+:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_a77677008fd577495eac78a8f046a5835}{event\+\_\+signal}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Constructs an unset signal. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_a0f8cd8af66f2e588c242463029550f1e}{set}} () noexcept
-\item 
+\begin{DoxyCompactList}\small\item\em Sets the signal state to true. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_a7a70b19b356714cda6da9b661f2d9f5c}{reset}} () noexcept
-\item 
+\begin{DoxyCompactList}\small\item\em Resets the signal state to false. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_ad4a52a05dde472e3062e60c92348d5fa}{is\+\_\+set}} () const noexcept
-\item 
+\begin{DoxyCompactList}\small\item\em Returns true when the signal is set. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_a30ed3534d605cf8881830fa3454a6d9c}{wait\+\_\+for}} (std\+::chrono\+::milliseconds timeout) const
-\item 
+\begin{DoxyCompactList}\small\item\em Waits up to a timeout for the signal to be set. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_a84765130566101afcf0666378ce3c02c}{wait}} () const
-\item 
+\begin{DoxyCompactList}\small\item\em Blocks until the signal is set. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_a552efc44edcfac5ed89227105b64a742}{operator()}} () const
-\item 
+\begin{DoxyCompactList}\small\item\em Function-\/call shorthand for {\ttfamily \doxylink{classwebcraft_1_1async_1_1event__signal_ad4a52a05dde472e3062e60c92348d5fa}{is\+\_\+set()}}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_a596c28bcd66ec204cf3c2216f0b2acd9}{operator bool}} () const
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Bool conversion shorthand for {\ttfamily \doxylink{classwebcraft_1_1async_1_1event__signal_ad4a52a05dde472e3062e60c92348d5fa}{is\+\_\+set()}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classwebcraft_1_1async_1_1immovable}{webcraft\+::async\+::immovable}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -58,12 +65,19 @@ bool \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_a552efc44edcfac5ed
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Busy-\/wait signal for synchronously waiting on async completion. 
+
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{classwebcraft_1_1async_1_1event__signal_a77677008fd577495eac78a8f046a5835}\label{classwebcraft_1_1async_1_1event__signal_a77677008fd577495eac78a8f046a5835} 
 \index{webcraft::async::event\_signal@{webcraft::async::event\_signal}!event\_signal@{event\_signal}}
 \index{event\_signal@{event\_signal}!webcraft::async::event\_signal@{webcraft::async::event\_signal}}
 \doxysubsubsection{\texorpdfstring{event\_signal()}{event\_signal()}}
 {\footnotesize\ttfamily webcraft\+::async\+::event\+\_\+signal\+::event\+\_\+signal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs an unset signal. 
 
 
 
@@ -74,11 +88,19 @@ bool \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_a552efc44edcfac5ed
 \doxysubsubsection{\texorpdfstring{is\_set()}{is\_set()}}
 {\footnotesize\ttfamily bool webcraft\+::async\+::event\+\_\+signal\+::is\+\_\+set (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
 
+
+
+Returns true when the signal is set. 
+
 \Hypertarget{classwebcraft_1_1async_1_1event__signal_a596c28bcd66ec204cf3c2216f0b2acd9}\label{classwebcraft_1_1async_1_1event__signal_a596c28bcd66ec204cf3c2216f0b2acd9} 
 \index{webcraft::async::event\_signal@{webcraft::async::event\_signal}!operator bool@{operator bool}}
 \index{operator bool@{operator bool}!webcraft::async::event\_signal@{webcraft::async::event\_signal}}
 \doxysubsubsection{\texorpdfstring{operator bool()}{operator bool()}}
 {\footnotesize\ttfamily webcraft\+::async\+::event\+\_\+signal\+::operator bool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Bool conversion shorthand for {\ttfamily \doxylink{classwebcraft_1_1async_1_1event__signal_ad4a52a05dde472e3062e60c92348d5fa}{is\+\_\+set()}}. 
 
 \Hypertarget{classwebcraft_1_1async_1_1event__signal_a552efc44edcfac5ed89227105b64a742}\label{classwebcraft_1_1async_1_1event__signal_a552efc44edcfac5ed89227105b64a742} 
 \index{webcraft::async::event\_signal@{webcraft::async::event\_signal}!operator()@{operator()}}
@@ -86,11 +108,19 @@ bool \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_a552efc44edcfac5ed
 \doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
 {\footnotesize\ttfamily bool webcraft\+::async\+::event\+\_\+signal\+::operator() (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Function-\/call shorthand for {\ttfamily \doxylink{classwebcraft_1_1async_1_1event__signal_ad4a52a05dde472e3062e60c92348d5fa}{is\+\_\+set()}}. 
+
 \Hypertarget{classwebcraft_1_1async_1_1event__signal_a7a70b19b356714cda6da9b661f2d9f5c}\label{classwebcraft_1_1async_1_1event__signal_a7a70b19b356714cda6da9b661f2d9f5c} 
 \index{webcraft::async::event\_signal@{webcraft::async::event\_signal}!reset@{reset}}
 \index{reset@{reset}!webcraft::async::event\_signal@{webcraft::async::event\_signal}}
 \doxysubsubsection{\texorpdfstring{reset()}{reset()}}
 {\footnotesize\ttfamily void webcraft\+::async\+::event\+\_\+signal\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Resets the signal state to false. 
 
 \Hypertarget{classwebcraft_1_1async_1_1event__signal_a0f8cd8af66f2e588c242463029550f1e}\label{classwebcraft_1_1async_1_1event__signal_a0f8cd8af66f2e588c242463029550f1e} 
 \index{webcraft::async::event\_signal@{webcraft::async::event\_signal}!set@{set}}
@@ -98,18 +128,36 @@ bool \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal_a552efc44edcfac5ed
 \doxysubsubsection{\texorpdfstring{set()}{set()}}
 {\footnotesize\ttfamily void webcraft\+::async\+::event\+\_\+signal\+::set (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
 
+
+
+Sets the signal state to true. 
+
 \Hypertarget{classwebcraft_1_1async_1_1event__signal_a84765130566101afcf0666378ce3c02c}\label{classwebcraft_1_1async_1_1event__signal_a84765130566101afcf0666378ce3c02c} 
 \index{webcraft::async::event\_signal@{webcraft::async::event\_signal}!wait@{wait}}
 \index{wait@{wait}!webcraft::async::event\_signal@{webcraft::async::event\_signal}}
 \doxysubsubsection{\texorpdfstring{wait()}{wait()}}
 {\footnotesize\ttfamily bool webcraft\+::async\+::event\+\_\+signal\+::wait (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Blocks until the signal is set. 
+
+\begin{DoxyReturn}{Returns}
+Always returns {\ttfamily true} once signaled. 
+\end{DoxyReturn}
 \Hypertarget{classwebcraft_1_1async_1_1event__signal_a30ed3534d605cf8881830fa3454a6d9c}\label{classwebcraft_1_1async_1_1event__signal_a30ed3534d605cf8881830fa3454a6d9c} 
 \index{webcraft::async::event\_signal@{webcraft::async::event\_signal}!wait\_for@{wait\_for}}
 \index{wait\_for@{wait\_for}!webcraft::async::event\_signal@{webcraft::async::event\_signal}}
 \doxysubsubsection{\texorpdfstring{wait\_for()}{wait\_for()}}
 {\footnotesize\ttfamily bool webcraft\+::async\+::event\+\_\+signal\+::wait\+\_\+for (\begin{DoxyParamCaption}\item[{std\+::chrono\+::milliseconds}]{timeout }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Waits up to a timeout for the signal to be set. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the signal was set before timeout, otherwise {\ttfamily false}. 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

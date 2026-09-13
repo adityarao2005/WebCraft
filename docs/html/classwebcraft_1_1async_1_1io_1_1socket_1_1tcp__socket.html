@@ -97,6 +97,9 @@ $(document).ready(function(){initNavTree('classwebcraft_1_1async_1_1io_1_1socket
 </div><!--header-->
 <div class="contents">
 
+<p>Full-duplex TCP socket abstraction.  
+ <a href="classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="socket_8hpp_source.html">socket.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -110,21 +113,28 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa69c25f253d3358853dedff3130f51ff" id="r_aa69c25f253d3358853dedff3130f51ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket.html">tcp_socket</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket.html#aa69c25f253d3358853dedff3130f51ff">operator=</a> (<a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket.html">tcp_socket</a> &amp;&amp;other) noexcept</td></tr>
 <tr class="separator:aa69c25f253d3358853dedff3130f51ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a752996511bdda3f0aff66167e80ea015" id="r_a752996511bdda3f0aff66167e80ea015"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; void &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket.html#a752996511bdda3f0aff66167e80ea015">connect</a> (const <a class="el" href="structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info.html">connection_info</a> &amp;info)</td></tr>
+<tr class="memdesc:a752996511bdda3f0aff66167e80ea015"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connects this socket to a remote endpoint.  <br /></td></tr>
 <tr class="separator:a752996511bdda3f0aff66167e80ea015"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab400995cd34206abb90c0853e30fb0a0" id="r_ab400995cd34206abb90c0853e30fb0a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream.html">tcp_rstream</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket.html#ab400995cd34206abb90c0853e30fb0a0">get_readable_stream</a> ()</td></tr>
+<tr class="memdesc:ab400995cd34206abb90c0853e30fb0a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the readable stream endpoint.  <br /></td></tr>
 <tr class="separator:ab400995cd34206abb90c0853e30fb0a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89cf069aa2d0e1404faa53f13b1117ee" id="r_a89cf069aa2d0e1404faa53f13b1117ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream.html">tcp_wstream</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket.html#a89cf069aa2d0e1404faa53f13b1117ee">get_writable_stream</a> ()</td></tr>
+<tr class="memdesc:a89cf069aa2d0e1404faa53f13b1117ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the writable stream endpoint.  <br /></td></tr>
 <tr class="separator:a89cf069aa2d0e1404faa53f13b1117ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c833045b874efac508f3911911eebd7" id="r_a0c833045b874efac508f3911911eebd7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket.html#a0c833045b874efac508f3911911eebd7">shutdown_channel</a> (<a class="el" href="namespacewebcraft_1_1async_1_1io_1_1socket.html#a9f2887d3f56db5de0b9d3a9bc63b8688">socket_stream_mode</a> mode)</td></tr>
+<tr class="memdesc:a0c833045b874efac508f3911911eebd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shuts down the requested socket channel once.  <br /></td></tr>
 <tr class="separator:a0c833045b874efac508f3911911eebd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a746c0520b218211608b293fd39cd8c5c" id="r_a746c0520b218211608b293fd39cd8c5c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; void &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket.html#a746c0520b218211608b293fd39cd8c5c">close</a> ()</td></tr>
+<tr class="memdesc:a746c0520b218211608b293fd39cd8c5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes both channels and the underlying descriptor.  <br /></td></tr>
 <tr class="separator:a746c0520b218211608b293fd39cd8c5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a874d973c106e98eccad0384023bcf9b9" id="r_a874d973c106e98eccad0384023bcf9b9"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket.html#a874d973c106e98eccad0384023bcf9b9">get_remote_host</a> ()</td></tr>
 <tr class="separator:a874d973c106e98eccad0384023bcf9b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af53ac4bf18067073e7b803019bd73f2b" id="r_af53ac4bf18067073e7b803019bd73f2b"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket.html#af53ac4bf18067073e7b803019bd73f2b">get_remote_port</a> ()</td></tr>
 <tr class="separator:af53ac4bf18067073e7b803019bd73f2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Full-duplex TCP socket abstraction. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2cbdad839e822e9276fe48b655c0b470" name="a2cbdad839e822e9276fe48b655c0b470"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2cbdad839e822e9276fe48b655c0b470">&#9670;&#160;</a></span>tcp_socket() <span class="overload">[1/2]</span></h2>
 
@@ -226,6 +236,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Closes both channels and the underlying descriptor. </p>
+
 </div>
 </div>
 <a id="a752996511bdda3f0aff66167e80ea015" name="a752996511bdda3f0aff66167e80ea015"></a>
@@ -252,6 +264,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Connects this socket to a remote endpoint. </p>
+
 </div>
 </div>
 <a id="ab400995cd34206abb90c0853e30fb0a0" name="ab400995cd34206abb90c0853e30fb0a0"></a>
@@ -276,6 +290,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the readable stream endpoint. </p>
 
 </div>
 </div>
@@ -352,6 +368,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Returns the writable stream endpoint. </p>
+
 </div>
 </div>
 <a id="aa69c25f253d3358853dedff3130f51ff" name="aa69c25f253d3358853dedff3130f51ff"></a>
@@ -403,6 +421,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Shuts down the requested socket channel once. </p>
 
 </div>
 </div>

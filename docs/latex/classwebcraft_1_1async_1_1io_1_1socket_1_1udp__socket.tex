@@ -2,6 +2,11 @@
 \hypertarget{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket}{}\label{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket}\index{webcraft::async::io::socket::udp\_socket@{webcraft::async::io::socket::udp\_socket}}
 
 
+UDP socket abstraction for datagram send/receive.  
+
+
+
+
 {\ttfamily \#include $<$socket.\+hpp$>$}
 
 \doxysubsubsection*{Public Member Functions}
@@ -12,14 +17,17 @@
 \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_a0b23dcc783c95098c0834354dbff46b5}{\texorpdfstring{$\sim$}{\string~}udp\+\_\+socket}} ()
 \item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ void $>$ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_ac7260cbae1666f2c520fd8597a2d57cd}{close}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Closes the UDP socket. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_a4a7aa2353e562f9eb47ebe787c9b9a1d}{bind}} (const \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{connection\+\_\+info}} \&info)
-\item 
+\begin{DoxyCompactList}\small\item\em Binds the UDP socket to a local endpoint. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ size\+\_\+t $>$ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_a18751af1edf893b9eaeec9907b8db916}{recvfrom}} (std\+::span$<$ char $>$ buffer, \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{connection\+\_\+info}} \&info)
-\item 
+\begin{DoxyCompactList}\small\item\em Receives a datagram and fills sender info. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ size\+\_\+t $>$ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_acb7e3ca1b1c13e893134e022308c65a3}{sendto}} (std\+::span$<$ const char $>$ buffer, const \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{connection\+\_\+info}} \&info)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Sends a datagram to the target endpoint. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+UDP socket abstraction for datagram send/receive. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_a89dcd929f914f2ddc33cfc6c095293d6}\label{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_a89dcd929f914f2ddc33cfc6c095293d6} 
@@ -43,11 +51,19 @@ void \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_a4a7
 \doxysubsubsection{\texorpdfstring{bind()}{bind()}}
 {\footnotesize\ttfamily void webcraft\+::async\+::io\+::socket\+::udp\+\_\+socket\+::bind (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{connection\+\_\+info}} \&}]{info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Binds the UDP socket to a local endpoint. 
+
 \Hypertarget{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_ac7260cbae1666f2c520fd8597a2d57cd}\label{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_ac7260cbae1666f2c520fd8597a2d57cd} 
 \index{webcraft::async::io::socket::udp\_socket@{webcraft::async::io::socket::udp\_socket}!close@{close}}
 \index{close@{close}!webcraft::async::io::socket::udp\_socket@{webcraft::async::io::socket::udp\_socket}}
 \doxysubsubsection{\texorpdfstring{close()}{close()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ void $>$ webcraft\+::async\+::io\+::socket\+::udp\+\_\+socket\+::close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Closes the UDP socket. 
 
 \Hypertarget{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_a18751af1edf893b9eaeec9907b8db916}\label{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_a18751af1edf893b9eaeec9907b8db916} 
 \index{webcraft::async::io::socket::udp\_socket@{webcraft::async::io::socket::udp\_socket}!recvfrom@{recvfrom}}
@@ -55,11 +71,19 @@ void \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_a4a7
 \doxysubsubsection{\texorpdfstring{recvfrom()}{recvfrom()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ size\+\_\+t $>$ webcraft\+::async\+::io\+::socket\+::udp\+\_\+socket\+::recvfrom (\begin{DoxyParamCaption}\item[{std\+::span$<$ char $>$}]{buffer,  }\item[{\mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{connection\+\_\+info}} \&}]{info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Receives a datagram and fills sender info. 
+
 \Hypertarget{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_acb7e3ca1b1c13e893134e022308c65a3}\label{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_acb7e3ca1b1c13e893134e022308c65a3} 
 \index{webcraft::async::io::socket::udp\_socket@{webcraft::async::io::socket::udp\_socket}!sendto@{sendto}}
 \index{sendto@{sendto}!webcraft::async::io::socket::udp\_socket@{webcraft::async::io::socket::udp\_socket}}
 \doxysubsubsection{\texorpdfstring{sendto()}{sendto()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ size\+\_\+t $>$ webcraft\+::async\+::io\+::socket\+::udp\+\_\+socket\+::sendto (\begin{DoxyParamCaption}\item[{std\+::span$<$ const char $>$}]{buffer,  }\item[{const \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{connection\+\_\+info}} \&}]{info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sends a datagram to the target endpoint. 
 
 
 

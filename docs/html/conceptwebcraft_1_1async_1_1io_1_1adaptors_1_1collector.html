@@ -94,12 +94,17 @@ $(document).ready(function(){initNavTree('conceptwebcraft_1_1async_1_1io_1_1adap
 </div><!--header-->
 <div class="contents">
 
+<p>Collector concept for adaptors that reduce a stream to a value.  
+<a href="conceptwebcraft_1_1async_1_1io_1_1adaptors_1_1collector.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="adaptors_8hpp_source.html">adaptors.hpp</a>&gt;</code></p>
 <h2 class="groupheader">Concept definition</h2>
 <div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived, <span class="keyword">typename</span> ToType, <span class="keyword">typename</span> StreamType&gt;</div>
 <div class="line"><span class="keyword">concept </span><a class="code hl_concept" href="conceptwebcraft_1_1async_1_1io_1_1adaptors_1_1collector.html">webcraft::async::io::adaptors::collector</a> =  std::is_invocable_r_v&lt;task&lt;ToType&gt;, Derived, async_generator&lt;StreamType&gt;&gt;</div>
-<div class="ttc" id="aconceptwebcraft_1_1async_1_1io_1_1adaptors_1_1collector_html"><div class="ttname"><a href="conceptwebcraft_1_1async_1_1io_1_1adaptors_1_1collector.html">webcraft::async::io::adaptors::collector</a></div><div class="ttdef"><b>Definition</b> adaptors.hpp:93</div></div>
-</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aconceptwebcraft_1_1async_1_1io_1_1adaptors_1_1collector_html"><div class="ttname"><a href="conceptwebcraft_1_1async_1_1io_1_1adaptors_1_1collector.html">webcraft::async::io::adaptors::collector</a></div><div class="ttdoc">Collector concept for adaptors that reduce a stream to a value.</div><div class="ttdef"><b>Definition</b> adaptors.hpp:109</div></div>
+</div><!-- fragment --><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Collector concept for adaptors that reduce a stream to a value. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

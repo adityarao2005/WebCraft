@@ -97,13 +97,16 @@ $(document).ready(function(){initNavTree('classwebcraft_1_1async_1_1io_1_1fs_1_1
 </div><!--header-->
 <div class="contents">
 
+<p>Async readable stream over a file descriptor.  
+ <a href="classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="fs_8hpp_source.html">fs.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for webcraft::async::io::fs::file_rstream:</div>
 <div class="dyncontent">
 <div class="center"><img src="classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream__inherit__graph.png" border="0" usemap="#awebcraft_1_1async_1_1io_1_1fs_1_1file__rstream_inherit__map" alt="Inheritance graph"/></div>
 <map name="awebcraft_1_1async_1_1io_1_1fs_1_1file__rstream_inherit__map" id="awebcraft_1_1async_1_1io_1_1fs_1_1file__rstream_inherit__map">
-<area shape="rect" title=" " alt="" coords="17,93,161,133"/>
+<area shape="rect" title="Async readable stream over a file descriptor." alt="" coords="17,93,161,133"/>
 <area shape="rect" title=" " alt="" coords="5,5,173,45"/>
 <area shape="poly" title=" " alt="" coords="92,59,92,93,87,93,87,59"/>
 </map>
@@ -113,7 +116,7 @@ Collaboration diagram for webcraft::async::io::fs::file_rstream:</div>
 <div class="dyncontent">
 <div class="center"><img src="classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream__coll__graph.png" border="0" usemap="#awebcraft_1_1async_1_1io_1_1fs_1_1file__rstream_coll__map" alt="Collaboration graph"/></div>
 <map name="awebcraft_1_1async_1_1io_1_1fs_1_1file__rstream_coll__map" id="awebcraft_1_1async_1_1io_1_1fs_1_1file__rstream_coll__map">
-<area shape="rect" title=" " alt="" coords="17,93,161,133"/>
+<area shape="rect" title="Async readable stream over a file descriptor." alt="" coords="17,93,161,133"/>
 <area shape="rect" title=" " alt="" coords="5,5,173,45"/>
 <area shape="poly" title=" " alt="" coords="92,59,92,93,87,93,87,59"/>
 </map>
@@ -134,11 +137,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abe8cec28e2c20890e6f4a366f0dcfb5d" id="r_abe8cec28e2c20890e6f4a366f0dcfb5d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream.html">file_rstream</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream.html#abe8cec28e2c20890e6f4a366f0dcfb5d">operator=</a> (const <a class="el" href="classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream.html">file_rstream</a> &amp;)=delete</td></tr>
 <tr class="separator:abe8cec28e2c20890e6f4a366f0dcfb5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a6da33057e45971055f78d677e50a0c" id="r_a1a6da33057e45971055f78d677e50a0c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream.html#a1a6da33057e45971055f78d677e50a0c">recv</a> (std::span&lt; char &gt; buffer)</td></tr>
+<tr class="memdesc:a1a6da33057e45971055f78d677e50a0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads as many bytes as available into <code>buffer</code>.  <br /></td></tr>
 <tr class="separator:a1a6da33057e45971055f78d677e50a0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb263a148b621484b1bc3388a6a43cdd" id="r_afb263a148b621484b1bc3388a6a43cdd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; std::optional&lt; char &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1fs_1_1file__rstream.html#afb263a148b621484b1bc3388a6a43cdd">recv</a> ()</td></tr>
+<tr class="memdesc:afb263a148b621484b1bc3388a6a43cdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a single byte, or <code>std::nullopt</code> on end-of-stream.  <br /></td></tr>
 <tr class="separator:afb263a148b621484b1bc3388a6a43cdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Async readable stream over a file descriptor. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af316878c8f54e26620b81c31a5589996" name="af316878c8f54e26620b81c31a5589996"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af316878c8f54e26620b81c31a5589996">&#9670;&#160;</a></span>file_rstream() <span class="overload">[1/3]</span></h2>
 
@@ -318,6 +325,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Reads a single byte, or <code>std::nullopt</code> on end-of-stream. </p>
+
 </div>
 </div>
 <a id="a1a6da33057e45971055f78d677e50a0c" name="a1a6da33057e45971055f78d677e50a0c"></a>
@@ -343,6 +352,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Reads as many bytes as available into <code>buffer</code>. </p>
 
 </div>
 </div>

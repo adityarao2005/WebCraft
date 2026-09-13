@@ -1,5 +1,5 @@
 <map id="include/webcraft/async/event_signal.hpp" name="include/webcraft/async/event_signal.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="44,5,215,45"/>
+<area shape="rect" id="Node000001" title="Lightweight thread&#45;based signaling primitive for sync waiting." alt="" coords="44,5,215,45"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,93,72,119"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,48,64,86,61,82,106,44"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="96,93,163,119"/>

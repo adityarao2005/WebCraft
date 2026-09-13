@@ -2,7 +2,7 @@
 \hypertarget{classwebcraft_1_1async_1_1runtime__context}{}\label{classwebcraft_1_1async_1_1runtime__context}\index{webcraft::async::runtime\_context@{webcraft::async::runtime\_context}}
 
 
-Acts as a context for the async runtime, managing the lifecycle of async operations. This class is designed to be used as a singleton within the async runtime but won\textquotesingle{}t be created like a singleton, more like a guard.  
+RAII guard that initializes and shuts down the async runtime.  
 
 
 
@@ -27,7 +27,9 @@ Acts as a context for the async runtime, managing the lifecycle of async operati
 
 
 \doxysubsection{Detailed Description}
-Acts as a context for the async runtime, managing the lifecycle of async operations. This class is designed to be used as a singleton within the async runtime but won\textquotesingle{}t be created like a singleton, more like a guard. 
+RAII guard that initializes and shuts down the async runtime. 
+
+Construct an instance before using runtime-\/backed operations and keep it alive while asynchronous runtime operations are active. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{classwebcraft_1_1async_1_1runtime__context_ace138eb94da2789928deb41a904855fe}\label{classwebcraft_1_1async_1_1runtime__context_ace138eb94da2789928deb41a904855fe} 

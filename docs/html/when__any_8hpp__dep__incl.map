@@ -1,5 +1,5 @@
 <map id="include/webcraft/async/when_any.hpp" name="include/webcraft/async/when_any.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,176,45"/>
-<area shape="rect" id="Node000002" href="$async_8hpp.html" title=" " alt="" coords="5,93,176,133"/>
+<area shape="rect" id="Node000001" title="Await combinator that resolves when the first awaitable completes." alt="" coords="5,5,176,45"/>
+<area shape="rect" id="Node000002" href="$async_8hpp.html" title="Umbrella include for the public asynchronous programming API." alt="" coords="5,93,176,133"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,59,93,93,88,93,88,59"/>
 </map>

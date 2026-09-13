@@ -1,5 +1,5 @@
 <map id="webcraft::ranges::to&lt; T &gt;" name="webcraft::ranges::to&lt; T &gt;">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,108,195,133"/>
+<area shape="rect" id="Node000001" title="Range adaptor closure that materializes a range into container T." alt="" coords="5,108,195,133"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="19,5,181,60"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,74,103,108,97,108,97,74"/>
 </map>

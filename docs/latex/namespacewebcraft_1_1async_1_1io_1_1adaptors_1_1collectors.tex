@@ -4,14 +4,14 @@
 \begin{DoxyCompactItemize}
 \item 
 {\footnotesize template$<$typename T $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_1_1collectors_a7daa10abd28848093f764efd3678bc98}{reduce}} (std\+::function$<$ T(T, T)$>$ \&\&func)
-\item 
+\begin{DoxyCompactList}\small\item\em Collector factory that reduces stream values with a binary function. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ \newline
 requires std\+::is\+\_\+convertible\+\_\+v$<$T, std\+::string$>$}\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_1_1collectors_adc8e437445f9247f3e767b485f468b5d}{joining}} (std\+::string separator="{}"{}, std\+::string prefix="{}"{}, std\+::string suffix="{}"{})
 \item 
 {\footnotesize template$<$typename T $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_1_1collectors_a1064184038eb4e5d67a1763dbc2c33f9}{to\+\_\+vector}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Collector factory that materializes values into {\ttfamily std\+::vector\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}}. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T , typename Key\+Type $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1adaptors_1_1collectors_a2e67493f2e10fee623eb18b43d02ea71}{group\+\_\+by}} (std\+::function$<$ Key\+Type(const T \&)$>$ key\+\_\+function)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Collector factory that groups values by a computed key. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
@@ -21,6 +21,10 @@ requires std\+::is\+\_\+convertible\+\_\+v$<$T, std\+::string$>$}\\auto \mbox{\h
 \doxysubsubsection{\texorpdfstring{group\_by()}{group\_by()}}
 {\footnotesize\ttfamily template$<$typename T , typename Key\+Type $>$ \\
 auto webcraft\+::async\+::io\+::adaptors\+::collectors\+::group\+\_\+by (\begin{DoxyParamCaption}\item[{std\+::function$<$ Key\+Type(const T \&)$>$}]{key\+\_\+function }\end{DoxyParamCaption})}
+
+
+
+Collector factory that groups values by a computed key. 
 
 \Hypertarget{namespacewebcraft_1_1async_1_1io_1_1adaptors_1_1collectors_adc8e437445f9247f3e767b485f468b5d}\label{namespacewebcraft_1_1async_1_1io_1_1adaptors_1_1collectors_adc8e437445f9247f3e767b485f468b5d} 
 \index{webcraft::async::io::adaptors::collectors@{webcraft::async::io::adaptors::collectors}!joining@{joining}}
@@ -37,10 +41,18 @@ auto webcraft\+::async\+::io\+::adaptors\+::collectors\+::joining (\begin{DoxyPa
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 auto webcraft\+::async\+::io\+::adaptors\+::collectors\+::reduce (\begin{DoxyParamCaption}\item[{std\+::function$<$ T(T, T)$>$ \&\&}]{func }\end{DoxyParamCaption})}
 
+
+
+Collector factory that reduces stream values with a binary function. 
+
 \Hypertarget{namespacewebcraft_1_1async_1_1io_1_1adaptors_1_1collectors_a1064184038eb4e5d67a1763dbc2c33f9}\label{namespacewebcraft_1_1async_1_1io_1_1adaptors_1_1collectors_a1064184038eb4e5d67a1763dbc2c33f9} 
 \index{webcraft::async::io::adaptors::collectors@{webcraft::async::io::adaptors::collectors}!to\_vector@{to\_vector}}
 \index{to\_vector@{to\_vector}!webcraft::async::io::adaptors::collectors@{webcraft::async::io::adaptors::collectors}}
 \doxysubsubsection{\texorpdfstring{to\_vector()}{to\_vector()}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 auto webcraft\+::async\+::io\+::adaptors\+::collectors\+::to\+\_\+vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Collector factory that materializes values into {\ttfamily std\+::vector\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}}. 
 

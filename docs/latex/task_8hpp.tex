@@ -1,5 +1,10 @@
 \doxysection{include/webcraft/async/task.hpp File Reference}
 \hypertarget{task_8hpp}{}\label{task_8hpp}\index{include/webcraft/async/task.hpp@{include/webcraft/async/task.hpp}}
+
+
+Core coroutine task type used across Web\+Craft async APIs.  
+
+
 {\ttfamily \#include $<$concepts$>$}\newline
 {\ttfamily \#include $<$exception$>$}\newline
 {\ttfamily \#include $<$coroutine$>$}\newline
@@ -27,19 +32,19 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise}{webcraft\+::async\+::task\+\_\+promise$<$ T $>$}}
-\item 
+\begin{DoxyCompactList}\small\item\em Promise type backing {\ttfamily task\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} coroutines. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structwebcraft_1_1async_1_1task__promise_1_1final__awaiter}{webcraft\+::async\+::task\+\_\+promise$<$ T $>$\+::final\+\_\+awaiter}}
-\item 
+\begin{DoxyCompactList}\small\item\em Final awaiter that resumes the continuation coroutine. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_3_01void_01_4}{webcraft\+::async\+::task\+\_\+promise$<$ void $>$}}
-\item 
+\begin{DoxyCompactList}\small\item\em Promise specialization for {\ttfamily task\texorpdfstring{$<$}{<}void\texorpdfstring{$>$}{>}} coroutines. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structwebcraft_1_1async_1_1task__promise_3_01void_01_4_1_1final__awaiter}{webcraft\+::async\+::task\+\_\+promise$<$ void $>$\+::final\+\_\+awaiter}}
-\item 
+\begin{DoxyCompactList}\small\item\em Final awaiter that resumes the continuation coroutine. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{webcraft\+::async\+::task$<$ T $>$}}
-\item 
+\begin{DoxyCompactList}\small\item\em Awaitable coroutine result that yields a value of type {\ttfamily T}. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1task_3_01void_01_4}{webcraft\+::async\+::task$<$ void $>$}}
-\item 
+\begin{DoxyCompactList}\small\item\em Awaitable coroutine result specialization for {\ttfamily void}. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structwebcraft_1_1async_1_1task__adaptor__closure}{webcraft\+::async\+::task\+\_\+adaptor\+\_\+closure$<$ Derived $>$}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Base class for pipe-\/style task adaptors. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -51,6 +56,12 @@ namespace \mbox{\hyperlink{namespacewebcraft_1_1async}{webcraft\+::async}}
 \begin{DoxyCompactItemize}
 \item 
 {\footnotesize template$<$typename Func $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_aa2f7829b92b3c6f724586abddbe4147c}{webcraft\+::async\+::then}} (Func \&\&func)
-\item 
+\begin{DoxyCompactList}\small\item\em Creates a continuation adaptor to transform successful task results. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename Func $>$ }\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_a4cdc12c581f571e77dba6f036250a51a}{webcraft\+::async\+::upon\+\_\+error}} (Func \&\&handler)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Creates an error-\/recovery adaptor for failed awaitables. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Core coroutine task type used across Web\+Craft async APIs. 
+
+{\ttfamily \doxylink{classwebcraft_1_1async_1_1task}{webcraft\+::async\+::task}\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} represents an awaitable operation that produces a value of type {\ttfamily T} (or {\ttfamily void}). Most high-\/level async APIs in this project return this type. 

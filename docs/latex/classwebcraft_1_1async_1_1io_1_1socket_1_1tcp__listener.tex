@@ -2,6 +2,11 @@
 \hypertarget{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener}{}\label{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener}\index{webcraft::async::io::socket::tcp\_listener@{webcraft::async::io::socket::tcp\_listener}}
 
 
+TCP server listener abstraction.  
+
+
+
+
 {\ttfamily \#include $<$socket.\+hpp$>$}
 
 \doxysubsubsection*{Public Member Functions}
@@ -12,14 +17,17 @@
 \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener_a7cd076d884bc5f1ce0696e684fb2cb34}{\texorpdfstring{$\sim$}{\string~}tcp\+\_\+listener}} ()
 \item 
 void \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener_a1196a153a2c90209e77adf7ad9e2a934}{bind}} (const \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{connection\+\_\+info}} \&info)
-\item 
+\begin{DoxyCompactList}\small\item\em Binds the listener to a local endpoint. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener_a45f7a7594c2febf6c2c605faa5b41e0f}{listen}} (int backlog)
-\item 
+\begin{DoxyCompactList}\small\item\em Starts listening with a backlog size. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket}{tcp\+\_\+socket}} $>$ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener_ac6f3e85681da6c5534dcb112aa6cb5f1}{accept}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Accepts the next inbound connection. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ void $>$ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener_ac1a4b081de353b009038b3646a9fd3e0}{close}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Closes the listener. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+TCP server listener abstraction. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener_a1b19316f1ff277eb727458c3bb8a424e}\label{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener_a1b19316f1ff277eb727458c3bb8a424e} 
@@ -43,11 +51,19 @@ void \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener_a4
 \doxysubsubsection{\texorpdfstring{accept()}{accept()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket}{tcp\+\_\+socket}} $>$ webcraft\+::async\+::io\+::socket\+::tcp\+\_\+listener\+::accept (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Accepts the next inbound connection. 
+
 \Hypertarget{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener_a1196a153a2c90209e77adf7ad9e2a934}\label{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener_a1196a153a2c90209e77adf7ad9e2a934} 
 \index{webcraft::async::io::socket::tcp\_listener@{webcraft::async::io::socket::tcp\_listener}!bind@{bind}}
 \index{bind@{bind}!webcraft::async::io::socket::tcp\_listener@{webcraft::async::io::socket::tcp\_listener}}
 \doxysubsubsection{\texorpdfstring{bind()}{bind()}}
 {\footnotesize\ttfamily void webcraft\+::async\+::io\+::socket\+::tcp\+\_\+listener\+::bind (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{connection\+\_\+info}} \&}]{info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Binds the listener to a local endpoint. 
 
 \Hypertarget{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener_ac1a4b081de353b009038b3646a9fd3e0}\label{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener_ac1a4b081de353b009038b3646a9fd3e0} 
 \index{webcraft::async::io::socket::tcp\_listener@{webcraft::async::io::socket::tcp\_listener}!close@{close}}
@@ -55,11 +71,19 @@ void \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener_a4
 \doxysubsubsection{\texorpdfstring{close()}{close()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ void $>$ webcraft\+::async\+::io\+::socket\+::tcp\+\_\+listener\+::close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Closes the listener. 
+
 \Hypertarget{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener_a45f7a7594c2febf6c2c605faa5b41e0f}\label{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener_a45f7a7594c2febf6c2c605faa5b41e0f} 
 \index{webcraft::async::io::socket::tcp\_listener@{webcraft::async::io::socket::tcp\_listener}!listen@{listen}}
 \index{listen@{listen}!webcraft::async::io::socket::tcp\_listener@{webcraft::async::io::socket::tcp\_listener}}
 \doxysubsubsection{\texorpdfstring{listen()}{listen()}}
 {\footnotesize\ttfamily void webcraft\+::async\+::io\+::socket\+::tcp\+\_\+listener\+::listen (\begin{DoxyParamCaption}\item[{int}]{backlog }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Starts listening with a backlog size. 
 
 
 

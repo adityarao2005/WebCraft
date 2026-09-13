@@ -5,6 +5,15 @@
 // Licenced under MIT license. See LICENSE.txt for details.
 ///////////////////////////////////////////////////////////////////////////////
 
+/**
+ * @file async/async.hpp
+ * @brief Umbrella include for the public asynchronous programming API.
+ *
+ * Include this header to access common coroutine types (`task`, generators,
+ * synchronization primitives, runtime utilities, and I/O components) in one
+ * place. It also exposes convenience macros for coroutine declarations.
+ */
+
 #include <atomic>
 #include "async_event.hpp"
 #include "async_generator.hpp"
@@ -21,5 +30,5 @@
 #include "when_any.hpp"
 #include <webcraft/async/io/io.hpp>
 
-#define co_async [&]() -> ::webcraft::async::task<void>
+#define co_async [&]()->::webcraft::async::task<void>
 #define async_t(T) ::webcraft::async::task<T>

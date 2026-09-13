@@ -7,367 +7,367 @@
 \DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (c)\ Aditya\ Rao}}
 \DoxyCodeLine{00005\ \textcolor{comment}{//\ Licenced\ under\ MIT\ license.\ See\ LICENSE.txt\ for\ details.}}
 \DoxyCodeLine{00007\ }
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{core_8hpp}{core.hpp}}"{}}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{fire__and__forget__task_8hpp}{webcraft/async/fire\_and\_forget\_task.hpp}}>}}
-\DoxyCodeLine{00010\ }
-\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket}{webcraft::async::io::socket}}}
-\DoxyCodeLine{00012\ \{}
-\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{connection\_info}}}
-\DoxyCodeLine{00014\ \ \ \ \ \{}
-\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info_a3761630afedf97c39b392a25e23fcc80}{host}};}
-\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info_aa0a0f08e5597c2b158b904d6ff907cca}{port}};}
-\DoxyCodeLine{00017\ \ \ \ \ \};}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{core_8hpp}{core.hpp}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{fire__and__forget__task_8hpp}{webcraft/async/fire\_and\_forget\_task.hpp}}>}}
 \DoxyCodeLine{00018\ }
-\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a139a43e64f79b86d82279ded4b49df98}{ip\_version}}}
-\DoxyCodeLine{00020\ \ \ \ \ \{}
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a139a43e64f79b86d82279ded4b49df98a42a9137a05a60eb752dcdf982e717626}{IPv4}},}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a139a43e64f79b86d82279ded4b49df98afdb7cb8f657426e7c409bfd6d1a36ce4}{IPv6}}}
-\DoxyCodeLine{00023\ \ \ \ \ \};}
-\DoxyCodeLine{00024\ }
-\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688}{socket\_stream\_mode}}}
-\DoxyCodeLine{00026\ \ \ \ \ \{}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688a3466fab4975481651940ed328aa990e4}{READ}},}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688ad4b9e47f65b6e79b010582f15785867e}{WRITE}}}
-\DoxyCodeLine{00029\ \ \ \ \ \};}
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{namespace\ }detail}
+\DoxyCodeLine{00019\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket}{webcraft::async::io::socket}}}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{connection\_info}}}
+\DoxyCodeLine{00025\ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info_a3761630afedf97c39b392a25e23fcc80}{host}};}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info_aa0a0f08e5597c2b158b904d6ff907cca}{port}};}
+\DoxyCodeLine{00028\ \ \ \ \ \};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a139a43e64f79b86d82279ded4b49df98}{ip\_version}}}
 \DoxyCodeLine{00032\ \ \ \ \ \{}
-\DoxyCodeLine{00033\ }
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }tcp\_descriptor\_base}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ tcp\_descriptor\_base()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \string~tcp\_descriptor\_base()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00039\ }
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\ close()\ =\ 0;\ \textcolor{comment}{//\ Close\ the\ socket}}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }tcp\_socket\_descriptor\ :\ \textcolor{keyword}{public}\ tcp\_descriptor\_base}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ tcp\_socket\_descriptor()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \string~tcp\_socket\_descriptor()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00048\ }
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\ connect(\textcolor{keyword}{const}\ connection\_info\ \&info)\ =\ 0;\ \ \textcolor{comment}{//\ Connect\ to\ a\ server}}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<size\_t>}}\ read(std::span<char>\ buffer)\ =\ 0;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ data\ from\ the\ socket}}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<size\_t>}}\ write(std::span<const\ char>\ buffer)\ =\ 0;\ \textcolor{comment}{//\ Write\ data\ to\ the\ socket}}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacewebcraft_1_1async_a32cc887e48f12d360656c6f023977a2d}{shutdown}}(\mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688}{socket\_stream\_mode}}\ mode)\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Shutdown\ the\ socket}}
-\DoxyCodeLine{00053\ }
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ std::string\ get\_remote\_host()\ =\ 0;}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ uint16\_t\ get\_remote\_port()\ =\ 0;}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00057\ }
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }tcp\_listener\_descriptor\ :\ \textcolor{keyword}{public}\ tcp\_descriptor\_base}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ tcp\_listener\_descriptor()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \string~tcp\_listener\_descriptor()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00063\ }
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ bind(\textcolor{keyword}{const}\ connection\_info\ \&info)\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bind\ the\ listener\ to\ an\ address}}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ listen(\textcolor{keywordtype}{int}\ backlog)\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ listening\ for\ incoming\ connections}}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ task<std::shared\_ptr<tcp\_socket\_descriptor>>\ accept()\ =\ 0;\ \textcolor{comment}{//\ Accept\ a\ new\ connection}}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00068\ }
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }udp\_socket\_descriptor}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ udp\_socket\_descriptor(std::optional<ip\_version>\ version)\ \{\}}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \string~udp\_socket\_descriptor()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00074\ }
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ task<void>\ close()\ =\ 0;}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ bind(\textcolor{keyword}{const}\ connection\_info\ \&info)\ =\ 0;}
-\DoxyCodeLine{00077\ }
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ task<size\_t>\ recvfrom(std::span<char>\ buffer,\ connection\_info\ \&info)\ =\ 0;}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ task<size\_t>\ sendto(std::span<const\ char>\ buffer,\ \textcolor{keyword}{const}\ connection\_info\ \&info)\ =\ 0;}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a139a43e64f79b86d82279ded4b49df98a42a9137a05a60eb752dcdf982e717626}{IPv4}},}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a139a43e64f79b86d82279ded4b49df98afdb7cb8f657426e7c409bfd6d1a36ce4}{IPv6}}}
+\DoxyCodeLine{00035\ \ \ \ \ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688}{socket\_stream\_mode}}}
+\DoxyCodeLine{00039\ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688a3466fab4975481651940ed328aa990e4}{READ}},}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688ad4b9e47f65b6e79b010582f15785867e}{WRITE}}}
+\DoxyCodeLine{00042\ \ \ \ \ \};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{namespace\ }detail}
+\DoxyCodeLine{00045\ \ \ \ \ \{}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }tcp\_descriptor\_base}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ tcp\_descriptor\_base()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \string~tcp\_descriptor\_base()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\ close()\ =\ 0;\ \textcolor{comment}{//\ Close\ the\ socket}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }tcp\_socket\_descriptor\ :\ \textcolor{keyword}{public}\ tcp\_descriptor\_base}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ tcp\_socket\_descriptor()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \string~tcp\_socket\_descriptor()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\ connect(\textcolor{keyword}{const}\ connection\_info\ \&info)\ =\ 0;\ \ \textcolor{comment}{//\ Connect\ to\ a\ server}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<size\_t>}}\ read(std::span<char>\ buffer)\ =\ 0;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ data\ from\ the\ socket}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<size\_t>}}\ write(std::span<const\ char>\ buffer)\ =\ 0;\ \textcolor{comment}{//\ Write\ data\ to\ the\ socket}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacewebcraft_1_1async_a32cc887e48f12d360656c6f023977a2d}{shutdown}}(\mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688}{socket\_stream\_mode}}\ mode)\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Shutdown\ the\ socket}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ std::string\ get\_remote\_host()\ =\ 0;}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ uint16\_t\ get\_remote\_port()\ =\ 0;}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }tcp\_listener\_descriptor\ :\ \textcolor{keyword}{public}\ tcp\_descriptor\_base}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ tcp\_listener\_descriptor()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \string~tcp\_listener\_descriptor()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ bind(\textcolor{keyword}{const}\ connection\_info\ \&info)\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bind\ the\ listener\ to\ an\ address}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ listen(\textcolor{keywordtype}{int}\ backlog)\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ listening\ for\ incoming\ connections}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ task<std::shared\_ptr<tcp\_socket\_descriptor>>\ accept()\ =\ 0;\ \textcolor{comment}{//\ Accept\ a\ new\ connection}}
 \DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \};}
 \DoxyCodeLine{00081\ }
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ std::shared\_ptr<tcp\_socket\_descriptor>\ make\_tcp\_socket\_descriptor();}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ std::shared\_ptr<tcp\_listener\_descriptor>\ make\_tcp\_listener\_descriptor();}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ std::shared\_ptr<udp\_socket\_descriptor>\ make\_udp\_socket\_descriptor(std::optional<ip\_version>\ version\ =\ std::nullopt);}
-\DoxyCodeLine{00085\ }
-\DoxyCodeLine{00086\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }udp\_socket\_descriptor}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ udp\_socket\_descriptor(std::optional<ip\_version>\ version)\ \{\}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \string~udp\_socket\_descriptor()\ =\ \textcolor{keywordflow}{default};}
 \DoxyCodeLine{00087\ }
-\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream}{tcp\_rstream}}}
-\DoxyCodeLine{00089\ \ \ \ \ \{}
-\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ std::shared\_ptr<detail::tcp\_socket\_descriptor>\ descriptor;}
-\DoxyCodeLine{00092\ }
-\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_aae00feafab1836549c4a20d0a3605505}{tcp\_rstream}}(std::shared\_ptr<detail::tcp\_socket\_descriptor>\ desc)\ :\ descriptor(desc)\ \{\}}
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_a0d1cc13840dbf02af17b7c543501a052}{\string~tcp\_rstream}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_ad34fc7d1726b735a537b790d451eef11}{tcp\_rstream}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream}{tcp\_rstream}}\ \&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream}{tcp\_rstream}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_a3e9351a3ee19896736981f6d390634b2}{operator=}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream}{tcp\_rstream}}\ \&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_ab5a75902ad87db98fb3e61677705e360}{tcp\_rstream}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream}{tcp\_rstream}}\ \&\&other)\ :\ descriptor(std::exchange(other.descriptor,\ nullptr))\ \{\}}
-\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream}{tcp\_rstream}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_a5784a4c6ddb913160ba63c181300a765}{operator=}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream}{tcp\_rstream}}\ \&\&other)}
-\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{this}\ !=\ \&other)}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ descriptor\ =\ std::exchange(other.descriptor,\ \textcolor{keyword}{nullptr});}
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00107\ }
-\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<size\_t>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_a30de24f6cb6e5e49aaa3c5adb5c9ec52}{recv}}(std::span<char>\ buffer)}
-\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ descriptor-\/>read(buffer);}
-\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00112\ }
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<std::optional<char>}}>\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_aefb848bbacae47ca5d0f1c9bc4942899}{recv}}()}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ task<void>\ close()\ =\ 0;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ bind(\textcolor{keyword}{const}\ connection\_info\ \&info)\ =\ 0;}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ task<size\_t>\ recvfrom(std::span<char>\ buffer,\ connection\_info\ \&info)\ =\ 0;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ task<size\_t>\ sendto(std::span<const\ char>\ buffer,\ \textcolor{keyword}{const}\ connection\_info\ \&info)\ =\ 0;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ std::shared\_ptr<tcp\_socket\_descriptor>\ make\_tcp\_socket\_descriptor();}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ std::shared\_ptr<tcp\_listener\_descriptor>\ make\_tcp\_listener\_descriptor();}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ std::shared\_ptr<udp\_socket\_descriptor>\ make\_udp\_socket\_descriptor(std::optional<ip\_version>\ version\ =\ std::nullopt);}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream}{tcp\_rstream}}}
+\DoxyCodeLine{00103\ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ std::shared\_ptr<detail::tcp\_socket\_descriptor>\ descriptor;}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_aae00feafab1836549c4a20d0a3605505}{tcp\_rstream}}(std::shared\_ptr<detail::tcp\_socket\_descriptor>\ desc)\ :\ descriptor(desc)\ \{\}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_a0d1cc13840dbf02af17b7c543501a052}{\string~tcp\_rstream}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_ad34fc7d1726b735a537b790d451eef11}{tcp\_rstream}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream}{tcp\_rstream}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream}{tcp\_rstream}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_a3e9351a3ee19896736981f6d390634b2}{operator=}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream}{tcp\_rstream}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_ab5a75902ad87db98fb3e61677705e360}{tcp\_rstream}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream}{tcp\_rstream}}\ \&\&other)\ :\ descriptor(std::exchange(other.descriptor,\ nullptr))\ \{\}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream}{tcp\_rstream}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_a5784a4c6ddb913160ba63c181300a765}{operator=}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream}{tcp\_rstream}}\ \&\&other)}
 \DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ std::array<char,\ 1>\ buf;}
-\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{co\_await}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_aefb848bbacae47ca5d0f1c9bc4942899}{recv}}(buf))}
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ buf[0];}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ std::nullopt;}
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00122\ }
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_a61cf30b0099b366fe40bf662f1a70509}{close}}()}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{this}\ !=\ \&other)}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ descriptor\ =\ std::exchange(other.descriptor,\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<size\_t>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_a30de24f6cb6e5e49aaa3c5adb5c9ec52}{recv}}(std::span<char>\ buffer)}
 \DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ descriptor-\/>shutdown(\mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688a3466fab4975481651940ed328aa990e4}{socket\_stream\_mode::READ}});}
-\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return};}
-\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00128\ \ \ \ \ \};}
-\DoxyCodeLine{00129\ }
-\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__readable__stream}{async\_readable\_stream<tcp\_rstream,\ char>}});}
-\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__buffered__readable__stream}{async\_buffered\_readable\_stream<tcp\_rstream,\ char>}});}
-\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__closeable__stream}{async\_closeable\_stream<tcp\_rstream,\ char>}});}
-\DoxyCodeLine{00133\ }
-\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream}{tcp\_wstream}}}
-\DoxyCodeLine{00135\ \ \ \ \ \{}
-\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ std::shared\_ptr<detail::tcp\_socket\_descriptor>\ descriptor;}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ descriptor-\/>read(buffer);}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<std::optional<char>}}>\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_aefb848bbacae47ca5d0f1c9bc4942899}{recv}}()}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ std::array<char,\ 1>\ buf;}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{co\_await}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_aefb848bbacae47ca5d0f1c9bc4942899}{recv}}(buf))}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ buf[0];}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ std::nullopt;}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00138\ }
-\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_a247bea3321e3c666a9eea2612de5211d}{tcp\_wstream}}(std::shared\_ptr<detail::tcp\_socket\_descriptor>\ desc)\ :\ descriptor(desc)\ \{\}}
-\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_acccf745d66d205931ec1d71cc662592d}{\string~tcp\_wstream}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_ad8f8b173326a63b72619662116af750e}{tcp\_wstream}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream}{tcp\_wstream}}\ \&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream}{tcp\_wstream}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_aa8e04153aa30a14a382d9c86c492fa63}{operator=}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream}{tcp\_wstream}}\ \&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_a70af1e7d471d109dc49d87fddd95f15b}{tcp\_wstream}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream}{tcp\_wstream}}\ \&\&other)\ :\ descriptor(std::exchange(other.descriptor,\ nullptr))\ \{\}}
-\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream}{tcp\_wstream}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_a8d38dd95d1ec9723bb489e27a4962a03}{operator=}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream}{tcp\_wstream}}\ \&\&other)}
-\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{this}\ !=\ \&other)}
-\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ descriptor\ =\ std::exchange(other.descriptor,\ \textcolor{keyword}{nullptr});}
-\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00153\ }
-\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<size\_t>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_a4557adf266c25d34196f6322b7b98f75}{send}}(std::span<const\ char>\ buffer)}
-\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ descriptor-\/>write(buffer);}
-\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00158\ }
-\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<bool>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_aa14c46fb23d62d367b5203d62b8ba900}{send}}(\textcolor{keywordtype}{char}\ b)}
-\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ std::array<char,\ 1>\ buf;}
-\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ buf[0]\ =\ b;}
-\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{co\_await}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_a4557adf266c25d34196f6322b7b98f75}{send}}(buf))}
-\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00169\ }
-\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_a969f3cc6c744feb7072b40d90807786f}{close}}()}
-\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ descriptor-\/>shutdown(\mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688ad4b9e47f65b6e79b010582f15785867e}{socket\_stream\_mode::WRITE}});}
-\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return};}
-\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00175\ \ \ \ \ \};}
-\DoxyCodeLine{00176\ }
-\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__writable__stream}{async\_writable\_stream<tcp\_wstream,\ char>}});}
-\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__buffered__writable__stream}{async\_buffered\_writable\_stream<tcp\_wstream,\ char>}});}
-\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__closeable__stream}{async\_closeable\_stream<tcp\_wstream,\ char>}});}
-\DoxyCodeLine{00180\ }
-\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket}{tcp\_socket}}}
-\DoxyCodeLine{00182\ \ \ \ \ \{}
-\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ std::shared\_ptr<detail::tcp\_socket\_descriptor>\ descriptor;}
-\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream}{tcp\_rstream}}\ read\_stream;}
-\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream}{tcp\_wstream}}\ write\_stream;}
-\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ read\_shutdown\{\textcolor{keyword}{false}\};}
-\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ write\_shutdown\{\textcolor{keyword}{false}\};}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_a61cf30b0099b366fe40bf662f1a70509}{close}}()}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ descriptor-\/>shutdown(\mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688a3466fab4975481651940ed328aa990e4}{socket\_stream\_mode::READ}});}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return};}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \};}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__readable__stream}{async\_readable\_stream<tcp\_rstream,\ char>}});}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__buffered__readable__stream}{async\_buffered\_readable\_stream<tcp\_rstream,\ char>}});}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__closeable__stream}{async\_closeable\_stream<tcp\_rstream,\ char>}});}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream}{tcp\_wstream}}}
+\DoxyCodeLine{00153\ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ std::shared\_ptr<detail::tcp\_socket\_descriptor>\ descriptor;}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_a247bea3321e3c666a9eea2612de5211d}{tcp\_wstream}}(std::shared\_ptr<detail::tcp\_socket\_descriptor>\ desc)\ :\ descriptor(desc)\ \{\}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_acccf745d66d205931ec1d71cc662592d}{\string~tcp\_wstream}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_ad8f8b173326a63b72619662116af750e}{tcp\_wstream}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream}{tcp\_wstream}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream}{tcp\_wstream}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_aa8e04153aa30a14a382d9c86c492fa63}{operator=}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream}{tcp\_wstream}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_a70af1e7d471d109dc49d87fddd95f15b}{tcp\_wstream}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream}{tcp\_wstream}}\ \&\&other)\ :\ descriptor(std::exchange(other.descriptor,\ nullptr))\ \{\}}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream}{tcp\_wstream}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_a8d38dd95d1ec9723bb489e27a4962a03}{operator=}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream}{tcp\_wstream}}\ \&\&other)}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{this}\ !=\ \&other)}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ descriptor\ =\ std::exchange(other.descriptor,\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<size\_t>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_a4557adf266c25d34196f6322b7b98f75}{send}}(std::span<const\ char>\ buffer)}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ descriptor-\/>write(buffer);}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<bool>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_aa14c46fb23d62d367b5203d62b8ba900}{send}}(\textcolor{keywordtype}{char}\ b)}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ std::array<char,\ 1>\ buf;}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ buf[0]\ =\ b;}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{co\_await}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_a4557adf266c25d34196f6322b7b98f75}{send}}(buf))}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00189\ }
-\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a2cbdad839e822e9276fe48b655c0b470}{tcp\_socket}}(std::shared\_ptr<detail::tcp\_socket\_descriptor>\ desc)\ :\ descriptor(desc),\ read\_stream(descriptor),\ write\_stream(descriptor)}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream_a969f3cc6c744feb7072b40d90807786f}{close}}()}
 \DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00194\ }
-\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a2f76a9538ce56241608d2ba1d3b0d72b}{\string~tcp\_socket}}()}
-\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacewebcraft_1_1async_aa32214c386ded164491af1d325b36e11}{fire\_and\_forget}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a746c0520b218211608b293fd39cd8c5c}{close}}());}
-\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00199\ }
-\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a4b7466e446a5fa678a7ba1c3fa5b9b99}{tcp\_socket}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket}{tcp\_socket}}\ \&\&other)\ noexcept}
-\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ :\ descriptor(std::exchange(other.descriptor,\ \textcolor{keyword}{nullptr})),}
-\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ read\_stream(std::move(other.read\_stream)),}
-\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ write\_stream(std::move(other.write\_stream))}
-\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00206\ }
-\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket}{tcp\_socket}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_aa69c25f253d3358853dedff3130f51ff}{operator=}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket}{tcp\_socket}}\ \&\&other)\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{this}\ !=\ \&other)}
-\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ descriptor\ =\ std::exchange(other.descriptor,\ \textcolor{keyword}{nullptr});}
-\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ read\_stream\ =\ std::move(other.read\_stream);}
-\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ write\_stream\ =\ std::move(other.write\_stream);}
-\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00217\ }
-\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a752996511bdda3f0aff66167e80ea015}{connect}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{connection\_info}}\ \&info)}
-\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!descriptor)}
-\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::logic\_error(\textcolor{stringliteral}{"{}Descriptor\ is\ null"{}});}
-\DoxyCodeLine{00222\ }
-\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ descriptor-\/>connect(info);}
-\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00225\ }
-\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream}{tcp\_rstream}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_ab400995cd34206abb90c0853e30fb0a0}{get\_readable\_stream}}()}
-\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!descriptor)}
-\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::logic\_error(\textcolor{stringliteral}{"{}Descriptor\ is\ null"{}});}
-\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ read\_stream;}
-\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00232\ }
-\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream}{tcp\_wstream}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a89cf069aa2d0e1404faa53f13b1117ee}{get\_writable\_stream}}()}
-\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!descriptor)}
-\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::logic\_error(\textcolor{stringliteral}{"{}Descriptor\ is\ null"{}});}
-\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ write\_stream;}
-\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00239\ }
-\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a0c833045b874efac508f3911911eebd7}{shutdown\_channel}}(\mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688}{socket\_stream\_mode}}\ mode)}
-\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!descriptor)}
-\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::logic\_error(\textcolor{stringliteral}{"{}Descriptor\ is\ null"{}});}
-\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ ==\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688a3466fab4975481651940ed328aa990e4}{socket\_stream\_mode::READ}}\ \&\&\ !read\_shutdown)}
-\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ descriptor-\/>shutdown(\mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688a3466fab4975481651940ed328aa990e4}{socket\_stream\_mode::READ}});}
-\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>read\_shutdown\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (mode\ ==\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688ad4b9e47f65b6e79b010582f15785867e}{socket\_stream\_mode::WRITE}}\ \&\&\ !write\_shutdown)}
-\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ descriptor-\/>shutdown(\mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688ad4b9e47f65b6e79b010582f15785867e}{socket\_stream\_mode::WRITE}});}
-\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>write\_shutdown\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00255\ }
-\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a746c0520b218211608b293fd39cd8c5c}{close}}()}
-\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (descriptor)}
-\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a0c833045b874efac508f3911911eebd7}{shutdown\_channel}}(\mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688a3466fab4975481651940ed328aa990e4}{socket\_stream\_mode::READ}});}
-\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a0c833045b874efac508f3911911eebd7}{shutdown\_channel}}(\mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688ad4b9e47f65b6e79b010582f15785867e}{socket\_stream\_mode::WRITE}});}
-\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ descriptor-\/>close();}
-\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ descriptor.reset();}
-\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ descriptor-\/>shutdown(\mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688ad4b9e47f65b6e79b010582f15785867e}{socket\_stream\_mode::WRITE}});}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return};}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00196\ \ \ \ \ \};}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__writable__stream}{async\_writable\_stream<tcp\_wstream,\ char>}});}
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__buffered__writable__stream}{async\_buffered\_writable\_stream<tcp\_wstream,\ char>}});}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptwebcraft_1_1async_1_1io_1_1async__closeable__stream}{async\_closeable\_stream<tcp\_wstream,\ char>}});}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket}{tcp\_socket}}}
+\DoxyCodeLine{00206\ \ \ \ \ \{}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ std::shared\_ptr<detail::tcp\_socket\_descriptor>\ descriptor;}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream}{tcp\_rstream}}\ read\_stream;}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream}{tcp\_wstream}}\ write\_stream;}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ read\_shutdown\{\textcolor{keyword}{false}\};}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ write\_shutdown\{\textcolor{keyword}{false}\};}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a2cbdad839e822e9276fe48b655c0b470}{tcp\_socket}}(std::shared\_ptr<detail::tcp\_socket\_descriptor>\ desc)\ :\ descriptor(desc),\ read\_stream(descriptor),\ write\_stream(descriptor)}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a2f76a9538ce56241608d2ba1d3b0d72b}{\string~tcp\_socket}}()}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacewebcraft_1_1async_aa32214c386ded164491af1d325b36e11}{fire\_and\_forget}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a746c0520b218211608b293fd39cd8c5c}{close}}());}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a4b7466e446a5fa678a7ba1c3fa5b9b99}{tcp\_socket}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket}{tcp\_socket}}\ \&\&other)\ noexcept}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ :\ descriptor(std::exchange(other.descriptor,\ \textcolor{keyword}{nullptr})),}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ read\_stream(std::move(other.read\_stream)),}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ write\_stream(std::move(other.write\_stream))}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket}{tcp\_socket}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_aa69c25f253d3358853dedff3130f51ff}{operator=}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket}{tcp\_socket}}\ \&\&other)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{this}\ !=\ \&other)}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ descriptor\ =\ std::exchange(other.descriptor,\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ read\_stream\ =\ std::move(other.read\_stream);}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ write\_stream\ =\ std::move(other.write\_stream);}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a752996511bdda3f0aff66167e80ea015}{connect}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{connection\_info}}\ \&info)}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!descriptor)}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::logic\_error(\textcolor{stringliteral}{"{}Descriptor\ is\ null"{}});}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ descriptor-\/>connect(info);}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream}{tcp\_rstream}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_ab400995cd34206abb90c0853e30fb0a0}{get\_readable\_stream}}()}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!descriptor)}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::logic\_error(\textcolor{stringliteral}{"{}Descriptor\ is\ null"{}});}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ read\_stream;}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream}{tcp\_wstream}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a89cf069aa2d0e1404faa53f13b1117ee}{get\_writable\_stream}}()}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!descriptor)}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::logic\_error(\textcolor{stringliteral}{"{}Descriptor\ is\ null"{}});}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ write\_stream;}
 \DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00266\ }
-\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a874d973c106e98eccad0384023bcf9b9}{get\_remote\_host}}()}
-\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ descriptor-\/>get\_remote\_host();}
-\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00271\ }
-\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ uint16\_t\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_af53ac4bf18067073e7b803019bd73f2b}{get\_remote\_port}}()}
-\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ descriptor-\/>get\_remote\_port();}
-\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00276\ \ \ \ \ \};}
-\DoxyCodeLine{00277\ }
-\DoxyCodeLine{00278\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener}{tcp\_listener}}}
-\DoxyCodeLine{00279\ \ \ \ \ \{}
-\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ std::shared\_ptr<detail::tcp\_listener\_descriptor>\ descriptor;}
-\DoxyCodeLine{00282\ }
-\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener_a1b19316f1ff277eb727458c3bb8a424e}{tcp\_listener}}(std::shared\_ptr<detail::tcp\_listener\_descriptor>\ desc)\ :\ descriptor(std::move(desc))\ \{\}}
-\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener_a7cd076d884bc5f1ce0696e684fb2cb34}{\string~tcp\_listener}}()}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a0c833045b874efac508f3911911eebd7}{shutdown\_channel}}(\mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688}{socket\_stream\_mode}}\ mode)}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!descriptor)}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::logic\_error(\textcolor{stringliteral}{"{}Descriptor\ is\ null"{}});}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mode\ ==\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688a3466fab4975481651940ed328aa990e4}{socket\_stream\_mode::READ}}\ \&\&\ !read\_shutdown)}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ descriptor-\/>shutdown(\mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688a3466fab4975481651940ed328aa990e4}{socket\_stream\_mode::READ}});}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>read\_shutdown\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (mode\ ==\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688ad4b9e47f65b6e79b010582f15785867e}{socket\_stream\_mode::WRITE}}\ \&\&\ !write\_shutdown)}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ descriptor-\/>shutdown(\mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688ad4b9e47f65b6e79b010582f15785867e}{socket\_stream\_mode::WRITE}});}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>write\_shutdown\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a746c0520b218211608b293fd39cd8c5c}{close}}()}
 \DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (descriptor)}
 \DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacewebcraft_1_1async_aa32214c386ded164491af1d325b36e11}{fire\_and\_forget}}(descriptor-\/>close());}
-\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00292\ }
-\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener_a1196a153a2c90209e77adf7ad9e2a934}{bind}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{connection\_info}}\ \&info)}
-\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ descriptor-\/>bind(info);}
-\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00297\ }
-\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener_a45f7a7594c2febf6c2c605faa5b41e0f}{listen}}(\textcolor{keywordtype}{int}\ backlog)}
-\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ descriptor-\/>listen(backlog);}
-\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00302\ }
-\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<tcp\_socket>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener_ac6f3e85681da6c5534dcb112aa6cb5f1}{accept}}()}
-\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{co\_await}\ descriptor-\/>accept();}
-\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00307\ }
-\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener_ac1a4b081de353b009038b3646a9fd3e0}{close}}()}
-\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (descriptor)}
-\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ descriptor-\/>close();}
-\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ descriptor.reset();}
-\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00316\ \ \ \ \ \};}
-\DoxyCodeLine{00317\ }
-\DoxyCodeLine{00318\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket}{udp\_socket}}}
-\DoxyCodeLine{00319\ \ \ \ \ \{}
-\DoxyCodeLine{00320\ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ std::shared\_ptr<detail::udp\_socket\_descriptor>\ descriptor;}
-\DoxyCodeLine{00322\ }
-\DoxyCodeLine{00323\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_a89dcd929f914f2ddc33cfc6c095293d6}{udp\_socket}}(std::shared\_ptr<detail::udp\_socket\_descriptor>\ desc)\ :\ descriptor(std::move(desc))\ \{\}}
-\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_a0b23dcc783c95098c0834354dbff46b5}{\string~udp\_socket}}()}
-\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacewebcraft_1_1async_aa32214c386ded164491af1d325b36e11}{fire\_and\_forget}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_ac7260cbae1666f2c520fd8597a2d57cd}{close}}());}
-\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00329\ }
-\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_ac7260cbae1666f2c520fd8597a2d57cd}{close}}()}
-\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (descriptor)}
-\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ descriptor-\/>close();}
-\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ descriptor.reset();}
-\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00338\ }
-\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_a4a7aa2353e562f9eb47ebe787c9b9a1d}{bind}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{connection\_info}}\ \&info)}
-\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ descriptor-\/>bind(info);}
-\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00343\ }
-\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<size\_t>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_a18751af1edf893b9eaeec9907b8db916}{recvfrom}}(std::span<char>\ buffer,\ \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{connection\_info}}\ \&info)}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a0c833045b874efac508f3911911eebd7}{shutdown\_channel}}(\mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688a3466fab4975481651940ed328aa990e4}{socket\_stream\_mode::READ}});}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a0c833045b874efac508f3911911eebd7}{shutdown\_channel}}(\mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688ad4b9e47f65b6e79b010582f15785867e}{socket\_stream\_mode::WRITE}});}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ descriptor-\/>close();}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ descriptor.reset();}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a874d973c106e98eccad0384023bcf9b9}{get\_remote\_host}}()}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ descriptor-\/>get\_remote\_host();}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ uint16\_t\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_af53ac4bf18067073e7b803019bd73f2b}{get\_remote\_port}}()}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ descriptor-\/>get\_remote\_port();}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00305\ \ \ \ \ \};}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener}{tcp\_listener}}}
+\DoxyCodeLine{00311\ \ \ \ \ \{}
+\DoxyCodeLine{00312\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ std::shared\_ptr<detail::tcp\_listener\_descriptor>\ descriptor;}
+\DoxyCodeLine{00314\ }
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener_a1b19316f1ff277eb727458c3bb8a424e}{tcp\_listener}}(std::shared\_ptr<detail::tcp\_listener\_descriptor>\ desc)\ :\ descriptor(std::move(desc))\ \{\}}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener_a7cd076d884bc5f1ce0696e684fb2cb34}{\string~tcp\_listener}}()}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (descriptor)}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacewebcraft_1_1async_aa32214c386ded164491af1d325b36e11}{fire\_and\_forget}}(descriptor-\/>close());}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener_a1196a153a2c90209e77adf7ad9e2a934}{bind}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{connection\_info}}\ \&info)}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ descriptor-\/>bind(info);}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener_a45f7a7594c2febf6c2c605faa5b41e0f}{listen}}(\textcolor{keywordtype}{int}\ backlog)}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ descriptor-\/>listen(backlog);}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<tcp\_socket>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener_ac6f3e85681da6c5534dcb112aa6cb5f1}{accept}}()}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{co\_await}\ descriptor-\/>accept();}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener_ac1a4b081de353b009038b3646a9fd3e0}{close}}()}
 \DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ descriptor-\/>recvfrom(buffer,\ info);}
-\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00348\ }
-\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<size\_t>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_acb7e3ca1b1c13e893134e022308c65a3}{sendto}}(std::span<const\ char>\ buffer,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{connection\_info}}\ \&info)}
-\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ descriptor-\/>sendto(buffer,\ info);}
-\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00353\ \ \ \ \ \};}
-\DoxyCodeLine{00354\ }
-\DoxyCodeLine{00355\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket}{tcp\_socket}}\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a482e358e1f53606e06109999484276b3}{make\_tcp\_socket}}()}
-\DoxyCodeLine{00356\ \ \ \ \ \{}
-\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket}{tcp\_socket}}(detail::make\_tcp\_socket\_descriptor());}
-\DoxyCodeLine{00358\ \ \ \ \ \}}
-\DoxyCodeLine{00359\ }
-\DoxyCodeLine{00360\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener}{tcp\_listener}}\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a861e0c806d177e378bae72a3cfb5f0e2}{make\_tcp\_listener}}()}
-\DoxyCodeLine{00361\ \ \ \ \ \{}
-\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener}{tcp\_listener}}(detail::make\_tcp\_listener\_descriptor());}
-\DoxyCodeLine{00363\ \ \ \ \ \}}
-\DoxyCodeLine{00364\ }
-\DoxyCodeLine{00365\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket}{udp\_socket}}\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a319519897370c3a984eff4980a5f6e18}{make\_udp\_socket}}(std::optional<ip\_version>\ version\ =\ std::nullopt)}
-\DoxyCodeLine{00366\ \ \ \ \ \{}
-\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket}{udp\_socket}}(detail::make\_udp\_socket\_descriptor(version));}
-\DoxyCodeLine{00368\ \ \ \ \ \}}
-\DoxyCodeLine{00369\ \}}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (descriptor)}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ descriptor-\/>close();}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ descriptor.reset();}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00352\ \ \ \ \ \};}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00357\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket}{udp\_socket}}}
+\DoxyCodeLine{00358\ \ \ \ \ \{}
+\DoxyCodeLine{00359\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ std::shared\_ptr<detail::udp\_socket\_descriptor>\ descriptor;}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_a89dcd929f914f2ddc33cfc6c095293d6}{udp\_socket}}(std::shared\_ptr<detail::udp\_socket\_descriptor>\ desc)\ :\ descriptor(std::move(desc))\ \{\}}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_a0b23dcc783c95098c0834354dbff46b5}{\string~udp\_socket}}()}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacewebcraft_1_1async_aa32214c386ded164491af1d325b36e11}{fire\_and\_forget}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_ac7260cbae1666f2c520fd8597a2d57cd}{close}}());}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00368\ }
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_ac7260cbae1666f2c520fd8597a2d57cd}{close}}()}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (descriptor)}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ descriptor-\/>close();}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ descriptor.reset();}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_a4a7aa2353e562f9eb47ebe787c9b9a1d}{bind}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{connection\_info}}\ \&info)}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ descriptor-\/>bind(info);}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00384\ }
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<size\_t>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_a18751af1edf893b9eaeec9907b8db916}{recvfrom}}(std::span<char>\ buffer,\ \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{connection\_info}}\ \&info)}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ descriptor-\/>recvfrom(buffer,\ info);}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00390\ }
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<size\_t>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket_acb7e3ca1b1c13e893134e022308c65a3}{sendto}}(std::span<const\ char>\ buffer,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{connection\_info}}\ \&info)}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ descriptor-\/>sendto(buffer,\ info);}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00396\ \ \ \ \ \};}
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00399\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket}{tcp\_socket}}\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a482e358e1f53606e06109999484276b3}{make\_tcp\_socket}}()}
+\DoxyCodeLine{00400\ \ \ \ \ \{}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket}{tcp\_socket}}(detail::make\_tcp\_socket\_descriptor());}
+\DoxyCodeLine{00402\ \ \ \ \ \}}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00405\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener}{tcp\_listener}}\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a861e0c806d177e378bae72a3cfb5f0e2}{make\_tcp\_listener}}()}
+\DoxyCodeLine{00406\ \ \ \ \ \{}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener}{tcp\_listener}}(detail::make\_tcp\_listener\_descriptor());}
+\DoxyCodeLine{00408\ \ \ \ \ \}}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00411\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket}{udp\_socket}}\ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a319519897370c3a984eff4980a5f6e18}{make\_udp\_socket}}(std::optional<ip\_version>\ version\ =\ std::nullopt)}
+\DoxyCodeLine{00412\ \ \ \ \ \{}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket}{udp\_socket}}(detail::make\_udp\_socket\_descriptor(version));}
+\DoxyCodeLine{00414\ \ \ \ \ \}}
+\DoxyCodeLine{00415\ \}}
 
 \end{DoxyCode}

@@ -1,5 +1,10 @@
 \doxysection{include/webcraft/async/when\+\_\+all.hpp File Reference}
 \hypertarget{when__all_8hpp}{}\label{when__all_8hpp}\index{include/webcraft/async/when\_all.hpp@{include/webcraft/async/when\_all.hpp}}
+
+
+Await combinator that waits for all awaitables in a range.  
+
+
 {\ttfamily \#include $<$vector$>$}\newline
 {\ttfamily \#include $<$optional$>$}\newline
 {\ttfamily \#include $<$ranges$>$}\newline
@@ -35,19 +40,25 @@ namespace \mbox{\hyperlink{namespacewebcraft_1_1async}{webcraft\+::async}}
 \begin{DoxyCompactItemize}
 \item 
 {\footnotesize template$<$typename T $>$ }\\using \mbox{\hyperlink{namespacewebcraft_1_1async_a8174852e651e90c6f296a823928af715}{webcraft\+::async\+::normalized\+\_\+result\+\_\+t}} = std\+::conditional\+\_\+t$<$ std\+::is\+\_\+void\+\_\+v$<$ \mbox{\hyperlink{namespacewebcraft_1_1async_a756c2303d30320ba433f8aa21010bd01}{awaitable\+\_\+resume\+\_\+t}}$<$ T $>$ $>$, std\+::monostate, \mbox{\hyperlink{namespacewebcraft_1_1async_a756c2303d30320ba433f8aa21010bd01}{awaitable\+\_\+resume\+\_\+t}}$<$ T $>$ $>$
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Normalizes awaitable result types by mapping {\ttfamily void} to {\ttfamily std\+::monostate}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 {\footnotesize template$<$std\+::ranges\+::input\+\_\+range Range, typename T  = std\+::ranges\+::range\+\_\+value\+\_\+t$<$\+Range$>$, typename Result  = awaitable\+\_\+resume\+\_\+t$<$\+T$>$$>$ \newline
 requires awaitable\+\_\+t$<$T$>$ \&\& (!std\+::is\+\_\+void\+\_\+v$<$Result$>$)}\\\mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ std\+::vector$<$ Result $>$ $>$ \mbox{\hyperlink{namespacewebcraft_1_1async_adefc58a669759c7bf7067728c34cfbf5}{webcraft\+::async\+::when\+\_\+all}} (Range \&\&tasks)
-\item 
+\begin{DoxyCompactList}\small\item\em Awaits all awaitables in a range and collects non-\/void results. \end{DoxyCompactList}\item 
 {\footnotesize template$<$std\+::ranges\+::input\+\_\+range Range, typename T  = std\+::ranges\+::range\+\_\+value\+\_\+t$<$\+Range$>$, typename Result  = awaitable\+\_\+resume\+\_\+t$<$\+T$>$$>$ \newline
 requires awaitable\+\_\+t$<$T$>$ \&\& std\+::is\+\_\+void\+\_\+v$<$Result$>$}\\\mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ void $>$ \mbox{\hyperlink{namespacewebcraft_1_1async_ab5be7b95a948cae4e62eae315112097d}{webcraft\+::async\+::when\+\_\+all}} (Range \&\&tasks)
-\item 
+\begin{DoxyCompactList}\small\item\em Awaits all void-\/returning awaitables in a range. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename... Tasks$>$ \newline
 requires (awaitable\+\_\+t$<$Tasks$>$ \&\& ...)}\\\mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ std\+::tuple$<$ \mbox{\hyperlink{namespacewebcraft_1_1async_a8174852e651e90c6f296a823928af715}{normalized\+\_\+result\+\_\+t}}$<$ Tasks $>$... $>$ $>$ \mbox{\hyperlink{namespacewebcraft_1_1async_a8101de822056b473833adc0e5408022b}{webcraft\+::async\+::when\+\_\+all}} (std\+::tuple$<$ Tasks... $>$ tasks)
-\item 
+\begin{DoxyCompactList}\small\item\em Awaits every awaitable in a tuple and returns a tuple of normalized results. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename... Tasks$>$ \newline
 requires (awaitable\+\_\+t$<$Tasks$>$ \&\& ...)}\\auto \mbox{\hyperlink{namespacewebcraft_1_1async_a13bbc27f5b631d3acb57bf3376614164}{webcraft\+::async\+::when\+\_\+all}} (Tasks \&\&...tasks)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Variadic convenience overload for {\ttfamily when\+\_\+all}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Await combinator that waits for all awaitables in a range. 
+
+{\ttfamily when\+\_\+all()} consumes a range of awaitables and returns results after every operation has completed. 

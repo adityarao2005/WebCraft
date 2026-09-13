@@ -2,18 +2,23 @@
 \hypertarget{classwebcraft_1_1async_1_1task__promise}{}\label{classwebcraft_1_1async_1_1task__promise}\index{webcraft::async::task\_promise$<$ T $>$@{webcraft::async::task\_promise$<$ T $>$}}
 
 
+Promise type backing {\ttfamily task\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} coroutines.  
+
+
+
+
 {\ttfamily \#include $<$task.\+hpp$>$}
 
 \doxysubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structwebcraft_1_1async_1_1task__promise_1_1final__awaiter}{final\+\_\+awaiter}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Final awaiter that resumes the continuation coroutine. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ T $>$ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_aaa6a37375784cffdc6307a6dea50f0aa}{get\+\_\+return\+\_\+object}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Builds the {\ttfamily task\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} object for this coroutine. \end{DoxyCompactList}\item 
 std\+::suspend\+\_\+never \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_a70b9c2a2f735f4fc922f2e82ef3b92cc}{initial\+\_\+suspend}} () noexcept
 \item 
 \mbox{\hyperlink{structwebcraft_1_1async_1_1task__promise_1_1final__awaiter}{final\+\_\+awaiter}} \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_adcae68841a340ad544d0a84f1dd97ce3}{final\+\_\+suspend}} () noexcept
@@ -33,6 +38,11 @@ std\+::coroutine\+\_\+handle \mbox{\hyperlink{classwebcraft_1_1async_1_1task__pr
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class webcraft\+::async\+::task\+\_\+promise$<$ T $>$}
+Promise type backing {\ttfamily task\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} coroutines. 
+
 \doxysubsection{Member Function Documentation}
 \Hypertarget{classwebcraft_1_1async_1_1task__promise_adcae68841a340ad544d0a84f1dd97ce3}\label{classwebcraft_1_1async_1_1task__promise_adcae68841a340ad544d0a84f1dd97ce3} 
 \index{webcraft::async::task\_promise$<$ T $>$@{webcraft::async::task\_promise$<$ T $>$}!final\_suspend@{final\_suspend}}
@@ -47,6 +57,10 @@ std\+::coroutine\+\_\+handle \mbox{\hyperlink{classwebcraft_1_1async_1_1task__pr
 \doxysubsubsection{\texorpdfstring{get\_return\_object()}{get\_return\_object()}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ T $>$ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise}{webcraft\+::async\+::task\+\_\+promise}}$<$ T $>$\+::get\+\_\+return\+\_\+object (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Builds the {\ttfamily task\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} object for this coroutine. 
 
 \Hypertarget{classwebcraft_1_1async_1_1task__promise_a70b9c2a2f735f4fc922f2e82ef3b92cc}\label{classwebcraft_1_1async_1_1task__promise_a70b9c2a2f735f4fc922f2e82ef3b92cc} 
 \index{webcraft::async::task\_promise$<$ T $>$@{webcraft::async::task\_promise$<$ T $>$}!initial\_suspend@{initial\_suspend}}

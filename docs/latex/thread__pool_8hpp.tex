@@ -1,5 +1,10 @@
 \doxysection{include/webcraft/async/thread\+\_\+pool.hpp File Reference}
 \hypertarget{thread__pool_8hpp}{}\label{thread__pool_8hpp}\index{include/webcraft/async/thread\_pool.hpp@{include/webcraft/async/thread\_pool.hpp}}
+
+
+Cooperative thread pool for executing queued work items.  
+
+
 {\ttfamily \#include $<$thread$>$}\newline
 {\ttfamily \#include $<$chrono$>$}\newline
 {\ttfamily \#include $<$vector$>$}\newline
@@ -30,11 +35,11 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1thread__pool__shutdown__error}{webcraft\+::async\+::thread\+\_\+pool\+\_\+shutdown\+\_\+error}}
-\item 
+\begin{DoxyCompactList}\small\item\em Exception reported when submitting work after shutdown. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1thread__pool__worker}{webcraft\+::async\+::thread\+\_\+pool\+\_\+worker}}
-\item 
+\begin{DoxyCompactList}\small\item\em Worker object that owns one pool thread. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1thread__pool}{webcraft\+::async\+::thread\+\_\+pool}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Dynamic thread pool for executing callable work items. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -42,3 +47,9 @@ namespace \mbox{\hyperlink{namespacewebcraft}{webcraft}}
 \item 
 namespace \mbox{\hyperlink{namespacewebcraft_1_1async}{webcraft\+::async}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Cooperative thread pool for executing queued work items. 
+
+This header exposes the thread-\/pool implementation used by runtime and async helper code to dispatch CPU-\/bound or deferred work. 

@@ -4,7 +4,7 @@
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{classwebcraft_1_1net_1_1util_1_1get__addr__info__error}{get\+\_\+addr\+\_\+info\+\_\+error}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Exception thrown for address-\/resolution failures. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
@@ -14,9 +14,9 @@ using \mbox{\hyperlink{namespacewebcraft_1_1net_1_1util_ab2b6e4887c083400ff40f68
 \begin{DoxyCompactItemize}
 \item 
 std\+::pair$<$ std\+::string, uint16\+\_\+t $>$ \mbox{\hyperlink{namespacewebcraft_1_1net_1_1util_a775955cd186c9fa74a1e9831a7e0969c}{addr\+\_\+to\+\_\+host\+\_\+port}} (const struct sockaddr\+\_\+storage \&addr)
-\item 
+\begin{DoxyCompactList}\small\item\em Converts a socket address into numeric host and port. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{namespacewebcraft_1_1net_1_1util_a96e3abcd87cfe0a3fc6a68e47cd3ca75}{host\+\_\+port\+\_\+to\+\_\+addr}} (const \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{webcraft\+::async\+::io\+::socket\+::connection\+\_\+info}} \&info, \mbox{\hyperlink{namespacewebcraft_1_1net_1_1util_ab2b6e4887c083400ff40f68f06545dcf}{on\+\_\+address\+\_\+resolved}} callback)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Resolves host/port and invokes a callback for each resolved address. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Typedef Documentation}
@@ -35,9 +35,20 @@ bool \mbox{\hyperlink{namespacewebcraft_1_1net_1_1util_a96e3abcd87cfe0a3fc6a68e4
 \doxysubsubsection{\texorpdfstring{addr\_to\_host\_port()}{addr\_to\_host\_port()}}
 {\footnotesize\ttfamily std\+::pair$<$ std\+::string, uint16\+\_\+t $>$ webcraft\+::net\+::util\+::addr\+\_\+to\+\_\+host\+\_\+port (\begin{DoxyParamCaption}\item[{const struct sockaddr\+\_\+storage \&}]{addr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Converts a socket address into numeric host and port. 
+
 \Hypertarget{namespacewebcraft_1_1net_1_1util_a96e3abcd87cfe0a3fc6a68e47cd3ca75}\label{namespacewebcraft_1_1net_1_1util_a96e3abcd87cfe0a3fc6a68e47cd3ca75} 
 \index{webcraft::net::util@{webcraft::net::util}!host\_port\_to\_addr@{host\_port\_to\_addr}}
 \index{host\_port\_to\_addr@{host\_port\_to\_addr}!webcraft::net::util@{webcraft::net::util}}
 \doxysubsubsection{\texorpdfstring{host\_port\_to\_addr()}{host\_port\_to\_addr()}}
 {\footnotesize\ttfamily bool webcraft\+::net\+::util\+::host\+\_\+port\+\_\+to\+\_\+addr (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{webcraft\+::async\+::io\+::socket\+::connection\+\_\+info}} \&}]{info,  }\item[{\mbox{\hyperlink{namespacewebcraft_1_1net_1_1util_ab2b6e4887c083400ff40f68f06545dcf}{on\+\_\+address\+\_\+resolved}}}]{callback }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Resolves host/port and invokes a callback for each resolved address. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if callback accepted one resolved address, otherwise {\ttfamily false}. 
+\end{DoxyReturn}

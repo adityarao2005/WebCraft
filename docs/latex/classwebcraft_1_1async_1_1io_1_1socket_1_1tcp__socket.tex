@@ -2,6 +2,11 @@
 \hypertarget{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket}{}\label{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket}\index{webcraft::async::io::socket::tcp\_socket@{webcraft::async::io::socket::tcp\_socket}}
 
 
+Full-\/duplex TCP socket abstraction.  
+
+
+
+
 {\ttfamily \#include $<$socket.\+hpp$>$}
 
 \doxysubsubsection*{Public Member Functions}
@@ -16,20 +21,23 @@
 \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket}{tcp\+\_\+socket}} \& \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_aa69c25f253d3358853dedff3130f51ff}{operator=}} (\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket}{tcp\+\_\+socket}} \&\&other) noexcept
 \item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ void $>$ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a752996511bdda3f0aff66167e80ea015}{connect}} (const \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{connection\+\_\+info}} \&info)
-\item 
+\begin{DoxyCompactList}\small\item\em Connects this socket to a remote endpoint. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream}{tcp\+\_\+rstream}} \& \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_ab400995cd34206abb90c0853e30fb0a0}{get\+\_\+readable\+\_\+stream}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Returns the readable stream endpoint. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream}{tcp\+\_\+wstream}} \& \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a89cf069aa2d0e1404faa53f13b1117ee}{get\+\_\+writable\+\_\+stream}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Returns the writable stream endpoint. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a0c833045b874efac508f3911911eebd7}{shutdown\+\_\+channel}} (\mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688}{socket\+\_\+stream\+\_\+mode}} mode)
-\item 
+\begin{DoxyCompactList}\small\item\em Shuts down the requested socket channel once. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ void $>$ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a746c0520b218211608b293fd39cd8c5c}{close}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Closes both channels and the underlying descriptor. \end{DoxyCompactList}\item 
 std\+::string \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a874d973c106e98eccad0384023bcf9b9}{get\+\_\+remote\+\_\+host}} ()
 \item 
 uint16\+\_\+t \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_af53ac4bf18067073e7b803019bd73f2b}{get\+\_\+remote\+\_\+port}} ()
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Full-\/duplex TCP socket abstraction. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a2cbdad839e822e9276fe48b655c0b470}\label{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a2cbdad839e822e9276fe48b655c0b470} 
@@ -59,17 +67,29 @@ uint16\+\_\+t \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__so
 \doxysubsubsection{\texorpdfstring{close()}{close()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ void $>$ webcraft\+::async\+::io\+::socket\+::tcp\+\_\+socket\+::close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Closes both channels and the underlying descriptor. 
+
 \Hypertarget{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a752996511bdda3f0aff66167e80ea015}\label{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a752996511bdda3f0aff66167e80ea015} 
 \index{webcraft::async::io::socket::tcp\_socket@{webcraft::async::io::socket::tcp\_socket}!connect@{connect}}
 \index{connect@{connect}!webcraft::async::io::socket::tcp\_socket@{webcraft::async::io::socket::tcp\_socket}}
 \doxysubsubsection{\texorpdfstring{connect()}{connect()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ void $>$ webcraft\+::async\+::io\+::socket\+::tcp\+\_\+socket\+::connect (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{connection\+\_\+info}} \&}]{info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Connects this socket to a remote endpoint. 
+
 \Hypertarget{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_ab400995cd34206abb90c0853e30fb0a0}\label{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_ab400995cd34206abb90c0853e30fb0a0} 
 \index{webcraft::async::io::socket::tcp\_socket@{webcraft::async::io::socket::tcp\_socket}!get\_readable\_stream@{get\_readable\_stream}}
 \index{get\_readable\_stream@{get\_readable\_stream}!webcraft::async::io::socket::tcp\_socket@{webcraft::async::io::socket::tcp\_socket}}
 \doxysubsubsection{\texorpdfstring{get\_readable\_stream()}{get\_readable\_stream()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream}{tcp\+\_\+rstream}} \& webcraft\+::async\+::io\+::socket\+::tcp\+\_\+socket\+::get\+\_\+readable\+\_\+stream (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the readable stream endpoint. 
 
 \Hypertarget{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a874d973c106e98eccad0384023bcf9b9}\label{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_a874d973c106e98eccad0384023bcf9b9} 
 \index{webcraft::async::io::socket::tcp\_socket@{webcraft::async::io::socket::tcp\_socket}!get\_remote\_host@{get\_remote\_host}}
@@ -89,6 +109,10 @@ uint16\+\_\+t \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__so
 \doxysubsubsection{\texorpdfstring{get\_writable\_stream()}{get\_writable\_stream()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream}{tcp\+\_\+wstream}} \& webcraft\+::async\+::io\+::socket\+::tcp\+\_\+socket\+::get\+\_\+writable\+\_\+stream (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Returns the writable stream endpoint. 
+
 \Hypertarget{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_aa69c25f253d3358853dedff3130f51ff}\label{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket_aa69c25f253d3358853dedff3130f51ff} 
 \index{webcraft::async::io::socket::tcp\_socket@{webcraft::async::io::socket::tcp\_socket}!operator=@{operator=}}
 \index{operator=@{operator=}!webcraft::async::io::socket::tcp\_socket@{webcraft::async::io::socket::tcp\_socket}}
@@ -100,6 +124,10 @@ uint16\+\_\+t \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__so
 \index{shutdown\_channel@{shutdown\_channel}!webcraft::async::io::socket::tcp\_socket@{webcraft::async::io::socket::tcp\_socket}}
 \doxysubsubsection{\texorpdfstring{shutdown\_channel()}{shutdown\_channel()}}
 {\footnotesize\ttfamily void webcraft\+::async\+::io\+::socket\+::tcp\+\_\+socket\+::shutdown\+\_\+channel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688}{socket\+\_\+stream\+\_\+mode}}}]{mode }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Shuts down the requested socket channel once. 
 
 
 

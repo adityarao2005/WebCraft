@@ -18,6 +18,14 @@
 // Licenced under MIT license. See LICENSE.txt for details.
 ///////////////////////////////////////////////////////////////////////////////
 
+/**
+ * @file async/async_generator.hpp
+ * @brief Async pull-based generator for coroutine streams.
+ *
+ * This header provides `webcraft::async::async_generator<T>` for producing
+ * values lazily where each iteration step may suspend asynchronously.
+ */
+
 namespace cppcoro
 {
     template <typename T>
@@ -416,11 +424,15 @@ namespace cppcoro
 
 namespace webcraft::async
 {
+    /** @brief Async generator type alias used by WebCraft APIs. */
     template <typename T>
     using async_generator = cppcoro::async_generator<T>;
 
 }
 
+/**
+ * @brief Helper macro to iterate async generators inside coroutines.
+ */
 #define for_each_async(value, gen, code) \
     auto _it = co_await gen.begin();     \
     while (_it != gen.end())             \

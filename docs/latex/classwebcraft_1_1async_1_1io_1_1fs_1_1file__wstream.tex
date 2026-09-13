@@ -2,11 +2,17 @@
 \hypertarget{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream}{}\label{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream}\index{webcraft::async::io::fs::file\_wstream@{webcraft::async::io::fs::file\_wstream}}
 
 
+Async writable stream over a file descriptor.  
+
+
+
+
 {\ttfamily \#include $<$fs.\+hpp$>$}
 
 
 
-Inheritance diagram for webcraft\+::async\+::io\+::fs\+::file\+\_\+wstream\+:\nopagebreak
+Inheritance diagram for webcraft\+::async\+::io\+::fs\+::file\+\_\+wstream\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -15,7 +21,8 @@ Inheritance diagram for webcraft\+::async\+::io\+::fs\+::file\+\_\+wstream\+:\no
 \end{figure}
 
 
-Collaboration diagram for webcraft\+::async\+::io\+::fs\+::file\+\_\+wstream\+:\nopagebreak
+Collaboration diagram for webcraft\+::async\+::io\+::fs\+::file\+\_\+wstream\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -38,10 +45,13 @@ Collaboration diagram for webcraft\+::async\+::io\+::fs\+::file\+\_\+wstream\+:\
 \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream}{file\+\_\+wstream}} \& \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream_a73e89414568153e4b7094ecef949d61b}{operator=}} (const \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream}{file\+\_\+wstream}} \&)=delete
 \item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ size\+\_\+t $>$ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream_a6ddae28821be92050d80133b28860e4a}{send}} (std\+::span$<$ char $>$ buffer)
-\item 
+\begin{DoxyCompactList}\small\item\em Writes bytes from {\ttfamily buffer} to the file. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ bool $>$ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream_a9388248b0b00b31de79967f28c49827a}{send}} (char b)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Writes a single byte to the file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Async writable stream over a file descriptor. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream_a11dd6b7f5ec1584228dc6d69e6fee53d}\label{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream_a11dd6b7f5ec1584228dc6d69e6fee53d} 
@@ -89,11 +99,19 @@ Collaboration diagram for webcraft\+::async\+::io\+::fs\+::file\+\_\+wstream\+:\
 \doxysubsubsection{\texorpdfstring{send()}{send()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ bool $>$ webcraft\+::async\+::io\+::fs\+::file\+\_\+wstream\+::send (\begin{DoxyParamCaption}\item[{char}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Writes a single byte to the file. 
+
 \Hypertarget{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream_a6ddae28821be92050d80133b28860e4a}\label{classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream_a6ddae28821be92050d80133b28860e4a} 
 \index{webcraft::async::io::fs::file\_wstream@{webcraft::async::io::fs::file\_wstream}!send@{send}}
 \index{send@{send}!webcraft::async::io::fs::file\_wstream@{webcraft::async::io::fs::file\_wstream}}
 \doxysubsubsection{\texorpdfstring{send()}{send()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ size\+\_\+t $>$ webcraft\+::async\+::io\+::fs\+::file\+\_\+wstream\+::send (\begin{DoxyParamCaption}\item[{std\+::span$<$ char $>$}]{buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Writes bytes from {\ttfamily buffer} to the file. 
 
 
 

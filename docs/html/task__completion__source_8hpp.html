@@ -96,6 +96,9 @@ $(document).ready(function(){initNavTree('task__completion__source_8hpp.html',''
   <div class="headertitle"><div class="title">task_completion_source.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>External completion source for manually-resolved tasks.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;coroutine&gt;</code><br />
 <code>#include &lt;type_traits&gt;</code><br />
 <code>#include &lt;utility&gt;</code><br />
@@ -107,7 +110,7 @@ Include dependency graph for task_completion_source.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="task__completion__source_8hpp__incl.png" border="0" usemap="#ainclude_2webcraft_2async_2task__completion__source_8hpp" alt=""/></div>
 <map name="ainclude_2webcraft_2async_2task__completion__source_8hpp" id="ainclude_2webcraft_2async_2task__completion__source_8hpp">
-<area shape="rect" title=" " alt="" coords="144,5,356,45"/>
+<area shape="rect" title="External completion source for manually&#45;resolved tasks." alt="" coords="144,5,356,45"/>
 <area shape="rect" title=" " alt="" coords="295,240,378,265"/>
 <area shape="poly" title=" " alt="" coords="182,48,112,73,78,88,48,106,25,125,12,146,10,167,22,190,38,203,63,214,132,231,211,241,282,247,281,252,210,247,131,236,62,219,35,208,17,194,4,168,7,144,21,121,45,101,76,83,110,68,180,43"/>
 <area shape="rect" title=" " alt="" coords="373,93,465,119"/>
@@ -118,16 +121,16 @@ Include dependency graph for task_completion_source.hpp:</div>
 <area shape="poly" title=" " alt="" coords="241,47,176,156,171,153,236,44"/>
 <area shape="rect" title=" " alt="" coords="489,93,552,119"/>
 <area shape="poly" title=" " alt="" coords="316,43,477,89,476,94,314,48"/>
-<area shape="rect" href="task_8hpp.html" title=" " alt="" coords="271,93,349,119"/>
+<area shape="rect" href="task_8hpp.html" title="Core coroutine task type used across WebCraft async APIs." alt="" coords="271,93,349,119"/>
 <area shape="poly" title=" " alt="" coords="267,44,295,81,291,84,263,47"/>
 <area shape="poly" title=" " alt="" coords="316,118,327,166,337,226,331,227,322,167,311,120"/>
 <area shape="poly" title=" " alt="" coords="271,121,106,168,105,163,270,116"/>
 <area shape="poly" title=" " alt="" coords="287,121,198,163,195,158,285,116"/>
 <area shape="rect" title=" " alt="" coords="501,240,581,265"/>
 <area shape="poly" title=" " alt="" coords="350,114,450,140,493,153,517,165,528,179,535,194,542,226,537,227,530,196,523,181,514,169,491,158,448,145,349,119"/>
-<area shape="rect" href="awaitable_8hpp.html" title=" " alt="" coords="389,167,503,192"/>
+<area shape="rect" href="awaitable_8hpp.html" title="Awaitable concepts and type traits." alt="" coords="389,167,503,192"/>
 <area shape="poly" title=" " alt="" coords="333,116,413,158,411,163,331,121"/>
-<area shape="rect" href="event__signal_8hpp.html" title=" " alt="" coords="578,167,711,192"/>
+<area shape="rect" href="event__signal_8hpp.html" title="Lightweight thread&#45;based signaling primitive for sync waiting." alt="" coords="578,167,711,192"/>
 <area shape="poly" title=" " alt="" coords="351,114,361,116,576,161,575,167,360,121,349,119"/>
 <area shape="rect" title=" " alt="" coords="735,167,815,192"/>
 <area shape="poly" title=" " alt="" coords="350,114,361,116,461,131,540,140,620,149,722,164,721,169,619,154,539,145,460,137,360,121,349,119"/>
@@ -152,8 +155,8 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="task__completion__source_8hpp__dep__incl.png" border="0" usemap="#ainclude_2webcraft_2async_2task__completion__source_8hppdep" alt=""/></div>
 <map name="ainclude_2webcraft_2async_2task__completion__source_8hppdep" id="ainclude_2webcraft_2async_2task__completion__source_8hppdep">
-<area shape="rect" title=" " alt="" coords="5,5,217,45"/>
-<area shape="rect" href="async_8hpp.html" title=" " alt="" coords="26,93,197,133"/>
+<area shape="rect" title="External completion source for manually&#45;resolved tasks." alt="" coords="5,5,217,45"/>
+<area shape="rect" href="async_8hpp.html" title="Umbrella include for the public asynchronous programming API." alt="" coords="26,93,197,133"/>
 <area shape="poly" title=" " alt="" coords="114,59,114,93,109,93,109,59"/>
 </map>
 </div>
@@ -163,12 +166,16 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1task__completion__source__base.html">webcraft::async::task_completion_source_base</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shared state for manual task completion sources.  <a href="classwebcraft_1_1async_1_1task__completion__source__base.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structwebcraft_1_1async_1_1task__completion__source__base_1_1awaitable.html">webcraft::async::task_completion_source_base::awaitable</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal awaiter used by <code><a class="el" href="classwebcraft_1_1async_1_1task__completion__source.html#a2e407b053f2e1c130b2e47ed9ae40548" title="Returns the awaitable task linked to this completion source.">task_completion_source::task()</a></code>.  <a href="structwebcraft_1_1async_1_1task__completion__source__base_1_1awaitable.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1task__completion__source.html">webcraft::async::task_completion_source&lt; T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manual completion source for <code>task&lt;T&gt;</code>.  <a href="classwebcraft_1_1async_1_1task__completion__source.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1task__completion__source_3_01void_01_4.html">webcraft::async::task_completion_source&lt; void &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manual completion source specialization for <code>task&lt;void&gt;</code>.  <a href="classwebcraft_1_1async_1_1task__completion__source_3_01void_01_4.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -178,7 +185,10 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespacewebcraft_1_1async" id="r_namespacewebcraft_1_1async"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async.html">webcraft::async</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>External completion source for manually-resolved tasks. </p>
+<p>Use <code>task_completion_source&lt;T&gt;</code> when bridging callback-driven code into coroutines and you need to complete a <code>task&lt;T&gt;</code> from outside the coroutine. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

@@ -99,16 +99,21 @@ $(document).ready(function(){initNavTree('classwebcraft_1_1async_1_1task__promis
 </div><!--header-->
 <div class="contents">
 
+<p>Promise type backing <code>task&lt;T&gt;</code> coroutines.  
+ <a href="classwebcraft_1_1async_1_1task__promise.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="task_8hpp_source.html">task.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structwebcraft_1_1async_1_1task__promise_1_1final__awaiter.html">final_awaiter</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Final awaiter that resumes the continuation coroutine.  <a href="structwebcraft_1_1async_1_1task__promise_1_1final__awaiter.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aaa6a37375784cffdc6307a6dea50f0aa" id="r_aaa6a37375784cffdc6307a6dea50f0aa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1task__promise.html#aaa6a37375784cffdc6307a6dea50f0aa">get_return_object</a> ()</td></tr>
+<tr class="memdesc:aaa6a37375784cffdc6307a6dea50f0aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds the <code>task&lt;T&gt;</code> object for this coroutine.  <br /></td></tr>
 <tr class="separator:aaa6a37375784cffdc6307a6dea50f0aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70b9c2a2f735f4fc922f2e82ef3b92cc" id="r_a70b9c2a2f735f4fc922f2e82ef3b92cc"><td class="memItemLeft" align="right" valign="top">std::suspend_never&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1task__promise.html#a70b9c2a2f735f4fc922f2e82ef3b92cc">initial_suspend</a> () noexcept</td></tr>
 <tr class="separator:a70b9c2a2f735f4fc922f2e82ef3b92cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -128,7 +133,10 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a06c76463e202811b6d3afcba83bd57df" id="r_a06c76463e202811b6d3afcba83bd57df"><td class="memItemLeft" align="right" valign="top">std::coroutine_handle&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1task__promise.html#a06c76463e202811b6d3afcba83bd57df">continuation</a></td></tr>
 <tr class="separator:a06c76463e202811b6d3afcba83bd57df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename T&gt;<br />
+class webcraft::async::task_promise&lt; T &gt;</div><p>Promise type backing <code>task&lt;T&gt;</code> coroutines. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="adcae68841a340ad544d0a84f1dd97ce3" name="adcae68841a340ad544d0a84f1dd97ce3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adcae68841a340ad544d0a84f1dd97ce3">&#9670;&#160;</a></span>final_suspend()</h2>
 
@@ -172,6 +180,8 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Builds the <code>task&lt;T&gt;</code> object for this coroutine. </p>
 
 </div>
 </div>

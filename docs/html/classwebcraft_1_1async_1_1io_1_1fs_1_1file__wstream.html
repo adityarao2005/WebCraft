@@ -97,13 +97,16 @@ $(document).ready(function(){initNavTree('classwebcraft_1_1async_1_1io_1_1fs_1_1
 </div><!--header-->
 <div class="contents">
 
+<p>Async writable stream over a file descriptor.  
+ <a href="classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="fs_8hpp_source.html">fs.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for webcraft::async::io::fs::file_wstream:</div>
 <div class="dyncontent">
 <div class="center"><img src="classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream__inherit__graph.png" border="0" usemap="#awebcraft_1_1async_1_1io_1_1fs_1_1file__wstream_inherit__map" alt="Inheritance graph"/></div>
 <map name="awebcraft_1_1async_1_1io_1_1fs_1_1file__wstream_inherit__map" id="awebcraft_1_1async_1_1io_1_1fs_1_1file__wstream_inherit__map">
-<area shape="rect" title=" " alt="" coords="17,93,161,133"/>
+<area shape="rect" title="Async writable stream over a file descriptor." alt="" coords="17,93,161,133"/>
 <area shape="rect" title=" " alt="" coords="5,5,173,45"/>
 <area shape="poly" title=" " alt="" coords="92,59,92,93,87,93,87,59"/>
 </map>
@@ -113,7 +116,7 @@ Collaboration diagram for webcraft::async::io::fs::file_wstream:</div>
 <div class="dyncontent">
 <div class="center"><img src="classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream__coll__graph.png" border="0" usemap="#awebcraft_1_1async_1_1io_1_1fs_1_1file__wstream_coll__map" alt="Collaboration graph"/></div>
 <map name="awebcraft_1_1async_1_1io_1_1fs_1_1file__wstream_coll__map" id="awebcraft_1_1async_1_1io_1_1fs_1_1file__wstream_coll__map">
-<area shape="rect" title=" " alt="" coords="17,93,161,133"/>
+<area shape="rect" title="Async writable stream over a file descriptor." alt="" coords="17,93,161,133"/>
 <area shape="rect" title=" " alt="" coords="5,5,173,45"/>
 <area shape="poly" title=" " alt="" coords="92,59,92,93,87,93,87,59"/>
 </map>
@@ -134,11 +137,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a73e89414568153e4b7094ecef949d61b" id="r_a73e89414568153e4b7094ecef949d61b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream.html">file_wstream</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream.html#a73e89414568153e4b7094ecef949d61b">operator=</a> (const <a class="el" href="classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream.html">file_wstream</a> &amp;)=delete</td></tr>
 <tr class="separator:a73e89414568153e4b7094ecef949d61b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ddae28821be92050d80133b28860e4a" id="r_a6ddae28821be92050d80133b28860e4a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream.html#a6ddae28821be92050d80133b28860e4a">send</a> (std::span&lt; char &gt; buffer)</td></tr>
+<tr class="memdesc:a6ddae28821be92050d80133b28860e4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes bytes from <code>buffer</code> to the file.  <br /></td></tr>
 <tr class="separator:a6ddae28821be92050d80133b28860e4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9388248b0b00b31de79967f28c49827a" id="r_a9388248b0b00b31de79967f28c49827a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1fs_1_1file__wstream.html#a9388248b0b00b31de79967f28c49827a">send</a> (char b)</td></tr>
+<tr class="memdesc:a9388248b0b00b31de79967f28c49827a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a single byte to the file.  <br /></td></tr>
 <tr class="separator:a9388248b0b00b31de79967f28c49827a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Async writable stream over a file descriptor. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a11dd6b7f5ec1584228dc6d69e6fee53d" name="a11dd6b7f5ec1584228dc6d69e6fee53d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a11dd6b7f5ec1584228dc6d69e6fee53d">&#9670;&#160;</a></span>file_wstream() <span class="overload">[1/3]</span></h2>
 
@@ -319,6 +326,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Writes a single byte to the file. </p>
+
 </div>
 </div>
 <a id="a6ddae28821be92050d80133b28860e4a" name="a6ddae28821be92050d80133b28860e4a"></a>
@@ -344,6 +353,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Writes bytes from <code>buffer</code> to the file. </p>
 
 </div>
 </div>

@@ -94,15 +94,20 @@ $(document).ready(function(){initNavTree('conceptwebcraft_1_1async_1_1io_1_1asyn
 </div><!--header-->
 <div class="contents">
 
+<p>Concept for writable streams that also support buffered sends.  
+<a href="conceptwebcraft_1_1async_1_1io_1_1async__buffered__writable__stream.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="core_8hpp_source.html">core.hpp</a>&gt;</code></p>
 <h2 class="groupheader">Concept definition</h2>
 <div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived, <span class="keyword">typename</span> R&gt;</div>
 <div class="line"><span class="keyword">concept </span><a class="code hl_concept" href="conceptwebcraft_1_1async_1_1io_1_1async__buffered__writable__stream.html">webcraft::async::io::async_buffered_writable_stream</a> =  <a class="code hl_concept" href="conceptwebcraft_1_1async_1_1io_1_1async__writable__stream.html">async_writable_stream&lt;Derived, R&gt;</a> &amp;&amp; <span class="keyword">requires</span>(Derived &amp;stream, std::span&lt;R&gt; buffer) {</div>
 <div class="line">        { stream.send(buffer) } -&gt; std::same_as&lt;task&lt;size_t&gt;&gt;;</div>
 <div class="line">    }</div>
-<div class="ttc" id="aconceptwebcraft_1_1async_1_1io_1_1async__buffered__writable__stream_html"><div class="ttname"><a href="conceptwebcraft_1_1async_1_1io_1_1async__buffered__writable__stream.html">webcraft::async::io::async_buffered_writable_stream</a></div><div class="ttdef"><b>Definition</b> core.hpp:41</div></div>
-<div class="ttc" id="aconceptwebcraft_1_1async_1_1io_1_1async__writable__stream_html"><div class="ttname"><a href="conceptwebcraft_1_1async_1_1io_1_1async__writable__stream.html">webcraft::async::io::async_writable_stream</a></div><div class="ttdef"><b>Definition</b> core.hpp:36</div></div>
-</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aconceptwebcraft_1_1async_1_1io_1_1async__buffered__writable__stream_html"><div class="ttname"><a href="conceptwebcraft_1_1async_1_1io_1_1async__buffered__writable__stream.html">webcraft::async::io::async_buffered_writable_stream</a></div><div class="ttdoc">Concept for writable streams that also support buffered sends.</div><div class="ttdef"><b>Definition</b> core.hpp:53</div></div>
+<div class="ttc" id="aconceptwebcraft_1_1async_1_1io_1_1async__writable__stream_html"><div class="ttname"><a href="conceptwebcraft_1_1async_1_1io_1_1async__writable__stream.html">webcraft::async::io::async_writable_stream</a></div><div class="ttdoc">Concept for streams exposing send(value) operations.</div><div class="ttdef"><b>Definition</b> core.hpp:47</div></div>
+</div><!-- fragment --><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Concept for writable streams that also support buffered sends. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

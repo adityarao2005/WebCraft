@@ -2,6 +2,11 @@
 \hypertarget{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream}{}\label{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream}\index{webcraft::async::io::socket::tcp\_rstream@{webcraft::async::io::socket::tcp\_rstream}}
 
 
+Read-\/only stream view over a connected TCP socket.  
+
+
+
+
 {\ttfamily \#include $<$socket.\+hpp$>$}
 
 \doxysubsubsection*{Public Member Functions}
@@ -20,12 +25,15 @@
 \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream}{tcp\+\_\+rstream}} \& \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_a5784a4c6ddb913160ba63c181300a765}{operator=}} (\mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream}{tcp\+\_\+rstream}} \&\&other)
 \item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ size\+\_\+t $>$ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_a30de24f6cb6e5e49aaa3c5adb5c9ec52}{recv}} (std\+::span$<$ char $>$ buffer)
-\item 
+\begin{DoxyCompactList}\small\item\em Reads bytes into {\ttfamily buffer}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ std\+::optional$<$ char $>$ $>$ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_aefb848bbacae47ca5d0f1c9bc4942899}{recv}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Reads one byte, or {\ttfamily std\+::nullopt} if no data is available. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ void $>$ \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_a61cf30b0099b366fe40bf662f1a70509}{close}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Shuts down the read side of the socket. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Read-\/only stream view over a connected TCP socket. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_aae00feafab1836549c4a20d0a3605505}\label{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_aae00feafab1836549c4a20d0a3605505} 
@@ -61,6 +69,10 @@
 \doxysubsubsection{\texorpdfstring{close()}{close()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ void $>$ webcraft\+::async\+::io\+::socket\+::tcp\+\_\+rstream\+::close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Shuts down the read side of the socket. 
+
 \Hypertarget{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_a5784a4c6ddb913160ba63c181300a765}\label{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_a5784a4c6ddb913160ba63c181300a765} 
 \index{webcraft::async::io::socket::tcp\_rstream@{webcraft::async::io::socket::tcp\_rstream}!operator=@{operator=}}
 \index{operator=@{operator=}!webcraft::async::io::socket::tcp\_rstream@{webcraft::async::io::socket::tcp\_rstream}}
@@ -79,11 +91,19 @@
 \doxysubsubsection{\texorpdfstring{recv()}{recv()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ std\+::optional$<$ char $>$ $>$ webcraft\+::async\+::io\+::socket\+::tcp\+\_\+rstream\+::recv (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Reads one byte, or {\ttfamily std\+::nullopt} if no data is available. 
+
 \Hypertarget{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_a30de24f6cb6e5e49aaa3c5adb5c9ec52}\label{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream_a30de24f6cb6e5e49aaa3c5adb5c9ec52} 
 \index{webcraft::async::io::socket::tcp\_rstream@{webcraft::async::io::socket::tcp\_rstream}!recv@{recv}}
 \index{recv@{recv}!webcraft::async::io::socket::tcp\_rstream@{webcraft::async::io::socket::tcp\_rstream}}
 \doxysubsubsection{\texorpdfstring{recv()}{recv()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}$<$ size\+\_\+t $>$ webcraft\+::async\+::io\+::socket\+::tcp\+\_\+rstream\+::recv (\begin{DoxyParamCaption}\item[{std\+::span$<$ char $>$}]{buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reads bytes into {\ttfamily buffer}. 
 
 
 

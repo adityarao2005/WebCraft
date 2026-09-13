@@ -4,37 +4,37 @@
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info}{connection\+\_\+info}}
-\item 
+\begin{DoxyCompactList}\small\item\em Host/port endpoint description. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener}{tcp\+\_\+listener}}
-\item 
+\begin{DoxyCompactList}\small\item\em TCP server listener abstraction. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__rstream}{tcp\+\_\+rstream}}
-\item 
+\begin{DoxyCompactList}\small\item\em Read-\/only stream view over a connected TCP socket. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket}{tcp\+\_\+socket}}
-\item 
+\begin{DoxyCompactList}\small\item\em Full-\/duplex TCP socket abstraction. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__wstream}{tcp\+\_\+wstream}}
-\item 
+\begin{DoxyCompactList}\small\item\em Write-\/only stream view over a connected TCP socket. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket}{udp\+\_\+socket}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em UDP socket abstraction for datagram send/receive. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
 enum class \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a139a43e64f79b86d82279ded4b49df98}{ip\+\_\+version}} \{ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a139a43e64f79b86d82279ded4b49df98a42a9137a05a60eb752dcdf982e717626}{IPv4}}
 , \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a139a43e64f79b86d82279ded4b49df98afdb7cb8f657426e7c409bfd6d1a36ce4}{IPv6}}
  \}
-\item 
+\begin{DoxyCompactList}\small\item\em IP address family selection. \end{DoxyCompactList}\item 
 enum class \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688}{socket\+\_\+stream\+\_\+mode}} \{ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688a3466fab4975481651940ed328aa990e4}{READ}}
 , \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688ad4b9e47f65b6e79b010582f15785867e}{WRITE}}
  \}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Direction to shutdown in duplex stream sockets. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket}{tcp\+\_\+socket}} \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a482e358e1f53606e06109999484276b3}{make\+\_\+tcp\+\_\+socket}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Creates a TCP client socket. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener}{tcp\+\_\+listener}} \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a861e0c806d177e378bae72a3cfb5f0e2}{make\+\_\+tcp\+\_\+listener}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Creates a TCP listener socket. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket}{udp\+\_\+socket}} \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a319519897370c3a984eff4980a5f6e18}{make\+\_\+udp\+\_\+socket}} (std\+::optional$<$ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a139a43e64f79b86d82279ded4b49df98}{ip\+\_\+version}} $>$ version=std\+::nullopt)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Creates a UDP socket, optionally constrained to an IP version. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Enumeration Type Documentation}
@@ -43,6 +43,10 @@ enum class \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3
 \index{ip\_version@{ip\_version}!webcraft::async::io::socket@{webcraft::async::io::socket}}
 \doxysubsubsection{\texorpdfstring{ip\_version}{ip\_version}}
 {\footnotesize\ttfamily enum class \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a139a43e64f79b86d82279ded4b49df98}{webcraft\+::async\+::io\+::socket\+::ip\+\_\+version}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+IP address family selection. 
 
 \begin{DoxyEnumFields}{Enumerator}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{IPv4@{IPv4}!webcraft::async::io::socket@{webcraft::async::io::socket}}\index{webcraft::async::io::socket@{webcraft::async::io::socket}!IPv4@{IPv4}}}\Hypertarget{namespacewebcraft_1_1async_1_1io_1_1socket_a139a43e64f79b86d82279ded4b49df98a42a9137a05a60eb752dcdf982e717626}\label{namespacewebcraft_1_1async_1_1io_1_1socket_a139a43e64f79b86d82279ded4b49df98a42a9137a05a60eb752dcdf982e717626} 
@@ -59,6 +63,10 @@ IPv6&\\
 \index{socket\_stream\_mode@{socket\_stream\_mode}!webcraft::async::io::socket@{webcraft::async::io::socket}}
 \doxysubsubsection{\texorpdfstring{socket\_stream\_mode}{socket\_stream\_mode}}
 {\footnotesize\ttfamily enum class \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688}{webcraft\+::async\+::io\+::socket\+::socket\+\_\+stream\+\_\+mode}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Direction to shutdown in duplex stream sockets. 
 
 \begin{DoxyEnumFields}{Enumerator}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{READ@{READ}!webcraft::async::io::socket@{webcraft::async::io::socket}}\index{webcraft::async::io::socket@{webcraft::async::io::socket}!READ@{READ}}}\Hypertarget{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688a3466fab4975481651940ed328aa990e4}\label{namespacewebcraft_1_1async_1_1io_1_1socket_a9f2887d3f56db5de0b9d3a9bc63b8688a3466fab4975481651940ed328aa990e4} 
@@ -79,15 +87,27 @@ WRITE&\\
 \doxysubsubsection{\texorpdfstring{make\_tcp\_listener()}{make\_tcp\_listener()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener}{tcp\+\_\+listener}} webcraft\+::async\+::io\+::socket\+::make\+\_\+tcp\+\_\+listener (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Creates a TCP listener socket. 
+
 \Hypertarget{namespacewebcraft_1_1async_1_1io_1_1socket_a482e358e1f53606e06109999484276b3}\label{namespacewebcraft_1_1async_1_1io_1_1socket_a482e358e1f53606e06109999484276b3} 
 \index{webcraft::async::io::socket@{webcraft::async::io::socket}!make\_tcp\_socket@{make\_tcp\_socket}}
 \index{make\_tcp\_socket@{make\_tcp\_socket}!webcraft::async::io::socket@{webcraft::async::io::socket}}
 \doxysubsubsection{\texorpdfstring{make\_tcp\_socket()}{make\_tcp\_socket()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket}{tcp\+\_\+socket}} webcraft\+::async\+::io\+::socket\+::make\+\_\+tcp\+\_\+socket (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Creates a TCP client socket. 
+
 \Hypertarget{namespacewebcraft_1_1async_1_1io_1_1socket_a319519897370c3a984eff4980a5f6e18}\label{namespacewebcraft_1_1async_1_1io_1_1socket_a319519897370c3a984eff4980a5f6e18} 
 \index{webcraft::async::io::socket@{webcraft::async::io::socket}!make\_udp\_socket@{make\_udp\_socket}}
 \index{make\_udp\_socket@{make\_udp\_socket}!webcraft::async::io::socket@{webcraft::async::io::socket}}
 \doxysubsubsection{\texorpdfstring{make\_udp\_socket()}{make\_udp\_socket()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classwebcraft_1_1async_1_1io_1_1socket_1_1udp__socket}{udp\+\_\+socket}} webcraft\+::async\+::io\+::socket\+::make\+\_\+udp\+\_\+socket (\begin{DoxyParamCaption}\item[{std\+::optional$<$ \mbox{\hyperlink{namespacewebcraft_1_1async_1_1io_1_1socket_a139a43e64f79b86d82279ded4b49df98}{ip\+\_\+version}} $>$}]{version = {\ttfamily std\+:\+:nullopt} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Creates a UDP socket, optionally constrained to an IP version. 
 

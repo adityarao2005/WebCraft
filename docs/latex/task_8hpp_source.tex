@@ -7,342 +7,342 @@
 \DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (c)\ Aditya\ Rao}}
 \DoxyCodeLine{00005\ \textcolor{comment}{//\ Licenced\ under\ MIT\ license.\ See\ LICENSE.txt\ for\ details.}}
 \DoxyCodeLine{00007\ }
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <concepts>}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <exception>}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <coroutine>}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{awaitable_8hpp}{awaitable.hpp}}"{}}}
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{event__signal_8hpp}{event\_signal.hpp}}"{}}}
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <iostream>}}
-\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <ranges>}}
-\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <utility>}}
-\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <functional>}}
-\DoxyCodeLine{00017\ }
-\DoxyCodeLine{00018\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacewebcraft_1_1async}{webcraft::async}}}
-\DoxyCodeLine{00019\ \{}
-\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ Forward\ declare}}
-\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{class\ }task;}
-\DoxyCodeLine{00023\ }
-\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise}{task\_promise}}}
-\DoxyCodeLine{00026\ \ \ \ \ \{}
-\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ std::optional<T>\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_aeb8db63bbbdb36d971cc6d9baa9bbfde}{value}};}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ std::exception\_ptr\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_ab8baee795f0f3ca39aedbd1980ab7bdc}{exception}};}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ std::coroutine\_handle<>\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_a06c76463e202811b6d3afcba83bd57df}{continuation}};}
-\DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<T>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_aaa6a37375784cffdc6307a6dea50f0aa}{get\_return\_object}}();}
-\DoxyCodeLine{00033\ }
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ std::suspend\_never\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_a70b9c2a2f735f4fc922f2e82ef3b92cc}{initial\_suspend}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \{\};\ \}}
-\DoxyCodeLine{00035\ }
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structwebcraft_1_1async_1_1task__promise_1_1final__awaiter}{final\_awaiter}}}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__promise_1_1final__awaiter_a2311b95b1be3990d1897c317322e8ec3}{await\_ready}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__promise_1_1final__awaiter_ad7fb2901173944f5a3ca927352b5346a}{await\_suspend}}(std::coroutine\_handle<task\_promise>\ h)\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (h.promise().continuation)}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ h.promise().continuation.resume();}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__promise_1_1final__awaiter_a869004ba1b4b204d40b55a6fe23859d7}{await\_resume}}()\ noexcept\ \{\}}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__promise_1_1final__awaiter}{final\_awaiter}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_adcae68841a340ad544d0a84f1dd97ce3}{final\_suspend}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \{\};\ \}}
-\DoxyCodeLine{00047\ }
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_a352ae69de2892a90ec9db336041ddac8}{return\_value}}(T\ v)\ \textcolor{keyword}{noexcept}(std::is\_nothrow\_move\_constructible\_v<T>)}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_aeb8db63bbbdb36d971cc6d9baa9bbfde}{value}}\ =\ std::move(v);}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00052\ }
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ void\ return\_value(const\ T\ \&v)\ noexcept(std::is\_nothrow\_copy\_constructible\_v<T>)}}
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \{}}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ value\ =\ v;}}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \}}}
-\DoxyCodeLine{00057\ }
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ void\ return\_value(T\ \&\&v)\ noexcept(std::is\_nothrow\_move\_constructible\_v<T>)}}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \{}}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ value\ =\ std::move(v);}}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \}}}
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_a4b616e81e6b81a5247a442bcdeadafb5}{unhandled\_exception}}()\ noexcept}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_ab8baee795f0f3ca39aedbd1980ab7bdc}{exception}}\ =\ std::current\_exception();}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00067\ \ \ \ \ \};}
-\DoxyCodeLine{00068\ }
-\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{template}\ <>}
-\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise}{task\_promise}}<void>}
-\DoxyCodeLine{00071\ \ \ \ \ \{}
-\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ std::exception\_ptr\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_3_01void_01_4_ae71d2a7d84c929ddfdaf02884dd03c3a}{exception}};}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ std::coroutine\_handle<>\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_3_01void_01_4_ad62bcd9791ecb8fa68bf9a8ad497e6a6}{continuation}};}
-\DoxyCodeLine{00075\ }
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_aaa6a37375784cffdc6307a6dea50f0aa}{get\_return\_object}}();}
-\DoxyCodeLine{00077\ }
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ std::suspend\_never\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_3_01void_01_4_a60b3839b68915693d573e2db53d42b05}{initial\_suspend}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \{\};\ \}}
-\DoxyCodeLine{00079\ }
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }final\_awaiter}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__promise_3_01void_01_4_1_1final__awaiter_a3f65c444f7ef4f18663bae720a8b618e}{await\_ready}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__promise_3_01void_01_4_1_1final__awaiter_aad789af1768c1612d76579ea5934330c}{await\_suspend}}(std::coroutine\_handle<task\_promise>\ h)\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (h.promise().continuation)}
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ h.promise().continuation.resume();}
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__promise_3_01void_01_4_1_1final__awaiter_ab1fb889aa96154c0cd7dc236a2247ccb}{await\_resume}}()\ noexcept\ \{\}}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ final\_awaiter\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_3_01void_01_4_aeb406d3172134782ee410e1febce8b71}{final\_suspend}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \{\};\ \}}
-\DoxyCodeLine{00091\ }
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_3_01void_01_4_a979746427899c23a95c793277c2fbf85}{return\_void}}()\ noexcept\ \{\}}
-\DoxyCodeLine{00093\ }
-\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_3_01void_01_4_a8f2cf28e3929b4a881adea1042eab98d}{unhandled\_exception}}()\ noexcept}
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_ab8baee795f0f3ca39aedbd1980ab7bdc}{exception}}\ =\ std::current\_exception();}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00098\ \ \ \ \ \};}
-\DoxyCodeLine{00099\ }
-\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T\ =\ \textcolor{keywordtype}{void}>}
-\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}}
-\DoxyCodeLine{00102\ \ \ \ \ \{}
-\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise}{promise\_type}}\ =\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise}{task\_promise<T>}};}
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task_af0cf3604ae1d17c31f276356f2dbb4ea}{handle\_type}}\ =\ std::coroutine\_handle<promise\_type>;}
-\DoxyCodeLine{00106\ }
-\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_a79018cd2e45eea6496fbc4a8a19859c1}{task}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1task_af0cf3604ae1d17c31f276356f2dbb4ea}{handle\_type}}\ h)\ noexcept\ :\ coro(h)\ \{\}}
-\DoxyCodeLine{00108\ }
-\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_a39dfc9134d8006fd4e3ba96cb939ecea}{task}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}\ \&\&other)\ noexcept\ :\ coro(std::exchange(other.coro,\ \{\}))\ \{\}}
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1task_a579d34d1a4ccc6274857e7cebbe78d51}{operator=}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}\ \&\&other)\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{this}\ !=\ \&other)}
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (coro)}
-\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ coro.destroy();}
-\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ coro\ =\ std::exchange(other.coro,\ \{\});}
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00120\ }
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_a407ad04486c1a555ebe5e3f5d8686763}{\string~task}}()}
-\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (coro)}
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ coro.destroy();}
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00126\ }
-\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_a5f7b02392c969f215e2f0e2e6bb84a1f}{task}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}\ \&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1task_af175029bc5014a143bb1b2a577d446d2}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}\ \&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00129\ }
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_a53bfcd76b6d2bee0fbecbbd1ce2e0337}{await\_ready}}()\ const\ noexcept}
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !coro\ ||\ coro.done();}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00134\ }
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_a67959359a5d235c5286ef69d94cd6a19}{await\_suspend}}(std::coroutine\_handle<>\ h)\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ coro.promise().continuation\ =\ h;}
-\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00139\ }
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ T\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_ae130cc6e91732b43aa901a2d46ce0027}{await\_resume}}()}
-\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (coro.promise().exception)}
-\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::rethrow\_exception(coro.promise().exception);}
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::move(coro.promise().value.value());}
-\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00146\ }
-\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise}{task\_promise}}<T>;}
-\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_af0cf3604ae1d17c31f276356f2dbb4ea}{handle\_type}}\ coro;}
-\DoxyCodeLine{00150\ \ \ \ \ \};}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <exception>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <coroutine>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{awaitable_8hpp}{awaitable.hpp}}"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{event__signal_8hpp}{event\_signal.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <ranges>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacewebcraft_1_1async}{webcraft::async}}}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ Forward\ declare}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{class\ }task;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise}{task\_promise}}}
+\DoxyCodeLine{00038\ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ std::optional<T>\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_aeb8db63bbbdb36d971cc6d9baa9bbfde}{value}};}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ std::exception\_ptr\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_ab8baee795f0f3ca39aedbd1980ab7bdc}{exception}};}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ std::coroutine\_handle<>\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_a06c76463e202811b6d3afcba83bd57df}{continuation}};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<T>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_aaa6a37375784cffdc6307a6dea50f0aa}{get\_return\_object}}();}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ std::suspend\_never\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_a70b9c2a2f735f4fc922f2e82ef3b92cc}{initial\_suspend}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \{\};\ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structwebcraft_1_1async_1_1task__promise_1_1final__awaiter}{final\_awaiter}}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__promise_1_1final__awaiter_a2311b95b1be3990d1897c317322e8ec3}{await\_ready}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__promise_1_1final__awaiter_ad7fb2901173944f5a3ca927352b5346a}{await\_suspend}}(std::coroutine\_handle<task\_promise>\ h)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (h.promise().continuation)}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ h.promise().continuation.resume();}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__promise_1_1final__awaiter_a869004ba1b4b204d40b55a6fe23859d7}{await\_resume}}()\ noexcept\ \{\}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__promise_1_1final__awaiter}{final\_awaiter}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_adcae68841a340ad544d0a84f1dd97ce3}{final\_suspend}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \{\};\ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_a352ae69de2892a90ec9db336041ddac8}{return\_value}}(T\ v)\ \textcolor{keyword}{noexcept}(std::is\_nothrow\_move\_constructible\_v<T>)}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_aeb8db63bbbdb36d971cc6d9baa9bbfde}{value}}\ =\ std::move(v);}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ void\ return\_value(const\ T\ \&v)\ noexcept(std::is\_nothrow\_copy\_constructible\_v<T>)}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \{}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ value\ =\ v;}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ void\ return\_value(T\ \&\&v)\ noexcept(std::is\_nothrow\_move\_constructible\_v<T>)}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \{}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ value\ =\ std::move(v);}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_a4b616e81e6b81a5247a442bcdeadafb5}{unhandled\_exception}}()\ noexcept}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_ab8baee795f0f3ca39aedbd1980ab7bdc}{exception}}\ =\ std::current\_exception();}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise}{task\_promise}}<void>}
+\DoxyCodeLine{00088\ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ std::exception\_ptr\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_3_01void_01_4_ae71d2a7d84c929ddfdaf02884dd03c3a}{exception}};}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ std::coroutine\_handle<>\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_3_01void_01_4_ad62bcd9791ecb8fa68bf9a8ad497e6a6}{continuation}};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_aaa6a37375784cffdc6307a6dea50f0aa}{get\_return\_object}}();}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ std::suspend\_never\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_3_01void_01_4_a60b3839b68915693d573e2db53d42b05}{initial\_suspend}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \{\};\ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }final\_awaiter}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__promise_3_01void_01_4_1_1final__awaiter_a3f65c444f7ef4f18663bae720a8b618e}{await\_ready}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__promise_3_01void_01_4_1_1final__awaiter_aad789af1768c1612d76579ea5934330c}{await\_suspend}}(std::coroutine\_handle<task\_promise>\ h)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (h.promise().continuation)}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ h.promise().continuation.resume();}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__promise_3_01void_01_4_1_1final__awaiter_ab1fb889aa96154c0cd7dc236a2247ccb}{await\_resume}}()\ noexcept\ \{\}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ final\_awaiter\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_3_01void_01_4_aeb406d3172134782ee410e1febce8b71}{final\_suspend}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \{\};\ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_3_01void_01_4_a979746427899c23a95c793277c2fbf85}{return\_void}}()\ noexcept\ \{\}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_3_01void_01_4_a8f2cf28e3929b4a881adea1042eab98d}{unhandled\_exception}}()\ noexcept}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_ab8baee795f0f3ca39aedbd1980ab7bdc}{exception}}\ =\ std::current\_exception();}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \};}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T\ =\ \textcolor{keywordtype}{void}>}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}}
+\DoxyCodeLine{00124\ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise}{promise\_type}}\ =\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise}{task\_promise<T>}};}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task_af0cf3604ae1d17c31f276356f2dbb4ea}{handle\_type}}\ =\ std::coroutine\_handle<promise\_type>;}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_a79018cd2e45eea6496fbc4a8a19859c1}{task}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1task_af0cf3604ae1d17c31f276356f2dbb4ea}{handle\_type}}\ h)\ noexcept\ :\ coro(h)\ \{\}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_a39dfc9134d8006fd4e3ba96cb939ecea}{task}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}\ \&\&other)\ noexcept\ :\ coro(std::exchange(other.coro,\ \{\}))\ \{\}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1task_a579d34d1a4ccc6274857e7cebbe78d51}{operator=}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}\ \&\&other)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{this}\ !=\ \&other)}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (coro)}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ coro.destroy();}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ coro\ =\ std::exchange(other.coro,\ \{\});}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_a407ad04486c1a555ebe5e3f5d8686763}{\string~task}}()}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (coro)}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ coro.destroy();}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_a5f7b02392c969f215e2f0e2e6bb84a1f}{task}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1task_af175029bc5014a143bb1b2a577d446d2}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}\ \&)\ =\ \textcolor{keyword}{delete};}
 \DoxyCodeLine{00151\ }
-\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{template}\ <>}
-\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}<void>}
-\DoxyCodeLine{00154\ \ \ \ \ \{}
-\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_3_01void_01_4}{promise\_type}}\ =\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise}{task\_promise<void>}};}
-\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task_3_01void_01_4_a0bcdff4678da09addd2d939e936116ad}{handle\_type}}\ =\ std::coroutine\_handle<promise\_type>;}
-\DoxyCodeLine{00158\ }
-\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_3_01void_01_4_aff7a727d660438e5ac45999e7c4128e5}{task}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1task_3_01void_01_4_a0bcdff4678da09addd2d939e936116ad}{handle\_type}}\ h)\ noexcept\ :\ coro(h)\ \{\}}
-\DoxyCodeLine{00160\ }
-\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_3_01void_01_4_ad4bff52d7e4c3c89508be545a5d6955d}{task}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}\ \&\&other)\ noexcept\ :\ coro(std::exchange(other.coro,\ \{\}))\ \{\}}
-\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1task_3_01void_01_4_ab617039baf26cc094594e0e90e174224}{operator=}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}\ \&\&other)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_a53bfcd76b6d2bee0fbecbbd1ce2e0337}{await\_ready}}()\ const\ noexcept}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !coro\ ||\ coro.done();}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_a67959359a5d235c5286ef69d94cd6a19}{await\_suspend}}(std::coroutine\_handle<>\ h)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ coro.promise().continuation\ =\ h;}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ T\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_ae130cc6e91732b43aa901a2d46ce0027}{await\_resume}}()}
 \DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{this}\ !=\ \&other)}
-\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (coro)}
-\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ coro.destroy();}
-\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ coro\ =\ std::exchange(other.coro,\ \{\});}
-\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00172\ }
-\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_3_01void_01_4_a84b1309bf335c8f6b344457518f74e7c}{\string~task}}()}
-\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (coro)}
-\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ coro.destroy();}
-\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00178\ }
-\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_3_01void_01_4_a478d1e3f3657401a2c73af5dca81592e}{task}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}\ \&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1task_3_01void_01_4_a7ed7cab8b334d91bac4917523087aca5}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}\ \&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00181\ }
-\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_3_01void_01_4_a2faea312b413fcbd317127358b45213b}{await\_ready}}()\ const\ noexcept}
-\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !coro\ ||\ coro.done();}
-\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00186\ }
-\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_3_01void_01_4_a3914974b301b7ccc88da4f9471ff5110}{await\_suspend}}(std::coroutine\_handle<>\ h)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (coro.promise().exception)}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::rethrow\_exception(coro.promise().exception);}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::move(coro.promise().value.value());}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise}{task\_promise}}<T>;}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_af0cf3604ae1d17c31f276356f2dbb4ea}{handle\_type}}\ coro;}
+\DoxyCodeLine{00172\ \ \ \ \ \};}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}<void>}
+\DoxyCodeLine{00179\ \ \ \ \ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_3_01void_01_4}{promise\_type}}\ =\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise}{task\_promise<void>}};}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task_3_01void_01_4_a0bcdff4678da09addd2d939e936116ad}{handle\_type}}\ =\ std::coroutine\_handle<promise\_type>;}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_3_01void_01_4_aff7a727d660438e5ac45999e7c4128e5}{task}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1task_3_01void_01_4_a0bcdff4678da09addd2d939e936116ad}{handle\_type}}\ h)\ noexcept\ :\ coro(h)\ \{\}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_3_01void_01_4_ad4bff52d7e4c3c89508be545a5d6955d}{task}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}\ \&\&other)\ noexcept\ :\ coro(std::exchange(other.coro,\ \{\}))\ \{\}}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1task_3_01void_01_4_ab617039baf26cc094594e0e90e174224}{operator=}}(\mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}\ \&\&other)\ \textcolor{keyword}{noexcept}}
 \DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ coro.promise().continuation\ =\ h;}
-\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00191\ }
-\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_3_01void_01_4_a4545d2441228e1aaa370f15e837c4b0f}{await\_resume}}()}
-\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (coro.promise().exception)}
-\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::rethrow\_exception(coro.promise().exception);}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{this}\ !=\ \&other)}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (coro)}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ coro.destroy();}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ coro\ =\ std::exchange(other.coro,\ \{\});}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
 \DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00197\ }
-\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise}{task\_promise}}<void>;}
-\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_af0cf3604ae1d17c31f276356f2dbb4ea}{handle\_type}}\ coro;}
-\DoxyCodeLine{00201\ \ \ \ \ \};}
-\DoxyCodeLine{00202\ }
-\DoxyCodeLine{00203\ \ \ \ \ \textcolor{comment}{//\ Define\ get\_return\_object\ after\ task\ is\ complete}}
-\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00205\ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<T>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_aaa6a37375784cffdc6307a6dea50f0aa}{task\_promise<T>::get\_return\_object}}()}
-\DoxyCodeLine{00206\ \ \ \ \ \{}
-\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<T>}}\{std::coroutine\_handle<task\_promise>::from\_promise(*\textcolor{keyword}{this})\};}
-\DoxyCodeLine{00208\ \ \ \ \ \}}
-\DoxyCodeLine{00209\ }
-\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_aaa6a37375784cffdc6307a6dea50f0aa}{task\_promise<void>::get\_return\_object}}()}
-\DoxyCodeLine{00211\ \ \ \ \ \{}
-\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\{std::coroutine\_handle<task\_promise>::from\_promise(*\textcolor{keyword}{this})\};}
-\DoxyCodeLine{00213\ \ \ \ \ \}}
-\DoxyCodeLine{00214\ }
-\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Derived>}
-\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structwebcraft_1_1async_1_1task__adaptor__closure}{task\_adaptor\_closure}}}
-\DoxyCodeLine{00217\ \ \ \ \ \{}
-\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Awaitable>}
-\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__adaptor__closure_a4e4524049b7729addb71c1b93beba9b6}{operator|}}(Awaitable\ \&\&awaitable,\ Derived\ \&\&self)}
-\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self(std::forward<Awaitable>(awaitable));}
-\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00223\ }
-\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Awaitable>}
-\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__adaptor__closure_afe5c1d09a64e9a81ddaaf8e71cf0cb87}{operator|}}(Awaitable\ \&\&awaitable,\ Derived\ \&self)}
-\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self(std::forward<Awaitable>(awaitable));}
-\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00229\ }
-\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Awaitable>}
-\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__adaptor__closure_a460d3fedd26bafe6d774c93cd4393070}{operator|}}(Awaitable\ \&\&awaitable,\ \textcolor{keyword}{const}\ Derived\ \&self)}
-\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self(std::forward<Awaitable>(awaitable));}
-\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00235\ \ \ \ \ \};}
-\DoxyCodeLine{00236\ }
-\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keyword}{namespace\ }detail}
-\DoxyCodeLine{00238\ \ \ \ \ \{}
-\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Func>}
-\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }then\_adaptor\_closure\ :\ \textcolor{keyword}{public}\ task\_adaptor\_closure<then\_adaptor\_closure<Func>>}
-\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ Func\ func;}
-\DoxyCodeLine{00244\ }
-\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ then\_adaptor\_closure(Func\ f)\ :\ func(std::move(f))\ \{\}}
-\DoxyCodeLine{00247\ }
-\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <awaitable\_t\ Awaitable>}
-\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ operator()(Awaitable\ \&\&awaitable)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00250\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ }\{}
-\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }AwaitedType\ =\ awaitable\_resume\_t<Awaitable>;}
-\DoxyCodeLine{00252\ }
-\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_void\_v<AwaitedType>)}
-\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }Result\ =\ std::invoke\_result\_t<Func>;}
-\DoxyCodeLine{00256\ }
-\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ task\_fn\ =\ [](Awaitable\ \&\&awaitable,\ \textcolor{keyword}{const}\ Func\ \&func)\ -\/>\ task<Result>}
-\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (awaitable\_t<Result>)}
-\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ std::forward<Awaitable>(awaitable);}
-\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{co\_await}\ func();}
-\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ std::forward<Awaitable>(awaitable);}
-\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ func();}
-\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00270\ }
-\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ task\_fn(std::forward<Awaitable>(awaitable),\ func);}
-\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }Result\ =\ std::invoke\_result\_t<Func,\ AwaitedType>;}
-\DoxyCodeLine{00276\ }
-\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ task\_fn\ =\ [](Awaitable\ \&\&awaitable,\ \textcolor{keyword}{const}\ Func\ \&func)\ -\/>\ task<Result>}
-\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (awaitable\_t<Result>)}
-\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{co\_await}\ func(\textcolor{keyword}{co\_await}\ std::forward<Awaitable>(awaitable));}
-\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ func(\textcolor{keyword}{co\_await}\ std::forward<Awaitable>(awaitable));}
-\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ task\_fn(std::forward<Awaitable>(awaitable),\ func);}
-\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00292\ }
-\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Func>}
-\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }upon\_error\_adaptor\_closure\ :\ \textcolor{keyword}{public}\ task\_adaptor\_closure<upon\_error\_adaptor\_closure<Func>>}
-\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ Func\ handler;}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_3_01void_01_4_a84b1309bf335c8f6b344457518f74e7c}{\string~task}}()}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (coro)}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ coro.destroy();}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_3_01void_01_4_a478d1e3f3657401a2c73af5dca81592e}{task}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}\ \&\mbox{\hyperlink{classwebcraft_1_1async_1_1task_3_01void_01_4_a7ed7cab8b334d91bac4917523087aca5}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_3_01void_01_4_a2faea312b413fcbd317127358b45213b}{await\_ready}}()\ const\ noexcept}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !coro\ ||\ coro.done();}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_3_01void_01_4_a3914974b301b7ccc88da4f9471ff5110}{await\_suspend}}(std::coroutine\_handle<>\ h)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ coro.promise().continuation\ =\ h;}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_3_01void_01_4_a4545d2441228e1aaa370f15e837c4b0f}{await\_resume}}()}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (coro.promise().exception)}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::rethrow\_exception(coro.promise().exception);}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise}{task\_promise}}<void>;}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task_af0cf3604ae1d17c31f276356f2dbb4ea}{handle\_type}}\ coro;}
+\DoxyCodeLine{00226\ \ \ \ \ \};}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{comment}{//\ Define\ get\_return\_object\ after\ task\ is\ complete}}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00230\ \ \ \ \ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<T>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_aaa6a37375784cffdc6307a6dea50f0aa}{task\_promise<T>::get\_return\_object}}()}
+\DoxyCodeLine{00231\ \ \ \ \ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<T>}}\{std::coroutine\_handle<task\_promise>::from\_promise(*\textcolor{keyword}{this})\};}
+\DoxyCodeLine{00233\ \ \ \ \ \}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task__promise_aaa6a37375784cffdc6307a6dea50f0aa}{task\_promise<void>::get\_return\_object}}()}
+\DoxyCodeLine{00236\ \ \ \ \ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classwebcraft_1_1async_1_1task}{task<void>}}\{std::coroutine\_handle<task\_promise>::from\_promise(*\textcolor{keyword}{this})\};}
+\DoxyCodeLine{00238\ \ \ \ \ \}}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Derived>}
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structwebcraft_1_1async_1_1task__adaptor__closure}{task\_adaptor\_closure}}}
+\DoxyCodeLine{00245\ \ \ \ \ \{}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Awaitable>}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__adaptor__closure_a4e4524049b7729addb71c1b93beba9b6}{operator|}}(Awaitable\ \&\&awaitable,\ Derived\ \&\&self)}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self(std::forward<Awaitable>(awaitable));}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Awaitable>}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__adaptor__closure_afe5c1d09a64e9a81ddaaf8e71cf0cb87}{operator|}}(Awaitable\ \&\&awaitable,\ Derived\ \&self)}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self(std::forward<Awaitable>(awaitable));}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Awaitable>}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structwebcraft_1_1async_1_1task__adaptor__closure_a460d3fedd26bafe6d774c93cd4393070}{operator|}}(Awaitable\ \&\&awaitable,\ \textcolor{keyword}{const}\ Derived\ \&self)}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self(std::forward<Awaitable>(awaitable));}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00263\ \ \ \ \ \};}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keyword}{namespace\ }detail}
+\DoxyCodeLine{00266\ \ \ \ \ \{}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Func>}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }then\_adaptor\_closure\ :\ \textcolor{keyword}{public}\ task\_adaptor\_closure<then\_adaptor\_closure<Func>>}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ Func\ func;}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ then\_adaptor\_closure(Func\ f)\ :\ func(std::move(f))\ \{\}}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <awaitable\_t\ Awaitable>}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ operator()(Awaitable\ \&\&awaitable)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00278\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }AwaitedType\ =\ awaitable\_resume\_t<Awaitable>;}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_void\_v<AwaitedType>)}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }Result\ =\ std::invoke\_result\_t<Func>;}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ task\_fn\ =\ [](Awaitable\ \&\&awaitable,\ \textcolor{keyword}{const}\ Func\ \&func)\ -\/>\ task<Result>}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (awaitable\_t<Result>)}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ std::forward<Awaitable>(awaitable);}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{co\_await}\ func();}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ std::forward<Awaitable>(awaitable);}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ func();}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \};}
 \DoxyCodeLine{00298\ }
-\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ upon\_error\_adaptor\_closure(Func\ \&\&h)}
-\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ handler(std::move(h))\ \{\}}
-\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_invocable\_v<Func,\ std::exception\_ptr>,}
-\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Handler\ must\ be\ invocable\ with\ std::exception\_ptr"{}});}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ task\_fn(std::forward<Awaitable>(awaitable),\ func);}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }Result\ =\ std::invoke\_result\_t<Func,\ AwaitedType>;}
 \DoxyCodeLine{00304\ }
-\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <awaitable\_t\ Awaitable>}
-\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ task<awaitable\_resume\_t<Awaitable>>\ operator()(Awaitable\ \&\&awaitable)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00307\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ }\{}
-\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::convertible\_to<awaitable\_resume\_t<Awaitable>,\ std::invoke\_result\_t<Func,\ std::exception\_ptr>>,}
-\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Awaitable\ result\ must\ be\ convertible\ to\ the\ handler's\ result\ type"{}});}
-\DoxyCodeLine{00310\ }
-\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ResultType\ =\ awaitable\_resume\_t<Awaitable>;}
-\DoxyCodeLine{00312\ }
-\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
-\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_void\_v<ResultType>)}
-\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ std::forward<Awaitable>(awaitable);}
-\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{co\_await}\ std::forward<Awaitable>(awaitable);}
-\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (...)}
-\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ handler(std::current\_exception());}
-\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00330\ \ \ \ \ \}}
-\DoxyCodeLine{00331\ }
-\DoxyCodeLine{00332\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Func>}
-\DoxyCodeLine{00333\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespacewebcraft_1_1async_aa2f7829b92b3c6f724586abddbe4147c}{then}}(Func\ \&\&func)}
-\DoxyCodeLine{00334\ \ \ \ \ \{}
-\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ detail::then\_adaptor\_closure<std::decay\_t<Func>>\{std::forward<Func>(func)\};}
-\DoxyCodeLine{00336\ \ \ \ \ \}}
-\DoxyCodeLine{00337\ }
-\DoxyCodeLine{00338\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Func>}
-\DoxyCodeLine{00339\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespacewebcraft_1_1async_a4cdc12c581f571e77dba6f036250a51a}{upon\_error}}(Func\ \&\&handler)}
-\DoxyCodeLine{00340\ \ \ \ \ \{}
-\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ detail::upon\_error\_adaptor\_closure<std::decay\_t<Func>>\{std::forward<Func>(handler)\};}
-\DoxyCodeLine{00342\ \ \ \ \ \}}
-\DoxyCodeLine{00343\ }
-\DoxyCodeLine{00344\ \}}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ task\_fn\ =\ [](Awaitable\ \&\&awaitable,\ \textcolor{keyword}{const}\ Func\ \&func)\ -\/>\ task<Result>}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (awaitable\_t<Result>)}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{co\_await}\ func(\textcolor{keyword}{co\_await}\ std::forward<Awaitable>(awaitable));}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ func(\textcolor{keyword}{co\_await}\ std::forward<Awaitable>(awaitable));}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ task\_fn(std::forward<Awaitable>(awaitable),\ func);}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Func>}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }upon\_error\_adaptor\_closure\ :\ \textcolor{keyword}{public}\ task\_adaptor\_closure<upon\_error\_adaptor\_closure<Func>>}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ Func\ handler;}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ upon\_error\_adaptor\_closure(Func\ \&\&h)}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ handler(std::move(h))\ \{\}}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_invocable\_v<Func,\ std::exception\_ptr>,}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Handler\ must\ be\ invocable\ with\ std::exception\_ptr"{}});}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <awaitable\_t\ Awaitable>}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ task<awaitable\_resume\_t<Awaitable>>\ operator()(Awaitable\ \&\&awaitable)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00335\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::convertible\_to<awaitable\_resume\_t<Awaitable>,\ std::invoke\_result\_t<Func,\ std::exception\_ptr>>,}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Awaitable\ result\ must\ be\ convertible\ to\ the\ handler's\ result\ type"{}});}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ResultType\ =\ awaitable\_resume\_t<Awaitable>;}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_void\_v<ResultType>)}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_await}\ std::forward<Awaitable>(awaitable);}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ \textcolor{keyword}{co\_await}\ std::forward<Awaitable>(awaitable);}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (...)}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{co\_return}\ handler(std::current\_exception());}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00358\ \ \ \ \ \}}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00363\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Func>}
+\DoxyCodeLine{00364\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespacewebcraft_1_1async_aa2f7829b92b3c6f724586abddbe4147c}{then}}(Func\ \&\&func)}
+\DoxyCodeLine{00365\ \ \ \ \ \{}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ detail::then\_adaptor\_closure<std::decay\_t<Func>>\{std::forward<Func>(func)\};}
+\DoxyCodeLine{00367\ \ \ \ \ \}}
+\DoxyCodeLine{00368\ }
+\DoxyCodeLine{00372\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Func>}
+\DoxyCodeLine{00373\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespacewebcraft_1_1async_a4cdc12c581f571e77dba6f036250a51a}{upon\_error}}(Func\ \&\&handler)}
+\DoxyCodeLine{00374\ \ \ \ \ \{}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ detail::upon\_error\_adaptor\_closure<std::decay\_t<Func>>\{std::forward<Func>(handler)\};}
+\DoxyCodeLine{00376\ \ \ \ \ \}}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00378\ \}}
 
 \end{DoxyCode}

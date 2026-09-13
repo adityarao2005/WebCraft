@@ -97,6 +97,9 @@ $(document).ready(function(){initNavTree('classwebcraft_1_1async_1_1io_1_1socket
 </div><!--header-->
 <div class="contents">
 
+<p>TCP server listener abstraction.  
+ <a href="classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="socket_8hpp_source.html">socket.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -106,15 +109,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7cd076d884bc5f1ce0696e684fb2cb34" id="r_a7cd076d884bc5f1ce0696e684fb2cb34"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener.html#a7cd076d884bc5f1ce0696e684fb2cb34">~tcp_listener</a> ()</td></tr>
 <tr class="separator:a7cd076d884bc5f1ce0696e684fb2cb34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1196a153a2c90209e77adf7ad9e2a934" id="r_a1196a153a2c90209e77adf7ad9e2a934"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener.html#a1196a153a2c90209e77adf7ad9e2a934">bind</a> (const <a class="el" href="structwebcraft_1_1async_1_1io_1_1socket_1_1connection__info.html">connection_info</a> &amp;info)</td></tr>
+<tr class="memdesc:a1196a153a2c90209e77adf7ad9e2a934"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds the listener to a local endpoint.  <br /></td></tr>
 <tr class="separator:a1196a153a2c90209e77adf7ad9e2a934"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45f7a7594c2febf6c2c605faa5b41e0f" id="r_a45f7a7594c2febf6c2c605faa5b41e0f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener.html#a45f7a7594c2febf6c2c605faa5b41e0f">listen</a> (int backlog)</td></tr>
+<tr class="memdesc:a45f7a7594c2febf6c2c605faa5b41e0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts listening with a backlog size.  <br /></td></tr>
 <tr class="separator:a45f7a7594c2febf6c2c605faa5b41e0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6f3e85681da6c5534dcb112aa6cb5f1" id="r_ac6f3e85681da6c5534dcb112aa6cb5f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; <a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__socket.html">tcp_socket</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener.html#ac6f3e85681da6c5534dcb112aa6cb5f1">accept</a> ()</td></tr>
+<tr class="memdesc:ac6f3e85681da6c5534dcb112aa6cb5f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accepts the next inbound connection.  <br /></td></tr>
 <tr class="separator:ac6f3e85681da6c5534dcb112aa6cb5f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1a4b081de353b009038b3646a9fd3e0" id="r_ac1a4b081de353b009038b3646a9fd3e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebcraft_1_1async_1_1task.html">task</a>&lt; void &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebcraft_1_1async_1_1io_1_1socket_1_1tcp__listener.html#ac1a4b081de353b009038b3646a9fd3e0">close</a> ()</td></tr>
+<tr class="memdesc:ac1a4b081de353b009038b3646a9fd3e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes the listener.  <br /></td></tr>
 <tr class="separator:ac1a4b081de353b009038b3646a9fd3e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>TCP server listener abstraction. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a1b19316f1ff277eb727458c3bb8a424e" name="a1b19316f1ff277eb727458c3bb8a424e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1b19316f1ff277eb727458c3bb8a424e">&#9670;&#160;</a></span>tcp_listener()</h2>
 
@@ -190,6 +199,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Accepts the next inbound connection. </p>
+
 </div>
 </div>
 <a id="a1196a153a2c90209e77adf7ad9e2a934" name="a1196a153a2c90209e77adf7ad9e2a934"></a>
@@ -216,6 +227,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Binds the listener to a local endpoint. </p>
+
 </div>
 </div>
 <a id="ac1a4b081de353b009038b3646a9fd3e0" name="ac1a4b081de353b009038b3646a9fd3e0"></a>
@@ -240,6 +253,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Closes the listener. </p>
 
 </div>
 </div>
@@ -266,6 +281,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Starts listening with a backlog size. </p>
 
 </div>
 </div>

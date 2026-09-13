@@ -1,5 +1,10 @@
 \doxysection{include/webcraft/async/event\+\_\+signal.hpp File Reference}
 \hypertarget{event__signal_8hpp}{}\label{event__signal_8hpp}\index{include/webcraft/async/event\_signal.hpp@{include/webcraft/async/event\_signal.hpp}}
+
+
+Lightweight thread-\/based signaling primitive for sync waiting.  
+
+
 {\ttfamily \#include $<$atomic$>$}\newline
 {\ttfamily \#include $<$chrono$>$}\newline
 {\ttfamily \#include $<$thread$>$}\newline
@@ -21,9 +26,9 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1immovable}{webcraft\+::async\+::immovable}}
-\item 
+\begin{DoxyCompactList}\small\item\em Utility base class that disables copying and moving. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classwebcraft_1_1async_1_1event__signal}{webcraft\+::async\+::event\+\_\+signal}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Busy-\/wait signal for synchronously waiting on async completion. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -31,3 +36,9 @@ namespace \mbox{\hyperlink{namespacewebcraft}{webcraft}}
 \item 
 namespace \mbox{\hyperlink{namespacewebcraft_1_1async}{webcraft\+::async}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Lightweight thread-\/based signaling primitive for sync waiting. 
+
+{\ttfamily event\+\_\+signal} is used by helper utilities such as {\ttfamily sync\+\_\+wait()} to bridge coroutine completion to blocking caller code. 

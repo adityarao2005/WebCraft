@@ -107,47 +107,60 @@ Namespaces</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structwebcraft_1_1async_1_1io_1_1adaptors_1_1async__readable__stream__adaptor.html">async_readable_stream_adaptor</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base helper for pipeable readable-stream adaptors.  <a href="structwebcraft_1_1async_1_1io_1_1adaptors_1_1async__readable__stream__adaptor.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="concepts" name="concepts"></a>
 Concepts</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptwebcraft_1_1async_1_1io_1_1adaptors_1_1collector.html">collector</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collector concept for adaptors that reduce a stream to a value. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptwebcraft_1_1async_1_1io_1_1adaptors_1_1closure__under__addition.html">closure_under_addition</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constraint for types closed under addition. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ab1e6d4ed87247b8982c2536eeb7220e5" id="r_ab1e6d4ed87247b8982c2536eeb7220e5"><td class="memTemplParams" colspan="2">template&lt;typename InType , typename Func &gt; </td></tr>
 <tr class="memitem:ab1e6d4ed87247b8982c2536eeb7220e5"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#ab1e6d4ed87247b8982c2536eeb7220e5">transform</a> (Func &amp;&amp;fn)</td></tr>
+<tr class="memdesc:ab1e6d4ed87247b8982c2536eeb7220e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adaptor that transforms stream elements via an async-generator transform function.  <br /></td></tr>
 <tr class="separator:ab1e6d4ed87247b8982c2536eeb7220e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a467323c557b8245b25c7cc5c6cd28e22" id="r_a467323c557b8245b25c7cc5c6cd28e22"><td class="memTemplParams" colspan="2">template&lt;typename InType , typename Func , typename OutType  = std::invoke_result_t&lt;Func, InType&gt;&gt; </td></tr>
 <tr class="memitem:a467323c557b8245b25c7cc5c6cd28e22"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#a467323c557b8245b25c7cc5c6cd28e22">map</a> (Func &amp;&amp;fn)</td></tr>
+<tr class="memdesc:a467323c557b8245b25c7cc5c6cd28e22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Element-wise mapping adaptor.  <br /></td></tr>
 <tr class="separator:a467323c557b8245b25c7cc5c6cd28e22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade46e7a4ed2b78a5081564b197a8ea57" id="r_ade46e7a4ed2b78a5081564b197a8ea57"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; <br />
 requires std::is_copy_assignable_v&lt;T&gt;</td></tr>
 <tr class="memitem:ade46e7a4ed2b78a5081564b197a8ea57"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#ade46e7a4ed2b78a5081564b197a8ea57">pipe</a> (async_writable_stream&lt; T &gt; auto &amp;str)</td></tr>
+<tr class="memdesc:ade46e7a4ed2b78a5081564b197a8ea57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forwards stream elements to a writable stream while passing values through.  <br /></td></tr>
 <tr class="separator:ade46e7a4ed2b78a5081564b197a8ea57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac259db7916278ffc530b8c127be7a191" id="r_ac259db7916278ffc530b8c127be7a191"><td class="memTemplParams" colspan="2">template&lt;typename ToType , typename StreamType , collector&lt; ToType, StreamType &gt; Collector&gt; </td></tr>
 <tr class="memitem:ac259db7916278ffc530b8c127be7a191"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#ac259db7916278ffc530b8c127be7a191">collect</a> (Collector &amp;&amp;collector_func)</td></tr>
+<tr class="memdesc:ac259db7916278ffc530b8c127be7a191"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds a collector adaptor from a collector functor.  <br /></td></tr>
 <tr class="separator:ac259db7916278ffc530b8c127be7a191"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ddb8e7a2a4c065a9340e9800ff7f0ed" id="r_a9ddb8e7a2a4c065a9340e9800ff7f0ed"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a9ddb8e7a2a4c065a9340e9800ff7f0ed"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#a9ddb8e7a2a4c065a9340e9800ff7f0ed">forward_to</a> (async_writable_stream&lt; T &gt; auto &amp;stream)</td></tr>
+<tr class="memdesc:a9ddb8e7a2a4c065a9340e9800ff7f0ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collector adaptor that writes each incoming value to a target stream.  <br /></td></tr>
 <tr class="separator:a9ddb8e7a2a4c065a9340e9800ff7f0ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adda76c1251d855604fa6c9f4b752de2c" id="r_adda76c1251d855604fa6c9f4b752de2c"><td class="memTemplParams" colspan="2">template&lt;typename T , typename Func &gt; </td></tr>
 <tr class="memitem:adda76c1251d855604fa6c9f4b752de2c"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#adda76c1251d855604fa6c9f4b752de2c">filter</a> (Func &amp;&amp;predicate)</td></tr>
+<tr class="memdesc:adda76c1251d855604fa6c9f4b752de2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retains only values that satisfy a predicate.  <br /></td></tr>
 <tr class="separator:adda76c1251d855604fa6c9f4b752de2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f89d23f44cca5e13f844ad7c5b3282d" id="r_a7f89d23f44cca5e13f844ad7c5b3282d"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a7f89d23f44cca5e13f844ad7c5b3282d"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#a7f89d23f44cca5e13f844ad7c5b3282d">limit</a> (size_t count)</td></tr>
+<tr class="memdesc:a7f89d23f44cca5e13f844ad7c5b3282d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retains at most the first <code>count</code> values.  <br /></td></tr>
 <tr class="separator:a7f89d23f44cca5e13f844ad7c5b3282d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5102607d13477fb88df1a0b93c50e6d1" id="r_a5102607d13477fb88df1a0b93c50e6d1"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a5102607d13477fb88df1a0b93c50e6d1"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#a5102607d13477fb88df1a0b93c50e6d1">skip</a> (size_t count)</td></tr>
+<tr class="memdesc:a5102607d13477fb88df1a0b93c50e6d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Skips the first <code>count</code> values.  <br /></td></tr>
 <tr class="separator:a5102607d13477fb88df1a0b93c50e6d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16136cc18f9808fabc53ff6ab854d997" id="r_a16136cc18f9808fabc53ff6ab854d997"><td class="memTemplParams" colspan="2">template&lt;typename T , typename Func &gt; </td></tr>
 <tr class="memitem:a16136cc18f9808fabc53ff6ab854d997"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#a16136cc18f9808fabc53ff6ab854d997">take_while</a> (Func &amp;&amp;predicate)</td></tr>
+<tr class="memdesc:a16136cc18f9808fabc53ff6ab854d997"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retains values while a predicate remains true.  <br /></td></tr>
 <tr class="separator:a16136cc18f9808fabc53ff6ab854d997"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7cac35a119147fb1d053553ff1ce6f4" id="r_ad7cac35a119147fb1d053553ff1ce6f4"><td class="memTemplParams" colspan="2">template&lt;typename T , typename Func &gt; </td></tr>
 <tr class="memitem:ad7cac35a119147fb1d053553ff1ce6f4"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#ad7cac35a119147fb1d053553ff1ce6f4">drop_while</a> (Func &amp;&amp;predicate)</td></tr>
+<tr class="memdesc:ad7cac35a119147fb1d053553ff1ce6f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drops values while a predicate remains true, then yields the rest.  <br /></td></tr>
 <tr class="separator:ad7cac35a119147fb1d053553ff1ce6f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe983922626e1ab45c906444bbf74239" id="r_abe983922626e1ab45c906444bbf74239"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; <br />
 requires std::totally_ordered&lt;T&gt;</td></tr>
@@ -163,18 +176,23 @@ requires closure_under_addition&lt;T&gt;</td></tr>
 <tr class="separator:a01eae8f829e97817419aed01f5ad37dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afea35e0603fe1056bdc052faa20b8411" id="r_afea35e0603fe1056bdc052faa20b8411"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:afea35e0603fe1056bdc052faa20b8411"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#afea35e0603fe1056bdc052faa20b8411">find_first</a> (std::function&lt; bool(const T &amp;)&gt; &amp;&amp;predicate)</td></tr>
+<tr class="memdesc:afea35e0603fe1056bdc052faa20b8411"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the first value that matches a predicate.  <br /></td></tr>
 <tr class="separator:afea35e0603fe1056bdc052faa20b8411"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21b0723e172b9758a9e78ae20dbe3bf1" id="r_a21b0723e172b9758a9e78ae20dbe3bf1"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a21b0723e172b9758a9e78ae20dbe3bf1"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#a21b0723e172b9758a9e78ae20dbe3bf1">find_last</a> (std::function&lt; bool(const T &amp;)&gt; &amp;&amp;predicate)</td></tr>
+<tr class="memdesc:a21b0723e172b9758a9e78ae20dbe3bf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the last value that matches a predicate.  <br /></td></tr>
 <tr class="separator:a21b0723e172b9758a9e78ae20dbe3bf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af103d36599b9cd7baf15f2c7e75e70b9" id="r_af103d36599b9cd7baf15f2c7e75e70b9"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:af103d36599b9cd7baf15f2c7e75e70b9"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#af103d36599b9cd7baf15f2c7e75e70b9">any_matches</a> (std::function&lt; bool(const T &amp;)&gt; &amp;&amp;predicate)</td></tr>
+<tr class="memdesc:af103d36599b9cd7baf15f2c7e75e70b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if any value matches a predicate.  <br /></td></tr>
 <tr class="separator:af103d36599b9cd7baf15f2c7e75e70b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1566ca935350435b72631ee11d574ee7" id="r_a1566ca935350435b72631ee11d574ee7"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a1566ca935350435b72631ee11d574ee7"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#a1566ca935350435b72631ee11d574ee7">all_matches</a> (std::function&lt; bool(const T &amp;)&gt; &amp;&amp;predicate)</td></tr>
+<tr class="memdesc:a1566ca935350435b72631ee11d574ee7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if all values match a predicate.  <br /></td></tr>
 <tr class="separator:a1566ca935350435b72631ee11d574ee7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0226fefe32175663e7ab469a785566c" id="r_af0226fefe32175663e7ab469a785566c"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:af0226fefe32175663e7ab469a785566c"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacewebcraft_1_1async_1_1io_1_1adaptors.html#af0226fefe32175663e7ab469a785566c">none_matches</a> (std::function&lt; bool(const T &amp;)&gt; &amp;&amp;predicate)</td></tr>
+<tr class="memdesc:af0226fefe32175663e7ab469a785566c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if no values match a predicate.  <br /></td></tr>
 <tr class="separator:af0226fefe32175663e7ab469a785566c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -196,6 +214,8 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Returns true if all values match a predicate. </p>
+
 </div>
 </div>
 <a id="af103d36599b9cd7baf15f2c7e75e70b9" name="af103d36599b9cd7baf15f2c7e75e70b9"></a>
@@ -215,6 +235,8 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns true if any value matches a predicate. </p>
 
 </div>
 </div>
@@ -236,6 +258,8 @@ template&lt;typename ToType , typename StreamType , collector&lt; ToType, Stream
       </table>
 </div><div class="memdoc">
 
+<p>Builds a collector adaptor from a collector functor. </p>
+
 </div>
 </div>
 <a id="ad7cac35a119147fb1d053553ff1ce6f4" name="ad7cac35a119147fb1d053553ff1ce6f4"></a>
@@ -255,6 +279,8 @@ template&lt;typename T , typename Func &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Drops values while a predicate remains true, then yields the rest. </p>
 
 </div>
 </div>
@@ -276,6 +302,8 @@ template&lt;typename T , typename Func &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Retains only values that satisfy a predicate. </p>
+
 </div>
 </div>
 <a id="afea35e0603fe1056bdc052faa20b8411" name="afea35e0603fe1056bdc052faa20b8411"></a>
@@ -295,6 +323,8 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Finds the first value that matches a predicate. </p>
 
 </div>
 </div>
@@ -316,6 +346,8 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Finds the last value that matches a predicate. </p>
+
 </div>
 </div>
 <a id="a9ddb8e7a2a4c065a9340e9800ff7f0ed" name="a9ddb8e7a2a4c065a9340e9800ff7f0ed"></a>
@@ -335,6 +367,8 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Collector adaptor that writes each incoming value to a target stream. </p>
 
 </div>
 </div>
@@ -356,6 +390,8 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Retains at most the first <code>count</code> values. </p>
+
 </div>
 </div>
 <a id="a467323c557b8245b25c7cc5c6cd28e22" name="a467323c557b8245b25c7cc5c6cd28e22"></a>
@@ -375,6 +411,8 @@ template&lt;typename InType , typename Func , typename OutType  = std::invoke_re
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Element-wise mapping adaptor. </p>
 
 </div>
 </div>
@@ -436,6 +474,8 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Returns true if no values match a predicate. </p>
+
 </div>
 </div>
 <a id="ade46e7a4ed2b78a5081564b197a8ea57" name="ade46e7a4ed2b78a5081564b197a8ea57"></a>
@@ -457,6 +497,8 @@ requires std::is_copy_assignable_v&lt;T&gt;</div>
       </table>
 </div><div class="memdoc">
 
+<p>Forwards stream elements to a writable stream while passing values through. </p>
+
 </div>
 </div>
 <a id="a5102607d13477fb88df1a0b93c50e6d1" name="a5102607d13477fb88df1a0b93c50e6d1"></a>
@@ -476,6 +518,8 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Skips the first <code>count</code> values. </p>
 
 </div>
 </div>
@@ -517,6 +561,8 @@ template&lt;typename T , typename Func &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Retains values while a predicate remains true. </p>
+
 </div>
 </div>
 <a id="ab1e6d4ed87247b8982c2536eeb7220e5" name="ab1e6d4ed87247b8982c2536eeb7220e5"></a>
@@ -536,6 +582,8 @@ template&lt;typename InType , typename Func &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Adaptor that transforms stream elements via an async-generator transform function. </p>
 
 </div>
 </div>
