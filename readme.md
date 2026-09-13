@@ -11,6 +11,20 @@ The following compilers (and anything newer) are supported: GCC 13, MSVC 2022, C
 1. Asynchronous Runtime, Supporting Yielding and working with timeouts that are not thread based
 2. Basic networking API (TCP & UDP Sockets, async file read & write) via I/O streams.
 
+## Benchmarks
+
+WebCraft's `io_uring`-based async runtime delivers **higher throughput than Nginx** on a single-process "Hello, World!" HTTP benchmark using [`wrk`](https://github.com/wg/wrk):
+
+| Server | Requests/sec | Avg Latency | Transfer/sec |
+|---|---:|---:|---:|
+| **WebCraft** | **160,096** | 12.62ms | 30.69MB |
+| Nginx 1.24 | 120,695 | 0.90ms | 30.62MB |
+| Node.js | 39,291 | 4.08ms | 8.88MB |
+
+> Tested with `wrk -t4 -c100 -d10s` on Linux — single worker process for all servers.
+
+To run the benchmarks yourself, see the [benchmarks/](benchmarks/) directory.
+
 ## Contributing to it
 
 1. Make a fork of the repository

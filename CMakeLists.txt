@@ -93,3 +93,9 @@ if(WEBCRAFT_BUILD_TESTS)
     enable_testing()
     add_subdirectory(tests)
 endif()
+
+# --- 5. Benchmarks ---
+option(WEBCRAFT_BUILD_BENCHMARKS "Build WebCraft benchmark servers" OFF)
+if(WEBCRAFT_BUILD_BENCHMARKS)
+    add_subdirectory(benchmarks)
+endif()
