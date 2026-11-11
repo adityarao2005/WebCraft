@@ -10,6 +10,7 @@
 #include <webcraft/async/runtime/macos.event.hpp>
 #include <webcraft/async/runtime/linux.event.hpp>
 #include <cstdio>
+#include <cerrno>
 #include <webcraft/async/thread_pool.hpp>
 #include <webcraft/async/async_event.hpp>
 #include <system_error>
@@ -23,7 +24,7 @@ using namespace webcraft::async::io::fs::detail;
 class sync_file_descriptor : public file_descriptor
 {
 private:
-    std::FILE *file;
+    std::FILE *file = nullptr;
 
 public:
     sync_file_descriptor(std::filesystem::path p, std::ios_base::openmode mode) : file_descriptor(mode)
@@ -42,6 +43,12 @@ public:
             {
                 file = std::fopen(p.c_str(), "w");
             }
+        }
+
+        if (!file)
+        {
+            const int error = errno;
+            throw std::system_error(error, std::generic_category(), "Failed to open file: " + p.string());
         }
     }
 
@@ -350,7 +357,7 @@ static webcraft::async::thread_pool pool(std::thread::hardware_concurrency(), st
 class thread_pool_file_descriptor : public file_descriptor
 {
 private:
-    std::FILE *file;
+    std::FILE *file = nullptr;
 
 public:
     thread_pool_file_descriptor(std::filesystem::path p, std::ios_base::openmode mode) : file_descriptor(mode)
@@ -369,6 +376,12 @@ public:
             {
                 file = std::fopen(p.c_str(), "w");
             }
+        }
+
+        if (!file)
+        {
+            const int error = errno;
+            throw std::system_error(error, std::generic_category(), "Failed to open file: " + p.string());
         }
     }
 

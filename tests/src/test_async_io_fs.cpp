@@ -12,6 +12,7 @@
 #include <webcraft/async/runtime.hpp>
 #include <filesystem>
 #include <sstream>
+#include <system_error>
 
 using namespace webcraft::async;
 using namespace webcraft::async::io::adaptors;
@@ -219,8 +220,20 @@ TEST_CASE(TestFileEmptyEofAndMissingPath)
         co_await stream.close();
     };
     sync_wait(check());
-    std::filesystem::remove(path);
-    EXPECT_THROW(sync_wait(file.open_readable_stream()), std::exception);
+    ASSERT_TRUE(std::filesystem::remove(path)) << "Empty-file fixture must be removed before the missing-file check";
+    ASSERT_FALSE(std::filesystem::exists(path));
+    EXPECT_THROW(sync_wait(file.open_readable_stream()), std::system_error);
+}
+
+TEST_CASE(TestMissingParentDirectoryOpenFails)
+{
+    runtime_context context;
+    const auto path = std::filesystem::path("missing-parent-regression") / "file.txt";
+    ASSERT_FALSE(std::filesystem::exists(path.parent_path())) << "Missing-parent fixture must not exist";
+    auto file = make_file(path);
+    EXPECT_THROW(sync_wait(file.open_readable_stream()), std::system_error);
+    EXPECT_THROW(sync_wait(file.open_writable_stream()), std::system_error);
+    EXPECT_FALSE(std::filesystem::exists(path));
 }
 
 TEST_CASE(TestFileAppendAndMovedStreamRoundTrip)

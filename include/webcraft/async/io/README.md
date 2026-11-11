@@ -12,6 +12,10 @@ Keep buffers and stream owners alive across suspension. Check each concrete stre
 
 [fs.hpp](fs.hpp) exposes `make_file`, readable/writable stream opening, and stream operations. The native implementation is [async_file_io.cpp](../../../../src/webcraft/async_file_io.cpp). For executable examples covering opening, reading, writing, and cleanup, see [file I/O tests](../../../../tests/src/test_async_io_fs.cpp).
 
+Failed file opens propagate `std::system_error` when the opening task is awaited.
+Readable opens do not create missing files. Writable opens can create a file, but
+its parent directory must already exist.
+
 ## Sockets
 
 [socket.hpp](socket.hpp) exposes TCP sockets, TCP listeners, UDP sockets, and connection information. TCP provides readable and writable streams, while UDP uses datagram send/receive operations. See [socket tests](../../../../tests/src/test_async_io_socket.cpp) for connection, listener, and datagram usage.
