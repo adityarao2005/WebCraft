@@ -14,6 +14,7 @@
 #include <system_error>
 #include <WinSock2.h>
 #include <webcraft/async/runtime/windows/windows_timer_manager.hpp>
+#include <webcraft/async/runtime/windows.event.hpp>
 
 using namespace std::chrono_literals;
 
@@ -367,6 +368,75 @@ TEST_CASE(try_cancellation_test_with_stop_token_and_callback)
     EXPECT_FALSE(resume_signal.is_set()) << "Expected resume signal to not be set, but it was";
 
     destroy_iocp(iocp);
+}
+
+TEST_CASE(NativeIoCompletionWaitsForPacket)
+{
+    using namespace webcraft::async::detail::windows;
+    for (bool immediate_success : {true, false})
+    {
+        SCOPED_TRACE(immediate_success ? "synchronous native success" : "pending native success");
+        std::unique_ptr<void, decltype(&destroy_iocp)> port(initialize_iocp(), &destroy_iocp);
+        OVERLAPPED *submitted = nullptr;
+        int completions = 0;
+        // Queue a packet but do not dispatch it until start_async() has returned.
+        // This models both native success paths without relying on disk timing.
+        std::unique_ptr<webcraft::async::detail::runtime_event> event = create_async_io_overlapped_event(
+            INVALID_HANDLE_VALUE,
+            [&](LPDWORD bytes, LPOVERLAPPED ptr) -> BOOL
+            {
+                submitted = ptr;
+                *bytes = 17;
+                if (!PostQueuedCompletionStatus(port.get(), *bytes, 0, ptr))
+                    throw overlapped_runtime_event_error("Failed to queue test completion");
+                if (immediate_success)
+                    return TRUE;
+                SetLastError(ERROR_IO_PENDING);
+                return FALSE;
+            }, std::stop_token{});
+        event->start_async([&]
+                           {
+                               ++completions;
+                               event.reset();
+                           });
+        EXPECT_EQ(completions, 0) << "Native success must await its queued packet";
+        EXPECT_NE(event, nullptr) << "OVERLAPPED storage must survive until dequeue";
+
+        DWORD bytes = 0;
+        ULONG_PTR key = 0;
+        OVERLAPPED *packet = nullptr;
+        BOOL received = GetQueuedCompletionStatus(port.get(), &bytes, &key, &packet, 0);
+        DWORD receive_error = received ? ERROR_SUCCESS : GetLastError();
+        EXPECT_TRUE(received) << "GetQueuedCompletionStatus failed: " << receive_error;
+        EXPECT_EQ(packet, submitted);
+        EXPECT_EQ(bytes, 17);
+        if (received && packet && event)
+        {
+            auto *completion = static_cast<webcraft::async::detail::windows::overlapped_event *>(packet);
+            completion->event->try_execute(static_cast<int>(bytes));
+        }
+        EXPECT_EQ(completions, 1);
+        EXPECT_EQ(event, nullptr) << "The completion callback must safely release the event";
+
+        BOOL extra_packet = GetQueuedCompletionStatus(port.get(), &bytes, &key, &packet, 0);
+        DWORD extra_error = GetLastError();
+        EXPECT_FALSE(extra_packet);
+        EXPECT_EQ(extra_error, WAIT_TIMEOUT) << "Exactly one packet should be posted";
+    }
+}
+
+TEST_CASE(ExplicitInlineOverlappedCompletionRemainsInline)
+{
+    int completions = 0;
+    auto event = webcraft::async::detail::windows::create_overlapped_event(
+        [](LPDWORD bytes, LPOVERLAPPED) -> BOOL
+        {
+            *bytes = 17;
+            return TRUE; // No native operation and no queued packet.
+        }, [](LPOVERLAPPED) {}, std::stop_token{});
+    event->start_async([&] { ++completions; });
+    EXPECT_EQ(completions, 1);
+    EXPECT_EQ(event->get_result(), 17);
 }
 
 #endif

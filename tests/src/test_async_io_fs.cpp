@@ -243,18 +243,28 @@ TEST_CASE(TestFileAppendAndMovedStreamRoundTrip)
     auto file = make_file(test_file_path);
     auto check = [&]() -> task<void>
     {
+        TEST_TRACE("opening append stream");
         auto original = co_await file.open_writable_stream(true);
         auto stream = std::move(original);
         std::string suffix = "appended";
+        TEST_TRACE("writing appended bytes through moved stream");
         EXPECT_EQ(co_await stream.send(std::span<char>(suffix)), suffix.size());
+        TEST_TRACE("closing append stream");
         co_await stream.close();
         co_await stream.close();
+        TEST_TRACE("opening read-back stream");
         auto input = co_await file.open_readable_stream();
         std::vector<char> bytes;
         std::array<char, 7> buffer{};
+        TEST_TRACE("reading file in seven-byte chunks");
         while (auto count = co_await input.recv(buffer))
+        {
+            TEST_TRACE("received read-back chunk");
             bytes.insert(bytes.end(), buffer.begin(), buffer.begin() + count);
+        }
+        TEST_TRACE("read-back reached EOF");
         EXPECT_EQ(std::string(bytes.begin(), bytes.end()), test_data + suffix);
+        TEST_TRACE("closing read-back stream");
         co_await input.close();
     };
     sync_wait(check());

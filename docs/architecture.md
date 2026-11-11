@@ -17,6 +17,11 @@ Paths in the entry-point column are relative to `include/webcraft` unless prefix
 
 Linux uses io_uring, Windows uses IOCP, and macOS uses kqueue. Platform event wrappers live in `include/webcraft/async/runtime/`; native implementations select their backend with preprocessor guards.
 
+On Windows, successful native file and socket operations finish through their
+IOCP packet, including operations that report immediate success. Keep the event,
+its `OVERLAPPED` storage, and buffers alive until that packet is consumed. Explicit
+non-native events may complete inline when no packet is queued.
+
 `runtime_context` initializes and shuts down the runtime. Runtime state is shared in the provider implementation; do not assume separate contexts create independent event loops. Keep the owning context alive until runtime-backed work and cleanup have completed.
 
 ## Ownership and completion
