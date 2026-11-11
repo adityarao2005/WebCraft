@@ -13,7 +13,7 @@ WebCraft uses C++23 coroutines through `webcraft::async`. Include individual hea
 ## Composition and completion
 
 - [`when_all`](when_all.hpp) and [`when_any`](when_any.hpp) compose awaitables; inspect the relevant overload for its result type and ownership behavior.
-- [`task_completion_source<T>`](task_completion_source.hpp) bridges externally completed operations to tasks.
+- [`task_completion_source<T>`](task_completion_source.hpp) bridges externally completed operations to tasks. Each source has one consumer and accepts one completion. A callback may supply its value, void completion, or exception before or after the task registers its waiter, including from another thread. Keep the source, task owner, and callback data alive until completion; duplicate completion throws.
 - [`async_event`](async_event.hpp) provides coroutine notification; [`event_signal`](event_signal.hpp) provides blocking synchronization.
 - [`fire_and_forget_task`](fire_and_forget_task.hpp) supports detached work. Await or otherwise coordinate completion when application state or runtime lifetime depends on it.
 

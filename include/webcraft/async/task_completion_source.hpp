@@ -18,6 +18,7 @@
 #include <utility>
 #include <exception>
 #include <vector>
+#include <mutex>
 #include "task.hpp"
 
 namespace webcraft::async
@@ -33,6 +34,29 @@ namespace webcraft::async
     protected:
         std::coroutine_handle<> handle_;
         std::exception_ptr exception_;
+        std::mutex mutex_;
+        bool completed_ = false;
+
+        template <typename StoreResult>
+        void complete(StoreResult &&store_result)
+        {
+            std::coroutine_handle<> waiter;
+            {
+                std::scoped_lock lock(mutex_);
+                if (completed_)
+                {
+                    throw std::logic_error("Task completion source already completed");
+                }
+                std::forward<StoreResult>(store_result)();
+                completed_ = true;
+                waiter = std::exchange(handle_, {});
+            }
+            // Resumption can destroy this source. Do not access it after this point.
+            if (waiter)
+            {
+                waiter.resume();
+            }
+        }
 
     public:
         task_completion_source_base() noexcept : handle_(), exception_(nullptr) {}
@@ -49,15 +73,7 @@ namespace webcraft::async
          */
         void set_exception(std::exception_ptr exception)
         {
-            if (handle_ && !handle_.done())
-            {
-                exception_ = std::move(exception);
-                handle_.resume();
-            }
-            else
-            {
-                throw std::logic_error("Task completion source already completed");
-            }
+            complete([&] { exception_ = std::move(exception); });
         }
 
         /**
@@ -69,12 +85,20 @@ namespace webcraft::async
 
             bool await_ready() const noexcept
             {
-                return tcs->handle_ && tcs->handle_.done();
+                std::scoped_lock lock(tcs->mutex_);
+                return tcs->completed_;
             }
 
-            void await_suspend(std::coroutine_handle<> h) noexcept
+            bool await_suspend(std::coroutine_handle<> h) noexcept
             {
+                std::scoped_lock lock(tcs->mutex_);
+                // Completion may have arrived since await_ready().
+                if (tcs->completed_)
+                {
+                    return false;
+                }
                 tcs->handle_ = h;
+                return true;
             }
 
             constexpr void await_resume()
@@ -85,6 +109,10 @@ namespace webcraft::async
 
     /**
      * @brief Manual completion source for `task<T>`.
+     *
+     * Single-consumer, one-shot source. Completion may arrive from another thread
+     * before or after task() registers its waiter; duplicate completion throws
+     * std::logic_error. Keep the source and pending task alive until completion.
      */
     template <typename T>
     class task_completion_source : public task_completion_source_base
@@ -108,15 +136,7 @@ namespace webcraft::async
         /** @brief Completes the task with a value and resumes any waiter. */
         void set_value(T value)
         {
-            if (handle_)
-            {
-                value_ = std::move(value);
-                handle_.resume();
-            }
-            else
-            {
-                throw std::logic_error("Task completion source already completed");
-            }
+            complete([&] { value_ = std::move(value); });
         }
 
         /** @brief Returns the awaitable task linked to this completion source. */
@@ -133,6 +153,8 @@ namespace webcraft::async
 
     /**
      * @brief Manual completion source specialization for `task<void>`.
+     * @details Has the same one-shot, single-consumer lifetime and completion
+     * ordering contract as task_completion_source<T>.
      */
     template <>
     class task_completion_source<void> : public task_completion_source_base
@@ -153,14 +175,7 @@ namespace webcraft::async
         /** @brief Completes the void task and resumes any waiter. */
         void set_value()
         {
-            if (handle_)
-            {
-                handle_.resume();
-            }
-            else
-            {
-                throw std::logic_error("Task completion source already completed");
-            }
+            complete([] {});
         }
 
         /** @brief Returns the awaitable void task linked to this completion source. */

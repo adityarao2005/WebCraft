@@ -8,6 +8,8 @@
 
 #include "test_suite.hpp"
 #include <string>
+#include <latch>
+#include <memory>
 #include <webcraft/async/async.hpp>
 #include <webcraft/async/task_completion_source.hpp>
 
@@ -292,4 +294,125 @@ TEST_CASE(TestTaskCompletionSourceThroughput)
 
     sync_wait(run());
     EXPECT_EQ(completed_count.load(), iterations) << "All task completion sources should complete successfully";
+}
+
+
+TEST_CASE(TestCompletionBeforeTaskRegistration)
+{
+    task_completion_source<int> value;
+    ASSERT_NO_THROW(value.set_value(42));
+    EXPECT_EQ(sync_wait(value.task()), 42);
+
+    task_completion_source<void> completion;
+    ASSERT_NO_THROW(completion.set_value());
+    EXPECT_NO_THROW(sync_wait(completion.task()));
+}
+
+TEST_CASE(TestExceptionBeforeTaskRegistration)
+{
+    auto error = std::make_exception_ptr(std::runtime_error("early completion"));
+    task_completion_source<int> value;
+    ASSERT_NO_THROW(value.set_exception(error));
+    EXPECT_THROW(sync_wait(value.task()), std::runtime_error);
+
+    task_completion_source<void> completion;
+    ASSERT_NO_THROW(completion.set_exception(error));
+    EXPECT_THROW(sync_wait(completion.task()), std::runtime_error);
+}
+
+TEST_CASE(TestWorkerCompletionBeforeTaskRegistration)
+{
+    task_completion_source<size_t> source;
+    thread_pool pool(1, 1);
+    auto work = pool.submit([&] { source.set_value(1); });
+    // Force the macOS file worker to finish before task() is called.
+    ASSERT_NO_THROW(work.get());
+    EXPECT_EQ(sync_wait(source.task()), 1);
+}
+
+TEST_CASE(TestCompletionBetweenReadyAndSuspend)
+{
+    task_completion_source<int> source;
+    task_completion_source_base::awaitable waiter{&source};
+    EXPECT_FALSE(waiter.await_ready());
+    ASSERT_NO_THROW(source.set_value(42));
+    EXPECT_FALSE(waiter.await_suspend(std::noop_coroutine()));
+    EXPECT_EQ(sync_wait(source.task()), 42);
+}
+
+TEST_CASE(TestCompletionRacesWithTaskRegistration)
+{
+    for (int i = 0; i < 200; ++i)
+    {
+        task_completion_source<int> source;
+        std::latch start(1);
+        std::exception_ptr error;
+        std::jthread worker([&]
+                            {
+                                start.wait();
+                                try { source.set_value(i); }
+                                catch (...) { error = std::current_exception(); }
+                            });
+        start.count_down();
+        auto pending = source.task();
+        worker.join();
+        // Join before consuming the returned task to isolate source registration.
+        ASSERT_EQ(error, nullptr);
+        ASSERT_TRUE(pending.await_ready()) << "Completion was lost at iteration " << i;
+        EXPECT_EQ(sync_wait(pending), i);
+    }
+}
+
+TEST_CASE(TestDuplicateCompletionPreservesFirstResult)
+{
+    task_completion_source<int> source;
+    auto pending = source.task();
+    source.set_value(42);
+    EXPECT_THROW(source.set_value(99), std::logic_error);
+    EXPECT_THROW(source.set_exception(std::make_exception_ptr(std::runtime_error("late"))), std::logic_error);
+    EXPECT_EQ(sync_wait(pending), 42);
+
+    task_completion_source<void> completion;
+    auto pending_void = completion.task();
+    completion.set_exception(std::make_exception_ptr(std::runtime_error("first")));
+    EXPECT_THROW(completion.set_value(), std::logic_error);
+    EXPECT_THROW(completion.set_exception(std::make_exception_ptr(std::runtime_error("late"))), std::logic_error);
+    EXPECT_THROW(sync_wait(pending_void), std::runtime_error);
+}
+
+TEST_CASE(TestConcurrentDuplicateCompletion)
+{
+    task_completion_source<int> source;
+    std::latch start(1);
+    std::atomic<int> successes{0}, duplicates{0};
+    auto complete = [&](int value)
+    {
+        start.wait();
+        try { source.set_value(value); ++successes; }
+        catch (const std::logic_error &) { ++duplicates; }
+    };
+    std::jthread first(complete, 1), second(complete, 2);
+    start.count_down();
+    first.join();
+    second.join();
+    ASSERT_EQ(successes.load(), 1);
+    EXPECT_EQ(duplicates.load(), 1);
+    auto result = sync_wait(source.task());
+    EXPECT_TRUE(result == 1 || result == 2);
+}
+
+TEST_CASE(TestWaiterCanDestroyCompletionSource)
+{
+    auto source = std::make_unique<task_completion_source<int>>();
+    auto pending = source->task();
+    auto consume = [&]() -> task<int>
+    {
+        auto value = co_await pending;
+        source.reset();
+        co_return value;
+    };
+    auto consumer = consume();
+    source->set_value(42);
+    EXPECT_EQ(source, nullptr);
+    EXPECT_EQ(sync_wait(consumer), 42);
 }
