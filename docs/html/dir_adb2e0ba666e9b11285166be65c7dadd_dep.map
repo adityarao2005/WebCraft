@@ -1,7 +1,0 @@
-<map id="include/webcraft/net" name="include/webcraft/net">
-<area shape="rect" id="node1" href="dir_c51a60e61d1b02aef0b22b045c9233b4.html" title="async" alt="" coords="27,125,87,151"/>
-<area shape="rect" id="node2" href="dir_adb2e0ba666e9b11285166be65c7dadd.html" title="net" alt="" coords="36,52,79,77"/>
-<area shape="poly" id="edge1" href="dir_000003_000000.html" alt="" coords="60,78,60,112,55,112,55,78"/>
-<area shape="rect" id="edge1-headlabel" href="dir_000003_000000.html" title="1" alt="" coords="61,100,70,114"/>
-<area shape="rect" id="clust1" href="dir_9f20a167ebd7cbfc0b2890474288318f.html" title="webcraft" alt="" coords="16,16,99,161"/>
-</map>

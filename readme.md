@@ -25,21 +25,13 @@ WebCraft's `io_uring`-based async runtime delivers **higher throughput than Ngin
 
 To run the benchmarks yourself, see the [benchmarks/](benchmarks/) directory.
 
-## Contributing to it
+## Documentation
 
-1. Make a fork of the repository
-2. Make sure your environment is set up (I use VS Code + Microsoft's C++ Extension Pack & CMake extensions). Ensure that a C++ compiler exists on your computer and is added to the PATH as well as cmake.
-3. Check out to a new branch and give it a good name
-4. Ensure `vcpkg` is setup. If `vcpkg` is empty then run this: `git submodule update --init --recursive`. Then enter `vcpkg` and run `bootstrap-vcpkg.bat` on Windows or `boostrap-vcpkg.sh` on Linux or MacOS.
-5. Configure your project (If VS Code is setup with CMake then it should be automatically done for you. Otherwise, run `cmake --preset linux-build` if on Linux, `cmake --preset windows-build` if on Windows, `cmake --preset macos-build` on MacOS.
-6. Build the library: `cmake -S . -B build -DWEBCRAFT_BUILD_TESTS=ON -DCMAKE_BUILD_TYPE=Debug` && `cmake --build build --config Debug`
-7. Run the tests `ctest --test-dir build --output-on-failure --verbose`. To test a specific test, run ` ctest --test-dir build --output-on-failure --verbose -R "<<test regex>>"`
-8. Develop! Your environment is set up. Add your changes, perform steps 6 & 7 to make sure that your changes don't break anything.
-9. Once everything is properly checked. Push your changes to your fork and make a PR. Optionally: Get Copilot to review your changes before you get @adityarao2005 (me) to review it.
-10. If everything checks out with your code on all platforms on the CI runner, then I'll merge the PR, and you'll have contributed to WebCraft. Otherwise, I'll mention specific comments and will require you to revise your work before requesting my review again and running another build.
+Read the [Markdown documentation](docs/README.md) for setup, coroutine usage, async I/O, and architecture. The guides work directly on GitHub and in a local checkout, without a hosted documentation site.
 
-To see what issues exist, check out the issues tab or checkout this link to see what I'm working on: [https://github.com/users/adityarao2005/projects/4](https://github.com/users/adityarao2005/projects/4).
-If you plan on working on an issue, add a comment saying that you're working on it.
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup, platform presets, tests, and maintenance conventions. Agent guidance lives in [AGENTS.md](AGENTS.md), with project skills under `.agents/skills/`.
 
 ## Using it in your project
 

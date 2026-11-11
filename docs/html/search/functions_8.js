@@ -1,6 +1,0 @@
-var searchData=
-[
-  ['immovable_0',['immovable',['../classwebcraft_1_1async_1_1immovable.html#afa3778a7c0dcd44972da924b01594349',1,'webcraft::async::immovable::immovable()=default'],['../classwebcraft_1_1async_1_1immovable.html#aa27e42f2638b66ab277ba8451c6e6840',1,'webcraft::async::immovable::immovable(const immovable &amp;)=delete'],['../classwebcraft_1_1async_1_1immovable.html#aeb639d321b1d9cccdef2b30f18d984fa',1,'webcraft::async::immovable::immovable(immovable &amp;&amp;)=delete']]],
-  ['initial_5fsuspend_1',['initial_suspend',['../classwebcraft_1_1async_1_1fire__and__forget__task_1_1promise__type.html#a142854695a445fe48ff9fc8f37cf5074',1,'webcraft::async::fire_and_forget_task::promise_type::initial_suspend()'],['../classwebcraft_1_1async_1_1task__promise.html#a70b9c2a2f735f4fc922f2e82ef3b92cc',1,'webcraft::async::task_promise::initial_suspend()'],['../classwebcraft_1_1async_1_1task__promise_3_01void_01_4.html#a60b3839b68915693d573e2db53d42b05',1,'webcraft::async::task_promise&lt; void &gt;::initial_suspend()']]],
-  ['is_5fset_2',['is_set',['../structwebcraft_1_1async_1_1async__event.html#a9c276db76c04e8a305b835cd42fbd40c',1,'webcraft::async::async_event::is_set()'],['../classwebcraft_1_1async_1_1event__signal.html#ad4a52a05dde472e3062e60c92348d5fa',1,'webcraft::async::event_signal::is_set()']]]
-];
