@@ -9,6 +9,7 @@
 #define TEST_SUITE_NAME IOUringTestSuite
 #include "test_suite.hpp"
 #include <liburing.h>
+#include <system_error>
 
 using namespace std::chrono_literals;
 
@@ -20,7 +21,9 @@ TEST_CASE(SampleTest)
 void initialize_io_uring(struct io_uring *ring)
 {
     int ret = io_uring_queue_init(8, ring, 0);
-    EXPECT_EQ(ret, 0) << "Failed to initialize io_uring:" << ret;
+    if (ret < 0)
+        throw std::system_error(-ret, std::generic_category(), "io_uring_queue_init");
+    TEST_TRACE("io_uring initialized");
 }
 
 void destroy_io_uring(struct io_uring *ring)
@@ -41,20 +44,24 @@ TEST_CASE(io_uring_setup_and_cleanup)
 void post_nop_event(struct io_uring *ring, uint64_t payload)
 {
     struct io_uring_sqe *sqe = io_uring_get_sqe(ring);
-    EXPECT_NE(sqe, nullptr) << "Failed to get SQE from io_uring";
+    if (!sqe)
+        throw std::runtime_error("io_uring_get_sqe: submission queue is full");
 
     // Prepare a NOP operation to signal the completion of the task
     io_uring_prep_nop(sqe);
     io_uring_sqe_set_data64(sqe, payload);
     int ret = io_uring_submit(ring);
-    EXPECT_GE(ret, 0) << "Failed to submit SQE to io_uring: " << ret;
+    if (ret < 0)
+        throw std::system_error(-ret, std::generic_category(), "io_uring_submit");
 }
 
 auto wait_and_get_event(struct io_uring *ring)
 {
-    struct io_uring_cqe *cqe;
+    struct io_uring_cqe *cqe = nullptr;
+    TEST_TRACE("waiting for io_uring completion");
     int ret = io_uring_wait_cqe(ring, &cqe);
-    EXPECT_EQ(ret, 0) << "Failed to wait for completion event:" << ret;
+    if (ret < 0)
+        throw std::system_error(-ret, std::generic_category(), "io_uring_wait_cqe");
 
     // Process the completion event
     EXPECT_NE(cqe, nullptr) << "Completion event is null";
@@ -186,7 +193,8 @@ TEST_CASE(io_uring_wait_multiple_events)
 void post_timer_event(struct io_uring *ring, std::chrono::steady_clock::duration duration, uint64_t payload)
 {
     struct io_uring_sqe *sqe = io_uring_get_sqe(ring);
-    EXPECT_NE(sqe, nullptr) << "Failed to get SQE from io_uring";
+    if (!sqe)
+        throw std::runtime_error("io_uring_get_sqe: submission queue is full");
 
     // Prepare a timer event
 
@@ -197,14 +205,17 @@ void post_timer_event(struct io_uring *ring, std::chrono::steady_clock::duration
     io_uring_prep_timeout(sqe, &its, 0, 0);
     io_uring_sqe_set_data64(sqe, payload);
     int ret = io_uring_submit(ring);
-    EXPECT_GE(ret, 0) << "Failed to submit SQE to io_uring: " << ret;
+    if (ret < 0)
+        throw std::system_error(-ret, std::generic_category(), "io_uring_submit");
 }
 
 void wait_for_timeout_event(struct io_uring *ring, uint64_t payload)
 {
-    struct io_uring_cqe *cqe;
+    struct io_uring_cqe *cqe = nullptr;
+    TEST_TRACE("waiting for io_uring completion");
     int ret = io_uring_wait_cqe(ring, &cqe);
-    EXPECT_EQ(ret, 0) << "Failed to wait for completion event:" << ret;
+    if (ret < 0)
+        throw std::system_error(-ret, std::generic_category(), "io_uring_wait_cqe");
 
     // Process the completion event
     EXPECT_NE(cqe, nullptr) << "Completion event is null";

@@ -149,3 +149,12 @@ TEST_CASE(RunMoreThanMaxTasks)
     EXPECT_EQ(thpr.get_workers_size(), min_workers) << "After idle timeout: Should have " << min_workers << " workers";
     EXPECT_EQ(thpr.get_available_workers(), min_workers) << "After idle timeout: Should have " << min_workers << " available workers";
 }
+
+TEST_CASE(TestSubmitPropagatesExceptionAndWorkerRemainsUsable)
+{
+    thread_pool pool(1, 1);
+    auto failed = pool.submit([]() -> int { throw std::runtime_error("worker failure"); });
+    EXPECT_THROW(failed.get(), std::runtime_error);
+    auto next = pool.submit([] { return std::make_unique<int>(42); });
+    EXPECT_EQ(*next.get(), 42);
+}

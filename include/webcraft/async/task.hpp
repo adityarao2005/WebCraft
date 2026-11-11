@@ -14,6 +14,7 @@
  * return this type.
  */
 
+#include <atomic>
 #include <concepts>
 #include <exception>
 #include <coroutine>
@@ -39,7 +40,9 @@ namespace webcraft::async
     public:
         std::optional<T> value;
         std::exception_ptr exception;
-        std::coroutine_handle<> continuation;
+        // nullptr: running, waiter address: registered, &completed: finished.
+        std::atomic<void *> continuation{nullptr};
+        static inline char completed;
 
         /** @brief Builds the `task<T>` object for this coroutine. */
         task<T> get_return_object();
@@ -50,10 +53,12 @@ namespace webcraft::async
         struct final_awaiter
         {
             bool await_ready() noexcept { return false; }
-            void await_suspend(std::coroutine_handle<task_promise> h) noexcept
+            std::coroutine_handle<> await_suspend(std::coroutine_handle<task_promise> h) noexcept
             {
-                if (h.promise().continuation)
-                    h.promise().continuation.resume();
+                auto next = h.promise().continuation.exchange(&completed, std::memory_order_acq_rel);
+                // Publish completion only after suspension, and transfer without
+                // growing the stack or touching the frame after publication.
+                return next ? std::coroutine_handle<>::from_address(next) : std::noop_coroutine();
             }
             void await_resume() noexcept {}
         };
@@ -88,7 +93,9 @@ namespace webcraft::async
     {
     public:
         std::exception_ptr exception;
-        std::coroutine_handle<> continuation;
+        // nullptr: running, waiter address: registered, &completed: finished.
+        std::atomic<void *> continuation{nullptr};
+        static inline char completed;
 
         /** @brief Builds the `task<void>` object for this coroutine. */
         task<void> get_return_object();
@@ -99,10 +106,12 @@ namespace webcraft::async
         struct final_awaiter
         {
             bool await_ready() noexcept { return false; }
-            void await_suspend(std::coroutine_handle<task_promise> h) noexcept
+            std::coroutine_handle<> await_suspend(std::coroutine_handle<task_promise> h) noexcept
             {
-                if (h.promise().continuation)
-                    h.promise().continuation.resume();
+                auto next = h.promise().continuation.exchange(&completed, std::memory_order_acq_rel);
+                // Publish completion only after suspension, and transfer without
+                // growing the stack or touching the frame after publication.
+                return next ? std::coroutine_handle<>::from_address(next) : std::noop_coroutine();
             }
             void await_resume() noexcept {}
         };
@@ -117,7 +126,10 @@ namespace webcraft::async
     };
 
     /**
-     * @brief Awaitable coroutine result that yields a value of type `T`.
+     * @brief Eager coroutine result that yields a value of type `T`.
+     * Supports one active waiter. Completion may race with waiter registration.
+     * Move ownership before awaiting; do not move or destroy a task with an
+     * active waiter or destroy an owner while native work can still resume it.
      */
     template <typename T = void>
     class task
@@ -151,12 +163,14 @@ namespace webcraft::async
 
         bool await_ready() const noexcept
         {
-            return !coro || coro.done();
+            return !coro || coro.promise().continuation.load(std::memory_order_acquire) == &promise_type::completed;
         }
 
-        void await_suspend(std::coroutine_handle<> h) noexcept
+        bool await_suspend(std::coroutine_handle<> h) noexcept
         {
-            coro.promise().continuation = h;
+            void *expected = nullptr;
+            return coro.promise().continuation.compare_exchange_strong(
+                expected, h.address(), std::memory_order_acq_rel, std::memory_order_acquire);
         }
 
         T await_resume()
@@ -206,12 +220,14 @@ namespace webcraft::async
 
         bool await_ready() const noexcept
         {
-            return !coro || coro.done();
+            return !coro || coro.promise().continuation.load(std::memory_order_acquire) == &promise_type::completed;
         }
 
-        void await_suspend(std::coroutine_handle<> h) noexcept
+        bool await_suspend(std::coroutine_handle<> h) noexcept
         {
-            coro.promise().continuation = h;
+            void *expected = nullptr;
+            return coro.promise().continuation.compare_exchange_strong(
+                expected, h.address(), std::memory_order_acq_rel, std::memory_order_acquire);
         }
 
         void await_resume()

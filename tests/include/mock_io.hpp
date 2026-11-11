@@ -129,6 +129,7 @@ namespace webcraft::test
 
                 if (socket != INVALID_SOCKET)
                 {
+                    TEST_TRACE("UDP echo server: request stop");
                     server_thread.request_stop();
 
                     struct sockaddr_storage addr{};
@@ -147,7 +148,9 @@ namespace webcraft::test
 
                     if (server_thread.joinable())
                     {
+                        TEST_TRACE("UDP echo server: joining receive thread");
                         server_thread.join();
+                        TEST_TRACE("UDP echo server: receive thread joined");
                     }
                 }
             }

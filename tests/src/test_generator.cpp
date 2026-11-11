@@ -617,3 +617,52 @@ TEST_CASE(TestAsyncGeneratorBatchedProcessing)
         EXPECT_TRUE(false) << "Batched approach failed: " << e.what();
     }
 }
+
+TEST_CASE(TestGeneratorEarlyExitReleasesFrameArgument)
+{
+    std::weak_ptr<int> lifetime;
+    auto produce = [](std::shared_ptr<int> owner) -> generator<int>
+    {
+        co_yield *owner;
+        co_yield *owner + 1;
+    };
+    {
+        auto owner = std::make_shared<int>(42);
+        lifetime = owner;
+        auto sequence = produce(std::move(owner));
+        auto moved = std::move(sequence);
+        auto it = moved.begin();
+        EXPECT_EQ(*it, 42);
+        EXPECT_FALSE(lifetime.expired());
+        // Destroy while suspended at the first yield.
+    }
+    EXPECT_TRUE(lifetime.expired());
+}
+
+TEST_CASE(TestAsyncGeneratorExceptionAfterSuspensionReleasesState)
+{
+    async_event gate;
+    std::weak_ptr<int> lifetime;
+    auto produce = [](async_event &gate, std::shared_ptr<int> owner) -> async_generator<int>
+    {
+        co_yield *owner;
+        co_await gate;
+        throw std::runtime_error("after suspension");
+    };
+    auto consume = [](async_generator<int> sequence) -> task<void>
+    {
+        auto it = co_await sequence.begin();
+        EXPECT_EQ(*it, 7);
+        co_await ++it;
+    };
+    {
+        auto owner = std::make_shared<int>(7);
+        lifetime = owner;
+        auto pending = consume(produce(gate, std::move(owner)));
+        EXPECT_FALSE(pending.await_ready());
+        EXPECT_FALSE(lifetime.expired());
+        gate.set();
+        EXPECT_THROW(sync_wait(pending), std::runtime_error);
+    }
+    EXPECT_TRUE(lifetime.expired());
+}

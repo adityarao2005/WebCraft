@@ -1,2 +1,4 @@
 build
 vcpkg_installed
+build-*/
+__pycache__/

@@ -9,6 +9,8 @@
 #define TEST_SUITE_NAME KqueueTestSuite
 #include "test_suite.hpp"
 #include <sys/event.h>
+#include <system_error>
+#include <cerrno>
 #include <aio.h>
 #include <fcntl.h>
 #include <unistd.h>
@@ -24,7 +26,9 @@ int initialize_kqueue()
 {
     // create the queue
     int queue = kqueue();
-    EXPECT_NE(queue, -1) << "Failed to initialize kqueue:" << queue;
+    if (queue == -1)
+        throw std::system_error(errno, std::generic_category(), "kqueue");
+    TEST_TRACE("kqueue initialized");
 
     return queue;
 }
@@ -63,8 +67,10 @@ void post_nop_event(int queue, uint64_t payload)
 auto wait_and_get_event(int queue)
 {
     struct kevent event;
+    TEST_TRACE("waiting for kqueue completion");
     int result = kevent(queue, nullptr, 0, &event, 1, nullptr);
-    EXPECT_GE(result, 0) << "Failed to wait for event from kqueue:" << result;
+    if (result < 0)
+        throw std::system_error(errno, std::generic_category(), "kevent wait");
 
     auto *ptr_data = reinterpret_cast<uint64_t *>(event.udata);
     auto data = *ptr_data;

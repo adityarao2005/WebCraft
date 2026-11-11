@@ -180,11 +180,10 @@ TEST_CASE(TestTaskCompletesAsynchronously)
 
     auto task = async_fn();
 
-    std::thread([&]()
+    std::jthread worker([&]()
                 {
         std::this_thread::sleep_for(test_timer_timeout);
-        ev.set(); })
-        .detach();
+        ev.set(); });
 
     auto start = std::chrono::steady_clock::now();
     auto result = sync_wait(task);
@@ -256,16 +255,17 @@ TEST_CASE(TestTaskEagerness)
 struct resume_on_thread_with_test_timer_timeout
 {
     std::chrono::milliseconds test_timer_timeout;
+    std::vector<std::jthread> &workers;
 
     bool await_ready() const noexcept { return false; }
 
     void await_suspend(std::coroutine_handle<> h) const noexcept
     {
-        std::thread([h, this]()
-                    {
-            std::this_thread::sleep_for(test_timer_timeout);
-            h.resume(); })
-            .detach();
+        workers.emplace_back([h, delay = test_timer_timeout]()
+                             {
+                                 std::this_thread::sleep_for(delay);
+                                 h.resume();
+                             });
     }
 
     void await_resume() const noexcept {}
@@ -273,6 +273,7 @@ struct resume_on_thread_with_test_timer_timeout
 
 TEST_CASE(TestTaskWhenAllVoid)
 {
+    std::vector<std::jthread> workers;
     constexpr std::chrono::milliseconds test_timer_timeout_1(500);
     constexpr std::chrono::milliseconds test_timer_timeout_2(300);
 
@@ -280,14 +281,14 @@ TEST_CASE(TestTaskWhenAllVoid)
 
     auto task1 = [&]() -> task<void>
     {
-        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_1};
+        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_1, workers};
         signal1.set();
         co_return;
     };
 
     auto task2 = [&]() -> task<void>
     {
-        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_2};
+        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_2, workers};
         signal2.set();
         co_return;
     };
@@ -308,19 +309,20 @@ TEST_CASE(TestTaskWhenAllVoid)
 
 TEST_CASE(TestTaskWhenAllHomogenous)
 {
+    std::vector<std::jthread> workers;
     constexpr std::chrono::milliseconds test_timer_timeout_1(500);
     constexpr std::chrono::milliseconds test_timer_timeout_2(300);
 
     auto task1 = [&]() -> task<int>
     {
-        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_1};
+        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_1, workers};
 
         co_return 1;
     };
 
     auto task2 = [&]() -> task<int>
     {
-        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_2};
+        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_2, workers};
         co_return 2;
     };
 
@@ -343,6 +345,7 @@ TEST_CASE(TestTaskWhenAllHomogenous)
 
 TEST_CASE(TestTaskWhenAllHeterogenous)
 {
+    std::vector<std::jthread> workers;
     constexpr std::chrono::milliseconds test_timer_timeout_1(500);
     constexpr std::chrono::milliseconds test_timer_timeout_2(300);
     constexpr std::chrono::milliseconds test_timer_timeout_3(800);
@@ -350,19 +353,19 @@ TEST_CASE(TestTaskWhenAllHeterogenous)
 
     auto task1 = [&]() -> task<int>
     {
-        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_1};
+        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_1, workers};
         co_return 1;
     };
 
     auto task2 = [&]() -> task<std::string>
     {
-        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_2};
+        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_2, workers};
         co_return "two";
     };
 
     auto task3 = [&]() -> task<void>
     {
-        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_3};
+        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_3, workers};
         signal.set();
         co_return;
     };
@@ -383,6 +386,7 @@ TEST_CASE(TestTaskWhenAllHeterogenous)
 
 TEST_CASE(TestTaskWhenAnyVoid)
 {
+    std::vector<std::jthread> workers;
     constexpr std::chrono::milliseconds test_timer_timeout_1(500);
     constexpr std::chrono::milliseconds test_timer_timeout_2(300);
 
@@ -390,14 +394,14 @@ TEST_CASE(TestTaskWhenAnyVoid)
 
     auto task1 = [&]() -> task<void>
     {
-        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_1};
+        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_1, workers};
         signal1.set();
         co_return;
     };
 
     auto task2 = [&]() -> task<void>
     {
-        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_2};
+        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_2, workers};
         signal2.set();
         co_return;
     };
@@ -414,22 +418,25 @@ TEST_CASE(TestTaskWhenAnyVoid)
     EXPECT_TRUE(signal2.is_set()) << "At least one signal should be set after when_any completes";
     EXPECT_TRUE(!signal1.is_set()) << "Only the first task should complete, as it is the shortest";
     EXPECT_GE(duration, test_timer_timeout_2) << "when_any should wait for the shortest task to complete";
+    for (auto &worker : workers)
+        worker.join();
 }
 
 TEST_CASE(TestTaskWhenAnyReturnType)
 {
+    std::vector<std::jthread> workers;
     constexpr std::chrono::milliseconds test_timer_timeout_1(500);
     constexpr std::chrono::milliseconds test_timer_timeout_2(300);
 
     auto task1 = [&]() -> task<int>
     {
-        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_1};
+        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_1, workers};
         co_return 5;
     };
 
     auto task2 = [&]() -> task<int>
     {
-        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_2};
+        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_2, workers};
         co_return 3;
     };
 
@@ -444,10 +451,13 @@ TEST_CASE(TestTaskWhenAnyReturnType)
 
     EXPECT_EQ(result, 3) << "when_any should return the result of the first completed task";
     EXPECT_GE(duration, test_timer_timeout_2) << "when_any should wait for the shortest task to complete";
+    for (auto &worker : workers)
+        worker.join();
 }
 
 TEST_CASE(TestTaskWhenAnyHeterogeneous)
 {
+    std::vector<std::jthread> workers;
     constexpr std::chrono::milliseconds test_timer_timeout_1(500);
     constexpr std::chrono::milliseconds test_timer_timeout_2(300);
     constexpr std::chrono::milliseconds test_timer_timeout_3(800);
@@ -456,26 +466,29 @@ TEST_CASE(TestTaskWhenAnyHeterogeneous)
 
     auto task1 = [&]() -> task<int>
     {
-        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_1};
+        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_1, workers};
         co_return 1;
     };
 
     auto task2 = [&]() -> task<std::string>
     {
-        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_2};
+        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_2, workers};
         co_return "two";
     };
 
     auto task3 = [&]() -> task<void>
     {
-        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_3};
+        co_await resume_on_thread_with_test_timer_timeout{test_timer_timeout_3, workers};
         signal.set();
         co_return;
     };
 
     auto start = std::chrono::steady_clock::now();
 
-    auto result = sync_wait(when_any(task1(), task2(), task3()));
+    auto first = task1();
+    auto second = task2();
+    auto third = task3();
+    auto result = sync_wait(when_any(first, second, third));
 
     auto end = std::chrono::steady_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
@@ -484,4 +497,141 @@ TEST_CASE(TestTaskWhenAnyHeterogeneous)
     EXPECT_EQ(std::get<std::string>(result), "two") << "Second result should be 'two'";
 
     EXPECT_GE(duration, test_timer_timeout_2) << "when_any should wait for the shortest task to complete";
+    // Join after resume() unwinds, without replacing when_any's continuations.
+    for (auto &worker : workers)
+        worker.join();
+}
+
+TEST_CASE(TestMovedTaskOwnsSuspendedFrame)
+{
+    async_event gate;
+    std::weak_ptr<int> lifetime;
+    auto make = [](async_event &gate, std::shared_ptr<int> owner) -> task<std::unique_ptr<int>>
+    {
+        co_await gate;
+        co_return std::make_unique<int>(*owner);
+    };
+    {
+        auto owner = std::make_shared<int>(42);
+        lifetime = owner;
+        auto original = make(gate, std::move(owner));
+        EXPECT_FALSE(original.await_ready());
+        auto moved = std::move(original);
+        EXPECT_TRUE(original.await_ready()) << "Moved-from task must no longer own the coroutine";
+        gate.set();
+        EXPECT_EQ(*sync_wait(moved), 42);
+        EXPECT_FALSE(lifetime.expired()) << "Frame arguments live until the task owner is destroyed";
+    }
+    EXPECT_TRUE(lifetime.expired()) << "Moved task destruction must release frame arguments";
+}
+
+TEST_CASE(TestWhenAllEmptyAndException)
+{
+    std::vector<task<int>> empty;
+    EXPECT_TRUE(sync_wait(when_all(empty)).empty());
+    std::vector<task<void>> empty_void;
+    EXPECT_NO_THROW(sync_wait(when_all(empty_void)));
+    auto fail = []() -> task<int>
+    {
+        throw std::runtime_error("expected failure");
+        co_return 0;
+    };
+    std::vector<task<int>> failed;
+    failed.emplace_back(fail());
+    EXPECT_THROW(sync_wait(when_all(failed)), std::runtime_error);
+}
+
+TEST_CASE(TestAsyncEventMultipleWaitersAndRepeatedSet)
+{
+    async_event gate;
+    int resumed = 0;
+    auto wait = [&]() -> task<void>
+    {
+        co_await gate;
+        ++resumed;
+    };
+    auto first = wait();
+    auto second = wait();
+    EXPECT_EQ(resumed, 0);
+    gate.set();
+    gate.set();
+    EXPECT_EQ(resumed, 2);
+    sync_wait(first);
+    sync_wait(second);
+    auto late = wait();
+    EXPECT_TRUE(late.await_ready());
+    EXPECT_EQ(resumed, 3);
+}
+
+TEST_CASE(TestWhenAnyVoidWinnerWakesHeterogeneousConsumer)
+{
+    async_event first_gate, second_gate;
+    auto make_first = [&]() -> task<void> { co_await first_gate; };
+    auto make_second = [&]() -> task<int> { co_await second_gate; co_return 7; };
+    auto first = make_first();
+    auto second = make_second();
+    auto winner = when_any(first, second);
+    EXPECT_FALSE(winner.await_ready());
+    first_gate.set();
+    const bool ready = winner.await_ready();
+    // Finish the loser before any assertion can leave suspended work behind.
+    second_gate.set();
+    EXPECT_TRUE(ready) << "Void winner must signal the heterogeneous race";
+    if (ready)
+        EXPECT_TRUE(std::holds_alternative<std::monostate>(sync_wait(winner)));
+    sync_wait(first);
+    sync_wait(second);
+}
+
+TEST_CASE(TestCompletionBetweenTaskReadyAndSuspend)
+{
+    task_completion_source<int> source;
+    auto pending = source.task();
+    EXPECT_FALSE(pending.await_ready());
+    source.set_value(42);
+    EXPECT_FALSE(pending.await_suspend(std::noop_coroutine()))
+        << "Completion before registration must prevent suspension";
+    EXPECT_EQ(pending.await_resume(), 42);
+
+    task_completion_source<void> void_source;
+    auto void_pending = void_source.task();
+    EXPECT_FALSE(void_pending.await_ready());
+    void_source.set_value();
+    EXPECT_FALSE(void_pending.await_suspend(std::noop_coroutine()));
+    EXPECT_NO_THROW(void_pending.await_resume());
+}
+
+TEST_CASE(TestCompletionRacesWithTaskAwaitAndSyncWait)
+{
+    for (int i = 0; i < 250; ++i)
+    {
+        SCOPED_TRACE(i);
+        task_completion_source<int> source;
+        auto pending = source.task();
+        std::jthread worker([&source, i] { source.set_value(i); });
+        EXPECT_EQ(sync_wait(pending), i);
+        worker.join();
+    }
+}
+
+TEST_CASE(TestAsyncEventCompletionBeforeRegistration)
+{
+    async_event event;
+    EXPECT_FALSE(event.await_ready());
+    event.set();
+    EXPECT_FALSE(event.await_suspend(std::noop_coroutine()));
+}
+
+TEST_CASE(TestAsyncEventWaiterCanDestroyEvent)
+{
+    auto event = std::make_unique<async_event>();
+    auto consume = [&]() -> task<void>
+    {
+        co_await *event;
+        event.reset();
+    };
+    auto pending = consume();
+    event->set();
+    EXPECT_EQ(event, nullptr);
+    sync_wait(pending);
 }

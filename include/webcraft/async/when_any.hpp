@@ -101,8 +101,9 @@ namespace webcraft::async
                     bool expected = false;
                     if (winner.compare_exchange_strong(expected, true, std::memory_order_acq_rel))
                     {
-                        opt = std::monostate{}; // If already won, set to monostate
-                        co_return;              // If already won, do nothing
+                        opt = std::monostate{};
+                        event.set(); // Void winners must wake the consumer too.
+                        co_return;
                     }
                 }
                 else

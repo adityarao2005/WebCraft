@@ -43,7 +43,7 @@ namespace webcraft::async::detail::windows
 
     struct overlapped_runtime_event : public webcraft::async::detail::runtime_event
     {
-    private:
+    protected:
         overlapped_event overlapped;
 
     public:
@@ -91,6 +91,20 @@ namespace webcraft::async::detail::windows
 
         ~overlapped_async_io_runtime_event()
         {
+        }
+
+        void try_start() override
+        {
+            DWORD numberOfBytesTransfered = 0;
+            BOOL result = perform_overlapped_operation(&numberOfBytesTransfered, &overlapped);
+
+            // Associated handles keep completion notifications enabled. Even
+            // synchronous success queues an IOCP packet, which owns completion
+            // and keeps the OVERLAPPED/event alive until the packet is consumed.
+            if (!result && GetLastError() != ERROR_IO_PENDING)
+            {
+                throw overlapped_runtime_event_error("Failed to post overlapped I/O");
+            }
         }
 
         void try_native_cancel(LPOVERLAPPED overlapped) override

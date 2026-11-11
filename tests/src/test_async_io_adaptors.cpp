@@ -853,3 +853,141 @@ TEST_CASE(TestInferredPipelineAcrossSuspension)
     sync_wait(writer.close());
     EXPECT_EQ(sync_wait(std::move(pending)), (std::vector<int>{5, 6}));
 }
+
+TEST_CASE(TestSortedOrderingAndEmptyInput)
+{
+    auto input = [] { return mock_readable_stream<int>({3, 1, 2, 1}); };
+    EXPECT_EQ(sync_wait(input() | sorted() | collect(collectors::to_vector())), (std::vector<int>{1, 1, 2, 3}));
+    EXPECT_EQ(sync_wait(input() | sorted<int>(std::greater<>{}) | collect(collectors::to_vector())), (std::vector<int>{3, 2, 1, 1}));
+    EXPECT_TRUE(sync_wait(mock_readable_stream<int>({}) | sorted() | collect(collectors::to_vector())).empty());
+    auto pairs = mock_readable_stream<std::pair<int, int>>({{2, 0}, {1, 1}, {2, 2}});
+    auto stable = sync_wait(pairs | sorted([](const auto &a, const auto &b) { return a.first < b.first; })
+                                 | collect(collectors::to_vector()));
+    EXPECT_EQ(stable, (std::vector<std::pair<int, int>>{{1, 1}, {2, 0}, {2, 2}}));
+}
+
+TEST_CASE(TestZipModesAndEmptyInputs)
+{
+    auto left = [] { return mock_readable_stream<int>({1, 2, 3}); };
+    auto right = [] { return mock_readable_stream<std::string>({"a", "b"}); };
+    EXPECT_EQ(sync_wait(left() | zip_inner(right()) | collect(collectors::to_vector())),
+              (std::vector<std::pair<int, std::string>>{{1, "a"}, {2, "b"}}));
+    EXPECT_EQ(sync_wait(left() | zip_left(right()) | collect(collectors::to_vector())),
+              (std::vector<std::pair<int, std::optional<std::string>>>{{1, "a"}, {2, "b"}, {3, std::nullopt}}));
+    EXPECT_EQ(sync_wait(left() | zip_right(right()) | collect(collectors::to_vector())),
+              (std::vector<std::pair<std::optional<int>, std::string>>{{1, "a"}, {2, "b"}}));
+    EXPECT_EQ(sync_wait(right() | zip_right(left()) | collect(collectors::to_vector())),
+              (std::vector<std::pair<std::optional<std::string>, int>>{{"a", 1}, {"b", 2}, {std::nullopt, 3}}));
+    EXPECT_EQ(sync_wait(left() | zip_full(right()) | collect(collectors::to_vector())),
+              (std::vector<std::pair<std::optional<int>, std::optional<std::string>>>{{1, "a"}, {2, "b"}, {3, std::nullopt}}));
+    EXPECT_EQ(sync_wait(right() | zip_full(left()) | collect(collectors::to_vector())),
+              (std::vector<std::pair<std::optional<std::string>, std::optional<int>>>{{"a", 1}, {"b", 2}, {std::nullopt, 3}}));
+    auto empty = [] { return mock_readable_stream<int>({}); };
+    EXPECT_TRUE(sync_wait(empty() | zip_inner(left()) | collect(collectors::to_vector())).empty());
+    EXPECT_TRUE(sync_wait(left() | zip_inner(empty()) | collect(collectors::to_vector())).empty());
+    EXPECT_TRUE(sync_wait(empty() | zip_left(left()) | collect(collectors::to_vector())).empty());
+    EXPECT_TRUE(sync_wait(left() | zip_right(empty()) | collect(collectors::to_vector())).empty());
+    EXPECT_EQ(sync_wait(empty() | zip_full(left()) | collect(collectors::to_vector())).size(), 3);
+    EXPECT_EQ(sync_wait(left() | zip_full(empty()) | collect(collectors::to_vector())).size(), 3);
+    EXPECT_TRUE(sync_wait(empty() | zip_full(empty()) | collect(collectors::to_vector())).empty());
+}
+
+TEST_CASE(TestSortedAndZipOwnResourcesAcrossSuspension)
+{
+    auto [reader, writer] = make_mpsc_channel<std::unique_ptr<int>>();
+    std::weak_ptr<int> comparator_lifetime;
+    auto pipeline = [&]
+    {
+        auto owner = std::make_shared<int>(0);
+        comparator_lifetime = owner;
+        return reader | sorted([owner](const auto &a, const auto &b) { return *a < *b; })
+                      | zip_inner(mock_readable_stream<int>({10, 20}));
+    }();
+    auto consume = [&]() -> task<std::vector<std::pair<std::unique_ptr<int>, int>>>
+    {
+        co_return co_await (pipeline | collect(collectors::to_vector()));
+    };
+    auto pending = consume();
+    EXPECT_FALSE(pending.await_ready()) << "Collector must suspend until channel EOF";
+    EXPECT_FALSE(comparator_lifetime.expired());
+    sync_wait(writer.send(std::make_unique<int>(2)));
+    sync_wait(writer.send(std::make_unique<int>(1)));
+    sync_wait(writer.close());
+    auto values = sync_wait(std::move(pending));
+    ASSERT_EQ(values.size(), 2);
+    EXPECT_EQ(*values[0].first, 1);
+    EXPECT_EQ(values[0].second, 10);
+    EXPECT_EQ(*values[1].first, 2);
+    EXPECT_TRUE(comparator_lifetime.expired()) << "Completed collector must release its comparator";
+}
+
+namespace
+{
+    struct counted_stream
+    {
+        std::shared_ptr<int> calls;
+        bool fail = false;
+        task<std::optional<int>> recv()
+        {
+            ++*calls;
+            if (fail)
+                throw std::runtime_error("source failure");
+            co_return std::nullopt;
+        }
+    };
+}
+
+TEST_CASE(TestZipEofAndExceptionsAreTerminal)
+{
+    auto left_calls = std::make_shared<int>(0);
+    auto right_calls = std::make_shared<int>(0);
+    auto zipped = counted_stream{left_calls} | zip_inner(counted_stream{right_calls});
+    EXPECT_FALSE(sync_wait(zipped.recv()));
+    EXPECT_FALSE(sync_wait(zipped.recv()));
+    EXPECT_EQ(*left_calls, 1);
+    EXPECT_EQ(*right_calls, 0) << "Inner zip must not start a receive after left EOF";
+    auto failed = counted_stream{left_calls, true} | zip_full(counted_stream{right_calls});
+    EXPECT_THROW(sync_wait(failed.recv()), std::runtime_error);
+    EXPECT_FALSE(sync_wait(failed.recv()));
+    EXPECT_EQ(*right_calls, 0);
+    auto sorted_failure = counted_stream{left_calls, true} | sorted();
+    EXPECT_THROW(sync_wait(sorted_failure.recv()), std::runtime_error);
+    auto comparator_failure = mock_readable_stream<int>({2, 1}) | sorted([](int, int) -> bool
+    { throw std::runtime_error("comparator failure"); });
+    EXPECT_THROW(sync_wait(comparator_failure.recv()), std::runtime_error);
+}
+
+TEST_CASE(TestZipSuspendsOnRightAndPreservesEagerRecv)
+{
+    auto [reader, writer] = make_mpsc_channel<int>();
+    auto pipeline = mock_readable_stream<int>({1}) | zip_left(std::move(reader));
+    auto pending = pipeline.recv();
+    EXPECT_FALSE(pending.await_ready());
+    sync_wait(writer.send(9));
+    sync_wait(writer.close());
+    EXPECT_EQ(sync_wait(std::move(pending)), (std::make_optional(std::pair<int, std::optional<int>>{1, 9})));
+    EXPECT_FALSE(sync_wait(pipeline.recv()));
+}
+
+TEST_CASE(TestExplicitSortedDefaultAndReusableComparator)
+{
+    auto descending = sorted(std::greater<>{});
+    EXPECT_EQ(sync_wait(mock_readable_stream<int>({2, 1}) | sorted<int>() | collect(collectors::to_vector())),
+              (std::vector<int>{1, 2}));
+    EXPECT_EQ(sync_wait(mock_readable_stream<std::string>({"b", "a"}) | sorted<std::string>() | collect(collectors::to_vector())),
+              (std::vector<std::string>{"a", "b"}));
+    for (int i = 0; i < 2; ++i)
+    {
+        SCOPED_TRACE(i);
+        EXPECT_EQ(sync_wait(mock_readable_stream<int>({1, 2}) | descending | collect(collectors::to_vector())),
+                  (std::vector<int>{2, 1}));
+    }
+}
+
+TEST_CASE(TestSortedOwnsMoveOnlyComparator)
+{
+    auto pipeline = mock_readable_stream<int>({1, 3, 2})
+        | sorted([descending = std::make_unique<bool>(true)](int a, int b)
+                 { return *descending ? a > b : a < b; });
+    EXPECT_EQ(sync_wait(pipeline | collect(collectors::to_vector())), (std::vector<int>{3, 2, 1}));
+}

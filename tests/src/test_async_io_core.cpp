@@ -391,3 +391,57 @@ TEST_CASE(ThreadSafeMpScChannel)
 
     sync_wait(when_all(run_producers_and_close(), consumer_fn()));
 }
+TEST_CASE(TestChannelCloseWakesWaiterAndRejectsSends)
+{
+    auto [reader, writer] = make_mpsc_channel<std::unique_ptr<int>>();
+    auto pending = reader.recv();
+    EXPECT_FALSE(pending.await_ready());
+    sync_wait(writer.close());
+    EXPECT_FALSE(sync_wait(pending));
+    EXPECT_FALSE(sync_wait(reader.recv()));
+    EXPECT_FALSE(sync_wait(writer.send(std::make_unique<int>(7))));
+    EXPECT_NO_THROW(sync_wait(writer.close()));
+}
+
+TEST_CASE(TestChannelDrainsMoveOnlyValuesAfterClose)
+{
+    auto [reader, writer] = make_mpsc_channel<std::unique_ptr<int>>();
+    sync_wait(writer.send(std::make_unique<int>(1)));
+    sync_wait(writer.send(std::make_unique<int>(2)));
+    sync_wait(writer.close());
+    auto first = sync_wait(reader.recv());
+    auto second = sync_wait(reader.recv());
+    ASSERT_TRUE(first);
+    ASSERT_TRUE(second);
+    EXPECT_EQ(**first, 1);
+    EXPECT_EQ(**second, 2);
+    EXPECT_FALSE(sync_wait(reader.recv()));
+}
+
+TEST_CASE(TestBufferedFallbackEmptyAndPartialRead)
+{
+    mock_readable_stream<int> input({1, 2});
+    std::array<int, 4> buffer{-1, -1, -1, -1};
+    EXPECT_EQ(sync_wait(recv<int>(input, std::span<int>(buffer.data(), 0))), 0);
+    EXPECT_EQ(sync_wait(recv<int>(input, std::span<int>(buffer))), 2);
+    EXPECT_EQ(buffer, (std::array<int, 4>{1, 2, -1, -1}));
+    EXPECT_EQ(sync_wait(recv<int>(input, std::span<int>(buffer))), 0);
+}
+
+TEST_CASE(TestBufferedFallbackStopsOnRejectedSend)
+{
+    struct rejecting_stream
+    {
+        std::vector<int> attempts;
+        task<bool> send(int value)
+        {
+            attempts.push_back(value);
+            co_return value != 2;
+        }
+    } output;
+    std::array<int, 3> buffer{1, 2, 3};
+    EXPECT_EQ(sync_wait(send<int>(output, std::span<int>(buffer.data(), 0))), 0);
+    EXPECT_TRUE(output.attempts.empty());
+    EXPECT_EQ(sync_wait(send<int>(output, std::span<int>(buffer))), 1);
+    EXPECT_EQ(output.attempts, (std::vector<int>{1, 2}));
+}

@@ -12,6 +12,10 @@ Keep buffers and stream owners alive across suspension. Check each concrete stre
 
 [fs.hpp](fs.hpp) exposes `make_file`, readable/writable stream opening, and stream operations. The native implementation is [async_file_io.cpp](../../../../src/webcraft/async_file_io.cpp). For executable examples covering opening, reading, writing, and cleanup, see [file I/O tests](../../../../tests/src/test_async_io_fs.cpp).
 
+Failed file opens propagate `std::system_error` when the opening task is awaited.
+Readable opens do not create missing files. Writable opens can create a file, but
+its parent directory must already exist.
+
 ## Sockets
 
 [socket.hpp](socket.hpp) exposes TCP sockets, TCP listeners, UDP sockets, and connection information. TCP provides readable and writable streams, while UDP uses datagram send/receive operations. See [socket tests](../../../../tests/src/test_async_io_socket.cpp) for connection, listener, and datagram usage.
@@ -37,3 +41,25 @@ The same inference applies to `transform`, `skip`, `limit`, predicate adaptors, 
 Applying an adaptor moves its input stream into the pipeline, including named input streams. The pipeline owns its transformation callbacks and intermediate streams, so it can be saved and consumed later. Writable targets passed to `pipe` and `forward_to` are borrowed and must remain alive until consumption finishes. Copyable inferred adaptors can be reused with different stream element types; move an adaptor with move-only captures into the pipeline.
 
 See [Getting started](../../../../docs/getting-started.md) for runtime setup and [Architecture](../../../../docs/architecture.md) for platform backends. Exact overloads and type requirements live in the headers.
+
+
+`sorted()` buffers a finite input until EOF, then yields stable ascending order;
+pass a comparator for another ordering. The comparator and buffered values remain
+owned across suspension. Infinite input cannot produce sorted output.
+
+Zip adaptors combine streams by position (not by key):
+
+| Adaptor | Stops at | Element type |
+| --- | --- | --- |
+| `zip_inner(right)` | Either EOF | `pair<L, R>` |
+| `zip_left(right)` | Left EOF | `pair<L, optional<R>>` |
+| `zip_right(right)` | Right EOF | `pair<optional<L>, R>` |
+| `zip_full(right)` | Both EOFs | `pair<optional<L>, optional<R>>` |
+
+For example, `left | zip_full(right)` moves both inputs into the resulting
+pipeline. Missing values are `nullopt`. Receives are sequential, with the left
+input read first except for `zip_right`; inner zip can consume one unmatched left
+value when the right input ends. EOF is remembered so ended inputs are not polled
+again. Exceptions propagate and terminate the zip. Keep the resulting stream
+alive until its eager receive task completes; do not destroy a suspended receive.
+Sorting, zipping, and collecting into a vector support move-only elements.

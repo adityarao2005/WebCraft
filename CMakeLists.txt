@@ -35,6 +35,32 @@ if (UNIX AND NOT APPLE AND NOT ANDROID)
     target_link_libraries(WebCraft PRIVATE concurrentqueue::concurrentqueue)
 endif()
 
+# Instrument both the library and its consumers (including template code in tests).
+set(WEBCRAFT_SANITIZER "none" CACHE STRING "none, address, undefined, or address-undefined")
+set_property(CACHE WEBCRAFT_SANITIZER PROPERTY STRINGS none address undefined address-undefined)
+if(NOT WEBCRAFT_SANITIZER STREQUAL "none")
+    if(WIN32 OR NOT CMAKE_CXX_COMPILER_ID MATCHES "^(GNU|Clang|AppleClang)$")
+        message(FATAL_ERROR "Sanitizer checks require GCC/Clang on Linux or macOS")
+    endif()
+    if(WEBCRAFT_SANITIZER STREQUAL "address-undefined")
+        set(WEBCRAFT_SANITIZER_FLAGS "-fsanitize=address,undefined")
+    elseif(WEBCRAFT_SANITIZER MATCHES "^(address|undefined)$")
+        set(WEBCRAFT_SANITIZER_FLAGS "-fsanitize=${WEBCRAFT_SANITIZER}")
+    else()
+        message(FATAL_ERROR "Unknown WEBCRAFT_SANITIZER: ${WEBCRAFT_SANITIZER}")
+    endif()
+    include(CheckCXXSourceCompiles)
+    set(CMAKE_REQUIRED_FLAGS "${WEBCRAFT_SANITIZER_FLAGS}")
+    unset(WEBCRAFT_SANITIZER_SUPPORTED CACHE)
+    check_cxx_source_compiles("int main() { return 0; }" WEBCRAFT_SANITIZER_SUPPORTED)
+    unset(CMAKE_REQUIRED_FLAGS)
+    if(NOT WEBCRAFT_SANITIZER_SUPPORTED)
+        message(FATAL_ERROR "Compiler cannot compile/link ${WEBCRAFT_SANITIZER_FLAGS}")
+    endif()
+    target_compile_options(WebCraft PUBLIC ${WEBCRAFT_SANITIZER_FLAGS} -fno-omit-frame-pointer)
+    target_link_libraries(WebCraft PUBLIC ${WEBCRAFT_SANITIZER_FLAGS})
+endif()
+
 # --- 3. Install Rules ---
 
 # A. Install the Library and Headers

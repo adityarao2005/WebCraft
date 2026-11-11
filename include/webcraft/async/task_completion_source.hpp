@@ -139,7 +139,7 @@ namespace webcraft::async
             complete([&] { value_ = std::move(value); });
         }
 
-        /** @brief Returns the awaitable task linked to this completion source. */
+        /** @brief Returns the single-consumer task, transferring the stored value into it. */
         webcraft::async::task<T> task()
         {
             co_await task_completion_source_base::awaitable{this};
@@ -147,7 +147,7 @@ namespace webcraft::async
             {
                 std::rethrow_exception(exception_);
             }
-            co_return value_.value();
+            co_return std::move(value_.value());
         }
     };
 

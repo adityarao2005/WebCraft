@@ -143,40 +143,26 @@ jobs:
                   echo "C Compiler: ${{ matrix.c_compiler }}"
                   echo "C++ Compiler: ${{ matrix.cpp_compiler }}"
 
-            - name: Configure CMake not for MacOS
-              if: ${{ matrix.os != 'macos-latest' }}
-              # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
-              # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
+            - uses: actions/setup-python@v6
+              with:
+                  python-version: '3.x'
+
+            - name: Check Python build tooling
+              run: python -m unittest discover -s scripts/tests -v
+
+            - name: Configure CMake
               run: >
-                  cmake
-                  --preset=${{ matrix.preset }}
-                  -B ${{ steps.strings.outputs.build-output-dir }}
-                  -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
-                  -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
-                  -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
-                  -S ${{ github.workspace }}
-                  -DWEBCRAFT_BUILD_TESTS=ON
+                  python scripts/webcraft.py configure
+                  --preset ${{ matrix.preset }}
+                  --build-dir "${{ steps.strings.outputs.build-output-dir }}"
+                  --cxx-compiler ${{ matrix.cpp_compiler }}
+                  --config ${{ matrix.build_type }}
 
-            - name: Configure CMake for MacOS
-              if: ${{ matrix.os == 'macos-latest' }}
+            - name: Build
               run: >
-                  cmake
-                  --preset=${{ matrix.preset }}
-                  -B ${{ steps.strings.outputs.build-output-dir }}
-                  -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
-                  -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
-                  -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
-                  -S ${{ github.workspace }}
-                  -DWEBCRAFT_BUILD_TESTS=ON
-
-            - name: Build not for MacOS
-              if: ${{ matrix.os != 'macos-latest' }}
-              # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
-              run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
-
-            - name: Build for MacOS
-              if: ${{ matrix.os == 'macos-latest' }}
-              run: cmake --build ${{ steps.strings.outputs.build-output-dir }}
+                  python scripts/webcraft.py build
+                  --build-dir "${{ steps.strings.outputs.build-output-dir }}"
+                  --config ${{ matrix.build_type }}
 
             - name: Generate macOS debug symbols
               if: ${{ runner.os == 'macOS' }}
@@ -184,10 +170,35 @@ jobs:
 
             - name: Test
               id: tests
-              working-directory: ${{ steps.strings.outputs.build-output-dir }}
-              # Execute tests defined by the CMake configuration. Note that --build-config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
-              # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
-              run: ctest --test-dir ${{ steps.strings.outputs.build-output-dir }} --output-on-failure -T test -C ${{ matrix.build_type }}
+              run: >
+                  python scripts/webcraft.py test
+                  --build-dir "${{ steps.strings.outputs.build-output-dir }}"
+                  --config ${{ matrix.build_type }}
+
+            - name: Supported sanitizer checks
+              if: runner.os == 'Linux' && matrix.c_compiler == 'clang'
+              env:
+                  ASAN_OPTIONS: detect_leaks=1:halt_on_error=1
+                  UBSAN_OPTIONS: halt_on_error=1:print_stacktrace=1
+              run: >
+                  python scripts/webcraft.py check
+                  --build-dir build-sanitizers --config RelWithDebInfo
+                  --cxx-compiler clang++ --sanitizer address-undefined
+
+            - name: Upload test and build diagnostics
+              if: always()
+              uses: actions/upload-artifact@v7
+              with:
+                  name: test-diagnostics-${{ matrix.os }}-${{ matrix.c_compiler }}-${{ github.run_attempt }}
+                  retention-days: 7
+                  if-no-files-found: warn
+                  path: |
+                      build/webcraft.log
+                      build/test-results.xml
+                      build/Testing/Temporary/
+                      build-sanitizers/webcraft.log
+                      build-sanitizers/test-results.xml
+                      build-sanitizers/Testing/Temporary/
 
             - name: Diagnose macOS file adaptor timeout
               if: failure() && runner.os == 'macOS' && steps.tests.outcome == 'failure'

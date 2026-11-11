@@ -7,6 +7,9 @@
 
 #include <gtest/gtest.h>
 #include <random>
+#include <syncstream>
+#include <iostream>
+#include <string_view>
 #include <cstdint>
 #include <chrono>
 #include <webcraft/async/event_signal.hpp>
@@ -35,3 +38,16 @@ inline uint64_t generate_random_uint64()
 constexpr auto test_timer_timeout = 200ms;
 constexpr auto test_cancel_timeout = 100ms;
 constexpr auto test_adjustment_factor = 50ms;
+
+namespace webcraft::test
+{
+    inline void trace(std::string_view phase, const char *file, int line)
+    {
+        const auto now = std::chrono::duration_cast<std::chrono::milliseconds>(
+            std::chrono::steady_clock::now().time_since_epoch()).count();
+        std::osyncstream(std::cerr) << "[webcraft ms=" << now << " thread=" << std::this_thread::get_id()
+                                  << "] " << file << ':' << line << " " << phase << std::endl;
+    }
+}
+
+#define TEST_TRACE(phase) ::webcraft::test::trace(phase, __FILE__, __LINE__)
