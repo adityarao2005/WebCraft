@@ -775,3 +775,81 @@ TEST_CASE(TestNegNoneMatchesCollector)
 
     sync_wait(task_fn());
 }
+TEST_CASE(TestInferredPipelineOwnsTemporaryAdaptors)
+{
+    auto make_pipeline = []
+    {
+        mock_readable_stream<int> input({1, 2, 3, 4, 5, 6});
+        return input | map([offset = std::make_unique<int>(10)](auto value) { return value + *offset; })
+                     | filter([](auto value) { return value % 2 == 0; })
+                     | skip(1) | limit(2)
+                     | map([](int value) { return std::to_string(value); })
+                     | filter([](const std::string &value) { return value != "16"; });
+    };
+    auto pipeline = make_pipeline();
+    auto result = sync_wait(pipeline | collect(collectors::to_vector()));
+    EXPECT_EQ(result, (std::vector<std::string>{"14"}));
+}
+
+TEST_CASE(TestReusableInferredAdaptorAcrossElementTypes)
+{
+    auto twice = map([](auto value) { return value + value; });
+    mock_readable_stream<int> integers({1, 2});
+    mock_readable_stream<std::string> strings({"a", "bc"});
+    EXPECT_EQ(sync_wait(integers | twice | collect(collectors::to_vector())), (std::vector<int>{2, 4}));
+    EXPECT_EQ(sync_wait(strings | twice | collect(collectors::to_vector())), (std::vector<std::string>{"aa", "bcbc"}));
+}
+
+TEST_CASE(TestInferredTransformPredicatesAndSinks)
+{
+    mock_readable_stream<int> input({1, 2, 3, 4, 5});
+    mock_writable_stream<std::string> copied, output;
+    auto pipeline = input | transform([](async_generator<int> gen) -> async_generator<int>
+                                      { for_each_async(value, gen, { co_yield value * 2; }); })
+                          | drop_while([](auto value) { return value < 4; })
+                          | take_while([](auto value) { return value < 9; })
+                          | map([](auto value) { return std::to_string(value); })
+                          | pipe(copied);
+    sync_wait(pipeline | forward_to(output));
+    for (const auto &value : {"4", "6", "8"})
+    {
+        EXPECT_TRUE(copied.received(value));
+        EXPECT_TRUE(output.received(value));
+    }
+}
+
+TEST_CASE(TestInferredCollectors)
+{
+    auto input = [] { return mock_readable_stream<int>({3, 1, 2}); };
+    EXPECT_EQ(sync_wait(input() | min()), 1);
+    EXPECT_EQ(sync_wait(input() | max()), 3);
+    EXPECT_EQ(sync_wait(input() | sum()), 6);
+    EXPECT_EQ(sync_wait(input() | find_first([](auto value) { return value > 1; })), 3);
+    EXPECT_EQ(sync_wait(input() | find_last([](auto value) { return value > 1; })), 2);
+    EXPECT_TRUE(sync_wait(input() | any_matches([](auto value) { return value == 2; })));
+    EXPECT_TRUE(sync_wait(input() | all_matches([](auto value) { return value > 0; })));
+    EXPECT_TRUE(sync_wait(input() | none_matches([](auto value) { return value == 0; })));
+    EXPECT_EQ(sync_wait(input() | collect(collectors::reduce([](auto a, auto b) { return a + b; }))), 6);
+    EXPECT_EQ(sync_wait(input() | map([](auto value) { return std::to_string(value); })
+                               | collect(collectors::joining(",", "[", "]"))), "[3,1,2]");
+    auto grouped = sync_wait(input() | collect(collectors::group_by([](auto value) { return value % 2; })));
+    EXPECT_EQ(grouped[0], (std::vector<int>{2}));
+    EXPECT_EQ(grouped[1], (std::vector<int>{3, 1}));
+    mock_readable_stream<int> empty({});
+    EXPECT_TRUE(sync_wait(empty | collect(collectors::to_vector())).empty());
+}
+
+TEST_CASE(TestInferredPipelineAcrossSuspension)
+{
+    auto [reader, writer] = make_mpsc_channel<int>();
+    auto consume = [&]() -> task<std::vector<int>>
+    {
+        co_return co_await (reader | map([offset = 4](auto value) { return value + offset; })
+                                  | collect(collectors::to_vector()));
+    };
+    auto pending = consume();
+    sync_wait(writer.send(1));
+    sync_wait(writer.send(2));
+    sync_wait(writer.close());
+    EXPECT_EQ(sync_wait(std::move(pending)), (std::vector<int>{5, 6}));
+}
