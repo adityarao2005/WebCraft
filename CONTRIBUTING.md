@@ -33,6 +33,16 @@ The workflow resolves the PR's current head commit and runs the platform matrix 
 
 GitHub uses the workflow on the default branch for `issue_comment` events, so this workflow change must reach `main` before the new command behavior takes effect. The existing automatic runs on pushes to `main`, review requests, and marking a PR ready for review remain enabled; ordinary PR commits do not automatically trigger builds. See the [workflow](.github/workflows/build.yml) and [GitHub's event documentation](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#issue_comment).
 
+CI uses `windows-2022` to match the Windows preset's Visual Studio 2022 generator. Tests run with the configuration that was built.
+
+The macOS job uses Debug builds with symbols for both the static library and test executable. If tests fail, it reruns `AsyncFSTestSuite.TestFileReadAllUsingAdaptors` in isolation. If that rerun lasts five seconds, macOS `sample` captures all thread stacks; the diagnostic rerun is stopped after a 30-second budget plus bounded cleanup. A passing rerun does not clear the original CI failure.
+
+Download the `macos-file-io-diagnostics-*` artifact from the failed run for CTest logs, rerun output, the stack sample (if captured), and the test executable with its `.dSYM` symbols. Artifacts are retained for seven days. On a Mac, rerun the capture manually with:
+
+```sh
+python3 .github/scripts/diagnose_macos_test.py build/tests/webcraft_tests build/diagnostics
+```
+
 ## Troubleshooting
 
 - Missing GoogleTest: enable the preset's vcpkg toolchain and initialize/bootstrap the submodule.
