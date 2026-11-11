@@ -13,6 +13,8 @@
  * async stream payloads while preserving coroutine-friendly flow.
  */
 
+#include <algorithm>
+#include <utility>
 #include <concepts>
 #include <type_traits>
 #include <unordered_map>
@@ -83,7 +85,12 @@ namespace webcraft::async::io::adaptors
             {
                 auto gen = to_async_generator<InType>(std::move(stream));
                 auto transformed = fn(std::move(gen));
-                for_each_async(value, transformed, { co_yield std::move(value); });
+                auto it = co_await transformed.begin();
+                while (it != transformed.end())
+                {
+                    co_yield std::move(*it);
+                    co_await ++it;
+                }
             }
 
         public:
@@ -363,10 +370,12 @@ namespace webcraft::async::io::adaptors
                 task<std::vector<T>> operator()(async_generator<T> gen) const
                 {
                     std::vector<T> result;
-                    for_each_async(value, gen,
-                                   {
-                                       result.push_back(std::move(value));
-                                   });
+                    auto it = co_await gen.begin();
+                    while (it != gen.end())
+                    {
+                        result.push_back(std::move(*it));
+                        co_await ++it;
+                    }
                     co_return result;
                 }
             };
@@ -585,6 +594,148 @@ namespace webcraft::async::io::adaptors
                                                    });
                                     co_return true; });
     }
+
+    /**
+     * @brief Buffers a finite stream, then yields values in comparator order.
+     * Owns the comparator and input across suspension. Equal values retain their
+     * input order. No output is produced before EOF; infinite streams never yield.
+     */
+    template <typename T, typename Compare = std::less<>>
+    auto sorted(Compare compare = {})
+    {
+        return transform<T>([compare = std::move(compare)](async_generator<T> gen) mutable -> async_generator<T>
+                            {
+                                std::vector<T> values;
+                                auto it = co_await gen.begin();
+                                while (it != gen.end())
+                                {
+                                    values.push_back(std::move(*it));
+                                    co_await ++it;
+                                }
+                                std::stable_sort(values.begin(), values.end(), std::ref(compare));
+                                for (auto &value : values)
+                                {
+                                    co_yield std::move(value);
+                                }
+                            });
+    }
+
+    template <typename Compare>
+    auto sorted(Compare compare)
+    {
+        return detail::inferred_stream_adaptor{[compare = std::move(compare)]<typename T>(auto &&stream) mutable
+                                               { return sorted<T>(std::move(compare))(std::forward<decltype(stream)>(stream)); }};
+    }
+
+    inline auto sorted()
+    {
+        return sorted(std::less<>{});
+    }
+
+    namespace detail
+    {
+        enum class zip_mode { inner, full, left, right };
+
+        template <zip_mode Mode, typename Left, typename Right>
+        class zip_stream
+        {
+            using L = stream_value_t<Left>;
+            using R = stream_value_t<Right>;
+            using First = std::conditional_t<Mode == zip_mode::full || Mode == zip_mode::right, std::optional<L>, L>;
+            using Second = std::conditional_t<Mode == zip_mode::full || Mode == zip_mode::left, std::optional<R>, R>;
+            Left left;
+            Right right;
+            bool left_done = false;
+            bool right_done = false;
+            bool done = false;
+
+        public:
+            zip_stream(Left left, Right right) : left(std::move(left)), right(std::move(right)) {}
+
+            task<std::optional<std::pair<First, Second>>> recv()
+            {
+                if (done)
+                    co_return std::nullopt;
+                try
+                {
+                    std::optional<L> l;
+                    std::optional<R> r;
+                    // Read the controlling side first. Never poll an input again after EOF.
+                    if constexpr (Mode == zip_mode::right)
+                    {
+                        r = co_await right.recv();
+                        if (r && !left_done)
+                            l = co_await left.recv();
+                    }
+                    else
+                    {
+                        if (!left_done)
+                            l = co_await left.recv();
+                        if ((l || Mode == zip_mode::full) && !right_done)
+                            r = co_await right.recv();
+                    }
+                    left_done = !l;
+                    right_done = !r;
+                    if constexpr (Mode == zip_mode::inner)
+                        done = !l || !r;
+                    else if constexpr (Mode == zip_mode::left)
+                        done = !l;
+                    else if constexpr (Mode == zip_mode::right)
+                        done = !r;
+                    else
+                        done = !l && !r;
+                    if (done)
+                        co_return std::nullopt;
+
+                    if constexpr (Mode == zip_mode::inner)
+                        co_return std::pair<First, Second>{std::move(*l), std::move(*r)};
+                    else if constexpr (Mode == zip_mode::left)
+                        co_return std::pair<First, Second>{std::move(*l), std::move(r)};
+                    else if constexpr (Mode == zip_mode::right)
+                        co_return std::pair<First, Second>{std::move(l), std::move(*r)};
+                    else
+                        co_return std::pair<First, Second>{std::move(l), std::move(r)};
+                }
+                catch (...)
+                {
+                    done = true;
+                    throw;
+                }
+            }
+        };
+
+        template <zip_mode Mode, typename Right>
+        auto zip(Right &&right)
+        {
+            return inferred_stream_adaptor{[right = std::move(right)]<typename T>(auto &&left) mutable
+                                           {
+                                               using Left = std::decay_t<decltype(left)>;
+                                               return zip_stream<Mode, Left, std::decay_t<Right>>(std::move(left), std::move(right));
+                                           }};
+        }
+    }
+
+    /**
+     * @brief Positionally pairs inputs until either ends; yields pair<L, R>.
+     * Inputs are moved into the pipeline, including lvalues. Receives are
+     * sequential, left first; a final unmatched left value may be consumed.
+     * Keep the pipeline alive until each eager recv task completes. Exceptions
+     * propagate and terminate the zip. No pending receive is abandoned at EOF.
+     */
+    template <typename Right>
+    auto zip_inner(Right &&right) { return detail::zip<detail::zip_mode::inner>(std::forward<Right>(right)); }
+
+    /** @brief Pairs through both EOFs; yields pair<optional<L>, optional<R>>. */
+    template <typename Right>
+    auto zip_full(Right &&right) { return detail::zip<detail::zip_mode::full>(std::forward<Right>(right)); }
+
+    /** @brief Pairs through left EOF; yields pair<L, optional<R>>, reading left first. */
+    template <typename Right>
+    auto zip_left(Right &&right) { return detail::zip<detail::zip_mode::left>(std::forward<Right>(right)); }
+
+    /** @brief Pairs through right EOF; yields pair<optional<L>, R>, reading right first. */
+    template <typename Right>
+    auto zip_right(Right &&right) { return detail::zip<detail::zip_mode::right>(std::forward<Right>(right)); }
 
     /**
      * @brief Inferred adaptor overloads select their element type from the input

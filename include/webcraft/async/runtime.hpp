@@ -239,7 +239,10 @@ namespace webcraft::async
     }
 
     /**
-     * @brief Runs a callback once after a delay.
+     * @brief Runs a callback once after a delay unless its stop token is stopped.
+     * The detached coroutine owns the callback until it runs or is cancelled.
+     * Nonpositive delays execute eagerly. Keep referenced callback state and the
+     * runtime alive until completion; the returned object is not a join handle.
      */
     template <typename Rep, typename Period>
     inline fire_and_forget_task set_timeout(std::function<void()> func, std::chrono::duration<Rep, Period> duration, std::stop_token token = get_stop_token())
@@ -252,6 +255,11 @@ namespace webcraft::async
 
     /**
      * @brief Repeatedly runs a callback at fixed delay intervals until stopped.
+     * The next delay starts after the callback returns. The callback may request
+     * its own stop token. A pre-stopped token prevents all callbacks. Keep the
+     * runtime and referenced state alive until cancellation has completed;
+     * the returned object is not a join handle. Use a positive interval to avoid
+     * an eager loop for nonpositive durations.
      */
     template <typename Rep, typename Period>
     inline fire_and_forget_task set_interval(std::function<void()> func, std::chrono::duration<Rep, Period> duration, std::stop_token token = get_stop_token())

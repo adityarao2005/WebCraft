@@ -465,3 +465,12 @@ TEST_CASE(TestAsyncUdpServerWithAsyncClient)
     sync_wait(server_task);
     std::cout << "Tearing down runtime" << std::endl;
 }
+TEST_CASE(TestUdpExplicitCloseIsIdempotent)
+{
+    runtime_context context;
+    auto socket = make_udp_socket(ip_version::IPv4);
+    socket.bind({"127.0.0.1", 0});
+    TEST_TRACE("closing bound UDP socket without pending receives");
+    sync_wait(socket.close());
+    EXPECT_NO_THROW(sync_wait(socket.close()));
+}

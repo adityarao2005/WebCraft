@@ -203,3 +203,99 @@ TEST_CASE(TestFileWriteAll)
 
     cleanup_test_file();
 }
+TEST_CASE(TestFileEmptyEofAndMissingPath)
+{
+    runtime_context context;
+    const auto path = std::filesystem::path("empty-regression-file.txt");
+    std::ofstream(path, std::ios::binary).close();
+    auto file = make_file(path);
+    auto check = [&]() -> task<void>
+    {
+        auto stream = co_await file.open_readable_stream();
+        std::array<char, 8> buffer{};
+        EXPECT_EQ(co_await stream.recv(buffer), 0);
+        EXPECT_FALSE(co_await stream.recv());
+        co_await stream.close();
+        co_await stream.close();
+    };
+    sync_wait(check());
+    std::filesystem::remove(path);
+    EXPECT_THROW(sync_wait(file.open_readable_stream()), std::exception);
+}
+
+TEST_CASE(TestFileAppendAndMovedStreamRoundTrip)
+{
+    runtime_context context;
+    create_and_populate_test_file();
+    auto file = make_file(test_file_path);
+    auto check = [&]() -> task<void>
+    {
+        auto original = co_await file.open_writable_stream(true);
+        auto stream = std::move(original);
+        std::string suffix = "appended";
+        EXPECT_EQ(co_await stream.send(std::span<char>(suffix)), suffix.size());
+        co_await stream.close();
+        co_await stream.close();
+        auto input = co_await file.open_readable_stream();
+        std::vector<char> bytes;
+        std::array<char, 7> buffer{};
+        while (auto count = co_await input.recv(buffer))
+            bytes.insert(bytes.end(), buffer.begin(), buffer.begin() + count);
+        EXPECT_EQ(std::string(bytes.begin(), bytes.end()), test_data + suffix);
+        co_await input.close();
+    };
+    sync_wait(check());
+    cleanup_test_file();
+}
+
+namespace
+{
+    using descriptor_base = webcraft::async::io::fs::detail::file_descriptor;
+    struct delayed_descriptor : descriptor_base
+    {
+        async_event &gate;
+        explicit delayed_descriptor(async_event &gate) : descriptor_base(std::ios::in), gate(gate) {}
+        task<size_t> read(std::span<char>) override { co_return 0; }
+        task<size_t> write(std::span<char>) override { co_return 0; }
+        // The delayed operation borrows only the test gate. Descriptor ownership
+        // is independently checked through weak_ptr while the stream closes.
+        static task<void> wait_for_close(async_event &gate) { co_await gate; }
+        task<void> close() override { return wait_for_close(gate); }
+    };
+}
+
+TEST_CASE(TestStreamDestructionRetainsDescriptorUntilCloseCompletes)
+{
+    async_event gate;
+    std::weak_ptr<delayed_descriptor> lifetime;
+    {
+        auto descriptor = std::make_shared<delayed_descriptor>(gate);
+        lifetime = descriptor;
+        file_rstream stream(std::move(descriptor));
+    }
+    EXPECT_FALSE(lifetime.expired()) << "Pending close must own the descriptor after stream destruction";
+    gate.set();
+    EXPECT_TRUE(lifetime.expired()) << "Completed close must release the descriptor";
+}
+
+TEST_CASE(TestStreamMoveAssignmentClosesPreviousDescriptor)
+{
+    async_event first_gate, second_gate;
+    std::weak_ptr<delayed_descriptor> first_lifetime, second_lifetime;
+    {
+        auto first = std::make_shared<delayed_descriptor>(first_gate);
+        auto second = std::make_shared<delayed_descriptor>(second_gate);
+        first_lifetime = first;
+        second_lifetime = second;
+        file_rstream destination(std::move(first));
+        file_rstream source(std::move(second));
+        destination = std::move(source);
+        EXPECT_FALSE(first_lifetime.expired()) << "Move assignment must finish closing the old descriptor";
+        first_gate.set();
+        EXPECT_TRUE(first_lifetime.expired());
+        EXPECT_FALSE(second_lifetime.expired());
+    }
+    EXPECT_FALSE(second_lifetime.expired());
+    second_gate.set();
+    EXPECT_TRUE(second_lifetime.expired());
+}

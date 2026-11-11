@@ -4,22 +4,53 @@ Start with [Getting started](docs/getting-started.md) to initialize submodules a
 
 ## Configure, build, and test
 
-Linux example, from the repository root:
+Use Python 3.9+ and CMake 3.21+ after initializing and bootstrapping vcpkg as
+shown in [Getting started](docs/getting-started.md). The same entry point selects
+`linux-build`, `macos-build`, or `windows-build` for the host:
 
 ```sh
-cmake --preset linux-build -DWEBCRAFT_BUILD_TESTS=ON -DCMAKE_BUILD_TYPE=Debug
-cmake --build build --config Debug
-ctest --test-dir build -C Debug --output-on-failure
+python scripts/webcraft.py check --config Debug
 ```
 
-Use `macos-build` or `windows-build` on those platforms. The presets share `build/`, so use `-B build-clang` or another separate directory when changing toolchains. Use the same directory in subsequent commands. Match `-C` to the configuration you built, especially with Visual Studio.
-
-List discovered tests and run a focused suite:
+`check` runs configure, build, and test in order and stops at the first failure.
+Each stage can also run separately:
 
 ```sh
-ctest --test-dir build -C Debug -N
-ctest --test-dir build -C Debug --output-on-failure -R RuntimeTestSuite
+python scripts/webcraft.py configure --build-dir build --config Debug
+python scripts/webcraft.py build --build-dir build --config Debug
+python scripts/webcraft.py test --build-dir build --config Debug --filter RuntimeTestSuite
 ```
+
+Use the same directory and configuration throughout, especially with Visual
+Studio. `--jobs` controls build parallelism (default 2). `--define NAME=VALUE`
+passes a CMake cache setting. `--cxx-compiler` selects a compiler at configuration;
+use a separate `--build-dir` when changing compiler, generator, or sanitizer.
+The runner rejects changes to those settings in an existing cache.
+
+On Linux/macOS with GCC or Clang, supported sanitizer builds are available:
+
+```sh
+python scripts/webcraft.py check --sanitizer address-undefined --build-dir build-sanitizers --config RelWithDebInfo
+```
+
+`address` and `undefined` can also run individually. CMake checks that the
+compiler can compile and link the requested instrumentation and applies it to
+both the library and test code. CI uses `RelWithDebInfo` so stack traces retain
+symbols while coroutine symmetric transfers can be optimized. GCC 13 AddressSanitizer
+instrumentation can overflow the stack in the existing generator throughput test
+in both Debug and RelWithDebInfo;
+retain that failure when comparing configurations rather than reducing its work.
+These checks require the sanitizer runtimes;
+Windows sanitizer builds through this entry point are unsupported. Sanitizers
+do not establish race freedom; no ThreadSanitizer support is claimed.
+
+The runner writes `webcraft.log`, CTest's `Testing/Temporary/` logs, and
+`test-results.xml` (JUnit) into the build directory. Every test logs its name,
+start/end, elapsed time, and thread identifier; `TEST_TRACE` adds source-located
+operation phases. CI uploads logs/results for every platform, including failures,
+and runs a separate Linux Clang AddressSanitizer/UndefinedBehaviorSanitizer build.
+Run tooling unit tests with `python -m unittest discover -s scripts/tests -v`.
+Raw CMake/CTest commands remain available through [Getting started](docs/getting-started.md).
 
 Tests use GoogleTest. Follow the nearby `TEST_SUITE_NAME` and `TEST_CASE` conventions and put native backend coverage in the appropriate platform directory. Tests have a default 10-second timeout configured in `tests/CMakeLists.txt`.
 
@@ -42,6 +73,13 @@ Download the `macos-file-io-diagnostics-*` artifact from the failed run for CTes
 ```sh
 python3 .github/scripts/diagnose_macos_test.py build/tests/webcraft_tests build/diagnostics
 ```
+
+## Known intermittent failure
+
+GCC can intermittently time out during UDP-server shutdown in the socket tests.
+Report the exact test, compiler/configuration, and last logged phase separately
+from adaptor/timer regressions. The runner and CI preserve the failure status;
+they do not retry it, exclude it, or increase the existing 10-second timeout.
 
 ## Troubleshooting
 

@@ -54,6 +54,8 @@ namespace webcraft::async::io::fs
             {
                 if (this != &other)
                 {
+                    if (fd)
+                        fire_and_forget(close());
                     fd = std::exchange(other.fd, nullptr);
                     closed = other.closed.exchange(true);
                 }
@@ -65,14 +67,26 @@ namespace webcraft::async::io::fs
                     fire_and_forget(close());
             }
 
+        private:
+            static task<void> close_owned(std::shared_ptr<file_descriptor> descriptor)
+            {
+                if (descriptor)
+                    co_await descriptor->close();
+            }
+
+        public:
             task<void> close() noexcept
             {
                 bool expected = false;
                 if (closed.compare_exchange_strong(expected, true, std::memory_order_acq_rel))
                 {
-                    co_await fd->close();
+                    // A free-standing coroutine owns the descriptor; it never
+                    // borrows a stream that may be destroyed while close waits.
+                    return close_owned(fd);
                 }
+                return close_owned(nullptr);
             }
+
         };
     }
 

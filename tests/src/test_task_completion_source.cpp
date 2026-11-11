@@ -127,12 +127,11 @@ TEST_CASE(TestTaskCompletionSourceAsynchronousCompletion)
     auto t = tcs.task();
 
     // Start a thread that will set the value after a delay
-    std::thread([&]()
+    std::jthread worker([&]()
                 {
         std::this_thread::sleep_for(test_timer_timeout);
         std::string value = "Async result";
-        tcs.set_value(std::move(value)); })
-        .detach();
+        tcs.set_value(std::move(value)); });
 
     auto start = std::chrono::steady_clock::now();
     auto result = sync_wait(t);
@@ -149,15 +148,14 @@ TEST_CASE(TestTaskCompletionSourceAsynchronousException)
     auto t = tcs.task();
 
     // Start a thread that will set an exception after a delay
-    std::thread([&]()
+    std::jthread worker([&]()
                 {
         std::this_thread::sleep_for(test_timer_timeout);
         try {
             throw std::invalid_argument("Async exception");
         } catch (...) {
             tcs.set_exception(std::current_exception());
-        } })
-        .detach();
+        } });
 
     auto start = std::chrono::steady_clock::now();
 
@@ -415,4 +413,14 @@ TEST_CASE(TestWaiterCanDestroyCompletionSource)
     source->set_value(42);
     EXPECT_EQ(source, nullptr);
     EXPECT_EQ(sync_wait(consumer), 42);
+}
+
+TEST_CASE(TestMoveOnlyCompletionRejectsDuplicateValue)
+{
+    task_completion_source<std::unique_ptr<int>> source;
+    auto pending = source.task();
+    EXPECT_FALSE(pending.await_ready());
+    source.set_value(std::make_unique<int>(42));
+    EXPECT_EQ(*sync_wait(pending), 42);
+    EXPECT_THROW(source.set_value(std::make_unique<int>(99)), std::logic_error);
 }

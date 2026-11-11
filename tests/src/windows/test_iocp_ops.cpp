@@ -11,6 +11,7 @@
 #define NOMINMAX
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
+#include <system_error>
 #include <WinSock2.h>
 #include <webcraft/async/runtime/windows/windows_timer_manager.hpp>
 
@@ -31,7 +32,9 @@ HANDLE initialize_iocp()
     // Create an IO Completion Port (IOCP)
     auto iocp = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, 0);
     HANDLE null_handle = NULL;
-    EXPECT_NE(iocp, null_handle) << "Failed to create IOCP";
+    if (iocp == null_handle)
+        throw std::system_error(GetLastError(), std::system_category(), "CreateIoCompletionPort");
+    TEST_TRACE("IOCP initialized");
     return iocp;
 }
 
@@ -74,10 +77,12 @@ auto wait_and_get_event(HANDLE iocp)
 {
     DWORD bytesTransferred;
     ULONG_PTR completionKey;
-    OVERLAPPED *overlapped;
+    OVERLAPPED *overlapped = nullptr;
 
+    TEST_TRACE("waiting for IOCP completion");
     BOOL result = GetQueuedCompletionStatus(iocp, &bytesTransferred, &completionKey, &overlapped, INFINITE);
-    EXPECT_TRUE(result) << "Failed to get completion status from IOCP";
+    if (!result)
+        throw std::system_error(GetLastError(), std::system_category(), "GetQueuedCompletionStatus");
 
     // Process the completion event
     EXPECT_NE(overlapped, nullptr) << "Completion event is null";
