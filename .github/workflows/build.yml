@@ -11,10 +11,72 @@ on:
     issue_comment:
         types: [created]
 
+# Building PR code only needs read access. Status-writing jobs never check it out.
+permissions:
+    contents: read
+
 jobs:
-    build:
-        # Run on push/PR events, or on issue comments containing !build on a PR
+    prepare:
         if: github.event_name != 'issue_comment' || (github.event.issue.pull_request && contains(github.event.comment.body, '!build'))
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            pull-requests: read
+            statuses: write
+        outputs:
+            run: ${{ steps.request.outputs.run }}
+            sha: ${{ steps.request.outputs.sha }}
+        steps:
+            - name: Authorize build request and resolve PR commit
+              id: request
+              uses: actions/github-script@v9
+              with:
+                  script: |
+                      core.setOutput('run', 'false');
+                      if (context.eventName !== 'issue_comment') {
+                          core.setOutput('run', 'true');
+                          return;
+                      }
+                      if (context.payload.comment.body.trim() !== '!build') return;
+
+                      let permission;
+                      try {
+                          ({ data: permission } = await github.rest.repos.getCollaboratorPermissionLevel({
+                              ...context.repo,
+                              username: context.payload.comment.user.login
+                          }));
+                      } catch (error) {
+                          if (error.status !== 404) throw error;
+                          core.notice('Ignoring !build from a user without repository write access.');
+                          return;
+                      }
+                      if (!['admin', 'maintain', 'write'].includes(permission.permission)) {
+                          core.notice('Ignoring !build from a user without repository write access.');
+                          return;
+                      }
+
+                      const { data: pull } = await github.rest.pulls.get({
+                          ...context.repo,
+                          pull_number: context.issue.number
+                      });
+                      if (pull.state !== 'open' || pull.base.ref !== 'main') {
+                          core.notice('!build requires an open PR targeting main.');
+                          return;
+                      }
+                      await github.rest.repos.createCommitStatus({
+                          ...context.repo,
+                          sha: pull.head.sha,
+                          state: 'pending',
+                          context: 'WebCraft / requested build',
+                          description: 'Requested build is running',
+                          target_url: `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`
+                      });
+                      core.setOutput('sha', pull.head.sha);
+                      core.setOutput('run', 'true');
+
+    build:
+        needs: prepare
+        if: needs.prepare.outputs.run == 'true'
         runs-on: ${{ matrix.os }}
 
         strategy:
@@ -67,7 +129,8 @@ jobs:
         steps:
             - uses: actions/checkout@v4
               with:
-                  ref: ${{ github.event_name == 'issue_comment' && format('refs/pull/{0}/head', github.event.issue.number) || '' }}
+                  ref: ${{ needs.prepare.outputs.sha }}
+                  persist-credentials: false
                   submodules: "recursive"
 
             - name: Set reusable strings
@@ -122,3 +185,28 @@ jobs:
               # Execute tests defined by the CMake configuration. Note that --build-config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
               # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
               run: ctest --test-dir ${{ steps.strings.outputs.build-output-dir }} --output-on-failure -T test -C Debug
+
+    report:
+        needs: [prepare, build]
+        if: always() && github.event_name == 'issue_comment' && needs.prepare.outputs.run == 'true'
+        runs-on: ubuntu-latest
+        permissions:
+            statuses: write
+        steps:
+            - name: Report matrix result on the tested PR commit
+              uses: actions/github-script@v9
+              env:
+                  BUILD_SHA: ${{ needs.prepare.outputs.sha }}
+                  BUILD_RESULT: ${{ needs.build.result }}
+              with:
+                  script: |
+                      const result = process.env.BUILD_RESULT;
+                      const state = result === 'success' ? 'success' : result === 'failure' ? 'failure' : 'error';
+                      await github.rest.repos.createCommitStatus({
+                          ...context.repo,
+                          sha: process.env.BUILD_SHA,
+                          state,
+                          context: 'WebCraft / requested build',
+                          description: `Requested build: ${result}`,
+                          target_url: `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`
+                      });
