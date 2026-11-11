@@ -47,7 +47,7 @@ void webcraft::async::detail::initialize_runtime() noexcept
 // to avoid collision with concurrentqueue's BLOCK_SIZE constant
 #pragma push_macro("BLOCK_SIZE")
 #undef BLOCK_SIZE
-#include <concurrentqueue/concurrentqueue.h>
+#include <moodycamel/concurrentqueue.h>
 #pragma pop_macro("BLOCK_SIZE")
 
 #include <liburing.h>

@@ -10,6 +10,7 @@ if (WIN32)
 elseif (UNIX AND NOT APPLE AND NOT ANDROID)
     find_package(PkgConfig REQUIRED)
     pkg_check_modules(uring REQUIRED IMPORTED_TARGET liburing)
+    find_package(concurrentqueue CONFIG REQUIRED)
     set(WEBCRAFT_PLATFORM_LIBS PkgConfig::uring)
 else()
     set(WEBCRAFT_PLATFORM_LIBS "")
@@ -29,6 +30,10 @@ target_include_directories(WebCraft PUBLIC
 )
 
 target_link_libraries(WebCraft PUBLIC ${WEBCRAFT_PLATFORM_LIBS})
+
+if (UNIX AND NOT APPLE AND NOT ANDROID)
+    target_link_libraries(WebCraft PRIVATE concurrentqueue::concurrentqueue)
+endif()
 
 # --- 3. Install Rules ---
 
@@ -70,6 +75,7 @@ include(CMakeFindDependencyMacro)
 if(UNIX AND NOT APPLE AND NOT ANDROID)
     find_package(PkgConfig REQUIRED)
     pkg_check_modules(uring REQUIRED IMPORTED_TARGET liburing)
+    find_dependency(concurrentqueue CONFIG)
 endif()
 
 # Include the targets file we exported earlier

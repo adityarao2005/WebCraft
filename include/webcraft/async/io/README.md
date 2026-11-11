@@ -22,4 +22,18 @@ TCP is a byte stream: application code must handle message framing and partial t
 
 [adaptors.hpp](adaptors.hpp) provides stream transformations and collectors. Start with [adaptor tests](../../../../tests/src/test_async_io_adaptors.cpp) for the supported pipeline syntax and behavior, and [core tests](../../../../tests/src/test_async_io_core.cpp) for stream contracts.
 
+Adaptor element types are inferred from the stream on the left of `|`, including after a mapping changes the payload type. Generic lambdas work too:
+
+```cpp
+using namespace webcraft::async::io::adaptors;
+auto values = co_await (source
+    | map([](int value) { return std::to_string(value); })
+    | filter([](const std::string &value) { return value.size() > 1; })
+    | collect(collectors::to_vector()));
+```
+
+The same inference applies to `transform`, `skip`, `limit`, predicate adaptors, sinks, and collectors. Existing explicitly typed calls remain supported. Element-type inference happens at compile time.
+
+Applying an adaptor moves its input stream into the pipeline, including named input streams. The pipeline owns its transformation callbacks and intermediate streams, so it can be saved and consumed later. Writable targets passed to `pipe` and `forward_to` are borrowed and must remain alive until consumption finishes. Copyable inferred adaptors can be reused with different stream element types; move an adaptor with move-only captures into the pipeline.
+
 See [Getting started](../../../../docs/getting-started.md) for runtime setup and [Architecture](../../../../docs/architecture.md) for platform backends. Exact overloads and type requirements live in the headers.

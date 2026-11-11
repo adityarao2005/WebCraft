@@ -25,6 +25,14 @@ Tests use GoogleTest. Follow the nearby `TEST_SUITE_NAME` and `TEST_CASE` conven
 
 For behavior changes, add regression coverage that observes results, error handling, or resource lifetimes. Complete pending operations before destroying their buffers, coroutine owners, or runtime context. Check cancellation and cleanup when touching native I/O.
 
+## Request CI on a pull request
+
+Post a new comment containing only `!build` in the conversation of an open PR targeting `main`. The repository owner and collaborators with write, maintain, or admin access can request a build; other comments do not start builds.
+
+The workflow resolves the PR's current head commit and runs the platform matrix against that exact revision. The PR receives a `WebCraft / requested build` status with a link to the workflow run. Post another `!build` comment to check a later commit or retry a run.
+
+GitHub uses the workflow on the default branch for `issue_comment` events, so this workflow change must reach `main` before the new command behavior takes effect. The existing automatic runs on pushes to `main`, review requests, and marking a PR ready for review remain enabled; ordinary PR commits do not automatically trigger builds. See the [workflow](.github/workflows/build.yml) and [GitHub's event documentation](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#issue_comment).
+
 ## Troubleshooting
 
 - Missing GoogleTest: enable the preset's vcpkg toolchain and initialize/bootstrap the submodule.

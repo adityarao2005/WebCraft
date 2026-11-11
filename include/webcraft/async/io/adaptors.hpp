@@ -45,24 +45,62 @@ namespace webcraft::async::io::adaptors
 
     namespace detail
     {
+        template <typename Result>
+        struct stream_value;
+
+        template <typename T>
+        struct stream_value<task<std::optional<T>>>
+        {
+            using type = T;
+        };
+
+        template <typename Stream>
+        using stream_value_t = typename stream_value<decltype(std::declval<Stream &>().recv())>::type;
+
+        // Delay element-type selection until the left-hand stream is known.
+        template <typename Func>
+        struct inferred_stream_adaptor
+        {
+            Func fn;
+
+            template <typename Stream, typename T = stream_value_t<Stream>>
+                requires async_readable_stream<Stream, T>
+            friend auto operator|(Stream &&stream, inferred_stream_adaptor adaptor)
+            {
+                return adaptor.fn.template operator()<T>(std::forward<Stream>(stream));
+            }
+        };
+
         template <typename InType, typename Func, typename OutType = typename std::invoke_result_t<Func, async_generator<InType>>::value_type>
         class transform_stream_adaptor : public async_readable_stream_adaptor<transform_stream_adaptor<InType, Func, OutType>, InType>
         {
         private:
             Func transform_fn;
 
+            // Keep both the callback and source alive while lazy generators suspend.
+            template <typename Stream>
+            static async_generator<OutType> generate(Func fn, Stream stream)
+            {
+                auto gen = to_async_generator<InType>(std::move(stream));
+                auto transformed = fn(std::move(gen));
+                for_each_async(value, transformed, { co_yield std::move(value); });
+            }
+
         public:
             static_assert(std::is_invocable_r_v<async_generator<OutType>, Func, async_generator<InType>>,
                           "Function must accept an async_generator<InType> and return an async_generator<OutType>");
 
-            explicit transform_stream_adaptor(Func &&fn)
+            explicit transform_stream_adaptor(Func fn)
                 : transform_fn(std::move(fn)) {}
 
-            async_readable_stream<OutType> auto operator()(async_readable_stream<InType> auto &&stream) const
+            async_readable_stream<OutType> auto operator()(async_readable_stream<InType> auto &&stream) const &
             {
-                auto &&gen = to_async_generator<InType>(std::move(stream));
-                auto &&new_gen = transform_fn(std::move(gen));
-                return to_readable_stream<OutType>(std::move(new_gen));
+                return to_readable_stream<OutType>(generate(transform_fn, std::move(stream)));
+            }
+
+            async_readable_stream<OutType> auto operator()(async_readable_stream<InType> auto &&stream) &&
+            {
+                return to_readable_stream<OutType>(generate(std::move(transform_fn), std::move(stream)));
             }
         };
 
@@ -75,7 +113,7 @@ namespace webcraft::async::io::adaptors
         static_assert(std::is_invocable_v<Func, async_generator<InType>>,
                       "Function must accept an async_generator<InType> and return an async_generator<OutType>");
 
-        return detail::transform_stream_adaptor<InType, Func>(std::move(fn));
+        return detail::transform_stream_adaptor<InType, std::decay_t<Func>>(std::forward<Func>(fn));
     }
 
     /** @brief Element-wise mapping adaptor. */
@@ -117,13 +155,24 @@ namespace webcraft::async::io::adaptors
         private:
             Collector collector_fn;
 
-        public:
-            explicit collector_stream_adaptor(Collector &&collector_fn) : collector_fn(std::move(collector_fn)) {}
-
-            task<ToType> operator()(async_readable_stream<StreamType> auto &&stream) const
+            template <typename Stream>
+            static task<ToType> consume(Collector fn, Stream stream)
             {
-                auto &&gen = to_async_generator<StreamType>(std::move(stream));
-                co_return co_await collector_fn(std::move(gen));
+                auto gen = to_async_generator<StreamType>(std::move(stream));
+                co_return co_await fn(std::move(gen));
+            }
+
+        public:
+            explicit collector_stream_adaptor(Collector collector_fn) : collector_fn(std::move(collector_fn)) {}
+
+            task<ToType> operator()(async_readable_stream<StreamType> auto &&stream) const &
+            {
+                return consume(collector_fn, std::move(stream));
+            }
+
+            task<ToType> operator()(async_readable_stream<StreamType> auto &&stream) &&
+            {
+                return consume(std::move(collector_fn), std::move(stream));
             }
         };
     }
@@ -132,7 +181,7 @@ namespace webcraft::async::io::adaptors
     /** @brief Builds a collector adaptor from a collector functor. */
     auto collect(Collector &&collector_func)
     {
-        return detail::collector_stream_adaptor<ToType, StreamType, Collector>(std::move(collector_func));
+        return detail::collector_stream_adaptor<ToType, StreamType, std::decay_t<Collector>>(std::forward<Collector>(collector_func));
     }
 
     template <typename T>
@@ -378,6 +427,49 @@ namespace webcraft::async::io::adaptors
         {
             return detail::group_by_collector<T, KeyType>{std::move(key_function)};
         }
+
+        /** @brief Collector factories with element types inferred by collect(). */
+        template <typename Func>
+        auto reduce(Func &&fn)
+        {
+            return [fn = std::forward<Func>(fn)]<typename T>(async_generator<T> gen)
+                -> task<T>
+            {
+                auto collector = reduce<T>(fn);
+                co_return co_await collector(std::move(gen));
+            };
+        }
+
+        inline auto joining(std::string separator = "", std::string prefix = "", std::string suffix = "")
+        {
+            return [separator = std::move(separator), prefix = std::move(prefix), suffix = std::move(suffix)]<typename T>(async_generator<T> gen)
+                -> task<std::string>
+            {
+                auto collector = joining<T>(separator, prefix, suffix);
+                co_return co_await collector(std::move(gen));
+            };
+        }
+
+        inline auto to_vector()
+        {
+            return []<typename T>(async_generator<T> gen)
+                -> task<std::vector<T>>
+            {
+                auto collector = to_vector<T>();
+                co_return co_await collector(std::move(gen));
+            };
+        }
+
+        template <typename Func>
+        auto group_by(Func &&fn)
+        {
+            return [fn = std::forward<Func>(fn)]<typename T>(async_generator<T> gen)
+                -> task<std::unordered_map<std::invoke_result_t<Func, const T &>, std::vector<T>>>
+            {
+                auto collector = group_by<T, std::invoke_result_t<Func, const T &>>(fn);
+                co_return co_await collector(std::move(gen));
+            };
+        }
     }
 
     template <typename T>
@@ -493,4 +585,137 @@ namespace webcraft::async::io::adaptors
                                                    });
                                     co_return true; });
     }
+
+    /**
+     * @brief Inferred adaptor overloads select their element type from the input
+     * stream at pipe application. Callables are owned by value; generic lambdas
+     * are supported. Explicitly typed overloads remain available. Pipe application
+     * moves the input stream into the resulting pipeline, including lvalue streams.
+     * Copyable inferred adaptors can be reused; move-only adaptors must be moved.
+     * Writable targets remain borrowed and must outlive pipeline consumption.
+     */
+    template <typename Func>
+    auto transform(Func &&fn)
+    {
+        return detail::inferred_stream_adaptor{[fn = std::forward<Func>(fn)]<typename T>(auto &&stream) mutable
+                                               { return transform<T>(std::move(fn))(std::forward<decltype(stream)>(stream)); }};
+    }
+
+    template <typename Func>
+    auto map(Func &&fn)
+    {
+        return detail::inferred_stream_adaptor{[fn = std::forward<Func>(fn)]<typename T>(auto &&stream) mutable
+                                               { return map<T>(std::move(fn))(std::forward<decltype(stream)>(stream)); }};
+    }
+
+    template <typename Func>
+    auto filter(Func &&predicate)
+    {
+        return detail::inferred_stream_adaptor{[predicate = std::forward<Func>(predicate)]<typename T>(auto &&stream) mutable
+                                               { return filter<T>(std::move(predicate))(std::forward<decltype(stream)>(stream)); }};
+    }
+
+    template <typename Func>
+    auto take_while(Func &&predicate)
+    {
+        return detail::inferred_stream_adaptor{[predicate = std::forward<Func>(predicate)]<typename T>(auto &&stream) mutable
+                                               { return take_while<T>(std::move(predicate))(std::forward<decltype(stream)>(stream)); }};
+    }
+
+    template <typename Func>
+    auto drop_while(Func &&predicate)
+    {
+        return detail::inferred_stream_adaptor{[predicate = std::forward<Func>(predicate)]<typename T>(auto &&stream) mutable
+                                               { return drop_while<T>(std::move(predicate))(std::forward<decltype(stream)>(stream)); }};
+    }
+
+    template <typename Func>
+    auto find_first(Func &&predicate)
+    {
+        return detail::inferred_stream_adaptor{[predicate = std::forward<Func>(predicate)]<typename T>(auto &&stream) mutable
+                                               { return find_first<T>(std::move(predicate))(std::forward<decltype(stream)>(stream)); }};
+    }
+
+    template <typename Func>
+    auto find_last(Func &&predicate)
+    {
+        return detail::inferred_stream_adaptor{[predicate = std::forward<Func>(predicate)]<typename T>(auto &&stream) mutable
+                                               { return find_last<T>(std::move(predicate))(std::forward<decltype(stream)>(stream)); }};
+    }
+
+    template <typename Func>
+    auto any_matches(Func &&predicate)
+    {
+        return detail::inferred_stream_adaptor{[predicate = std::forward<Func>(predicate)]<typename T>(auto &&stream) mutable
+                                               { return any_matches<T>(std::move(predicate))(std::forward<decltype(stream)>(stream)); }};
+    }
+
+    template <typename Func>
+    auto all_matches(Func &&predicate)
+    {
+        return detail::inferred_stream_adaptor{[predicate = std::forward<Func>(predicate)]<typename T>(auto &&stream) mutable
+                                               { return all_matches<T>(std::move(predicate))(std::forward<decltype(stream)>(stream)); }};
+    }
+
+    template <typename Func>
+    auto none_matches(Func &&predicate)
+    {
+        return detail::inferred_stream_adaptor{[predicate = std::forward<Func>(predicate)]<typename T>(auto &&stream) mutable
+                                               { return none_matches<T>(std::move(predicate))(std::forward<decltype(stream)>(stream)); }};
+    }
+
+    inline auto limit(size_t count)
+    {
+        return detail::inferred_stream_adaptor{[count]<typename T>(auto &&stream)
+                                               { return limit<T>(count)(std::forward<decltype(stream)>(stream)); }};
+    }
+
+    inline auto skip(size_t count)
+    {
+        return detail::inferred_stream_adaptor{[count]<typename T>(auto &&stream)
+                                               { return skip<T>(count)(std::forward<decltype(stream)>(stream)); }};
+    }
+
+    inline auto min()
+    {
+        return detail::inferred_stream_adaptor{[]<typename T>(auto &&stream)
+                                               { return min<T>()(std::forward<decltype(stream)>(stream)); }};
+    }
+
+    inline auto max()
+    {
+        return detail::inferred_stream_adaptor{[]<typename T>(auto &&stream)
+                                               { return max<T>()(std::forward<decltype(stream)>(stream)); }};
+    }
+
+    inline auto sum()
+    {
+        return detail::inferred_stream_adaptor{[]<typename T>(auto &&stream)
+                                               { return sum<T>()(std::forward<decltype(stream)>(stream)); }};
+    }
+
+    template <typename Stream>
+    auto pipe(Stream &target)
+    {
+        return detail::inferred_stream_adaptor{[&target]<typename T>(auto &&stream)
+                                               { return pipe<T>(target)(std::forward<decltype(stream)>(stream)); }};
+    }
+
+    template <typename Stream>
+    auto forward_to(Stream &target)
+    {
+        return detail::inferred_stream_adaptor{[&target]<typename T>(auto &&stream)
+                                               { return forward_to<T>(target)(std::forward<decltype(stream)>(stream)); }};
+    }
+
+    template <typename Collector>
+    auto collect(Collector &&fn)
+    {
+        return detail::inferred_stream_adaptor{[fn = std::forward<Collector>(fn)]<typename T>(auto &&stream) mutable
+                                               {
+                                                   using Result = awaitable_resume_t<std::invoke_result_t<Collector, async_generator<T>>>;
+                                                   return collect<Result, T>(std::move(fn))(std::forward<decltype(stream)>(stream));
+                                               }};
+    }
+
 }
