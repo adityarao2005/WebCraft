@@ -554,7 +554,11 @@ TEST_CASE(TestAsyncGeneratorCrossThreadHandoff)
         bool await_ready() const noexcept { return false; }
         void await_suspend(std::coroutine_handle<> handle)
         {
-            worker = std::thread([handle] { handle.resume(); });
+            // The new thread may destroy this awaiter before std::thread's
+            // constructor returns. Cache the destination before publishing
+            // the handle, and never access the awaiter after publication.
+            auto *destination = std::addressof(worker);
+            *destination = std::thread([handle] { handle.resume(); });
         }
         void await_resume() const noexcept {}
     };
