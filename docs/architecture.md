@@ -17,6 +17,15 @@ Paths in the entry-point column are relative to `include/webcraft` unless prefix
 
 Linux uses io_uring, Windows uses IOCP, and macOS uses kqueue. Platform event wrappers live in `include/webcraft/async/runtime/`; native implementations select their backend with preprocessor guards.
 
+On Linux, producers enqueue operations in a concurrent queue; after
+initialization, the runtime thread alone prepares and submits SQEs. Producers
+coalesce eventfd notifications around the runtime's decision to wait. Completion
+callbacks enqueue follow-up work while the loop is awake, and eventfd rearming
+is batched with queued submissions. The application queue is separate from
+io_uring's submission queue: enabling SQPOLL would change how the kernel consumes
+submitted SQEs, not synchronize concurrent userspace access to liburing's
+submission state.
+
 On Windows, successful native file and socket operations finish through their
 IOCP packet, including operations that report immediate success. Keep the event,
 its `OVERLAPPED` storage, and buffers alive until that packet is consumed. Explicit
