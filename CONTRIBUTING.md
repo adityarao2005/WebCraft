@@ -36,10 +36,11 @@ python scripts/webcraft.py check --sanitizer address-undefined --build-dir build
 `address` and `undefined` can also run individually. CMake checks that the
 compiler can compile and link the requested instrumentation and applies it to
 both the library and test code. CI uses `RelWithDebInfo` so stack traces retain
-symbols while coroutine symmetric transfers can be optimized. GCC 13 AddressSanitizer
-instrumentation can overflow the stack in the existing generator throughput test
-in both Debug and RelWithDebInfo;
-retain that failure when comparing configurations rather than reducing its work.
+symbols while coroutine transfers can be optimized. The generator throughput
+regression processes one million values with an asynchronous suspension halfway
+through. Keep that workload intact: reducing the count can hide stack growth in
+producer/consumer handoffs. Cross-thread generator tests also cover yielded
+values, completion, exceptions, and early destruction.
 These checks require the sanitizer runtimes;
 Windows sanitizer builds through this entry point are unsupported. Sanitizers
 do not establish race freedom; no ThreadSanitizer support is claimed.
