@@ -26,6 +26,9 @@ io_uring's submission queue: enabling SQPOLL would change how the kernel consume
 submitted SQEs, not synchronize concurrent userspace access to liburing's
 submission state.
 
+Linux TCP writes use io_uring's socket-send operation with `SIGPIPE` suppressed.
+Peer-disconnect errors are reported through the write task as `std::system_error`.
+
 On Windows, successful native file and socket operations finish through their
 IOCP packet, including operations that report immediate success. Keep the event,
 its `OVERLAPPED` storage, and buffers alive until that packet is consumed. Explicit
