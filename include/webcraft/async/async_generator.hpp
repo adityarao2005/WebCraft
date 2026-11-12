@@ -96,6 +96,17 @@ namespace cppcoro
 
             std::coroutine_handle<> m_consumerCoroutine;
 
+            // The consumer registers suspension only after resume() returns.
+            // A synchronous yield therefore returns through resume(), rather
+            // than recursively transferring back into the consumer.
+            enum class consumer_state
+            {
+                running,
+                suspended,
+                yielded
+            };
+            std::atomic<consumer_state> m_consumerState{consumer_state::running};
+
         protected:
             void *m_currentValue;
         };
@@ -103,8 +114,8 @@ namespace cppcoro
         class async_generator_yield_operation final
         {
         public:
-            async_generator_yield_operation(std::coroutine_handle<> consumer) noexcept
-                : m_consumer(consumer)
+            async_generator_yield_operation(async_generator_promise_base &promise) noexcept
+                : m_promise(promise)
             {
             }
 
@@ -113,17 +124,23 @@ namespace cppcoro
                 return false;
             }
 
-            constexpr std::coroutine_handle<>
+            std::coroutine_handle<>
             await_suspend([[maybe_unused]] std::coroutine_handle<> producer) noexcept
             {
-                // Use symmetric transfer to avoid stack buildup
-                return m_consumer;
+                auto consumer = m_promise.m_consumerCoroutine;
+                // Publishing the yield may let the consumer destroy the frame.
+                // Do not access the promise after this exchange.
+                auto previous = m_promise.m_consumerState.exchange(
+                    async_generator_promise_base::consumer_state::yielded,
+                    std::memory_order_acq_rel);
+                return previous == async_generator_promise_base::consumer_state::suspended
+                           ? consumer : std::noop_coroutine();
             }
 
             void await_resume() noexcept {}
 
         private:
-            std::coroutine_handle<> m_consumer;
+            async_generator_promise_base &m_promise;
         };
 
         inline async_generator_yield_operation async_generator_promise_base::final_suspend() noexcept
@@ -134,7 +151,7 @@ namespace cppcoro
 
         inline async_generator_yield_operation async_generator_promise_base::internal_yield_value() noexcept
         {
-            return async_generator_yield_operation{m_consumerCoroutine};
+            return async_generator_yield_operation{*this};
         }
 
         class async_generator_advance_operation
@@ -155,13 +172,26 @@ namespace cppcoro
         public:
             bool await_ready() const noexcept { return false; }
 
-#ifndef _WIN32
-            [[gnu::noinline]]
-#endif
-            std::coroutine_handle<> await_suspend(std::coroutine_handle<> consumerCoroutine) noexcept
+            bool await_suspend(std::coroutine_handle<> consumerCoroutine) noexcept
             {
                 m_promise->m_consumerCoroutine = consumerCoroutine;
-                return m_producerCoroutine;
+                m_promise->m_consumerState.store(
+                    async_generator_promise_base::consumer_state::running,
+                    std::memory_order_relaxed);
+                m_producerCoroutine.resume();
+                // Most advances yield synchronously. An acquire load is enough
+                // to observe that result without another atomic exchange.
+                if (m_promise->m_consumerState.load(std::memory_order_acquire) ==
+                    async_generator_promise_base::consumer_state::yielded)
+                {
+                    return false;
+                }
+                // Once suspension is published, another thread may resume the
+                // consumer and destroy this operation and the generator frame.
+                return m_promise->m_consumerState.exchange(
+                           async_generator_promise_base::consumer_state::suspended,
+                           std::memory_order_acq_rel) ==
+                       async_generator_promise_base::consumer_state::running;
             }
 
             void await_resume()

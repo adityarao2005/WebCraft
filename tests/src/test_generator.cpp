@@ -512,48 +512,118 @@ TEST_CASE(TestExceptionAsyncGeneratorIncrement)
 
 TEST_CASE(TestAsyncGeneratorThroughput)
 {
-
+    constexpr std::uint32_t count = 1'000'000u;
     auto makeSequence = [](async_event &event) -> async_generator<std::uint32_t>
     {
-        for (std::uint32_t i = 0; i < 40'000u; ++i) // Reduced from 100,000 to 40,000
+        for (std::uint32_t i = 0; i < count; ++i)
         {
-            if (i == 20'000u) // Reduced from 50,000 to 20,000
+            if (i == count / 2)
             {
-                std::cout << "Awaiting" << std::endl;
                 co_await event;
-                std::cout << "Awaited" << std::endl;
             }
             co_yield i;
         }
     };
 
-    auto consumer = [](async_generator<std::uint32_t> sequence) -> task<>
+    bool finished = false;
+    auto consumer = [&](async_generator<std::uint32_t> sequence) -> task<>
     {
         std::uint32_t expected = 0;
         for_each_async(value, sequence,
                        {
-                           EXPECT_TRUE(value == expected++);
+                           EXPECT_EQ(value, expected++);
                        });
-
-        EXPECT_TRUE(expected == 40'000u); // Updated expected count
-    };
-
-    auto unblocker = [](async_event &event) -> task<>
-    {
-        std::cout << "Whats going on?" << std::endl;
-        event.set();
-
-        co_return;
+        EXPECT_EQ(expected, count);
+        finished = true;
     };
 
     async_event event;
+    auto work = consumer(makeSequence(event));
+    EXPECT_FALSE(finished);
+    event.set();
+    sync_wait(std::move(work));
+    EXPECT_TRUE(finished);
+}
 
-    std::vector<task<void>> tasks;
-    std::cout << "Starting consumer" << std::endl;
-    tasks.emplace_back(consumer(makeSequence(event)));
-    std::cout << "Go on" << std::endl;
-    tasks.emplace_back(unblocker(event));
-    sync_wait(when_all(tasks));
+TEST_CASE(TestAsyncGeneratorCrossThreadHandoff)
+{
+    // Repeatedly race completion against registration of consumer suspension.
+    struct resume_on_thread
+    {
+        std::thread &worker;
+        bool await_ready() const noexcept { return false; }
+        void await_suspend(std::coroutine_handle<> handle)
+        {
+            // The new thread may destroy this awaiter before std::thread's
+            // constructor returns. Cache the destination before publishing
+            // the handle, and never access the awaiter after publication.
+            auto *destination = std::addressof(worker);
+            *destination = std::thread([handle] { handle.resume(); });
+        }
+        void await_resume() const noexcept {}
+    };
+
+    for (int mode = 0; mode < 6; ++mode)
+    {
+        SCOPED_TRACE(mode);
+        for (int round = 0; round < 100; ++round)
+        {
+            std::thread worker;
+            bool destroyed = false;
+            auto produce = [&]() -> async_generator<int>
+            {
+                set_to_true_on_destruction guard(&destroyed);
+                // Exercise an asynchronous increment as well as begin().
+                if (mode == 3 || mode == 4)
+                {
+                    co_yield 0;
+                }
+                co_await resume_on_thread{worker};
+                if (mode == 1 || mode == 4)
+                {
+                    co_return;
+                }
+                if (mode == 2 || mode == 3)
+                {
+                    throw std::runtime_error("producer failed");
+                }
+                for (int i = 0; i < 1000; ++i)
+                {
+                    co_yield i;
+                }
+            };
+            auto consume = [&]() -> task<>
+            {
+                auto sequence = produce();
+                int expected = 0;
+                bool caught = false;
+                try
+                {
+                    auto it = co_await sequence.begin();
+                    while (it != sequence.end())
+                    {
+                        EXPECT_EQ(*it, expected++);
+                        if (mode == 5)
+                        {
+                            break;
+                        }
+                        co_await ++it;
+                    }
+                }
+                catch (const std::runtime_error &error)
+                {
+                    caught = true;
+                    EXPECT_STREQ(error.what(), "producer failed");
+                }
+                EXPECT_EQ(caught, mode == 2 || mode == 3);
+                EXPECT_EQ(expected, mode == 0 ? 1000 :
+                                    (mode == 1 || mode == 2 ? 0 : 1));
+            };
+            sync_wait(consume());
+            worker.join();
+            EXPECT_TRUE(destroyed);
+        }
+    }
 }
 
 TEST_CASE(TestAsyncGeneratorBatchedProcessing)
