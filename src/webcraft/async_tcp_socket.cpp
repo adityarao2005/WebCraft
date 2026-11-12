@@ -82,7 +82,7 @@ task<size_t> io_uring_tcp_socket_descriptor::write(std::span<const char> buffer)
 {
     int fd = this->fd;
     auto event = webcraft::async::detail::as_awaitable(webcraft::async::detail::linux::create_io_uring_event([fd, buffer](struct io_uring_sqe *sqe)
-                                                                                                             { io_uring_prep_write(sqe, fd, buffer.data(), buffer.size(), 0); }));
+                                                                                                             { io_uring_prep_send(sqe, fd, buffer.data(), buffer.size(), MSG_NOSIGNAL); }));
 
     co_await event;
 
