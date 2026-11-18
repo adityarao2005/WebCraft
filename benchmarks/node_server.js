@@ -13,7 +13,7 @@ const http = require("http");
 const PORT = parseInt(process.argv[2] || "8081", 10);
 
 const BODY =
-  '<!DOCTYPE html>\n<html><head><title>Node.js Benchmark</title></head>\n<body><h1>Hello, World!</h1></body></html>\n';
+  '<!DOCTYPE html>\n<html><head><title>WebCraft Benchmark</title></head>\n<body><h1>Hello, World!</h1></body></html>\n';
 
 const HEADERS = {
   "Content-Type": "text/html",

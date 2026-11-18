@@ -70,18 +70,24 @@ void arm_eventfd()
     struct io_uring_sqe *sqe = io_uring_get_sqe(&global_ring);
     io_uring_prep_read(sqe, evfd, &evfd_buffer, sizeof(uint64_t), 0);
     io_uring_sqe_set_data64(sqe, EVFD_TOKEN);
-    io_uring_submit(&global_ring);
 }
 
 void webcraft::async::detail::submit_runtime_operation(io_uring_operation op)
 {
     operation_queue.enqueue(std::move(op));
 
-    if (is_sleeping.load(std::memory_order_acquire))
+    // Publish the enqueue and claim at most one wakeup for this wait. The
+    // exchange also synchronizes with the loop's final queue check, even if
+    // it was already awake.
+    if (is_sleeping.exchange(false, std::memory_order_acq_rel))
     {
         // Wake up the io_uring loop by writing to the eventfd
         uint64_t one = 1;
-        ssize_t n = write(evfd, &one, sizeof(one));
+        ssize_t n;
+        do
+        {
+            n = write(evfd, &one, sizeof(one));
+        } while (n < 0 && errno == EINTR);
     }
 }
 
@@ -90,12 +96,10 @@ void drain_pending_queue()
 
     webcraft::async::detail::io_uring_operation bulk_buf[64];
     size_t count = 0;
-    bool did_work = false;
 
     // try_dequeue_bulk is much faster than individual pops
     while ((count = operation_queue.try_dequeue_bulk(bulk_buf, 64)) != 0)
     {
-        did_work = true;
         for (size_t i = 0; i < count; ++i)
         {
             // Convert Task to Ring Submission
@@ -111,8 +115,8 @@ void drain_pending_queue()
         }
     }
 
-    // Final flush of any pending SQEs
-    if (did_work)
+    // Include an eventfd rearm even when no application operations were queued.
+    if (io_uring_sq_ready(&global_ring) != 0)
     {
         io_uring_submit(&global_ring);
     }
@@ -156,18 +160,23 @@ void run_loop(std::stop_token token)
     // while we're running, we will wait for events
     while (!token.stop_requested())
     {
-        is_sleeping.store(false, std::memory_order_release);
         drain_pending_queue();
-        is_sleeping.store(true, std::memory_order_release);
+        // Acquire earlier enqueues before checking the queue. A producer that
+        // races this check either becomes visible here or claims the wakeup.
+        is_sleeping.exchange(true, std::memory_order_acq_rel);
 
         if (operation_queue.size_approx() > 0)
         {
-            is_sleeping.store(false, std::memory_order_release);
+            is_sleeping.exchange(false, std::memory_order_acq_rel);
             continue; // New operations added, skip waiting
         }
 
         struct io_uring_cqe *cqe;
         int ret = io_uring_wait_cqe(&global_ring, &cqe);
+        // Callbacks may immediately enqueue their next operation. The loop is
+        // awake now and will drain that work before waiting again, so neither
+        // callbacks nor other producers need to signal the eventfd here.
+        is_sleeping.exchange(false, std::memory_order_acq_rel);
 
         if (ret < 0 && ret != -ETIME)
         {
@@ -200,6 +209,7 @@ bool start_runtime_async() noexcept
 
     evfd = eventfd(0, EFD_NONBLOCK | EFD_CLOEXEC);
     arm_eventfd();
+    io_uring_submit(&global_ring);
     return true;
 }
 
