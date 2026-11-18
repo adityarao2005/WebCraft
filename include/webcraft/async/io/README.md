@@ -20,6 +20,43 @@ its parent directory must already exist.
 
 [socket.hpp](socket.hpp) exposes TCP sockets, TCP listeners, UDP sockets, and connection information. TCP provides readable and writable streams, while UDP uses datagram send/receive operations. See [socket tests](../../../../tests/src/test_async_io_socket.cpp) for connection, listener, and datagram usage.
 
+Windows and macOS run UDP sends and receive attempts on a worker pool by default. A pending
+receive completes with zero when it observes that the socket has closed. Keep
+the task, buffer, and sender endpoint alive until the receive completes. Finish
+pending operations before rebinding the socket.
+
+### UDP multicast
+
+To receive multicast datagrams, bind a UDP socket to the wildcard address for
+the group's IP family (`0.0.0.0` or `::`) and the destination port, then join
+the group. The membership calls take a numeric group address and an optional
+local interface. Use a local IPv4 address for IPv4 or an interface index for
+IPv6. An empty interface selects the system default, if one is available.
+
+```cpp
+// Inside a task with an active runtime_context.
+using namespace webcraft::async::io::socket;
+const connection_info group{"239.255.42.78", 5000};
+auto receiver = make_udp_socket(ip_version::IPv4);
+receiver.bind({"0.0.0.0", group.port});
+receiver.join_multicast_group(group.host);
+
+std::array<char, 1500> buffer{};
+connection_info sender;
+auto received = co_await receiver.recvfrom(buffer, sender);
+
+receiver.leave_multicast_group(group.host);
+co_await receiver.close();
+```
+
+Send to the group address and port with `sendto`. Sending uses the system route
+and does not require joining the group. For scoped IPv6 destinations, include
+the scope in the endpoint host as required by the system. Membership is tied
+to the bound socket and ends when that socket closes or is rebound. Use the
+same interface when leaving a group and serialize membership changes with
+bind and close. Keep the datagram buffer and sender endpoint alive until
+`recvfrom` completes.
+
 TCP is a byte stream: application code must handle message framing and partial transfers. Keep the runtime alive until socket operations and cleanup complete.
 
 ## Adaptors

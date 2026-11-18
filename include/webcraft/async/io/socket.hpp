@@ -14,6 +14,7 @@
  */
 
 #include "core.hpp"
+#include <stdexcept>
 #include <webcraft/async/fire_and_forget_task.hpp>
 
 namespace webcraft::async::io::socket
@@ -32,6 +33,13 @@ namespace webcraft::async::io::socket
     {
         IPv4,
         IPv6
+    };
+
+    /** @brief Local interface for UDP multicast membership. Empty address or index zero selects the default. */
+    struct multicast_interface
+    {
+        std::string ipv4_address;
+        uint32_t ipv6_index = 0;
     };
 
     /** @brief Direction to shutdown in duplex stream sockets. */
@@ -87,6 +95,9 @@ namespace webcraft::async::io::socket
 
             virtual task<void> close() = 0;
             virtual void bind(const connection_info &info) = 0;
+
+            virtual void change_multicast_membership(const std::string &group,
+                                                     const multicast_interface &local_interface, bool join) = 0;
 
             virtual task<size_t> recvfrom(std::span<char> buffer, connection_info &info) = 0;
             virtual task<size_t> sendto(std::span<const char> buffer, const connection_info &info) = 0;
@@ -376,19 +387,49 @@ namespace webcraft::async::io::socket
             }
         }
 
-        /** @brief Binds the UDP socket to a local endpoint. */
+        /** @brief Binds the UDP socket to a local endpoint. Finish pending operations before rebinding. */
         void bind(const connection_info &info)
         {
             descriptor->bind(info);
         }
 
-        /** @brief Receives a datagram and fills sender info. */
+        /**
+         * @brief Joins a numeric IPv4 or IPv6 multicast group on the selected interface.
+         *
+         * Bind the socket to the corresponding wildcard address and receive port before joining.
+         * Serialize membership changes with bind and close.
+         *
+         * @param group Multicast address literal. Select an IPv6 interface through local_interface.ipv6_index.
+         * @param local_interface Local interface address for IPv4 or local interface index for IPv6.
+         * @throws std::invalid_argument If the group or interface is invalid.
+         * @throws std::system_error If the native membership operation fails.
+         * @throws std::logic_error If the socket has been explicitly closed.
+         */
+        void join_multicast_group(const std::string &group, const multicast_interface &local_interface = {})
+        {
+            if (!descriptor)
+                throw std::logic_error("UDP socket is closed");
+            descriptor->change_multicast_membership(group, local_interface, true);
+        }
+
+        /**
+         * @brief Leaves a numeric multicast group using the interface specified when joining.
+         * @see join_multicast_group
+         */
+        void leave_multicast_group(const std::string &group, const multicast_interface &local_interface = {})
+        {
+            if (!descriptor)
+                throw std::logic_error("UDP socket is closed");
+            descriptor->change_multicast_membership(group, local_interface, false);
+        }
+
+        /** @brief Receives a datagram and fills sender info. Keep the task, buffer, and sender info alive until completion. */
         task<size_t> recvfrom(std::span<char> buffer, connection_info &info)
         {
             return descriptor->recvfrom(buffer, info);
         }
 
-        /** @brief Sends a datagram to the target endpoint. */
+        /** @brief Sends a datagram to the target endpoint. Keep the task and buffer alive until completion. */
         task<size_t> sendto(std::span<const char> buffer, const connection_info &info)
         {
             return descriptor->sendto(buffer, info);
