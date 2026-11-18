@@ -65,12 +65,12 @@ namespace webcraft::net::util
      * @brief Converts a socket address into numeric host and port.
      */
     inline std::pair<std::string, uint16_t> addr_to_host_port(
-        const struct sockaddr_storage &addr)
+        const struct sockaddr_storage &addr, socklen_t length = sizeof(sockaddr_storage))
     {
         char host[NI_MAXHOST];
         char service[NI_MAXSERV];
 
-        if (getnameinfo((struct sockaddr *)&addr, sizeof(addr),
+        if (getnameinfo((struct sockaddr *)&addr, length,
                         host, sizeof(host),
                         service, sizeof(service),
                         NI_NUMERICHOST | NI_NUMERICSERV) != 0)

@@ -8,6 +8,25 @@
 #include "test_suite.hpp"
 #include <webcraft/async/async.hpp>
 #include "mock_io.hpp"
+#include <system_error>
+
+#if defined(WEBCRAFT_UDP_MOCK) || \
+    ((defined(_WIN32) || defined(__APPLE__)) && !defined(WEBCRAFT_UDP_USE_NATIVE))
+TEST_CASE(TestWorkerUdpCloseCompletesPendingReceive)
+{
+    webcraft::async::runtime_context context;
+    using namespace webcraft::async::io::socket;
+    auto socket = make_udp_socket(ip_version::IPv4);
+    socket.bind({"127.0.0.1", 0});
+
+    std::array<char, 32> buffer{};
+    connection_info sender;
+    auto pending = socket.recvfrom(buffer, sender);
+    webcraft::async::sync_wait(webcraft::async::sleep_for(20ms));
+    webcraft::async::sync_wait(socket.close());
+    EXPECT_EQ(webcraft::async::sync_wait(pending), 0u);
+}
+#endif
 
 using namespace webcraft::async;
 using namespace webcraft::async::io::socket;
@@ -473,4 +492,38 @@ TEST_CASE(TestUdpExplicitCloseIsIdempotent)
     TEST_TRACE("closing bound UDP socket without pending receives");
     sync_wait(socket.close());
     EXPECT_NO_THROW(sync_wait(socket.close()));
+}
+
+TEST_CASE(TestUdpMulticastMembership)
+{
+    runtime_context context;
+    auto socket = make_udp_socket(ip_version::IPv4);
+    socket.bind({"0.0.0.0", 0});
+
+    const std::string group = "239.255.42.78";
+    const multicast_interface loopback{"127.0.0.1"};
+    EXPECT_NO_THROW(socket.join_multicast_group(group, loopback));
+    EXPECT_NO_THROW(socket.leave_multicast_group(group, loopback));
+    EXPECT_THROW(socket.leave_multicast_group(group, loopback), std::system_error);
+    EXPECT_NO_THROW(socket.join_multicast_group(group, loopback));
+
+    sync_wait(socket.close());
+    EXPECT_THROW(socket.join_multicast_group(group, loopback), std::logic_error);
+    EXPECT_THROW(socket.leave_multicast_group(group, loopback), std::logic_error);
+}
+
+TEST_CASE(TestUdpMulticastRejectsInvalidAddresses)
+{
+    runtime_context context;
+    auto socket = make_udp_socket(ip_version::IPv4);
+    socket.bind({"0.0.0.0", 0});
+
+    EXPECT_THROW(socket.join_multicast_group("127.0.0.1"), std::invalid_argument);
+    EXPECT_THROW(socket.join_multicast_group("::1"), std::invalid_argument);
+    EXPECT_THROW(socket.join_multicast_group("invalid"), std::invalid_argument);
+    EXPECT_THROW(socket.join_multicast_group("239.255.42.78", {"invalid"}), std::invalid_argument);
+    EXPECT_THROW(socket.join_multicast_group("239.255.42.78", {"", 1}), std::invalid_argument);
+    EXPECT_THROW(socket.leave_multicast_group("ff02::1234", {"127.0.0.1"}), std::invalid_argument);
+
+    sync_wait(socket.close());
 }
